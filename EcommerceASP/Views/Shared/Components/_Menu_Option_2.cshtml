@@ -1,0 +1,75 @@
+﻿@model List<EcommerceASP.ViewModel.Category.CategoryDetailBO>
+
+<ul class="dropdown-menu border-box">
+	@{
+
+		var lstCatLv1 = Model.Where(m => m.ParenId == 0).ToList();
+		foreach (var itemCatLv1 in lstCatLv1)
+		{
+			var hasSubMenu = false;
+			var lstCatLv2 = Model.Where(m => m.ParenId == itemCatLv1.Id).ToList();
+			hasSubMenu = lstCatLv2.Count > 0;
+
+			<li class="@(hasSubMenu ?"dropdown-submenu nav-items" : "") nav-item-lv2">
+				<a class="nav-link" href="/@itemCatLv1.Slug" title="@itemCatLv1.Name">@itemCatLv1.Name</a>
+				@if (hasSubMenu)
+				{
+					<i class="fa fa-caret-right" data-toggle="dropdown" aria-expanded="true" role="button">
+					</i>
+					<ul class="dropdown-menu border-box">
+						@{
+							foreach (var itemCatLv2 in lstCatLv2)
+							{
+								var lstCatLv3 = Model.Where(m => m.ParenId == itemCatLv2.Id).ToList();
+								hasSubMenu = lstCatLv3.Count > 0;
+								if (hasSubMenu)
+								{
+									<li class="@(hasSubMenu ?"dropdown-submenu nav-items" : "") nav-item-lv2">
+										<a class="nav-link" href="/@itemCatLv2.Slug" title="@itemCatLv2.Name">@itemCatLv2.Name</a>
+										@if (hasSubMenu)
+										{
+											<i class="fa fa-caret-right" data-toggle="dropdown" aria-expanded="true" role="button">
+											</i>
+											<ul class="dropdown-menu border-box">
+												@{
+													foreach (var itemCatLv3 in lstCatLv3)
+													{
+
+														<li class="nav-item-lv3">
+															<a class="nav-link" href="/@itemCatLv3.Slug" title="@itemCatLv3.Name">
+																@if (itemCatLv3.IsNewLabel.Value)
+																{
+																	<span>New</span>
+																}
+																@itemCatLv3.Name
+															</a>
+														</li>
+
+													}
+												}
+
+											</ul>
+										}
+									</li>
+								}
+								else
+								{
+									<li class="nav-item-lv3">
+										<a class="nav-link" href="/@itemCatLv2.Slug" title="@itemCatLv2.Name">
+											@if (itemCatLv2.IsNewLabel.Value)
+											{
+												<span>New</span>
+											}
+											@itemCatLv2.Name
+										</a>
+									</li>
+								}
+							}
+						}
+
+					</ul>
+				}
+			</li>
+		}
+	}
+</ul>

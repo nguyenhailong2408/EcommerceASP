@@ -1,0 +1,82 @@
+﻿@model List<EcommerceASP.ViewModel.Category.CategoryBO>
+<div id="undefined-sticky-wrapper" class="sticky-wrapper" style="height: 56px;">
+	<header class="header">
+		<div class="main-header d-none d-lg-block">
+			<div class="container flex-box">
+				<div class="logo">
+					<a href="@Url.Action("Index", "Home")" class="logo-wrapper ">
+						<img src="~/Content/Images/logoThuanPhat.png"
+							 alt="logo DecoViet | Thiết Kế Thi Công Nội Thất Trọn Gói TPHCM">
+					</a>
+				</div>
+				<div class="header-tabs-menu">
+					<nav class="nav-main">
+						<div class="menu_hed head_1">
+							<ul class="nav nav_1">
+								@{
+									foreach (var category in Model)
+									{
+										var menuHover = category.lstProductCategory.Count > 0 
+														|| category.lstCategoryDetail.Count > 0 ? "menu_hover" : "";
+										var hasMega = category.TemplateOptionId == 0 ? "has-mega" : "";
+										var active = category.TemplateOptionId == 0 ? "active" : "";
+										<li class="nav-item nav-items @menuHover @active @hasMega">
+											<a href="/@category.Slug" class="nav-link" title="@category.Name">
+												<span>@category.Name</span>
+											</a>
+											@if(!string.IsNullOrEmpty(menuHover))
+											{
+												if (category.TemplateOptionId == 0)
+												{
+													Html.RenderPartial("Components/_Menu_Option_1", category.lstCategoryDetail);
+												}
+												else
+												{
+													Html.RenderPartial("Components/_Menu_Option_2", category.lstCategoryDetail);
+												}
+											}
+											
+										</li>
+									}
+								}
+							</ul>
+						</div>
+					</nav>
+				</div>
+				<div class="header-search">
+					<form action="/search" method="get" autocomplete="off">
+						<input type="text" class="form-control" maxlength="70" name="query" placeholder="Tìm kiếm sản phẩm ...">
+						<button class="search-icon">
+							<i class="fa fa-search"></i>
+						</button>
+					</form>
+				</div>
+				<div class="header-hotline">
+					<i class="fa fa-phone" aria-hidden="true"></i>
+					<span class="hidden-sm hidden-xs">Tư vấn miễn phí:</span> <a href="tel:0938221696">0938221696</a>
+				</div>
+			</div>
+		</div>
+	</header>
+</div>
+
+<script>
+	$(document).ready(function () {
+		$('.main-header .nav_1 .nav-item.nav-items>a').hover(function (e) {
+			$('.main-header .nav_1 .nav-item.nav-items').removeClass('active');
+			$(this).parent('.nav-items').addClass('active');
+		});
+
+		$('.main-header .nav_1 .nav-item.nav-items').hover(
+			function () {
+				$('.main-header .nav_1 .nav-item.nav-items').removeClass('active');
+				$(this).addClass('active');
+			},
+
+			function () {
+				$('.main-header .nav_1 .nav-item.nav-items').removeClass('active');
+				$('.main-header .nav_1 .nav-item.nav-items:first-child').addClass('active');
+			}
+		);
+	});
+</script>

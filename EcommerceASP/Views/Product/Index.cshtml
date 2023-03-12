@@ -1,0 +1,161 @@
+﻿@model EcommerceASP.ViewModel.Prouduct.ProductViewBO
+@using EcommerceASP.ViewModel.Component
+@{
+	ViewBag.Title = "Sản phẩm";
+	var ControllerName = ViewContext.RouteData.Values["Controller"];
+	var ActionName = ViewContext.RouteData.Values["Action"];
+	var url = Request.RawUrl.ToString();
+}
+
+<script src="~/Scripts/Product/Product.js"></script>
+<style>
+	.item_product_main {
+		float: left;
+		width: 100%
+	}
+
+	.cl-bg-white {
+		border: 1px solid #ddd;
+		padding: 0 0 0;
+		margin-bottom: 15px;
+		transition: all 0.3s ease-in-out;
+		cursor: pointer;
+	}
+		.cl-bg-white:hover {
+			box-shadow: 2px 2px 7px 0px #21252938;
+		}
+		.cl-bg-white .item-image-container {
+			position: relative;
+			overflow: hidden;
+		}
+
+			.cl-bg-white .item-image-container .nes_block {
+				position: absolute;
+				z-index: 1;
+			}
+
+				.cl-bg-white .item-image-container .nes_block .item-feature-inner {
+					position: relative;
+					width: 0;
+					height: 0;
+					border-top: 50px solid #264c5d;
+					border-right: 50px solid transparent;
+				}
+
+					.cl-bg-white .item-image-container .nes_block .item-feature-inner p {
+						top: -42px;
+						left: 5px;
+						-webkit-transform: rotate(315deg);
+						-moz-transform: rotate(315deg);
+						-o-transform: rotate(315deg);
+						-ms-transform: rotate(315deg);
+						transform: rotate(315deg);
+						position: absolute;
+						color: #fff;
+						font-size: 11px;
+					}
+
+		.cl-bg-white .item-image-container__link {
+			display: inline-block;
+			width: 100%;
+			position: relative;
+			height: 285px;
+		}
+
+		.cl-bg-white .item-image-container__image {
+			width: auto !important;
+			max-height: 100%;
+			position: absolute;
+			top: 0;
+			bottom: 0;
+			left: 0;
+			right: 0;
+			margin: auto;
+		}
+
+	.line-clamp {
+		display: block;
+		display: -webkit-box;
+		-webkit-box-orient: vertical;
+		position: relative;
+		line-height: 1.5em !important;
+		overflow: hidden;
+		text-overflow: ellipsis;
+		padding: 0 !important;
+	}
+
+	.line-clamp-3 {
+		-webkit-line-clamp: 3;
+		height: calc(1.5em * 3);
+	}
+
+	.cl-bg-white .product-info .price-box {
+		text-align: right;
+		display: flex;
+		align-items: center;
+		justify-content: flex-end;
+	}
+
+		.cl-bg-white .product-info .price-box .nmb {
+			font-size: 18px;
+			margin-bottom: 0px;
+		}
+
+	.cl-bg-white .product-info {
+		margin-bottom: 10px;
+	}
+
+	.cl-bg-white .product-action .npr a {
+		background-color: #949496;
+		color: #fff !important;
+		border-radius: 0;
+	}
+
+	.cl-bg-white .product-action .npl form .btn, .cl-bg-white .product-action .npl form input[type="submit"] {
+		background-color: #f5f5f5;
+		width: 100%;
+	}
+
+	.cl-bg-white .product-info .item-title {
+		display: inline-block;
+		width: 100%;
+		margin-bottom: 5px;
+		text-transform: uppercase;
+		font-weight: 400;
+		font-size: 18px;
+		margin: 0 0 3px;
+		white-space: nowrap;
+		overflow: hidden;
+		line-height: 25px;
+		text-overflow: ellipsis;
+		margin-top: 10px;
+	}
+
+		.cl-bg-white .product-info .item-title a {
+			color: grey;
+		}
+</style>
+@{
+	Html.RenderPartial(Url.Content("Components/_Top_Breadcrumb"), new BreadcrumbBO
+	{
+		ParentSlugName = Model.ParentSlugName,
+		ParentSlug = Model.ParentSlug,
+		SlugName = Model.SlugName,
+		Slug = Model.Slug,
+		IsChild = Model.IsChild,
+		Title = Model.Title,
+		IsShowTitle = true
+	});
+}
+@{
+	Html.RenderPartial("../Product/Components/_List_Product", Model);
+}
+<script>
+	$(document).ready(function () {
+
+
+		Common.Product = new Product();
+		//Common.Product.SubmitForm();
+		Product.Url = {};
+	});
+</script>

@@ -1,0 +1,48 @@
+﻿@model EcommerceASP.ViewModel.ProductCategoryManage.SearchFormViewModel
+
+@using (Ajax.BeginForm("GetList", "ProductCategoryManage", null,
+									new AjaxOptions
+									{
+										HttpMethod = "POST",
+										OnBegin = "Common.ProductCategoryManage.BeforeSend",
+										OnSuccess = "Common.ProductCategoryManage.SuccessForm",
+										UpdateTargetId = "list-data"
+									}, new { @id = "form-search-ProductCategoryManage", @class = "form-horizontal multiple-controls", @style = "display:flex;flex-wrap:wrap" }))
+{
+	<div class="hidden">
+		@Html.HiddenFor(m => m.PageCurrent)
+	</div>
+	<div class="col-sm-3 d-flex align-items-center flex-wrap p-0 mb-1">
+		<label class="col-sm-3 control-label p-0">Tên danh mục:</label>
+		<div class="col-sm-8 p-0">
+			@Html.TextBoxFor(m => m.Name, null, new { @class = "w-100", @placeholder = "Tên danh mục" })
+		</div>
+	</div>
+	<div class="col-sm-3 d-flex align-items-center flex-wrap p-0 mb-1">
+		<label class="col-sm-3 control-label p-0">Đường dẫn:</label>
+		<div class="col-sm-8 p-0">
+			@Html.TextBoxFor(m => m.Slug, null, new { @class = "w-100", @placeholder = "Đường dẫn" })
+		</div>
+	</div>
+	<div class="col-sm-12 text-left">
+		<span style="color:red">Note: Đây là những danh mục sản phẩm cha</span>
+		<br>
+		<a href="@Url.Action("Index","ProductCategoryDetailManage")" target="_blank">Đi đến trang quản lý danh mục sản phẩm con</a>
+	</div>
+	<div class="col-sm-12 text-right">
+		<button type="button" class="btn btn-danger btn-cons btn-sm" data-toggle="modal" data-target="#modal-update" data-backdrop="static" onclick="Common.ProductCategoryManage.ShowDialog()">
+			<i class="fa fa-plus fa-lg"></i> &nbsp; Thêm mới
+		</button>
+		<button type="submit" class="btn btn-primary btn-sm">
+			<i class="fa fa-search fa-lg"></i> &nbsp; Tìm kiếm
+		</button>
+		<button type="reset" class="btn btn-default btn-sm" @*onclick="Common.DialogTheme.Reset()"*@>
+			<i class="fa fa-refresh fa-lg"></i> &nbsp; Xóa
+		</button>
+	</div>
+}
+<script>
+	$(document).ready(function () {
+	});
+</script>
+

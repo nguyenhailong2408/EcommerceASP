@@ -1,0 +1,58 @@
+﻿@model EcommerceASP.ViewModel.Account.LoginBO
+@{
+	Layout = "~/Views/Shared/_LayoutGeneral.cshtml";
+}
+
+@{
+	ViewBag.Title = "Login";
+}
+<div class="bg-light min-vh-100 d-flex flex-row align-items-center">
+	<div class="container">
+		<div class="row justify-content-center">
+			<div class="col-lg-8">
+				<div class="card-group d-block d-md-flex row">
+					<div class="card col-md-7 p-4 mb-0">
+						<div class="card-body">
+							@using (Html.BeginForm(new { returnUrl = ViewBag.ReturnUrl }))
+							{
+								<h1>ĐĂNG NHẬP</h1>
+								<p class="text-medium-emphasis">Sign In to your account</p>
+
+								@Html.AntiForgeryToken()
+								@Html.ValidationSummary(true)
+								<div class="input-group mb-3">
+									<span class="input-group-text">
+										<svg class="icon">
+											<use xlink:href="~/UI/admin/vendors/coreui/icons/svg/free.svg#cil-user"></use>
+										</svg>
+									</span>
+									@Html.TextBoxFor(m => m.Username, new { @class = "form-control", @placeholder = "Tên đăng nhập" })
+									@Html.ValidationMessageFor(m => m.Username)
+									@*<input class="form-control" type="text" placeholder="Username">*@
+								</div>
+								<div class="input-group mb-4">
+									<span class="input-group-text">
+										<svg class="icon">
+											<use xlink:href="~/UI/admin/vendors/coreui/icons/svg/free.svg#cil-lock-locked"></use>
+										</svg>
+									</span>
+									@Html.TextBoxFor(m => m.Password, new { @class = "form-control", @type = "password", @placeholder = "Mật khẩu" })
+									@Html.ValidationMessageFor(m => m.Password)
+									@*<input class="form-control" type="password" placeholder="Password">*@
+								</div>
+								<div class="row">
+									<div class="col-6">
+										<button class="btn btn-primary px-4" type="submit">Login</button>
+									</div>
+									<div class="col-6 text-end">
+										<button class="btn btn-link px-0" type="button">Forgot password?</button>
+									</div>
+								</div>
+							}
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>

@@ -1,0 +1,24 @@
+﻿@model EcommerceASP.ViewModel.Topic.TopicViewBO
+@using EcommerceASP.ViewModel.Component
+@{
+	ViewBag.Title = "Tin tức";
+}
+@section scripts{
+	<link rel="stylesheet" href="~/Content/css/topic.css">
+}
+@{
+	Html.RenderPartial(Url.Content("Components/_Top_Breadcrumb"), new BreadcrumbBO
+	{
+		ParentSlugName = Model.ParentSlugName,
+		ParentSlug = Model.ParentSlug,
+		SlugName = Model.SlugName,
+		Slug = Model.Slug,
+		IsChild = Model.IsChild,
+		Title = Model.Title,
+		IsShowTitle = true
+	});
+}
+@{
+	Html.RenderPartial("../Topic/Component/_List_Topic", Model);
+}
+

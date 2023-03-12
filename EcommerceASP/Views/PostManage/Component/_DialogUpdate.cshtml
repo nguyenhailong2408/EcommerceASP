@@ -1,0 +1,132 @@
+﻿@model EcommerceASP.ViewModel.PostManage.PostManageBO
+@{
+	var controlDev = false;
+}
+@using (Ajax.BeginForm("Update", "PostManage", null, new AjaxOptions()
+{
+	HttpMethod = "POST",
+	OnBegin = "Common.PostManage.UpdateBeforeSend",
+	OnSuccess = "Common.PostManage.UpdateSuccess"
+},
+new
+{
+	@id = "form-update",
+	@class = "form-horizontal multiple-controls",
+	@enctype = "multipart/form-data"
+}))
+{
+	<div class="hidden">
+		@Html.HiddenFor(m => m.Id)
+		@Html.AntiForgeryToken()
+	</div>
+	<div class="col-md-12 container">
+		<div class="row form-group">
+			<label class="control-label col-md-2">Tiêu đề:</label>
+			<div class="col-md-10">
+				@Html.TextBoxFor(m => m.Title, new { @class = "form-control", @maxLength = "150", @style = "height:30px" })
+			</div>
+		</div>
+		<div class="row form-group">
+			<label class="control-label col-md-2">Đường dẫn:</label>
+			<div class="col-md-10">
+				@Html.TextBoxFor(m => m.Slug, new { @class = "form-control", @maxLength = "150", @style = "height:30px" })
+			</div>
+		</div>
+		<div class="row form-group">
+			<label class="control-label col-md-2">Loại bài viết:</label>
+			<div class="col-md-10">
+				@Html.DropDownListFor(m => m.CategoryId,
+										   EcommerceASP.Queries.CommonQuery.GetCategoryTopic(Model.CategoryId),
+										   "-- Chưa chọn loại bài viết --",
+										   new { @class = "form-control" })
+			</div>
+		</div>
+		<div class="row form-group">
+			<label class="control-label col-md-2">Thứ tự:</label>
+			<div class="col-md-10">
+				@Html.TextBoxFor(m => m.Priority, new { @class = "form-control", @type = "number", @min = "0" })
+			</div>
+		</div>
+		<div class="row form-group">
+			<label class="control-label col-md-2">Thông tin:</label>
+			<div class="col-md-10">
+				@Html.TextAreaFor(m => m.Content, new { @class = "form-control", @rows = "5" })
+				@{
+					if (controlDev)
+					{
+						<script>
+							var editor1 = CKEDITOR.replace("Content", {
+								extraPlugins: 'image2,uploadimage',
+								extraAllowedContent: 'div',
+								toolbar: [{
+									name: 'clipboard',
+									items: ['Undo', 'Redo']
+								},
+								{
+									name: 'styles',
+									items: ['Styles', 'Format']
+								},
+								{
+									name: 'basicstyles',
+									items: ['Bold', 'Italic', 'Strike', '-', 'RemoveFormat']
+								},
+								{
+									name: 'paragraph',
+									items: ['NumberedList', 'BulletedList', '-', 'Outdent', 'Indent', '-', 'Blockquote']
+								},
+								{
+									name: 'links',
+									items: ['Link', 'Unlink']
+								},
+								{
+									name: 'insert',
+									items: ['Image', 'Table']
+								},
+								{
+									name: 'tools',
+									items: ['Maximize']
+								},
+								{
+									name: 'editing',
+									items: ['Scayt']
+								}
+								],
+
+								// Configure your file manager integration. This example uses CKFinder 3 for PHP.
+								filebrowserBrowseUrl: '/apps/ckfinder/3.4.5/ckfinder.html',
+								filebrowserImageBrowseUrl: '@Url.Content("~/Content/Images/topic")',
+								filebrowserUploadUrl: '@Url.Action("UploadImageTopic", "Common")',
+								filebrowserImageUploadUrl: '@Url.Action("UploadImageTopic", "Common")',
+
+								// Upload dropped or pasted images to the CKFinder connector (note that the response type is set to JSON).
+								uploadUrl: '@Url.Action("UploadImageTopic", "Common")',
+
+								// Reduce the list of block elements listed in the Format drop-down to the most commonly used.
+								format_tags: 'p;h1;h2;h3;pre',
+								// Simplify the Image and Link dialog windows. The "Advanced" tab is not needed in most cases.
+								removeDialogTabs: 'image:advanced;link:advanced',
+
+								height: 300,
+								removeButtons: 'PasteFromWord',
+							});
+						</script>
+					}
+					else
+					{
+						<script>
+							CKEDITOR.replace("Content", {
+								filebrowserBrowseUrl: '#',
+								filebrowserUploadUrl: '@Url.Action("UploadImageTopic", "Common")',
+							});
+						</script>
+					}
+				}
+			</div>
+		</div>
+	</div>
+}
+<script>
+	$(document).ready(function () {
+		$("#idpage").off('select2:select').select2();
+	});
+</script>

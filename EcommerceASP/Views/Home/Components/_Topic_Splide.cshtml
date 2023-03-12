@@ -1,0 +1,85 @@
+﻿@model EcommerceASP.ViewModel.Component.ComponentViewBO
+@{ if (Model != null)
+	{
+		<section class="topic topic--option1">
+			<h2 class="topic__title">
+				<a href="#"><span class="topic__title-span">@Model.Title @*THIẾT KẾ NỘI THẤT*@</span></a>
+			</h2>
+			<div class="topic__content">
+				@{
+					if (Model.lstDetailComponent.Count > 0)
+					{
+						<div class="splide topic__content-slide topic-splide-s1" id="topic-splide-s@(Model.Id)" style="width:100%;">
+							<div class="splide__track">
+								<ul class="splide__list">
+									@{
+										foreach (var item in Model.lstDetailComponent)
+										{
+											<li class="splide__slide splide-item">
+												<div class="__block">
+													<div class="__item s-block">
+														<div class="s-block__image box-image">
+															<img class="box-image__image" style="height: auto;" src="@Url.Content($"~/Content/Images/{item.FolderImage}/{item.ImageName}")" />
+														</div>
+														<h3 class="s-block__title"><a href="@item.Slug">@item.Title</a></h3>
+														<a href="@item.Slug" class="s-block__link">Xem chi tiết</a>
+													</div>
+												</div>
+											</li>
+										}
+									}
+								</ul>
+							</div>
+						</div>
+						<div class="topic__content-showmore">
+							<a href="/@(Model.ParentSlug)" class="btn btn-outline-warning">Xem thêm</a>
+						</div>
+						<script>
+							$(document).ready(function () {
+								new Splide("#topic-splide-s@(Model.Id)", {
+									type: 'loop',
+									perPage: @(Model.Collumns),
+									perMove: 1,
+									focus: 'left',
+									gap: '20px', //  gap between 2 slide
+									pagination: false,
+									autoplay: true,
+									pauseOnHover: false,
+									speed: 900,
+									breakpoints: {
+										2000: {
+											perPage: @(Model.Collumns),
+											gap: '10px'
+										},
+										1500: {
+											perPage: @(Model.Collumns),
+											gap: '10px'
+										},
+										1200: {
+											perPage: 3,
+											gap: '10px'
+										},
+										960: {
+											perPage: 2,
+											gap: '10px'
+										},
+										640: {
+											perPage: 2,
+											gap: '10px'
+										},
+										400: {
+											perPage: 2,
+										},
+									}
+								}).mount();
+							});
+						</script>
+					}
+				}
+			</div>
+		</section>
+	}
+}
+
+
+

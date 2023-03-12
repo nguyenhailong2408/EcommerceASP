@@ -1,0 +1,52 @@
+﻿@model EcommerceASP.ViewModel.PageSlug.PageSlugBO
+
+@using (Ajax.BeginForm("Update", "PageSlug", null, new AjaxOptions()
+{
+	HttpMethod = "POST",
+	OnBegin = "Common.PageSlug.UpdateBeforeSend",
+	OnSuccess = "Common.PageSlug.UpdateSuccess"
+},
+new
+{
+	@id = "form-update",
+	@class = "form-horizontal multiple-controls",
+	@enctype = "multipart/form-data"
+}))
+{
+	<div class="hidden">
+		@Html.HiddenFor(m => m.Id)
+		@Html.AntiForgeryToken()
+	</div>
+	<div class="col-md-12 container">
+		<div class="row form-group">
+			<label class="control-label col-md-2">Đường dẫn:</label>
+			<div class="col-md-10">
+				@Html.TextBoxFor(m => m.Slug, new { @class = "form-control", @maxLength = "150", @style = "height:30px" })
+			</div>
+		</div>
+		<div class="row form-group">
+			<label class="control-label col-md-2">Trang:</label>
+			<div class="col-md-10">
+				@*@Html.TextBoxFor(m => m.PageName, new { @class = "form-control", @maxLength = "50", @style="height:30px" })*@
+				@Html.DropDownListFor(m => m.PageId, EcommerceASP.Queries.CommonQuery.GetListPage(Model.PageId), null, new { @class = "w-100", @id = "idpage", @onchange = "Common.PageSlug.OnChangeSelectPage(this)" })
+			</div>
+		</div>
+		<div class="row form-group">
+			<label class="control-label col-md-2">Action:</label>
+			<div class="col-md-10">
+				@Html.TextBoxFor(m => m.Action, new { @class = "form-control", @maxLength = "150", @style = "height:30px", @readonly = "readonly" })
+			</div>
+		</div>
+		<div class="row form-group">
+			<label class="control-label col-md-2">Controller:</label>
+			<div class="col-md-10">
+				@Html.TextBoxFor(m => m.Controller, new { @class = "form-control", @maxLength = "150", @style = "height:30px", @readonly = "readonly" })
+			</div>
+		</div>
+	</div>
+}
+<script>
+	$(document).ready(function () {
+		$("#idpage").off('select2:select').select2();
+	});
+</script>

@@ -1,0 +1,110 @@
+﻿@model EcommerceASP.ViewModel.CategoryDetailManage.CategoryDetailManageBO
+
+@using (Ajax.BeginForm("Update", "CategoryDetailManage", null, new AjaxOptions()
+{
+	HttpMethod = "POST",
+	OnBegin = "Common.CategoryDetailManage.UpdateBeforeSend",
+	OnSuccess = "Common.CategoryDetailManage.UpdateSuccess"
+},
+new
+{
+	@id = "form-update",
+	@class = "form-horizontal multiple-controls",
+	@enctype = "multipart/form-data"
+}))
+{
+	<div class="hidden">
+		@Html.HiddenFor(m => m.Id)
+		@Html.AntiForgeryToken()
+	</div>
+	<div class="col-md-12 container">
+		<div class="row form-group">
+			<label class="control-label col-md-2">Tiêu đề:</label>
+			<div class="col-md-10">
+				@Html.TextBoxFor(m => m.Name, new { @class = "form-control", @maxLength = "150", @style = "height:30px" })
+			</div>
+		</div>
+		<div class="row form-group">
+			<label class="control-label col-md-2">Đường dẫn:</label>
+			<div class="col-md-10">
+				@Html.TextBoxFor(m => m.Slug, new
+				   {
+					   @class = "form-control",
+					   @maxLength = "150",
+					   @style = "height:30px",
+					   @onblur = "Common.CategoryDetailManage.OnBlurInputSlug(this)"
+				   })
+			</div>
+		</div>
+		<div class="row form-group">
+			<label class="control-label col-md-2">Trang:</label>
+			<div class="col-md-10">
+				@Html.DropDownListFor(m => m.PageId,
+										   EcommerceASP.Queries.CommonQuery.GetPage(Model.PageId),
+										   "-- Chưa chọn trang --",
+										   new { @class = "form-control", @readonly = "readonly" })
+			</div>
+		</div>
+		<div class="row form-group">
+			<label class="control-label col-md-2">Danh mục cha:</label>
+			<div class="col-md-10">
+				@Html.DropDownListFor(m => m.CategoryID,
+										   EcommerceASP.Queries.CommonQuery.GetCategory(Model.CategoryID),
+										   new
+												{
+													@class = "form-control",
+											   @onchange = "Common.CategoryDetailManage.OnChangeSelectCategory(this)"
+										   })
+			</div>
+		</div>
+		<div class="row form-group">
+			<label class="control-label col-md-2">Cha:</label>
+			<div class="col-md-10">
+				@Html.DropDownListFor(m => m.ParenId,
+										   EcommerceASP.Queries.CommonQuery.GetCategoryDetail(Model.CategoryID, Model.ParenId),
+										   "-- Không có cha --",
+										   new { @class = "form-control", @id = "inputCategoryDetail" })
+			</div>
+		</div>
+		<div class="row form-group">
+			<label class="control-label col-md-2">Thứ tự:</label>
+			<div class="col-md-10">
+				@Html.TextBoxFor(m => m.Priority, new { @class = "form-control", @type = "number", @min = "0" })
+			</div>
+		</div>
+		<div class="row form-group">
+			<label class="control-label col-md-2">Hiển thị hình:</label>
+			<div class="col-md-10">
+				@Html.CheckBoxFor(m => m.IsHasBanner)
+				<span style="color:red">Ghi chú: Hình chỉ áp dụng cho danh mục cha = 0 (Không có cha)</span>
+			</div>
+		</div>
+		<div class="row form-group">
+			<label class="control-label col-md-2 ">Hình</label>
+			<div class="col-md-9">
+				<div class="input-group">
+					<img id="imgShow" src="@Url.Content($"~/Content/Images/banner/{Model.BannerImage}")" alt="@Model.Name" height="50" />
+				</div>
+			</div>
+		</div>
+		<div class="row form-group">
+			<label class="control-label col-md-2 ">Upload Images</label>
+			<div class="col-md-9">
+				<div class="input-group">
+					@Html.TextBoxFor(m => m.BannerImage, new { @class = "form-control", @readonly = "readonly" })
+					@Html.HiddenFor(m => m.ImageOld)
+					<label class="input-group-addon cursor" for="file-upload-image">
+						<i class="fa fa-upload"></i>
+					</label>
+				</div>
+				<input type="file" id="file-upload-image" name="UploadImage" class="d-none" />
+			</div>
+		</div>
+	</div>
+}
+<script>
+	$(document).ready(function () {
+		$("#CategoryID").off('select2:select').select2();
+		$("#inputCategoryDetail").off('select2:select').select2();
+	});
+</script>

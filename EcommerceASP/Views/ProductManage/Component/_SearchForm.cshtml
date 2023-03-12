@@ -1,0 +1,45 @@
+﻿@model EcommerceASP.ViewModel.ProductManage.SearchFormViewModel
+
+@using (Ajax.BeginForm("GetList", "ProductManage", null,
+									new AjaxOptions
+									{
+										HttpMethod = "POST",
+										OnBegin = "Common.ProductManage.BeforeSend",
+										OnSuccess = "Common.ProductManage.SuccessForm",
+										UpdateTargetId = "list-data"
+									}, new { @id = "form-search-ProductManage", @class = "form-horizontal multiple-controls", @style = "display:flex;flex-wrap:wrap" }))
+{
+	<div class="hidden">
+		@Html.HiddenFor(m => m.PageCurrent)
+	</div>
+	<div class="col-sm-3 d-flex align-items-center flex-wrap p-0 mb-1">
+		<label class="col-sm-3 control-label p-0">Danh mục sản phẩm:</label>
+		<div class="col-sm-9 p-0">
+			@Html.DropDownListFor(m => m.ProductCategoryId, EcommerceASP.Queries.CommonQuery.GetListProductCategory(Model.ProductCategoryId), "==Tất cả==", new { @class = "w-100 form-control" })
+		</div>
+	</div>
+	<div class="col-sm-3 d-flex align-items-center flex-wrap p-0 mb-1">
+		<label class="col-sm-3 control-label p-0">Danh mục sản phẩm cấp 2:</label>
+		<div class="col-sm-9 p-0">
+			@Html.DropDownListFor(m => m.ProductCategoryDetailId, EcommerceASP.Queries.CommonQuery.GetListProductCategoryDetail(0,Model.ProductCategoryDetailId), "==Tất cả==", new { @class = "w-100 form-control" })
+		</div>
+	</div>
+	<div class="col-sm-12 text-right">
+		<button type="button" class="btn btn-danger btn-cons btn-sm" data-toggle="modal" data-target="#modal-update" data-backdrop="static" onclick="Common.ProductManage.ShowDialog()">
+			<i class="fa fa-plus fa-lg"></i> &nbsp; Thêm mới
+		</button>
+		<button type="submit" class="btn btn-primary btn-sm">
+			<i class="fa fa-search fa-lg"></i> &nbsp; Tìm kiếm
+		</button>
+		<button type="reset" class="btn btn-default btn-sm" @*onclick="Common.DialogTheme.Reset()"*@>
+			<i class="fa fa-refresh fa-lg"></i> &nbsp; Xóa
+		</button>
+	</div>
+}
+<script>
+	$(document).ready(function () {
+		$("#ProductCategoryId").off('select2:select').select2();
+		$("#ProductCategoryDetailId").off('select2:select').select2();
+	});
+</script>
+

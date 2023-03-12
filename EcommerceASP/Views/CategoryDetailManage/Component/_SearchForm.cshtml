@@ -1,0 +1,69 @@
+﻿@model EcommerceASP.ViewModel.CategoryDetailManage.SearchFormViewModel
+
+@using (Ajax.BeginForm("GetList", "CategoryDetailManage", null,
+									new AjaxOptions
+									{
+										HttpMethod = "POST",
+										OnBegin = "Common.CategoryDetailManage.BeforeSend",
+										OnSuccess = "Common.CategoryDetailManage.SuccessForm",
+										UpdateTargetId = "list-data"
+									}, new { @id = "form-search-CategoryDetailManage", @class = "form-horizontal multiple-controls", @style = "display:flex;flex-wrap:wrap" }))
+{
+	<div class="hidden">
+		@Html.HiddenFor(m => m.PageCurrent)
+	</div>
+	<div class="col-sm-3 d-flex align-items-center flex-wrap p-0 mb-1">
+		<label class="col-sm-3 control-label p-0">Danh mục cha:</label>
+		<div class="col-sm-9 p-0">
+			@Html.DropDownListFor(m => m.CategoryId,
+										   EcommerceASP.Queries.CommonQuery.GetCategory(0),
+										   "-- Tất cả --",
+										   new
+												{
+													@class = "form-control",
+											   @onchange = "Common.CategoryDetailManage.OnChangeSelectCategorySearch(this)"
+										   })
+		</div>
+	</div>
+	<div class="col-sm-3 d-flex align-items-center flex-wrap p-0 mb-1">
+		<label class="col-sm-3 control-label p-0">Cha:</label>
+		<div class="col-sm-9 p-0">
+			@Html.DropDownListFor(m => m.ParentId,
+										   EcommerceASP.Queries.CommonQuery.GetCategoryDetail(0, 0),
+										   "-- Không có cha --",
+										   new { @class = "w-100 form-control", @id = "inputSearchCategoryDetail" })
+		</div>
+	</div>
+	<div class="col-sm-3 d-flex align-items-center flex-wrap p-0 mb-1">
+		<label class="col-sm-3 control-label p-0">Tên danh mục:</label>
+		<div class="col-sm-9 p-0">
+			@Html.TextBoxFor(m => m.Name, null, new { @class = "w-100 form-control", @placeholder = "Tên danh mục" })
+		</div>
+	</div>
+	<div class="col-sm-3 d-flex align-items-center flex-wrap p-0 mb-1">
+		<label class="col-sm-3 control-label p-0">Đường dẫn:</label>
+		<div class="col-sm-9 p-0">
+			@Html.TextBoxFor(m => m.Slug, null, new { @class = "w-100 form-control", @placeholder = "Đường dẫn" })
+		</div>
+	</div>
+	<div class="col-sm-12 text-left">
+		<span style="color:red;">Ghi chú: Không có danh mục cha: Cha = 0 (Không có cha)</span>
+	</div>
+	<div class="col-sm-12 text-right">
+		<button type="button" class="btn btn-danger btn-cons btn-sm" data-toggle="modal" data-target="#modal-update" data-backdrop="static" onclick="Common.CategoryDetailManage.ShowDialog()">
+			<i class="fa fa-plus fa-lg"></i> &nbsp; Thêm mới
+		</button>
+		<button type="submit" class="btn btn-primary btn-sm">
+			<i class="fa fa-search fa-lg"></i> &nbsp; Tìm kiếm
+		</button>
+		<button type="reset" class="btn btn-default btn-sm" @*onclick="Common.DialogTheme.Reset()"*@>
+			<i class="fa fa-refresh fa-lg"></i> &nbsp; Xóa
+		</button>
+	</div>
+}
+<script>
+	$(document).ready(function () {
+		$("#CategoryId").off('select2:select').select2();
+		$("#inputSearchCategoryDetail").off('select2:select').select2();
+	});
+</script>

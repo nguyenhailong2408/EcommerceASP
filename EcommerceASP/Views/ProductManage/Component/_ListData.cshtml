@@ -1,0 +1,97 @@
+﻿@model EcommerceASP.ViewModel.ProductManage.ListViewModel
+@using EcommerceASP.Libraries.MvcPaging
+<style>
+	.line-camp-3 {
+		overflow: hidden;
+		text-overflow: ellipsis;
+		display: -webkit-box;
+		-webkit-line-clamp: 3;
+		-webkit-box-orient: vertical;
+	}
+</style>
+<table class="table table-striped table-hover table-bordered table-sorter" style="margin-bottom:0;" id="table-list-ProductManage">
+	<thead>
+		<tr>
+			<th class="text-center" width="50">STT</th>
+			<th class="text-center">Sản phẩm</th>
+			<th class="text-center">Danh mục cha</th>
+			<th class="text-center">Danh mục</th>
+			<th class="text-center">Đường dẫn</th>
+			<th class="text-center">Hình</th>
+			<th class="text-center" style="width:20%;">Thông tin</th>
+			<th class="text-center" style="width:20%;">Mô tả</th>
+			<th class="text-center">Giá</th>
+			<th class="text-center">Giá giảm</th>
+			<th class="text-center">#</th>
+		</tr>
+	</thead>
+	<tbody>
+		@if (Model.Items != null && Model.Items.Count() > 0)
+		{
+			var i = 1;
+			foreach (var item in Model.Items)
+			{
+				<tr class="cursor" data-id="@item.Id">
+					<td class="text-center">@i</td>
+					<td>@item.Id - @item.Name</td>
+					<td>@item.ProductCategoryInfo</td>
+					<td class="text-center">@item.ProductCategoryDetailInfo</td>
+					<td class="text-center"><a href="/@item.Slug" target="_blank">@item.Slug</a></td>
+					<td class="text-center">
+						<img src="@Url.Content($"~/Content/Images/product/{item.Image}")" alt="@item.Image" height="50" />
+					</td>
+					<td class="line-camp-3">@Html.Raw(item.Infomation)</td>
+					<td class="text-center">
+						@{
+							if (item.Description != null)
+							{
+								<button type="button" class="btn btn-dark" data-toggle="modal" data-target="#modal-update" data-backdrop="static" onclick="Common.ProductManage.ShowDialog(@item.Id)">
+									Ấn để xem chi tiết mô tả
+								</button>
+							}
+						}
+					</td>
+					<td class="text-center">@item.Price</td>
+					<td class="text-center">@item.Price_sale</td>
+					<td class="text-center">
+						@*<button type="button" class="btn btn-danger" data-toggle="modal" data-target="#glassAnimals" data-backdrop="static">
+								Glass Animals Info
+							</button>*@
+						<i class="fa fa-edit green" data-toggle="modal" data-target="#modal-update" data-backdrop="static"></i>&nbsp;
+						<i class="fa fa-trash red deleted"></i>&nbsp;
+					</td>
+
+				</tr>
+				i++;
+			}
+		}
+		else
+		{
+			<tr class="noresult">
+				<td colspan="10">Không có dữ liệu</td>
+			</tr>
+		}
+	</tbody>
+</table>
+<div class="col-md-12 mt-2">
+	<div class="row">
+		<div class="paging-top clearfix">
+			@if (Model.Items != null && Model.Items.Count() > 0)
+			{
+				@Html.Raw(Ajax.Pager(
+				new Options
+				{
+					PageSize = Model.Items.PageSize,
+					TotalItemCount = Model.Items.TotalItemCount,
+					CurrentPage = Model.Items.PageNumber,
+					IsShowControls = true,
+					IsShowFirstLast = true,
+					LimitPage = 7,
+					Link = "javascript:void(0);",
+					OnClick = "Common.ProductManage.Paging({0})"
+				}, null, null));
+			}
+		</div>
+	</div>
+</div>
+

@@ -1,0 +1,32 @@
+﻿.midbar-w {
+    padding: 20px;
+    margin-top: 30px;
+    background: #fafafa;
+    border-top: 1px solid #ccc;
+}
+
+.midbar {
+    /* padding: 0px; */
+}
+
+.footer-w {
+    min-height: 250px;
+    background-image: url(../Images/bg_footer.png);
+    color: white;
+    padding: 30px 0;
+}
+
+.footer {
+    /* padding: 0px; */
+}
+
+.copyright-w {
+    min-height: 50px;
+    background: #161829;
+    color: white;
+}
+
+.copyright {
+    padding: 0px;
+    line-height: 50px;
+}

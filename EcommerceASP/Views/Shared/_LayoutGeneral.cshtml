@@ -1,0 +1,39 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8" />
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>@ViewBag.Title</title>
+	@*@Styles.Render("~/Content/css")*@
+	@Styles.Render("~/Content/themes/regular/css")
+	@Styles.Render("~/Content/themes/regular/loading")
+	@*@Scripts.Render("~/bundles/modernizr")*@
+	@Scripts.Render("~/bundles/jquery")
+
+	@Scripts.Render("~/UI/microsoft/ajax/javascripts")
+
+	<!-- Bootstrap -->
+	@Scripts.Render("~/bundles/bootstrap")
+
+	@RenderSection("scripts", required: false)
+	<script src="~/Scripts/Common.js"></script>
+	<link rel="stylesheet" href="~/UI/admin/simplebar.css">
+	<link rel="stylesheet" href="~/UI/admin/examples.css">
+	<link rel="stylesheet" href="~/UI/admin/style.css">
+	<link rel="stylesheet" href="~/Content/layout.css">
+
+</head>
+<body>
+	<content class="container" style="display:flex;flex-direction:column;">
+		@RenderBody()
+	</content>
+	<!-- CoreUI and necessary plugins-->
+	<script src="~/UI/admin/vendors/coreui/coreui/js/coreui.bundle.min.js"></script>
+	<script src="~/UI/admin/vendors/simplebar/js/simplebar.min.js"></script>
+	<!-- Plugins and scripts required by this view-->
+	<script src="~/UI/admin/vendors/chart.js/js/chart.min.js"></script>
+	<script src="~/UI/admin/vendors/coreui/chartjs/js/coreui-chartjs.js"></script>
+	<script src="~/UI/admin/vendors/coreui/utils/js/coreui-utils.js"></script>
+	@*<script src="js/main.js"></script>*@
+</body>
+</html>

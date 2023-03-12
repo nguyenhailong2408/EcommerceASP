@@ -1,0 +1,103 @@
+﻿@using EcommerceASP.Libraries.MvcPaging
+@model EcommerceASP.ViewModel.Prouduct.ProductViewBO
+<div class="container">
+	<div class="row">
+		@*<div class="col-lg-3"></div>*@
+		<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12" style="display:flex;flex-wrap:wrap">
+			@{
+				foreach (var item in Model.lstProduct)
+				{
+					var isNew = false;
+
+
+					<div class="col-lg-4 col-md-4 col-sm-6 col-xs-12">
+						<div class="item_product_main">
+							<div class="cl-bg-white">
+								<div class="item-image-container">
+									@{ if (isNew)
+										{
+											<div class="nes_block">
+												<div class="item-feature-inner">
+													<p class="nmb"></p>
+												</div>
+											</div>
+										}
+									}
+
+									<a class="item-image-container__link" href="/@item.Slug" title="@item.Name">
+										<img class="item-image-container__image" src="@Url.Content($"~/Content/Images/product/{item.Image}")" alt="@item.Name">
+									</a>
+								</div>
+								<div class="product-info">
+									<div class="container">
+										<div class="row">
+											<div class="col-12">
+												<h3 class="item-title">
+													<a href="/@item.Slug" title="@item.Name">@item.Name</a>
+												</h3>
+											</div>
+											<div class="col-12 col-sm-7 content-box">
+												<div class="mota line-clamp line-clamp-3">
+													@Html.Raw(item.Infomation)
+												</div>
+											</div>
+											<div class="col-12 col-sm-5 price-box">
+												<p class="nmb">
+													Liên hệ
+												</p>
+											</div>
+										</div>
+									</div>
+								</div>
+								<div class="product-action">
+									<div class="container">
+										<div class="row">
+											<div class="col-xs-6 col-6 npr p-0 border-0">
+												<a href="/@item.Slug" class="btn btn-flat btn-block cl-fleur-light-grey">
+													<i class="fa fa-eye fa-fw" aria-hidden="true"></i> Xem chi tiết
+												</a>
+											</div>
+											<div class="col-xs-6 col-6 p-0 border-0 npl">
+												<form action="/cart/add" method="post" enctype="multipart/form-data" id="add-to-cart-form">
+													<input type="hidden" name="variantId" value="75769336">
+													<button class="btn btn-buy btn-cart left-to add_to_cart" title="Liên hệ" disabled="disabled">
+														<span><i class="fa fa-shopping-cart fa-fw" aria-hidden="true"></i> Liên hệ</span>
+													</button>
+												</form>
+											</div>
+										</div>
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+				}
+
+				<div class="col-md-12" style="display:flex;justify-content:center;">
+					<div class="row">
+						<div class="paging-top clearfix">
+							@if (Model?.lstProduct != null && Model.lstProduct.Count() > 0)
+							{
+								@Html.Raw(Ajax.Pager(
+								new Options
+								{
+									PageSize = Model.lstProduct.PageSize,
+									TotalItemCount = Model.lstProduct.TotalItemCount,
+									CurrentPage = Model.lstProduct.PageNumber,
+									IsShowControls = true,
+									IsShowFirstLast = true,
+									IsShowPrevNext = true,
+									LimitPage = 7,
+									Link = "/" + Model.ParentSlug + "?page={0}",
+									//OnClick = "Common.Product.Paging({0})"
+								}, null, null));
+							}
+						</div>
+					</div>
+				</div>
+			}
+
+		</div>
+
+	</div>
+</div>

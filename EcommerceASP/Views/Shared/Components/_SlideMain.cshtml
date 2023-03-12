@@ -1,0 +1,47 @@
+﻿@model EcommerceASP.ViewModel.Component.ComponentViewBO
+
+@{
+	if (Model != null && Model.lstDetailComponent.Count > 0)
+	{
+		<div class="splide" id="slideshow" style="width:100%;">
+			<div class="splide__track">
+				<ul class="splide__list">
+					@{
+						foreach (var item in Model.lstDetailComponent)
+						{
+							if (!string.IsNullOrEmpty(item.Slug))
+							{
+								<li style="width:100%;cursor:pointer;" class="splide__slide">
+									<a href="/@item.Slug" target="_blank">
+										<img style="height: auto;width: 100%;" src="@Url.Content($"~/Content/Images/{item.FolderImage}/{item.ImageName}")" />
+									</a>
+								</li>
+							}
+							else
+							{
+								<li style="width:100%;cursor:pointer;" class="splide__slide">
+									<img style="height: auto;width: 100%;" src="@Url.Content($"~/Content/Images/{item.FolderImage}/{item.ImageName}")" />
+								</li>
+							}
+						}
+					}
+
+				</ul>
+			</div>
+		</div>
+		<script>
+			$(document).ready(function () {
+				new Splide("#slideshow", {
+					type: 'loop',
+					perPage: 1,
+					perMove: 1,
+					autoplay: true,
+					pauseOnHover: true,
+					pagination: false,
+					speed: 900,
+				}).mount();
+			});
+		</script>
+	}
+}
+

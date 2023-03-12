@@ -1,0 +1,53 @@
+﻿@model EcommerceASP.ViewModel.ProductCategoryDetailManage.SearchFormViewModel
+@{
+	Layout = "~/Views/Shared/_LayoutAdmin.cshtml";
+}
+@{
+	ViewBag.Title = "Quản lý danh mục sản phẩm";
+}
+@section Scripts{
+	<script src="~/Scripts/Admin/ProductCategoryDetailManage.js"></script>
+}
+
+<div class="box box-success">
+	<div class="box-header with-border">
+		<div class="col-sm-12 col-md-3">
+			<div class="row">
+				<h3 class="box-title">Danh mục sản phẩm con</h3>
+			</div>
+		</div>
+	</div><!-- /.box-header -->
+	<div class="box-body">
+		@{Html.RenderPartial("Component/_SearchForm", Model);}
+	</div><!-- /.box-body -->
+</div><!-- /.box -->
+
+<div class="row">
+	<div class="col-sm-12">
+		<div class="box box-info">
+			<div class="box-header with-border">
+				<div class="col-sm-12 col-md-6">
+					<div class="row">
+						<h3 class="box-title">Danh sách danh mục sản phẩm</h3>
+					</div>
+				</div>
+			</div><!-- /.box-header -->
+			<div class="box-body" id="list-data" @*style="overflow-x: scroll;"*@>
+			</div><!-- /.box-body -->
+		</div><!-- /.box -->
+	</div>
+</div>
+@{
+	Html.RenderPartial("Components/_ModalUpdate");
+}
+<script>
+	$(document).ready(function () {
+		Common.ProductCategoryDetailManage = new ProductCategoryDetailManage();
+		Common.ProductCategoryDetailManage.SubmitForm();
+		ProductCategoryDetailManage.Url = {};
+		ProductCategoryDetailManage.Url.FormUpdate = '@Url.Action("Dialog","ProductCategoryDetailManage")';
+		ProductCategoryDetailManage.Url.Delete = '@Url.Action("Delete", "ProductCategoryDetailManage")';
+		ProductCategoryDetailManage.Url.GetPageBySlug = '@Url.Action("GetPageBySlug", "Common")';
+		ProductCategoryDetailManage.Url.GetProductCategoryDetail = '@Url.Action("GetProductCategoryDetail", "Common")';
+	});
+</script>

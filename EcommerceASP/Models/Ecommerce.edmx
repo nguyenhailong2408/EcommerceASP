@@ -1,0 +1,1255 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+    <Schema Namespace="EcommerceModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="Account">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" Nullable="false" />
+          <Property Name="FullName" Type="nvarchar" MaxLength="255" Nullable="false" />
+          <Property Name="UserName" Type="varchar" MaxLength="225" Nullable="false" />
+          <Property Name="Password" Type="varchar" MaxLength="40" Nullable="false" />
+          <Property Name="Email" Type="varchar" MaxLength="255" Nullable="false" />
+          <Property Name="Gender" Type="bit" />
+          <Property Name="Phone" Type="varchar" MaxLength="15" Nullable="false" />
+          <Property Name="Image" Type="varchar" MaxLength="255" Nullable="false" />
+          <Property Name="Active" Type="bit" Nullable="false" />
+          <Property Name="IsDeleted" Type="bit" Nullable="false" />
+          <Property Name="Created_at" Type="datetime" />
+          <Property Name="Created_by" Type="int" />
+          <Property Name="Updated_at" Type="datetime" />
+          <Property Name="Updated_by" Type="int" />
+        </EntityType>
+        <EntityType Name="CategoryDetails">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="CategoryID" Type="int" Nullable="false" />
+          <Property Name="ProductCategoryId" Type="int" />
+          <Property Name="Name" Type="nvarchar" MaxLength="250" />
+          <Property Name="Slug" Type="nvarchar" MaxLength="500" />
+          <Property Name="Priority" Type="int" Nullable="false" />
+          <Property Name="ParenId" Type="int" Nullable="false" />
+          <Property Name="Metakey" Type="nvarchar" MaxLength="250" />
+          <Property Name="IsDeleted" Type="bit" Nullable="false" />
+          <Property Name="Created_at" Type="datetime" />
+          <Property Name="Created_by" Type="int" />
+          <Property Name="Updated_at" Type="datetime" />
+          <Property Name="Updated_by" Type="int" />
+          <Property Name="IsNewLabel" Type="bit" />
+          <Property Name="IsHasBanner" Type="bit" Nullable="false" />
+          <Property Name="BannerImage" Type="nvarchar" MaxLength="250" />
+        </EntityType>
+        <EntityType Name="Categorys">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Name" Type="nvarchar" MaxLength="250" />
+          <Property Name="Slug" Type="nvarchar" MaxLength="500" />
+          <Property Name="Priority" Type="int" Nullable="false" />
+          <Property Name="FolderImage" Type="nvarchar" MaxLength="250" />
+          <Property Name="IsDeleted" Type="bit" Nullable="false" />
+          <Property Name="Created_at" Type="datetime" />
+          <Property Name="Created_by" Type="int" />
+          <Property Name="Updated_at" Type="datetime" />
+          <Property Name="Updated_by" Type="int" />
+          <Property Name="TemplateOptionId" Type="int" />
+        </EntityType>
+        <EntityType Name="ComponentItems">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="ComponentId" Type="int" />
+          <Property Name="ItemId" Type="int" Nullable="false" />
+          <Property Name="Priority" Type="int" Nullable="false" />
+          <Property Name="IsDeleted" Type="bit" Nullable="false" />
+          <Property Name="Created_at" Type="datetime" />
+          <Property Name="Created_by" Type="int" />
+          <Property Name="Updated_at" Type="datetime" />
+          <Property Name="Updated_by" Type="int" />
+        </EntityType>
+        <EntityType Name="Components">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="PageId" Type="int" Nullable="false" />
+          <Property Name="CategoryId" Type="int" />
+          <Property Name="ReferenceId" Type="int" />
+          <Property Name="Name" Type="nvarchar" MaxLength="250" />
+          <Property Name="Title" Type="nvarchar" MaxLength="500" />
+          <Property Name="ComponentTypeId" Type="int" Nullable="false" />
+          <Property Name="QuantityRecord" Type="int" />
+          <Property Name="Priority" Type="int" Nullable="false" />
+          <Property Name="IsDeleted" Type="bit" Nullable="false" />
+          <Property Name="Created_at" Type="datetime" />
+          <Property Name="Created_by" Type="int" />
+          <Property Name="Updated_at" Type="datetime" />
+          <Property Name="Updated_by" Type="int" />
+        </EntityType>
+        <EntityType Name="ComponentTypes">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" Nullable="false" />
+          <Property Name="Name" Type="nvarchar" MaxLength="250" />
+          <Property Name="NameFile" Type="nvarchar" MaxLength="250" />
+          <Property Name="Description" Type="nvarchar" MaxLength="500" />
+          <Property Name="DescriptionImage" Type="nvarchar" MaxLength="250" />
+          <Property Name="IsSlide" Type="bit" Nullable="false" />
+          <Property Name="Row" Type="int" />
+          <Property Name="Collumn" Type="int" />
+          <Property Name="IsDeleted" Type="bit" Nullable="false" />
+          <Property Name="Created_at" Type="datetime" />
+          <Property Name="Created_by" Type="int" />
+          <Property Name="Updated_at" Type="datetime" />
+          <Property Name="Updated_by" Type="int" />
+        </EntityType>
+        <EntityType Name="Contact">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="FullName" Type="nvarchar" MaxLength="250" />
+          <Property Name="Email" Type="nvarchar" MaxLength="250" />
+          <Property Name="Phone" Type="varchar" MaxLength="12" />
+          <Property Name="Address" Type="nvarchar" MaxLength="500" />
+          <Property Name="Content" Type="nvarchar(max)" />
+          <Property Name="StateId" Type="int" />
+          <Property Name="IsDeleted" Type="bit" Nullable="false" />
+          <Property Name="Created_at" Type="datetime" />
+          <Property Name="Created_by" Type="int" />
+          <Property Name="Updated_at" Type="datetime" />
+          <Property Name="Updated_by" Type="int" />
+        </EntityType>
+        <EntityType Name="PageCategory">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="PageId" Type="int" Nullable="false" />
+          <Property Name="CategoryId" Type="int" Nullable="false" />
+          <Property Name="IsDeleted" Type="bit" Nullable="false" />
+          <Property Name="Created_at" Type="datetime" />
+          <Property Name="Created_by" Type="int" />
+          <Property Name="Updated_at" Type="datetime" />
+          <Property Name="Updated_by" Type="int" />
+        </EntityType>
+        <EntityType Name="Pages">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" Nullable="false" />
+          <Property Name="Name" Type="nvarchar" MaxLength="250" />
+          <Property Name="Slug" Type="varchar" MaxLength="200" />
+          <Property Name="Action" Type="varchar" MaxLength="200" />
+          <Property Name="Controller" Type="varchar" MaxLength="200" />
+          <Property Name="IsAdminPage" Type="bit" Nullable="false" />
+          <Property Name="IsDeleted" Type="bit" Nullable="false" />
+          <Property Name="Created_at" Type="datetime" />
+          <Property Name="Created_by" Type="int" />
+          <Property Name="Updated_at" Type="datetime" />
+          <Property Name="Updated_by" Type="int" />
+        </EntityType>
+        <EntityType Name="PageSlug">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="PageId" Type="int" Nullable="false" />
+          <Property Name="Slug" Type="varchar" MaxLength="255" Nullable="false" />
+          <Property Name="IsDeleted" Type="bit" Nullable="false" />
+          <Property Name="Created_at" Type="datetime" />
+          <Property Name="Created_by" Type="int" />
+          <Property Name="Updated_at" Type="datetime" />
+          <Property Name="Updated_by" Type="int" />
+        </EntityType>
+        <EntityType Name="ProductCategoryDetails">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="ProductCategoryID" Type="int" Nullable="false" />
+          <Property Name="Name" Type="nvarchar" MaxLength="250" />
+          <Property Name="Slug" Type="nvarchar" MaxLength="500" />
+          <Property Name="Priority" Type="int" Nullable="false" />
+          <Property Name="ParenId" Type="int" Nullable="false" />
+          <Property Name="Metakey" Type="nvarchar" MaxLength="250" />
+          <Property Name="IsDeleted" Type="bit" Nullable="false" />
+          <Property Name="Created_at" Type="datetime" />
+          <Property Name="Created_by" Type="int" />
+          <Property Name="Updated_at" Type="datetime" />
+          <Property Name="Updated_by" Type="int" />
+          <Property Name="IsNewLabel" Type="bit" />
+        </EntityType>
+        <EntityType Name="ProductCategorys">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Name" Type="nvarchar" MaxLength="250" />
+          <Property Name="Slug" Type="nvarchar" MaxLength="500" />
+          <Property Name="Priority" Type="int" Nullable="false" />
+          <Property Name="IsDeleted" Type="bit" Nullable="false" />
+          <Property Name="Created_at" Type="datetime" />
+          <Property Name="Created_by" Type="int" />
+          <Property Name="Updated_at" Type="datetime" />
+          <Property Name="Updated_by" Type="int" />
+        </EntityType>
+        <EntityType Name="Products">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="ProductCategoryId" Type="int" />
+          <Property Name="ProductCategoryDetailId" Type="int" />
+          <Property Name="Name" Type="nvarchar" MaxLength="255" Nullable="false" />
+          <Property Name="Slug" Type="varchar" MaxLength="255" Nullable="false" />
+          <Property Name="Image" Type="varchar" MaxLength="100" />
+          <Property Name="Infomation" Type="nvarchar(max)" />
+          <Property Name="SortDescription" Type="nvarchar(max)" />
+          <Property Name="Description" Type="nvarchar(max)" />
+          <Property Name="StockQuantity" Type="int" Nullable="false" />
+          <Property Name="Price" Type="decimal" Precision="18" Scale="4" Nullable="false" />
+          <Property Name="Price_sale" Type="decimal" Precision="18" Scale="4" Nullable="false" />
+          <Property Name="IsDeleted" Type="bit" Nullable="false" />
+          <Property Name="Metakey" Type="nvarchar" MaxLength="250" />
+          <Property Name="Created_at" Type="datetime" />
+          <Property Name="Created_by" Type="int" />
+          <Property Name="Updated_at" Type="datetime" />
+          <Property Name="Updated_by" Type="int" />
+          <Property Name="Size" Type="nvarchar" MaxLength="250" />
+          <Property Name="Fabric" Type="nvarchar" MaxLength="250" />
+        </EntityType>
+        <EntityType Name="Slides">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Name" Type="nvarchar" MaxLength="255" Nullable="false" />
+          <Property Name="Slug" Type="varchar" MaxLength="255" />
+          <Property Name="Position" Type="varchar" MaxLength="100" />
+          <Property Name="Image" Type="varchar" MaxLength="100" Nullable="false" />
+          <Property Name="Priority" Type="int" Nullable="false" />
+          <Property Name="IsDeleted" Type="bit" Nullable="false" />
+          <Property Name="Created_at" Type="datetime" />
+          <Property Name="Created_by" Type="int" />
+          <Property Name="Updated_at" Type="datetime" />
+          <Property Name="Updated_by" Type="int" />
+        </EntityType>
+        <EntityType Name="TopicDetails">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="TopicId" Type="int" />
+          <Property Name="Name" Type="nvarchar" MaxLength="250" />
+          <Property Name="Title" Type="nvarchar" MaxLength="500" />
+          <Property Name="Slug" Type="nvarchar" MaxLength="500" />
+          <Property Name="Content" Type="nvarchar(max)" />
+          <Property Name="Description" Type="nvarchar(max)" />
+          <Property Name="ThumbnailImage" Type="nvarchar" MaxLength="250" />
+          <Property Name="Priority" Type="int" Nullable="false" />
+          <Property Name="IsDeleted" Type="bit" Nullable="false" />
+          <Property Name="Created_at" Type="datetime" />
+          <Property Name="Created_by" Type="int" />
+          <Property Name="Updated_at" Type="datetime" />
+          <Property Name="Updated_by" Type="int" />
+        </EntityType>
+        <EntityType Name="Topics">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="CategoryId" Type="int" />
+          <Property Name="Title" Type="nvarchar" MaxLength="250" />
+          <Property Name="Slug" Type="nvarchar" MaxLength="500" />
+          <Property Name="Content" Type="nvarchar(max)" />
+          <Property Name="Priority" Type="int" Nullable="false" />
+          <Property Name="IsDeleted" Type="bit" Nullable="false" />
+          <Property Name="Created_at" Type="datetime" />
+          <Property Name="Created_by" Type="int" />
+          <Property Name="Updated_at" Type="datetime" />
+          <Property Name="Updated_by" Type="int" />
+        </EntityType>
+        <Association Name="FK_CategoryDetails_Categorys">
+          <End Role="Categorys" Type="Self.Categorys" Multiplicity="1" />
+          <End Role="CategoryDetails" Type="Self.CategoryDetails" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Categorys">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="CategoryDetails">
+              <PropertyRef Name="CategoryID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_ComponentProducts_Components">
+          <End Role="Components" Type="Self.Components" Multiplicity="0..1" />
+          <End Role="ComponentItems" Type="Self.ComponentItems" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Components">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="ComponentItems">
+              <PropertyRef Name="ComponentId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_ComponentProducts_Products">
+          <End Role="Products" Type="Self.Products" Multiplicity="1" />
+          <End Role="ComponentItems" Type="Self.ComponentItems" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Products">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="ComponentItems">
+              <PropertyRef Name="ItemId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Components_ComponentTypes">
+          <End Role="ComponentTypes" Type="Self.ComponentTypes" Multiplicity="1" />
+          <End Role="Components" Type="Self.Components" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="ComponentTypes">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Components">
+              <PropertyRef Name="ComponentTypeId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_PageCategory_Categorys">
+          <End Role="Categorys" Type="Self.Categorys" Multiplicity="1" />
+          <End Role="PageCategory" Type="Self.PageCategory" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Categorys">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="PageCategory">
+              <PropertyRef Name="CategoryId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_PageCategory_Pages">
+          <End Role="Pages" Type="Self.Pages" Multiplicity="1" />
+          <End Role="PageCategory" Type="Self.PageCategory" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Pages">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="PageCategory">
+              <PropertyRef Name="PageId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_PageSlug_Pages">
+          <End Role="Pages" Type="Self.Pages" Multiplicity="1" />
+          <End Role="PageSlug" Type="Self.PageSlug" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Pages">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="PageSlug">
+              <PropertyRef Name="PageId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_ProductCategoryDetails_ProductCategorys">
+          <End Role="ProductCategorys" Type="Self.ProductCategorys" Multiplicity="1" />
+          <End Role="ProductCategoryDetails" Type="Self.ProductCategoryDetails" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="ProductCategorys">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="ProductCategoryDetails">
+              <PropertyRef Name="ProductCategoryID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_TopicDetails_Topics">
+          <End Role="Topics" Type="Self.Topics" Multiplicity="0..1" />
+          <End Role="TopicDetails" Type="Self.TopicDetails" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Topics">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="TopicDetails">
+              <PropertyRef Name="TopicId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Topics_Categorys">
+          <End Role="Categorys" Type="Self.Categorys" Multiplicity="0..1" />
+          <End Role="Topics" Type="Self.Topics" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Categorys">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Topics">
+              <PropertyRef Name="CategoryId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="EcommerceModelStoreContainer">
+          <EntitySet Name="Account" EntityType="Self.Account" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="CategoryDetails" EntityType="Self.CategoryDetails" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Categorys" EntityType="Self.Categorys" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="ComponentItems" EntityType="Self.ComponentItems" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Components" EntityType="Self.Components" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="ComponentTypes" EntityType="Self.ComponentTypes" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Contact" EntityType="Self.Contact" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="PageCategory" EntityType="Self.PageCategory" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Pages" EntityType="Self.Pages" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="PageSlug" EntityType="Self.PageSlug" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="ProductCategoryDetails" EntityType="Self.ProductCategoryDetails" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="ProductCategorys" EntityType="Self.ProductCategorys" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Products" EntityType="Self.Products" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Slides" EntityType="Self.Slides" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="TopicDetails" EntityType="Self.TopicDetails" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Topics" EntityType="Self.Topics" Schema="dbo" store:Type="Tables" />
+          <AssociationSet Name="FK_CategoryDetails_Categorys" Association="Self.FK_CategoryDetails_Categorys">
+            <End Role="Categorys" EntitySet="Categorys" />
+            <End Role="CategoryDetails" EntitySet="CategoryDetails" />
+          </AssociationSet>
+          <AssociationSet Name="FK_ComponentProducts_Components" Association="Self.FK_ComponentProducts_Components">
+            <End Role="Components" EntitySet="Components" />
+            <End Role="ComponentItems" EntitySet="ComponentItems" />
+          </AssociationSet>
+          <AssociationSet Name="FK_ComponentProducts_Products" Association="Self.FK_ComponentProducts_Products">
+            <End Role="Products" EntitySet="Products" />
+            <End Role="ComponentItems" EntitySet="ComponentItems" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Components_ComponentTypes" Association="Self.FK_Components_ComponentTypes">
+            <End Role="ComponentTypes" EntitySet="ComponentTypes" />
+            <End Role="Components" EntitySet="Components" />
+          </AssociationSet>
+          <AssociationSet Name="FK_PageCategory_Categorys" Association="Self.FK_PageCategory_Categorys">
+            <End Role="Categorys" EntitySet="Categorys" />
+            <End Role="PageCategory" EntitySet="PageCategory" />
+          </AssociationSet>
+          <AssociationSet Name="FK_PageCategory_Pages" Association="Self.FK_PageCategory_Pages">
+            <End Role="Pages" EntitySet="Pages" />
+            <End Role="PageCategory" EntitySet="PageCategory" />
+          </AssociationSet>
+          <AssociationSet Name="FK_PageSlug_Pages" Association="Self.FK_PageSlug_Pages">
+            <End Role="Pages" EntitySet="Pages" />
+            <End Role="PageSlug" EntitySet="PageSlug" />
+          </AssociationSet>
+          <AssociationSet Name="FK_ProductCategoryDetails_ProductCategorys" Association="Self.FK_ProductCategoryDetails_ProductCategorys">
+            <End Role="ProductCategorys" EntitySet="ProductCategorys" />
+            <End Role="ProductCategoryDetails" EntitySet="ProductCategoryDetails" />
+          </AssociationSet>
+          <AssociationSet Name="FK_TopicDetails_Topics" Association="Self.FK_TopicDetails_Topics">
+            <End Role="Topics" EntitySet="Topics" />
+            <End Role="TopicDetails" EntitySet="TopicDetails" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Topics_Categorys" Association="Self.FK_Topics_Categorys">
+            <End Role="Categorys" EntitySet="Categorys" />
+            <End Role="Topics" EntitySet="Topics" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema></edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="EcommerceModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityContainer Name="EcommerceEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="Accounts" EntityType="EcommerceModel.Account" />
+          <EntitySet Name="CategoryDetails" EntityType="EcommerceModel.CategoryDetail" />
+          <EntitySet Name="Categorys" EntityType="EcommerceModel.Category" />
+          <EntitySet Name="ComponentItems" EntityType="EcommerceModel.ComponentItem" />
+          <EntitySet Name="Components" EntityType="EcommerceModel.Component" />
+          <EntitySet Name="ComponentTypes" EntityType="EcommerceModel.ComponentType" />
+          <EntitySet Name="Contacts" EntityType="EcommerceModel.Contact" />
+          <EntitySet Name="PageCategories" EntityType="EcommerceModel.PageCategory" />
+          <EntitySet Name="Pages" EntityType="EcommerceModel.Page" />
+          <EntitySet Name="PageSlugs" EntityType="EcommerceModel.PageSlug" />
+          <EntitySet Name="ProductCategoryDetails" EntityType="EcommerceModel.ProductCategoryDetail" />
+          <EntitySet Name="ProductCategorys" EntityType="EcommerceModel.ProductCategory" />
+          <EntitySet Name="Products" EntityType="EcommerceModel.Product" />
+          <EntitySet Name="Slides" EntityType="EcommerceModel.Slide" />
+          <EntitySet Name="TopicDetails" EntityType="EcommerceModel.TopicDetail" />
+          <EntitySet Name="Topics" EntityType="EcommerceModel.Topic" />
+          <AssociationSet Name="FK_CategoryDetails_Categorys" Association="EcommerceModel.FK_CategoryDetails_Categorys">
+            <End Role="Category" EntitySet="Categorys" />
+            <End Role="CategoryDetail" EntitySet="CategoryDetails" />
+          </AssociationSet>
+          <AssociationSet Name="FK_PageCategory_Categorys" Association="EcommerceModel.FK_PageCategory_Categorys">
+            <End Role="Category" EntitySet="Categorys" />
+            <End Role="PageCategory" EntitySet="PageCategories" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Topics_Categorys" Association="EcommerceModel.FK_Topics_Categorys">
+            <End Role="Category" EntitySet="Categorys" />
+            <End Role="Topic" EntitySet="Topics" />
+          </AssociationSet>
+          <AssociationSet Name="FK_ComponentProducts_Components" Association="EcommerceModel.FK_ComponentProducts_Components">
+            <End Role="Component" EntitySet="Components" />
+            <End Role="ComponentItem" EntitySet="ComponentItems" />
+          </AssociationSet>
+          <AssociationSet Name="FK_ComponentProducts_Products" Association="EcommerceModel.FK_ComponentProducts_Products">
+            <End Role="Product" EntitySet="Products" />
+            <End Role="ComponentItem" EntitySet="ComponentItems" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Components_ComponentTypes" Association="EcommerceModel.FK_Components_ComponentTypes">
+            <End Role="ComponentType" EntitySet="ComponentTypes" />
+            <End Role="Component" EntitySet="Components" />
+          </AssociationSet>
+          <AssociationSet Name="FK_PageCategory_Pages" Association="EcommerceModel.FK_PageCategory_Pages">
+            <End Role="Page" EntitySet="Pages" />
+            <End Role="PageCategory" EntitySet="PageCategories" />
+          </AssociationSet>
+          <AssociationSet Name="FK_PageSlug_Pages" Association="EcommerceModel.FK_PageSlug_Pages">
+            <End Role="Page" EntitySet="Pages" />
+            <End Role="PageSlug" EntitySet="PageSlugs" />
+          </AssociationSet>
+          <AssociationSet Name="FK_ProductCategoryDetails_ProductCategorys" Association="EcommerceModel.FK_ProductCategoryDetails_ProductCategorys">
+            <End Role="ProductCategory" EntitySet="ProductCategorys" />
+            <End Role="ProductCategoryDetail" EntitySet="ProductCategoryDetails" />
+          </AssociationSet>
+          <AssociationSet Name="FK_TopicDetails_Topics" Association="EcommerceModel.FK_TopicDetails_Topics">
+            <End Role="Topic" EntitySet="Topics" />
+            <End Role="TopicDetail" EntitySet="TopicDetails" />
+          </AssociationSet>
+        </EntityContainer>
+        <EntityType Name="Account">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" />
+          <Property Name="FullName" Type="String" Nullable="false" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Name="UserName" Type="String" Nullable="false" MaxLength="225" FixedLength="false" Unicode="false" />
+          <Property Name="Password" Type="String" Nullable="false" MaxLength="40" FixedLength="false" Unicode="false" />
+          <Property Name="Email" Type="String" Nullable="false" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Name="Gender" Type="Boolean" />
+          <Property Name="Phone" Type="String" Nullable="false" MaxLength="15" FixedLength="false" Unicode="false" />
+          <Property Name="Image" Type="String" Nullable="false" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Name="Active" Type="Boolean" Nullable="false" />
+          <Property Name="IsDeleted" Type="Boolean" Nullable="false" />
+          <Property Name="Created_at" Type="DateTime" Precision="3" />
+          <Property Name="Created_by" Type="Int32" />
+          <Property Name="Updated_at" Type="DateTime" Precision="3" />
+          <Property Name="Updated_by" Type="Int32" />
+        </EntityType>
+        <EntityType Name="CategoryDetail">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="CategoryID" Type="Int32" Nullable="false" />
+          <Property Name="ProductCategoryId" Type="Int32" />
+          <Property Name="Name" Type="String" MaxLength="250" FixedLength="false" Unicode="true" />
+          <Property Name="Slug" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
+          <Property Name="Priority" Type="Int32" Nullable="false" />
+          <Property Name="ParenId" Type="Int32" Nullable="false" />
+          <Property Name="Metakey" Type="String" MaxLength="250" FixedLength="false" Unicode="true" />
+          <Property Name="IsDeleted" Type="Boolean" Nullable="false" />
+          <Property Name="Created_at" Type="DateTime" Precision="3" />
+          <Property Name="Created_by" Type="Int32" />
+          <Property Name="Updated_at" Type="DateTime" Precision="3" />
+          <Property Name="Updated_by" Type="Int32" />
+          <Property Name="IsNewLabel" Type="Boolean" />
+          <Property Name="IsHasBanner" Type="Boolean" Nullable="false" />
+          <Property Name="BannerImage" Type="String" MaxLength="250" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="Category" Relationship="EcommerceModel.FK_CategoryDetails_Categorys" FromRole="CategoryDetail" ToRole="Category" />
+        </EntityType>
+        <EntityType Name="Category">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Name" Type="String" MaxLength="250" FixedLength="false" Unicode="true" />
+          <Property Name="Slug" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
+          <Property Name="Priority" Type="Int32" Nullable="false" />
+          <Property Name="FolderImage" Type="String" MaxLength="250" FixedLength="false" Unicode="true" />
+          <Property Name="IsDeleted" Type="Boolean" Nullable="false" />
+          <Property Name="Created_at" Type="DateTime" Precision="3" />
+          <Property Name="Created_by" Type="Int32" />
+          <Property Name="Updated_at" Type="DateTime" Precision="3" />
+          <Property Name="Updated_by" Type="Int32" />
+          <Property Name="TemplateOptionId" Type="Int32" />
+          <NavigationProperty Name="CategoryDetails" Relationship="EcommerceModel.FK_CategoryDetails_Categorys" FromRole="Category" ToRole="CategoryDetail" />
+          <NavigationProperty Name="PageCategories" Relationship="EcommerceModel.FK_PageCategory_Categorys" FromRole="Category" ToRole="PageCategory" />
+          <NavigationProperty Name="Topics" Relationship="EcommerceModel.FK_Topics_Categorys" FromRole="Category" ToRole="Topic" />
+        </EntityType>
+        <EntityType Name="ComponentItem">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="ComponentId" Type="Int32" />
+          <Property Name="ItemId" Type="Int32" Nullable="false" />
+          <Property Name="Priority" Type="Int32" Nullable="false" />
+          <Property Name="IsDeleted" Type="Boolean" Nullable="false" />
+          <Property Name="Created_at" Type="DateTime" Precision="3" />
+          <Property Name="Created_by" Type="Int32" />
+          <Property Name="Updated_at" Type="DateTime" Precision="3" />
+          <Property Name="Updated_by" Type="Int32" />
+          <NavigationProperty Name="Component" Relationship="EcommerceModel.FK_ComponentProducts_Components" FromRole="ComponentItem" ToRole="Component" />
+          <NavigationProperty Name="Product" Relationship="EcommerceModel.FK_ComponentProducts_Products" FromRole="ComponentItem" ToRole="Product" />
+        </EntityType>
+        <EntityType Name="Component">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="PageId" Type="Int32" Nullable="false" />
+          <Property Name="CategoryId" Type="Int32" />
+          <Property Name="ReferenceId" Type="Int32" />
+          <Property Name="Name" Type="String" MaxLength="250" FixedLength="false" Unicode="true" />
+          <Property Name="Title" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
+          <Property Name="ComponentTypeId" Type="Int32" Nullable="false" />
+          <Property Name="QuantityRecord" Type="Int32" />
+          <Property Name="Priority" Type="Int32" Nullable="false" />
+          <Property Name="IsDeleted" Type="Boolean" Nullable="false" />
+          <Property Name="Created_at" Type="DateTime" Precision="3" />
+          <Property Name="Created_by" Type="Int32" />
+          <Property Name="Updated_at" Type="DateTime" Precision="3" />
+          <Property Name="Updated_by" Type="Int32" />
+          <NavigationProperty Name="ComponentItems" Relationship="EcommerceModel.FK_ComponentProducts_Components" FromRole="Component" ToRole="ComponentItem" />
+          <NavigationProperty Name="ComponentType" Relationship="EcommerceModel.FK_Components_ComponentTypes" FromRole="Component" ToRole="ComponentType" />
+        </EntityType>
+        <EntityType Name="ComponentType">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" />
+          <Property Name="Name" Type="String" MaxLength="250" FixedLength="false" Unicode="true" />
+          <Property Name="NameFile" Type="String" MaxLength="250" FixedLength="false" Unicode="true" />
+          <Property Name="Description" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
+          <Property Name="DescriptionImage" Type="String" MaxLength="250" FixedLength="false" Unicode="true" />
+          <Property Name="IsSlide" Type="Boolean" Nullable="false" />
+          <Property Name="Row" Type="Int32" />
+          <Property Name="Collumn" Type="Int32" />
+          <Property Name="IsDeleted" Type="Boolean" Nullable="false" />
+          <Property Name="Created_at" Type="DateTime" Precision="3" />
+          <Property Name="Created_by" Type="Int32" />
+          <Property Name="Updated_at" Type="DateTime" Precision="3" />
+          <Property Name="Updated_by" Type="Int32" />
+          <NavigationProperty Name="Components" Relationship="EcommerceModel.FK_Components_ComponentTypes" FromRole="ComponentType" ToRole="Component" />
+        </EntityType>
+        <EntityType Name="Contact">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="FullName" Type="String" MaxLength="250" FixedLength="false" Unicode="true" />
+          <Property Name="Email" Type="String" MaxLength="250" FixedLength="false" Unicode="true" />
+          <Property Name="Phone" Type="String" MaxLength="12" FixedLength="false" Unicode="false" />
+          <Property Name="Address" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
+          <Property Name="Content" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="StateId" Type="Int32" />
+          <Property Name="IsDeleted" Type="Boolean" Nullable="false" />
+          <Property Name="Created_at" Type="DateTime" Precision="3" />
+          <Property Name="Created_by" Type="Int32" />
+          <Property Name="Updated_at" Type="DateTime" Precision="3" />
+          <Property Name="Updated_by" Type="Int32" />
+        </EntityType>
+        <EntityType Name="PageCategory">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="PageId" Type="Int32" Nullable="false" />
+          <Property Name="CategoryId" Type="Int32" Nullable="false" />
+          <Property Name="IsDeleted" Type="Boolean" Nullable="false" />
+          <Property Name="Created_at" Type="DateTime" Precision="3" />
+          <Property Name="Created_by" Type="Int32" />
+          <Property Name="Updated_at" Type="DateTime" Precision="3" />
+          <Property Name="Updated_by" Type="Int32" />
+          <NavigationProperty Name="Category" Relationship="EcommerceModel.FK_PageCategory_Categorys" FromRole="PageCategory" ToRole="Category" />
+          <NavigationProperty Name="Page" Relationship="EcommerceModel.FK_PageCategory_Pages" FromRole="PageCategory" ToRole="Page" />
+        </EntityType>
+        <EntityType Name="Page">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" />
+          <Property Name="Name" Type="String" MaxLength="250" FixedLength="false" Unicode="true" />
+          <Property Name="Slug" Type="String" MaxLength="200" FixedLength="false" Unicode="false" />
+          <Property Name="Action" Type="String" MaxLength="200" FixedLength="false" Unicode="false" />
+          <Property Name="Controller" Type="String" MaxLength="200" FixedLength="false" Unicode="false" />
+          <Property Name="IsAdminPage" Type="Boolean" Nullable="false" />
+          <Property Name="IsDeleted" Type="Boolean" Nullable="false" />
+          <Property Name="Created_at" Type="DateTime" Precision="3" />
+          <Property Name="Created_by" Type="Int32" />
+          <Property Name="Updated_at" Type="DateTime" Precision="3" />
+          <Property Name="Updated_by" Type="Int32" />
+          <NavigationProperty Name="PageCategories" Relationship="EcommerceModel.FK_PageCategory_Pages" FromRole="Page" ToRole="PageCategory" />
+          <NavigationProperty Name="PageSlugs" Relationship="EcommerceModel.FK_PageSlug_Pages" FromRole="Page" ToRole="PageSlug" />
+        </EntityType>
+        <EntityType Name="PageSlug">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="PageId" Type="Int32" Nullable="false" />
+          <Property Name="Slug" Type="String" Nullable="false" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Name="IsDeleted" Type="Boolean" Nullable="false" />
+          <Property Name="Created_at" Type="DateTime" Precision="3" />
+          <Property Name="Created_by" Type="Int32" />
+          <Property Name="Updated_at" Type="DateTime" Precision="3" />
+          <Property Name="Updated_by" Type="Int32" />
+          <NavigationProperty Name="Page" Relationship="EcommerceModel.FK_PageSlug_Pages" FromRole="PageSlug" ToRole="Page" />
+        </EntityType>
+        <EntityType Name="ProductCategoryDetail">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="ProductCategoryID" Type="Int32" Nullable="false" />
+          <Property Name="Name" Type="String" MaxLength="250" FixedLength="false" Unicode="true" />
+          <Property Name="Slug" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
+          <Property Name="Priority" Type="Int32" Nullable="false" />
+          <Property Name="ParenId" Type="Int32" Nullable="false" />
+          <Property Name="Metakey" Type="String" MaxLength="250" FixedLength="false" Unicode="true" />
+          <Property Name="IsDeleted" Type="Boolean" Nullable="false" />
+          <Property Name="Created_at" Type="DateTime" Precision="3" />
+          <Property Name="Created_by" Type="Int32" />
+          <Property Name="Updated_at" Type="DateTime" Precision="3" />
+          <Property Name="Updated_by" Type="Int32" />
+          <Property Name="IsNewLabel" Type="Boolean" />
+          <NavigationProperty Name="ProductCategory" Relationship="EcommerceModel.FK_ProductCategoryDetails_ProductCategorys" FromRole="ProductCategoryDetail" ToRole="ProductCategory" />
+        </EntityType>
+        <EntityType Name="ProductCategory">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Name" Type="String" MaxLength="250" FixedLength="false" Unicode="true" />
+          <Property Name="Slug" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
+          <Property Name="Priority" Type="Int32" Nullable="false" />
+          <Property Name="IsDeleted" Type="Boolean" Nullable="false" />
+          <Property Name="Created_at" Type="DateTime" Precision="3" />
+          <Property Name="Created_by" Type="Int32" />
+          <Property Name="Updated_at" Type="DateTime" Precision="3" />
+          <Property Name="Updated_by" Type="Int32" />
+          <NavigationProperty Name="ProductCategoryDetails" Relationship="EcommerceModel.FK_ProductCategoryDetails_ProductCategorys" FromRole="ProductCategory" ToRole="ProductCategoryDetail" />
+        </EntityType>
+        <EntityType Name="Product">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="ProductCategoryId" Type="Int32" />
+          <Property Name="ProductCategoryDetailId" Type="Int32" />
+          <Property Name="Name" Type="String" Nullable="false" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Name="Slug" Type="String" Nullable="false" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Name="Image" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="Infomation" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="SortDescription" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="Description" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="StockQuantity" Type="Int32" Nullable="false" />
+          <Property Name="Price" Type="Decimal" Nullable="false" Precision="18" Scale="4" />
+          <Property Name="Price_sale" Type="Decimal" Nullable="false" Precision="18" Scale="4" />
+          <Property Name="IsDeleted" Type="Boolean" Nullable="false" />
+          <Property Name="Metakey" Type="String" MaxLength="250" FixedLength="false" Unicode="true" />
+          <Property Name="Created_at" Type="DateTime" Precision="3" />
+          <Property Name="Created_by" Type="Int32" />
+          <Property Name="Updated_at" Type="DateTime" Precision="3" />
+          <Property Name="Updated_by" Type="Int32" />
+          <Property Name="Size" Type="String" MaxLength="250" FixedLength="false" Unicode="true" />
+          <Property Name="Fabric" Type="String" MaxLength="250" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="ComponentItems" Relationship="EcommerceModel.FK_ComponentProducts_Products" FromRole="Product" ToRole="ComponentItem" />
+        </EntityType>
+        <EntityType Name="Slide">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Name" Type="String" Nullable="false" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Name="Slug" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Name="Position" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="Image" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="Priority" Type="Int32" Nullable="false" />
+          <Property Name="IsDeleted" Type="Boolean" Nullable="false" />
+          <Property Name="Created_at" Type="DateTime" Precision="3" />
+          <Property Name="Created_by" Type="Int32" />
+          <Property Name="Updated_at" Type="DateTime" Precision="3" />
+          <Property Name="Updated_by" Type="Int32" />
+        </EntityType>
+        <EntityType Name="TopicDetail">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="TopicId" Type="Int32" />
+          <Property Name="Name" Type="String" MaxLength="250" FixedLength="false" Unicode="true" />
+          <Property Name="Title" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
+          <Property Name="Slug" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
+          <Property Name="Content" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="Description" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="ThumbnailImage" Type="String" MaxLength="250" FixedLength="false" Unicode="true" />
+          <Property Name="Priority" Type="Int32" Nullable="false" />
+          <Property Name="IsDeleted" Type="Boolean" Nullable="false" />
+          <Property Name="Created_at" Type="DateTime" Precision="3" />
+          <Property Name="Created_by" Type="Int32" />
+          <Property Name="Updated_at" Type="DateTime" Precision="3" />
+          <Property Name="Updated_by" Type="Int32" />
+          <NavigationProperty Name="Topic" Relationship="EcommerceModel.FK_TopicDetails_Topics" FromRole="TopicDetail" ToRole="Topic" />
+        </EntityType>
+        <EntityType Name="Topic">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="CategoryId" Type="Int32" />
+          <Property Name="Title" Type="String" MaxLength="250" FixedLength="false" Unicode="true" />
+          <Property Name="Slug" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
+          <Property Name="Content" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="Priority" Type="Int32" Nullable="false" />
+          <Property Name="IsDeleted" Type="Boolean" Nullable="false" />
+          <Property Name="Created_at" Type="DateTime" Precision="3" />
+          <Property Name="Created_by" Type="Int32" />
+          <Property Name="Updated_at" Type="DateTime" Precision="3" />
+          <Property Name="Updated_by" Type="Int32" />
+          <NavigationProperty Name="Category" Relationship="EcommerceModel.FK_Topics_Categorys" FromRole="Topic" ToRole="Category" />
+          <NavigationProperty Name="TopicDetails" Relationship="EcommerceModel.FK_TopicDetails_Topics" FromRole="Topic" ToRole="TopicDetail" />
+        </EntityType>
+        <Association Name="FK_CategoryDetails_Categorys">
+          <End Type="EcommerceModel.Category" Role="Category" Multiplicity="1" />
+          <End Type="EcommerceModel.CategoryDetail" Role="CategoryDetail" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Category">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="CategoryDetail">
+              <PropertyRef Name="CategoryID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_PageCategory_Categorys">
+          <End Type="EcommerceModel.Category" Role="Category" Multiplicity="1" />
+          <End Type="EcommerceModel.PageCategory" Role="PageCategory" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Category">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="PageCategory">
+              <PropertyRef Name="CategoryId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Topics_Categorys">
+          <End Type="EcommerceModel.Category" Role="Category" Multiplicity="0..1" />
+          <End Type="EcommerceModel.Topic" Role="Topic" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Category">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Topic">
+              <PropertyRef Name="CategoryId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_ComponentProducts_Components">
+          <End Type="EcommerceModel.Component" Role="Component" Multiplicity="0..1" />
+          <End Type="EcommerceModel.ComponentItem" Role="ComponentItem" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Component">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="ComponentItem">
+              <PropertyRef Name="ComponentId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_ComponentProducts_Products">
+          <End Type="EcommerceModel.Product" Role="Product" Multiplicity="1" />
+          <End Type="EcommerceModel.ComponentItem" Role="ComponentItem" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Product">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="ComponentItem">
+              <PropertyRef Name="ItemId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Components_ComponentTypes">
+          <End Type="EcommerceModel.ComponentType" Role="ComponentType" Multiplicity="1" />
+          <End Type="EcommerceModel.Component" Role="Component" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="ComponentType">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Component">
+              <PropertyRef Name="ComponentTypeId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_PageCategory_Pages">
+          <End Type="EcommerceModel.Page" Role="Page" Multiplicity="1" />
+          <End Type="EcommerceModel.PageCategory" Role="PageCategory" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Page">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="PageCategory">
+              <PropertyRef Name="PageId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_PageSlug_Pages">
+          <End Type="EcommerceModel.Page" Role="Page" Multiplicity="1" />
+          <End Type="EcommerceModel.PageSlug" Role="PageSlug" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Page">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="PageSlug">
+              <PropertyRef Name="PageId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_ProductCategoryDetails_ProductCategorys">
+          <End Type="EcommerceModel.ProductCategory" Role="ProductCategory" Multiplicity="1" />
+          <End Type="EcommerceModel.ProductCategoryDetail" Role="ProductCategoryDetail" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="ProductCategory">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="ProductCategoryDetail">
+              <PropertyRef Name="ProductCategoryID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_TopicDetails_Topics">
+          <End Type="EcommerceModel.Topic" Role="Topic" Multiplicity="0..1" />
+          <End Type="EcommerceModel.TopicDetail" Role="TopicDetail" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Topic">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="TopicDetail">
+              <PropertyRef Name="TopicId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="EcommerceModelStoreContainer" CdmEntityContainer="EcommerceEntities">
+          <EntitySetMapping Name="Accounts">
+            <EntityTypeMapping TypeName="EcommerceModel.Account">
+              <MappingFragment StoreEntitySet="Account">
+                <ScalarProperty Name="Updated_by" ColumnName="Updated_by" />
+                <ScalarProperty Name="Updated_at" ColumnName="Updated_at" />
+                <ScalarProperty Name="Created_by" ColumnName="Created_by" />
+                <ScalarProperty Name="Created_at" ColumnName="Created_at" />
+                <ScalarProperty Name="IsDeleted" ColumnName="IsDeleted" />
+                <ScalarProperty Name="Active" ColumnName="Active" />
+                <ScalarProperty Name="Image" ColumnName="Image" />
+                <ScalarProperty Name="Phone" ColumnName="Phone" />
+                <ScalarProperty Name="Gender" ColumnName="Gender" />
+                <ScalarProperty Name="Email" ColumnName="Email" />
+                <ScalarProperty Name="Password" ColumnName="Password" />
+                <ScalarProperty Name="UserName" ColumnName="UserName" />
+                <ScalarProperty Name="FullName" ColumnName="FullName" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="CategoryDetails">
+            <EntityTypeMapping TypeName="EcommerceModel.CategoryDetail">
+              <MappingFragment StoreEntitySet="CategoryDetails">
+                <ScalarProperty Name="BannerImage" ColumnName="BannerImage" />
+                <ScalarProperty Name="IsHasBanner" ColumnName="IsHasBanner" />
+                <ScalarProperty Name="IsNewLabel" ColumnName="IsNewLabel" />
+                <ScalarProperty Name="Updated_by" ColumnName="Updated_by" />
+                <ScalarProperty Name="Updated_at" ColumnName="Updated_at" />
+                <ScalarProperty Name="Created_by" ColumnName="Created_by" />
+                <ScalarProperty Name="Created_at" ColumnName="Created_at" />
+                <ScalarProperty Name="IsDeleted" ColumnName="IsDeleted" />
+                <ScalarProperty Name="Metakey" ColumnName="Metakey" />
+                <ScalarProperty Name="ParenId" ColumnName="ParenId" />
+                <ScalarProperty Name="Priority" ColumnName="Priority" />
+                <ScalarProperty Name="Slug" ColumnName="Slug" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="ProductCategoryId" ColumnName="ProductCategoryId" />
+                <ScalarProperty Name="CategoryID" ColumnName="CategoryID" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Categorys">
+            <EntityTypeMapping TypeName="EcommerceModel.Category">
+              <MappingFragment StoreEntitySet="Categorys">
+                <ScalarProperty Name="TemplateOptionId" ColumnName="TemplateOptionId" />
+                <ScalarProperty Name="Updated_by" ColumnName="Updated_by" />
+                <ScalarProperty Name="Updated_at" ColumnName="Updated_at" />
+                <ScalarProperty Name="Created_by" ColumnName="Created_by" />
+                <ScalarProperty Name="Created_at" ColumnName="Created_at" />
+                <ScalarProperty Name="IsDeleted" ColumnName="IsDeleted" />
+                <ScalarProperty Name="FolderImage" ColumnName="FolderImage" />
+                <ScalarProperty Name="Priority" ColumnName="Priority" />
+                <ScalarProperty Name="Slug" ColumnName="Slug" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="ComponentItems">
+            <EntityTypeMapping TypeName="EcommerceModel.ComponentItem">
+              <MappingFragment StoreEntitySet="ComponentItems">
+                <ScalarProperty Name="Updated_by" ColumnName="Updated_by" />
+                <ScalarProperty Name="Updated_at" ColumnName="Updated_at" />
+                <ScalarProperty Name="Created_by" ColumnName="Created_by" />
+                <ScalarProperty Name="Created_at" ColumnName="Created_at" />
+                <ScalarProperty Name="IsDeleted" ColumnName="IsDeleted" />
+                <ScalarProperty Name="Priority" ColumnName="Priority" />
+                <ScalarProperty Name="ItemId" ColumnName="ItemId" />
+                <ScalarProperty Name="ComponentId" ColumnName="ComponentId" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Components">
+            <EntityTypeMapping TypeName="EcommerceModel.Component">
+              <MappingFragment StoreEntitySet="Components">
+                <ScalarProperty Name="Updated_by" ColumnName="Updated_by" />
+                <ScalarProperty Name="Updated_at" ColumnName="Updated_at" />
+                <ScalarProperty Name="Created_by" ColumnName="Created_by" />
+                <ScalarProperty Name="Created_at" ColumnName="Created_at" />
+                <ScalarProperty Name="IsDeleted" ColumnName="IsDeleted" />
+                <ScalarProperty Name="Priority" ColumnName="Priority" />
+                <ScalarProperty Name="QuantityRecord" ColumnName="QuantityRecord" />
+                <ScalarProperty Name="ComponentTypeId" ColumnName="ComponentTypeId" />
+                <ScalarProperty Name="Title" ColumnName="Title" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="ReferenceId" ColumnName="ReferenceId" />
+                <ScalarProperty Name="CategoryId" ColumnName="CategoryId" />
+                <ScalarProperty Name="PageId" ColumnName="PageId" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="ComponentTypes">
+            <EntityTypeMapping TypeName="EcommerceModel.ComponentType">
+              <MappingFragment StoreEntitySet="ComponentTypes">
+                <ScalarProperty Name="Updated_by" ColumnName="Updated_by" />
+                <ScalarProperty Name="Updated_at" ColumnName="Updated_at" />
+                <ScalarProperty Name="Created_by" ColumnName="Created_by" />
+                <ScalarProperty Name="Created_at" ColumnName="Created_at" />
+                <ScalarProperty Name="IsDeleted" ColumnName="IsDeleted" />
+                <ScalarProperty Name="Collumn" ColumnName="Collumn" />
+                <ScalarProperty Name="Row" ColumnName="Row" />
+                <ScalarProperty Name="IsSlide" ColumnName="IsSlide" />
+                <ScalarProperty Name="DescriptionImage" ColumnName="DescriptionImage" />
+                <ScalarProperty Name="Description" ColumnName="Description" />
+                <ScalarProperty Name="NameFile" ColumnName="NameFile" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Contacts">
+            <EntityTypeMapping TypeName="EcommerceModel.Contact">
+              <MappingFragment StoreEntitySet="Contact">
+                <ScalarProperty Name="Updated_by" ColumnName="Updated_by" />
+                <ScalarProperty Name="Updated_at" ColumnName="Updated_at" />
+                <ScalarProperty Name="Created_by" ColumnName="Created_by" />
+                <ScalarProperty Name="Created_at" ColumnName="Created_at" />
+                <ScalarProperty Name="IsDeleted" ColumnName="IsDeleted" />
+                <ScalarProperty Name="StateId" ColumnName="StateId" />
+                <ScalarProperty Name="Content" ColumnName="Content" />
+                <ScalarProperty Name="Address" ColumnName="Address" />
+                <ScalarProperty Name="Phone" ColumnName="Phone" />
+                <ScalarProperty Name="Email" ColumnName="Email" />
+                <ScalarProperty Name="FullName" ColumnName="FullName" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="PageCategories">
+            <EntityTypeMapping TypeName="EcommerceModel.PageCategory">
+              <MappingFragment StoreEntitySet="PageCategory">
+                <ScalarProperty Name="Updated_by" ColumnName="Updated_by" />
+                <ScalarProperty Name="Updated_at" ColumnName="Updated_at" />
+                <ScalarProperty Name="Created_by" ColumnName="Created_by" />
+                <ScalarProperty Name="Created_at" ColumnName="Created_at" />
+                <ScalarProperty Name="IsDeleted" ColumnName="IsDeleted" />
+                <ScalarProperty Name="CategoryId" ColumnName="CategoryId" />
+                <ScalarProperty Name="PageId" ColumnName="PageId" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Pages">
+            <EntityTypeMapping TypeName="EcommerceModel.Page">
+              <MappingFragment StoreEntitySet="Pages">
+                <ScalarProperty Name="Updated_by" ColumnName="Updated_by" />
+                <ScalarProperty Name="Updated_at" ColumnName="Updated_at" />
+                <ScalarProperty Name="Created_by" ColumnName="Created_by" />
+                <ScalarProperty Name="Created_at" ColumnName="Created_at" />
+                <ScalarProperty Name="IsDeleted" ColumnName="IsDeleted" />
+                <ScalarProperty Name="IsAdminPage" ColumnName="IsAdminPage" />
+                <ScalarProperty Name="Controller" ColumnName="Controller" />
+                <ScalarProperty Name="Action" ColumnName="Action" />
+                <ScalarProperty Name="Slug" ColumnName="Slug" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="PageSlugs">
+            <EntityTypeMapping TypeName="EcommerceModel.PageSlug">
+              <MappingFragment StoreEntitySet="PageSlug">
+                <ScalarProperty Name="Updated_by" ColumnName="Updated_by" />
+                <ScalarProperty Name="Updated_at" ColumnName="Updated_at" />
+                <ScalarProperty Name="Created_by" ColumnName="Created_by" />
+                <ScalarProperty Name="Created_at" ColumnName="Created_at" />
+                <ScalarProperty Name="IsDeleted" ColumnName="IsDeleted" />
+                <ScalarProperty Name="Slug" ColumnName="Slug" />
+                <ScalarProperty Name="PageId" ColumnName="PageId" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="ProductCategoryDetails">
+            <EntityTypeMapping TypeName="EcommerceModel.ProductCategoryDetail">
+              <MappingFragment StoreEntitySet="ProductCategoryDetails">
+                <ScalarProperty Name="IsNewLabel" ColumnName="IsNewLabel" />
+                <ScalarProperty Name="Updated_by" ColumnName="Updated_by" />
+                <ScalarProperty Name="Updated_at" ColumnName="Updated_at" />
+                <ScalarProperty Name="Created_by" ColumnName="Created_by" />
+                <ScalarProperty Name="Created_at" ColumnName="Created_at" />
+                <ScalarProperty Name="IsDeleted" ColumnName="IsDeleted" />
+                <ScalarProperty Name="Metakey" ColumnName="Metakey" />
+                <ScalarProperty Name="ParenId" ColumnName="ParenId" />
+                <ScalarProperty Name="Priority" ColumnName="Priority" />
+                <ScalarProperty Name="Slug" ColumnName="Slug" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="ProductCategoryID" ColumnName="ProductCategoryID" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="ProductCategorys">
+            <EntityTypeMapping TypeName="EcommerceModel.ProductCategory">
+              <MappingFragment StoreEntitySet="ProductCategorys">
+                <ScalarProperty Name="Updated_by" ColumnName="Updated_by" />
+                <ScalarProperty Name="Updated_at" ColumnName="Updated_at" />
+                <ScalarProperty Name="Created_by" ColumnName="Created_by" />
+                <ScalarProperty Name="Created_at" ColumnName="Created_at" />
+                <ScalarProperty Name="IsDeleted" ColumnName="IsDeleted" />
+                <ScalarProperty Name="Priority" ColumnName="Priority" />
+                <ScalarProperty Name="Slug" ColumnName="Slug" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Products">
+            <EntityTypeMapping TypeName="EcommerceModel.Product">
+              <MappingFragment StoreEntitySet="Products">
+                <ScalarProperty Name="Fabric" ColumnName="Fabric" />
+                <ScalarProperty Name="Size" ColumnName="Size" />
+                <ScalarProperty Name="Updated_by" ColumnName="Updated_by" />
+                <ScalarProperty Name="Updated_at" ColumnName="Updated_at" />
+                <ScalarProperty Name="Created_by" ColumnName="Created_by" />
+                <ScalarProperty Name="Created_at" ColumnName="Created_at" />
+                <ScalarProperty Name="Metakey" ColumnName="Metakey" />
+                <ScalarProperty Name="IsDeleted" ColumnName="IsDeleted" />
+                <ScalarProperty Name="Price_sale" ColumnName="Price_sale" />
+                <ScalarProperty Name="Price" ColumnName="Price" />
+                <ScalarProperty Name="StockQuantity" ColumnName="StockQuantity" />
+                <ScalarProperty Name="Description" ColumnName="Description" />
+                <ScalarProperty Name="SortDescription" ColumnName="SortDescription" />
+                <ScalarProperty Name="Infomation" ColumnName="Infomation" />
+                <ScalarProperty Name="Image" ColumnName="Image" />
+                <ScalarProperty Name="Slug" ColumnName="Slug" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="ProductCategoryDetailId" ColumnName="ProductCategoryDetailId" />
+                <ScalarProperty Name="ProductCategoryId" ColumnName="ProductCategoryId" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Slides">
+            <EntityTypeMapping TypeName="EcommerceModel.Slide">
+              <MappingFragment StoreEntitySet="Slides">
+                <ScalarProperty Name="Updated_by" ColumnName="Updated_by" />
+                <ScalarProperty Name="Updated_at" ColumnName="Updated_at" />
+                <ScalarProperty Name="Created_by" ColumnName="Created_by" />
+                <ScalarProperty Name="Created_at" ColumnName="Created_at" />
+                <ScalarProperty Name="IsDeleted" ColumnName="IsDeleted" />
+                <ScalarProperty Name="Priority" ColumnName="Priority" />
+                <ScalarProperty Name="Image" ColumnName="Image" />
+                <ScalarProperty Name="Position" ColumnName="Position" />
+                <ScalarProperty Name="Slug" ColumnName="Slug" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="TopicDetails">
+            <EntityTypeMapping TypeName="EcommerceModel.TopicDetail">
+              <MappingFragment StoreEntitySet="TopicDetails">
+                <ScalarProperty Name="Updated_by" ColumnName="Updated_by" />
+                <ScalarProperty Name="Updated_at" ColumnName="Updated_at" />
+                <ScalarProperty Name="Created_by" ColumnName="Created_by" />
+                <ScalarProperty Name="Created_at" ColumnName="Created_at" />
+                <ScalarProperty Name="IsDeleted" ColumnName="IsDeleted" />
+                <ScalarProperty Name="Priority" ColumnName="Priority" />
+                <ScalarProperty Name="ThumbnailImage" ColumnName="ThumbnailImage" />
+                <ScalarProperty Name="Description" ColumnName="Description" />
+                <ScalarProperty Name="Content" ColumnName="Content" />
+                <ScalarProperty Name="Slug" ColumnName="Slug" />
+                <ScalarProperty Name="Title" ColumnName="Title" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="TopicId" ColumnName="TopicId" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Topics">
+            <EntityTypeMapping TypeName="EcommerceModel.Topic">
+              <MappingFragment StoreEntitySet="Topics">
+                <ScalarProperty Name="Updated_by" ColumnName="Updated_by" />
+                <ScalarProperty Name="Updated_at" ColumnName="Updated_at" />
+                <ScalarProperty Name="Created_by" ColumnName="Created_by" />
+                <ScalarProperty Name="Created_at" ColumnName="Created_at" />
+                <ScalarProperty Name="IsDeleted" ColumnName="IsDeleted" />
+                <ScalarProperty Name="Priority" ColumnName="Priority" />
+                <ScalarProperty Name="Content" ColumnName="Content" />
+                <ScalarProperty Name="Slug" ColumnName="Slug" />
+                <ScalarProperty Name="Title" ColumnName="Title" />
+                <ScalarProperty Name="CategoryId" ColumnName="CategoryId" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="true" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>

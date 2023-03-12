@@ -1,0 +1,72 @@
+﻿@model EcommerceASP.ViewModel.Component.BreadcrumbBO
+<div class="container ">
+	<section class="bread-crumb">
+		<span class="crumb-border"></span>
+		<div class="container">
+			<div class="row">
+				<div class="col-xs-12 a-left">
+					<ul class="breadcrumb">
+						<li class="home">
+							<a href="/" title="Trang chủ">
+								<span>Trang chủ</span>
+							</a>
+							<span class="mr_lr">&nbsp;/&nbsp;</span>
+						</li>
+						@{
+							if (!Model.IsChild)
+							{
+								if (Model.ParentSlug.Equals("san-pham"))
+								{
+									<li>
+										<strong>
+											<a href="/san-pham" title="sản phẩm">
+												<span>Tất cả sản phẩm</span>
+											</a>
+										</strong>
+									</li>
+								}
+								else
+								{
+									<li>
+										<strong>
+											<a href="/@Model.ParentSlug" title="@Model.ParentSlugName">
+												<span>@Model.ParentSlugName</span>
+											</a>
+										</strong>
+									</li>
+								}
+							}
+							else
+							{
+								<li>
+									<strong>
+										<a href="/@Model.ParentSlug" title="@Model.ParentSlugName">
+											<span>@Model.ParentSlugName</span>
+										</a>
+										<span class="mr_lr">&nbsp;/&nbsp;</span>
+									</strong>
+								</li>
+								<li class="home">
+									<a href="/@Model.Slug" title="@Model.SlugName">
+										<span>@Model.SlugName</span>
+									</a>
+								</li>
+							}
+						}
+					</ul>
+				</div>
+			</div>
+		</div>
+	</section>
+	<div class="row">
+		<div class="col-12 col-xs-12">
+			<div class="product_sale">
+				<div class="product_sale_title">
+					<h1>
+						<span>@Model.Title</span>
+					</h1>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>

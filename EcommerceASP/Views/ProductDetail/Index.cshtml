@@ -1,0 +1,83 @@
+﻿@model EcommerceASP.ViewModel.Prouduct.ProductDetailViewBO
+@using EcommerceASP.ViewModel.Component
+@{
+	ViewBag.Title = "Chi tiết sản phẩm";
+}
+@{
+	Html.RenderPartial(Url.Content("Components/_Top_Breadcrumb"), new BreadcrumbBO
+	{
+		ParentSlugName = Model.ParentSlugName,
+		ParentSlug = Model.ParentSlug,
+		SlugName = Model.SlugName,
+		Slug = Model.Slug,
+		IsChild = Model.IsChild,
+		Title = Model.Title,
+		IsShowTitle = false
+	});
+}
+<style>
+	.btn-mua {
+		display: inline-block;
+		width: auto;
+		float: left;
+		margin-top: 28px;
+	}
+
+		.btn-mua .btn_contact {
+			border: 2px solid #818181;
+			background-color: #fff;
+			border-radius: 7px;
+			padding: 0px 15px;
+			text-transform: uppercase;
+			color: #333;
+			line-height: 36px;
+			height: 40px;
+		}
+
+			.btn-mua .btn_contact:hover {
+				border: 2px solid #264c5d;
+				background: #264c5d;
+			}
+
+				.btn-mua .btn_contact:hover span {
+					color: #fff;
+				}
+
+			.btn-mua .btn_contact span {
+				line-height: 36px;
+			}
+</style>
+@{ if (Model != null)
+	{
+		<div class="container">
+			<div class="row">
+				<div class="col-sm-12 col-12 d-flex flex-wrap">
+					<div class="col-lg-7 col-md-7 col-sm-12 col-xs-12 col-12">
+						<img class="w-100" src="@Url.Content($"~/Content/Images/product/{Model.Image}")" alt="@Model.Name" />
+					</div>
+					<div class="col-lg-5 col-md-5 col-sm-12 col-xs-12 col-12">
+						@Html.Raw(Model.Infomation)
+						<div class="w-100 info-line m-3" style="border-bottom:2px solid red;"></div>
+						<div class="w-100 info-contact">
+							<img class="" style="width:35px" src="//bizweb.dktcdn.net/thumb/small/100/407/310/themes/792892/assets/pad-phone-icon.png?1652251588657">
+							<a href="0911717178">0911717178</a>
+						</div>
+						<div class="vw-100">
+							<div class="btn-mua">
+								<button type="submit" class="btn btn-lg btn-gray btn-cart btn_contact">
+									<span class="txt-main">LIÊN HỆ</span>
+								</button>
+
+							</div>
+						</div>
+					</div>
+				</div>
+				<div class="col-sm-12 col-12">
+					@Html.Raw(Model.Description)
+				</div>
+			</div>
+		</div>
+	}
+}
+
+

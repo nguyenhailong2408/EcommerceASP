@@ -1,0 +1,118 @@
+﻿@model EcommerceASP.ViewModel.Contact.ContactBO
+@using EcommerceASP.ViewModel.Component
+@{
+	Layout = "~/Views/Shared/_Layout.cshtml";
+}
+@{
+	ViewBag.Title = "Liên hệ";
+}
+<script src="~/Scripts/Contact/Contact.js"></script>
+@{
+	Html.RenderPartial(Url.Content("Components/_Top_Breadcrumb"), new BreadcrumbBO
+	{
+		ParentSlugName = Model.ParentSlugName,
+		ParentSlug = Model.ParentSlug,
+		SlugName = Model.SlugName,
+		Slug = Model.Slug,
+		IsChild = Model.IsChild,
+		Title = Model.Title,
+		IsShowTitle = true
+	});
+
+	<div class="container">
+		<div class="row">
+			@using (Ajax.BeginForm("Update", "Contact", null, new AjaxOptions()
+			{
+				HttpMethod = "POST",
+				OnBegin = "Common.Contact.BeforeSend",
+				OnSuccess = "Common.Contact.SuccessForm"
+			},
+	new
+	{
+		@id = "form-update",
+		@class = "form-horizontal multiple-controls col-lg-6 col-md-6 col-sm-6 col-xs-12 col-12",
+		@enctype = "multipart/form-data"
+	}))
+			{
+				<div class="hidden">
+					@Html.AntiForgeryToken()
+				</div>
+				<div class="col-md-12 container">
+					<div class="row form-group">
+						<label class="col-sm-12 d-flex align-items-center lb-contact">
+							Địa chỉ Email
+							<svg xmlns="http://www.w3.org/2000/svg" width="8" height="8" fill="currentColor" class="bi bi-asterisk" viewBox="0 0 16 16">
+								<path d="M8 0a1 1 0 0 1 1 1v5.268l4.562-2.634a1 1 0 1 1 1 1.732L10 8l4.562 2.634a1 1 0 1 1-1 1.732L9 9.732V15a1 1 0 1 1-2 0V9.732l-4.562 2.634a1 1 0 1 1-1-1.732L6 8 1.438 5.366a1 1 0 0 1 1-1.732L7 6.268V1a1 1 0 0 1 1-1z" />
+							</svg>
+						</label>
+						<div class="col-sm-12">
+							@Html.TextBoxFor(m => m.Email, new { @class = "form-control", @maxLength = "250", @placeholder = "Nhập địa chỉ email", @required = "required" })
+						</div>
+					</div>
+					<div class="row form-group">
+						<label class="col-sm-12 d-flex align-items-center lb-contact">
+							Họ và tên
+							<svg xmlns="http://www.w3.org/2000/svg" width="8" height="8" fill="currentColor" class="bi bi-asterisk" viewBox="0 0 16 16">
+								<path d="M8 0a1 1 0 0 1 1 1v5.268l4.562-2.634a1 1 0 1 1 1 1.732L10 8l4.562 2.634a1 1 0 1 1-1 1.732L9 9.732V15a1 1 0 1 1-2 0V9.732l-4.562 2.634a1 1 0 1 1-1-1.732L6 8 1.438 5.366a1 1 0 0 1 1-1.732L7 6.268V1a1 1 0 0 1 1-1z" />
+							</svg>
+						</label>
+						<div class="col-sm-12">
+							@Html.TextBoxFor(m => m.FullName, new { @class = "form-control", @maxLength = "250", @placeholder = "Nhập họ và tên của bạn", @required = "required" })
+						</div>
+					</div>
+					<div class="row form-group">
+						<label class="col-sm-12 d-flex align-items-center lb-contact">
+							Điện thoại của bạn
+							<svg xmlns="http://www.w3.org/2000/svg" width="8" height="8" fill="currentColor" class="bi bi-asterisk" viewBox="0 0 16 16">
+								<path d="M8 0a1 1 0 0 1 1 1v5.268l4.562-2.634a1 1 0 1 1 1 1.732L10 8l4.562 2.634a1 1 0 1 1-1 1.732L9 9.732V15a1 1 0 1 1-2 0V9.732l-4.562 2.634a1 1 0 1 1-1-1.732L6 8 1.438 5.366a1 1 0 0 1 1-1.732L7 6.268V1a1 1 0 0 1 1-1z" />
+							</svg>
+						</label>
+						<div class="col-sm-12">
+							@Html.TextBoxFor(m => m.Phone, new { @class = "form-control", @maxLength = "250", @placeholder = "Nhập số điện thoại", @required = "required" })
+						</div>
+					</div>
+					<div class="row form-group">
+						<label class="col-sm-12 d-flex align-items-center lb-contact">
+							Địa chỉ đầy đủ
+							<svg xmlns="http://www.w3.org/2000/svg" width="8" height="8" fill="currentColor" class="bi bi-asterisk" viewBox="0 0 16 16">
+								<path d="M8 0a1 1 0 0 1 1 1v5.268l4.562-2.634a1 1 0 1 1 1 1.732L10 8l4.562 2.634a1 1 0 1 1-1 1.732L9 9.732V15a1 1 0 1 1-2 0V9.732l-4.562 2.634a1 1 0 1 1-1-1.732L6 8 1.438 5.366a1 1 0 0 1 1-1.732L7 6.268V1a1 1 0 0 1 1-1z" />
+							</svg>
+						</label>
+						<div class="col-sm-12">
+							@Html.TextBoxFor(m => m.Address, new { @class = "form-control", @maxLength = "500", @placeholder = "Nhập đầy đủ thông tin địa chỉ", @required = "required" })
+						</div>
+					</div>
+					<div class="row form-group">
+						<label class="col-sm-12 d-flex align-items-center lb-contact">
+							Nội dung
+							<svg xmlns="http://www.w3.org/2000/svg" width="8" height="8" fill="currentColor" class="bi bi-asterisk" viewBox="0 0 16 16">
+								<path d="M8 0a1 1 0 0 1 1 1v5.268l4.562-2.634a1 1 0 1 1 1 1.732L10 8l4.562 2.634a1 1 0 1 1-1 1.732L9 9.732V15a1 1 0 1 1-2 0V9.732l-4.562 2.634a1 1 0 1 1-1-1.732L6 8 1.438 5.366a1 1 0 0 1 1-1.732L7 6.268V1a1 1 0 0 1 1-1z" />
+							</svg>
+						</label>
+						<div class="col-sm-12">
+							@Html.TextAreaFor(m => m.Content, new { @class = "form-control", @row = "3", @placeholder = "Nhập nội dung yêu cầu", @required = "required" })
+						</div>
+					</div>
+				</div>
+				<div class="col-sm-12 text-center">
+					<button type="submit" class="btn btn-secondary">
+						<i class="fa fa-paper-plane" aria-hidden="true"></i> &nbsp; Gửi tin
+					</button>
+				</div>
+			}
+
+			<div class="col-lg-6 col-md-6 col-sm-6 col-xs-12 col-12" style="margin-top:10px;">
+				<iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3918.3688357659294!2d106.7085963148015!3d10.859525992265167!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0xc68d6cdc98da515e!2zMTDCsDUxJzM0LjMiTiAxMDbCsDQyJzM4LjgiRQ!5e0!3m2!1sen!2s!4v1655611848829!5m2!1sen!2s"
+						width="500" height="450" style="border:0; width:100%" allowfullscreen="" loading="lazy"></iframe>
+			</div>
+		</div>
+	</div>
+
+}
+<script>
+    $(document).ready(function () {
+        Common.Contact = new Contact();
+        Contact.Url = {};
+        Contact.Url.SendMessage = '@Url.Action("SendMessage", "Contact")';
+    });
+</script>

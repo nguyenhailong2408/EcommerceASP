@@ -1,0 +1,83 @@
+﻿@model EcommerceASP.ViewModel.ComponentTypeManage.ComponentTypeManageBO
+@{
+	var controlDev = false;
+}
+@using (Ajax.BeginForm("Update", "ComponentTypeManage", null, new AjaxOptions()
+{
+	HttpMethod = "POST",
+	OnBegin = "Common.ComponentTypeManage.UpdateBeforeSend",
+	OnSuccess = "Common.ComponentTypeManage.UpdateSuccess"
+},
+new
+{
+	@id = "form-update",
+	@class = "form-horizontal multiple-controls",
+	@enctype = "multipart/form-data"
+}))
+{
+	<div class="hidden">
+		@Html.HiddenFor(m => m.Id)
+		@Html.AntiForgeryToken()
+	</div>
+	<div class="col-md-12 container">
+		<div class="row form-group">
+			<label class="control-label col-md-2">Tên:</label>
+			<div class="col-md-10">
+				@Html.TextBoxFor(m => m.Name, new { @class = "form-control", @maxLength = "150", @style = "height:30px" })
+			</div>
+		</div>
+		<div class="row form-group">
+			<label class="control-label col-md-2">Tên file:</label>
+			<div class="col-md-10">
+				@Html.TextBoxFor(m => m.NameFile, new { @class = "form-control", @maxLength = "150", @style = "height:30px", @readonly = "readonly" })
+			</div>
+		</div>
+		<div class="row form-group">
+			<label class="control-label col-md-2">Mô tả:</label>
+			<div class="col-md-10">
+				@Html.TextBoxFor(m => m.Description, new { @class = "form-control", @maxLength = "150", @style = "height:30px" })
+			</div>
+		</div>
+		<div class="row form-group">
+			<label class="control-label col-md-2 ">Hình</label>
+			<div class="col-md-9">
+				<div class="input-group">
+					<img id="imgShow" src="@Url.Content($"~/Content/Images/component/{Model.DescriptionImage}")" alt="@Model.Name" height="50" />
+				</div>
+			</div>
+		</div>
+		<div class="row form-group">
+			<label class="control-label col-md-2 ">Upload Images</label>
+			<div class="col-md-9">
+				<div class="input-group">
+					@Html.TextBoxFor(m => m.DescriptionImage, new { @class = "form-control" })
+					@Html.HiddenFor(m => m.ImageOld)
+					<label class="input-group-addon cursor" for="file-upload-image">
+						<i class="fa fa-upload"></i>
+					</label>
+				</div>
+				<input type="file" id="file-upload-image" name="UploadImage" class="d-none" />
+			</div>
+		</div>
+		<div class="row form-group">
+			<label class="control-label col-md-2">Slide:</label>
+			<div class="col-md-10">
+				@Html.CheckBoxFor(m => m.IsSlide)
+				<span style="color:red">Ghi chú: Hiển thị dạng trình chiếu </span>
+			</div>
+		</div>
+		<div class="row form-group">
+			<label class="control-label col-md-2">Số dòng:</label>
+			<div class="col-md-10">
+				@Html.TextBoxFor(m => m.Row, new { @class = "form-control", @type = "number", @min = "1", @step = "1" })
+				<span style="color:red">Ghi chú: Dạng trình chiếu số dòng luôn  = 1 </span>
+			</div>
+		</div>
+		<div class="row form-group">
+			<label class="control-label col-md-2">Số cột:</label>
+			<div class="col-md-10">
+				@Html.TextBoxFor(m => m.Collumn, new { @class = "form-control", @type = "number", @min = "1", @step = "1" })
+			</div>
+		</div>
+	</div>
+}

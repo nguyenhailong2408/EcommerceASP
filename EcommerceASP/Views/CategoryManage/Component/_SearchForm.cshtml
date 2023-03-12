@@ -1,0 +1,48 @@
+﻿@model EcommerceASP.ViewModel.CategoryManage.SearchFormViewModel
+
+@using (Ajax.BeginForm("GetList", "CategoryManage", null,
+									new AjaxOptions
+									{
+										HttpMethod = "POST",
+										OnBegin = "Common.CategoryManage.BeforeSend",
+										OnSuccess = "Common.CategoryManage.SuccessForm",
+										UpdateTargetId = "list-data"
+									}, new { @id = "form-search-CategoryManage", @class = "form-horizontal multiple-controls", @style = "display:flex;flex-wrap:wrap" }))
+{
+	<div class="hidden">
+		@Html.HiddenFor(m => m.PageCurrent)
+	</div>
+	<div class="col-sm-3 d-flex align-items-center flex-wrap p-0 mb-1">
+		<label class="col-sm-3 control-label p-0">Tên danh mục:</label>
+		<div class="col-sm-8 p-0">
+			@Html.TextBoxFor(m => m.Name, null, new { @class = "w-100", @placeholder = "Tên danh mục" })
+		</div>
+	</div>
+	<div class="col-sm-3 d-flex align-items-center flex-wrap p-0 mb-1">
+		<label class="col-sm-3 control-label p-0">Đường dẫn:</label>
+		<div class="col-sm-8 p-0">
+			@Html.TextBoxFor(m => m.Slug, null, new { @class = "w-100", @placeholder = "Đường dẫn" })
+		</div>
+	</div>
+	<div class="col-sm-12 text-left">
+		<span style="color:red">Note: Đây là những danh mục sẽ hiển thị trên menu</span>
+		<br>
+		<a href="@Url.Action("Index","CategoryDetailManage")" target="_blank">Đi đến trang quản lý danh mục con</a>
+	</div>
+	<div class="col-sm-12 text-right">
+		<button type="button" class="btn btn-danger btn-cons btn-sm" data-toggle="modal" data-target="#modal-update" data-backdrop="static" onclick="Common.CategoryManage.ShowDialog()">
+			<i class="fa fa-plus fa-lg"></i> &nbsp; Thêm mới
+		</button>
+		<button type="submit" class="btn btn-primary btn-sm">
+			<i class="fa fa-search fa-lg"></i> &nbsp; Tìm kiếm
+		</button>
+		<button type="reset" class="btn btn-default btn-sm" @*onclick="Common.DialogTheme.Reset()"*@>
+			<i class="fa fa-refresh fa-lg"></i> &nbsp; Xóa
+		</button>
+	</div>
+}
+<script>
+	$(document).ready(function () {
+	});
+</script>
+

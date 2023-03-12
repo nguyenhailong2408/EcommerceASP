@@ -1,0 +1,84 @@
+﻿@model EcommerceASP.ViewModel.ProductCategoryDetailManage.ProductCategoryDetailManageBO
+@{
+	var controlDev = EcommerceASP.Constaint.Common.ControlCKEditor;
+}
+@using (Ajax.BeginForm("Update", "ProductCategoryDetailManage", null, new AjaxOptions()
+{
+	HttpMethod = "POST",
+	OnBegin = "Common.ProductCategoryDetailManage.UpdateBeforeSend",
+	OnSuccess = "Common.ProductCategoryDetailManage.UpdateSuccess"
+},
+new
+{
+	@id = "form-update",
+	@class = "form-horizontal multiple-controls",
+	@enctype = "multipart/form-data"
+}))
+{
+	<div class="hidden">
+		@Html.HiddenFor(m => m.Id)
+		@Html.HiddenFor(m => m.SlugOld)
+		@Html.AntiForgeryToken()
+	</div>
+	<div class="col-md-12 container">
+		<div class="row form-group">
+			<label class="control-label col-md-2">Tên danh mục:</label>
+			<div class="col-md-10">
+				@Html.TextBoxFor(m => m.Name, new { @class = "form-control", @maxLength = "150", @style = "height:30px" })
+			</div>
+		</div>
+		<div class="row form-group">
+			<label class="control-label col-md-2">Đường dẫn:</label>
+			<div class="col-md-10">
+				@Html.TextBoxFor(m => m.Slug, new
+		   {
+			   @class = "form-control",
+			   @maxLength = "150",
+			   @style = "height:30px",
+			   @onblur = "Common.ProductCategoryDetailManage.OnBlurInputSlug(this)"
+		   })
+			</div>
+		</div>
+		<div class="row form-group">
+			<label class="control-label col-md-2">Trang:</label>
+			<div class="col-md-10">
+				@Html.DropDownListFor(m => m.PageId,
+										   EcommerceASP.Queries.CommonQuery.GetListPage(Model.PageId),
+										   new { @class = "form-control", @readonly = "readonly" })
+			</div>
+		</div>
+		<div class="row form-group">
+			<label class="control-label col-md-2">Danh mục cha:</label>
+			<div class="col-md-10">
+				@Html.DropDownListFor(m => m.ProductCategoryID,
+										   EcommerceASP.Queries.CommonQuery.GetListProductCategory(Model.ProductCategoryID),
+										   new
+												{
+													@class = "form-control",
+											   @onchange = "Common.ProductCategoryDetailManage.OnChangeSelectProductCategory(this)"
+										   })
+			</div>
+		</div>
+		<div class="row form-group">
+			<label class="control-label col-md-2">Cha:</label>
+			<div class="col-md-10">
+				@Html.DropDownListFor(m => m.ParentId,
+										   EcommerceASP.Queries.CommonQuery.GetListProductCategoryDetail(Model.ProductCategoryID, Model.ParenId),
+										   "-- Không có cha --",
+										   new { @class = "w-100 form-control", @id = "inputProductCategoryDetail" })
+			</div>
+		</div>
+		<div class="row form-group">
+			<label class="control-label col-md-2">Thứ tự:</label>
+			<div class="col-md-10">
+				@Html.TextBoxFor(m => m.Priority, new { @class = "form-control", @type = "number", @min = "0" })
+			</div>
+		</div>
+	</div>
+}
+<script>
+	$(document).ready(function () {
+		$("#ProductCategoryID").off('select2:select').select2();
+		$("#inputProductCategoryDetail").off('select2:select').select2();
+	});
+</script>

@@ -1,0 +1,54 @@
+﻿@model List<EcommerceASP.ViewModel.Category.CategoryDetailBO>
+<ul class="dropdown-menu mega-menu border-box">
+	@{
+		var lstCatLv1 = Model.Where(m => m.ParenId == 0).ToList();
+		foreach (var catLv1 in lstCatLv1)
+		{
+			<li class="dropdown-submenu nav-items nav-item-lv2">
+				<a class="nav-link" href="/@catLv1.Slug" title="@catLv1.Name">
+					@catLv1.Name
+				</a>
+				<div class="dropdown-menu has-banner border-box">
+					<ul class="list-menu">
+						@{
+							var lstCatlv2 = Model.Where(m => m.ParenId == catLv1.Id).ToList();
+							foreach (var catLv2 in lstCatlv2)
+							{
+								<li class="nav-item-lv3">
+									<a class="nav-link" href="/@catLv2.Slug" title="@catLv2.Name">@catLv2.Name</a>
+									<ul class="list-lv3">
+										@{
+											var lstCatLv3 = Model.Where(m => m.ParenId == catLv2.Id).ToList();
+											foreach (var catLv3 in lstCatLv3)
+											{
+												<li class="nav-item-lv4">
+													<a class="nav-link" href="/@catLv3.Slug" title="@catLv3.Name">@catLv3.Name</a>
+												</li>
+											}
+										}
+									</ul>
+								</li>
+							}
+
+
+						}
+					</ul>
+					@{
+						if (catLv1.IsHasBanner)
+						{
+							<div class="banner-cate">
+								<a href="/phong-khach" title="Phòng Khách">
+									<div class="made-header__img">
+										<img src="@Url.Content($"~/Content/Images/banner/{catLv1.BannerImage}")" alt="@catLv1.Name">
+									</div>
+									<span>Xem thêm @catLv1.Name </span>
+								</a>
+							</div>
+						}
+					}
+				</div>
+			</li>
+		}
+	}
+
+</ul>

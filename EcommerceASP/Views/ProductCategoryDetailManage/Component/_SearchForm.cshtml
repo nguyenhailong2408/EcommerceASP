@@ -1,0 +1,70 @@
+﻿@model EcommerceASP.ViewModel.ProductCategoryDetailManage.SearchFormViewModel
+
+@using (Ajax.BeginForm("GetList", "ProductCategoryDetailManage", null,
+									new AjaxOptions
+									{
+										HttpMethod = "POST",
+										OnBegin = "Common.ProductCategoryDetailManage.BeforeSend",
+										OnSuccess = "Common.ProductCategoryDetailManage.SuccessForm",
+										UpdateTargetId = "list-data"
+									}, new { @id = "form-search-ProductCategoryDetailManage", @class = "form-horizontal multiple-controls", @style = "display:flex;flex-wrap:wrap" }))
+{
+	<div class="hidden">
+		@Html.HiddenFor(m => m.PageCurrent)
+	</div>
+	<div class="col-sm-3 d-flex align-items-center flex-wrap p-0 mb-1">
+		<label class="col-sm-3 control-label p-0">Danh mục cha:</label>
+		<div class="col-sm-9 p-0">
+			@Html.DropDownListFor(m => m.ProductCategoryID,
+										   EcommerceASP.Queries.CommonQuery.GetListProductCategory(0),
+										   "-- Tất cả --",
+										   new
+										   {
+											   @class = "form-control",
+											   @id = "ProductCategoryIDSearch",
+											   @onchange = "Common.ProductCategoryDetailManage.OnChangeSelectProductCategorySearch(this)"
+										   })
+		</div>
+	</div>
+	<div class="col-sm-3 d-flex align-items-center flex-wrap p-0 mb-1">
+		<label class="col-sm-3 control-label p-0">Cha:</label>
+		<div class="col-sm-9 p-0">
+			@Html.DropDownListFor(m => m.ParentId,
+										   EcommerceASP.Queries.CommonQuery.GetListProductCategoryDetail(0, 0),
+										   "-- Không có cha --",
+										   new { @class = "w-100 form-control", @id = "inputSearchProductCategoryDetail" })
+		</div>
+	</div>
+	<div class="col-sm-3 d-flex align-items-center flex-wrap p-0 mb-1">
+		<label class="col-sm-3 control-label p-0">Tên danh mục:</label>
+		<div class="col-sm-8 p-0">
+			@Html.TextBoxFor(m => m.Name, null, new { @class = "w-100", @placeholder = "Tên danh mục" })
+		</div>
+	</div>
+	<div class="col-sm-3 d-flex align-items-center flex-wrap p-0 mb-1">
+		<label class="col-sm-3 control-label p-0">Đường dẫn:</label>
+		<div class="col-sm-8 p-0">
+			@Html.TextBoxFor(m => m.Slug, null, new { @class = "w-100", @placeholder = "Đường dẫn" })
+		</div>
+	</div>
+	<div class="col-sm-12 text-left">
+		<span style="color:red">Note: Đây là những danh mục sản phẩm con</span>
+	</div>
+	<div class="col-sm-12 text-right">
+		<button type="button" class="btn btn-danger btn-cons btn-sm" data-toggle="modal" data-target="#modal-update" data-backdrop="static" onclick="Common.ProductCategoryDetailManage.ShowDialog()">
+			<i class="fa fa-plus fa-lg"></i> &nbsp; Thêm mới
+		</button>
+		<button type="submit" class="btn btn-primary btn-sm">
+			<i class="fa fa-search fa-lg"></i> &nbsp; Tìm kiếm
+		</button>
+		<button type="reset" class="btn btn-default btn-sm" @*onclick="Common.DialogTheme.Reset()"*@>
+			<i class="fa fa-refresh fa-lg"></i> &nbsp; Xóa
+		</button>
+	</div>
+}
+<script>
+	$(document).ready(function () {
+		$("#ProductCategoryIDSearch").off('select2:select').select2();
+		$("#inputSearchProductCategoryDetail").off('select2:select').select2();
+	});
+</script>
