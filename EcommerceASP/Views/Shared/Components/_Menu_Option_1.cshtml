@@ -1,7 +1,7 @@
 ﻿@model List<EcommerceASP.ViewModel.Category.CategoryDetailBO>
 <ul class="dropdown-menu mega-menu border-box">
 	@{
-		var lstCatLv1 = Model.Where(m => m.ParenId == 0).ToList();
+		var lstCatLv1 = Model.Where(m => m.ParentId == 0).ToList();
 		foreach (var catLv1 in lstCatLv1)
 		{
 			<li class="dropdown-submenu nav-items nav-item-lv2">
@@ -11,14 +11,14 @@
 				<div class="dropdown-menu has-banner border-box">
 					<ul class="list-menu">
 						@{
-							var lstCatlv2 = Model.Where(m => m.ParenId == catLv1.Id).ToList();
+							var lstCatlv2 = Model.Where(m => m.ParentId == catLv1.Id).ToList();
 							foreach (var catLv2 in lstCatlv2)
 							{
 								<li class="nav-item-lv3">
 									<a class="nav-link" href="/@catLv2.Slug" title="@catLv2.Name">@catLv2.Name</a>
 									<ul class="list-lv3">
 										@{
-											var lstCatLv3 = Model.Where(m => m.ParenId == catLv2.Id).ToList();
+											var lstCatLv3 = Model.Where(m => m.ParentId == catLv2.Id).ToList();
 											foreach (var catLv3 in lstCatLv3)
 											{
 												<li class="nav-item-lv4">

@@ -68,7 +68,7 @@ namespace EcommerceASP.Queries
                             Name = x.Name,
                             Slug = x.Slug,
                             Priority = x.Priority,
-                            ParenId = x.ParenId,
+                            ParentId = x.ParentId,
                             ProductCategoryId = x.ProductCategoryId,
                             CategoryID = x.CategoryID,
                             IsNewLabel = x.IsNewLabel ?? false,

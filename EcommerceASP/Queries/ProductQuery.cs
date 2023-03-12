@@ -57,7 +57,7 @@ namespace EcommerceASP.Queries
 
                 var lstProduct = new List<Product>();
 
-                if (objCategory?.ParenId != 0)
+                if (objCategory?.ParentId != 0)
                 {
                     var objProductCategoryDetail = _entities.ProductCategoryDetails.Where(m => !m.IsDeleted && m.Slug.Equals(strSlug)).FirstOrDefault();
                     if(objProductCategoryDetail != null)

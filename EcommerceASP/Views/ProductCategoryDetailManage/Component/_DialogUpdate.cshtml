@@ -44,6 +44,7 @@ new
 			<div class="col-md-10">
 				@Html.DropDownListFor(m => m.PageId,
 										   EcommerceASP.Queries.CommonQuery.GetListPage(Model.PageId),
+										   "-- Chưa chọn trang --",
 										   new { @class = "form-control", @readonly = "readonly" })
 			</div>
 		</div>
@@ -63,7 +64,7 @@ new
 			<label class="control-label col-md-2">Cha:</label>
 			<div class="col-md-10">
 				@Html.DropDownListFor(m => m.ParentId,
-										   EcommerceASP.Queries.CommonQuery.GetListProductCategoryDetail(Model.ProductCategoryID, Model.ParenId),
+										   EcommerceASP.Queries.CommonQuery.GetListProductCategoryDetail(Model.ProductCategoryID, Model.ParentId),
 										   "-- Không có cha --",
 										   new { @class = "w-100 form-control", @id = "inputProductCategoryDetail" })
 			</div>

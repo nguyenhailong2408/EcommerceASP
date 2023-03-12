@@ -8,7 +8,6 @@ namespace EcommerceASP.ViewModel.ProductCategoryDetailManage
         public string PageName { get; set; }
         public string SlugOld { get; set; }
         public string ProductCategoryInfo { get; set; }
-        public int ParentId { get; set; }
         public string ParentName { get; set; }
         public string CreatedByName { get; set; }
     }

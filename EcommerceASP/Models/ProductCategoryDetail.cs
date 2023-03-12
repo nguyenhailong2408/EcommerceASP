@@ -19,7 +19,7 @@ namespace EcommerceASP.Models
         public string Name { get; set; }
         public string Slug { get; set; }
         public int Priority { get; set; }
-        public int ParenId { get; set; }
+        public int ParentId { get; set; }
         public string Metakey { get; set; }
         public bool IsDeleted { get; set; }
         public Nullable<System.DateTime> Created_at { get; set; }

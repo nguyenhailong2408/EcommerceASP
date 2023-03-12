@@ -34,7 +34,7 @@
           <Property Name="Name" Type="nvarchar" MaxLength="250" />
           <Property Name="Slug" Type="nvarchar" MaxLength="500" />
           <Property Name="Priority" Type="int" Nullable="false" />
-          <Property Name="ParenId" Type="int" Nullable="false" />
+          <Property Name="ParentId" Type="int" Nullable="false" />
           <Property Name="Metakey" Type="nvarchar" MaxLength="250" />
           <Property Name="IsDeleted" Type="bit" Nullable="false" />
           <Property Name="Created_at" Type="datetime" />
@@ -180,7 +180,7 @@
           <Property Name="Name" Type="nvarchar" MaxLength="250" />
           <Property Name="Slug" Type="nvarchar" MaxLength="500" />
           <Property Name="Priority" Type="int" Nullable="false" />
-          <Property Name="ParenId" Type="int" Nullable="false" />
+          <Property Name="ParentId" Type="int" Nullable="false" />
           <Property Name="Metakey" Type="nvarchar" MaxLength="250" />
           <Property Name="IsDeleted" Type="bit" Nullable="false" />
           <Property Name="Created_at" Type="datetime" />
@@ -548,7 +548,7 @@
           <Property Name="Name" Type="String" MaxLength="250" FixedLength="false" Unicode="true" />
           <Property Name="Slug" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
           <Property Name="Priority" Type="Int32" Nullable="false" />
-          <Property Name="ParenId" Type="Int32" Nullable="false" />
+          <Property Name="ParentId" Type="Int32" Nullable="false" />
           <Property Name="Metakey" Type="String" MaxLength="250" FixedLength="false" Unicode="true" />
           <Property Name="IsDeleted" Type="Boolean" Nullable="false" />
           <Property Name="Created_at" Type="DateTime" Precision="3" />
@@ -708,7 +708,7 @@
           <Property Name="Name" Type="String" MaxLength="250" FixedLength="false" Unicode="true" />
           <Property Name="Slug" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
           <Property Name="Priority" Type="Int32" Nullable="false" />
-          <Property Name="ParenId" Type="Int32" Nullable="false" />
+          <Property Name="ParentId" Type="Int32" Nullable="false" />
           <Property Name="Metakey" Type="String" MaxLength="250" FixedLength="false" Unicode="true" />
           <Property Name="IsDeleted" Type="Boolean" Nullable="false" />
           <Property Name="Created_at" Type="DateTime" Precision="3" />
@@ -933,7 +933,7 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-      </Schema>
+        </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
     <edmx:Mappings>
@@ -971,7 +971,7 @@
                 <ScalarProperty Name="Created_at" ColumnName="Created_at" />
                 <ScalarProperty Name="IsDeleted" ColumnName="IsDeleted" />
                 <ScalarProperty Name="Metakey" ColumnName="Metakey" />
-                <ScalarProperty Name="ParenId" ColumnName="ParenId" />
+                <ScalarProperty Name="ParentId" ColumnName="ParentId" />
                 <ScalarProperty Name="Priority" ColumnName="Priority" />
                 <ScalarProperty Name="Slug" ColumnName="Slug" />
                 <ScalarProperty Name="Name" ColumnName="Name" />
@@ -1125,7 +1125,7 @@
                 <ScalarProperty Name="Created_at" ColumnName="Created_at" />
                 <ScalarProperty Name="IsDeleted" ColumnName="IsDeleted" />
                 <ScalarProperty Name="Metakey" ColumnName="Metakey" />
-                <ScalarProperty Name="ParenId" ColumnName="ParenId" />
+                <ScalarProperty Name="ParentId" ColumnName="ParentId" />
                 <ScalarProperty Name="Priority" ColumnName="Priority" />
                 <ScalarProperty Name="Slug" ColumnName="Slug" />
                 <ScalarProperty Name="Name" ColumnName="Name" />

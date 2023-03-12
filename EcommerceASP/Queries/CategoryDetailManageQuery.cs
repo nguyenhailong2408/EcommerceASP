@@ -24,7 +24,7 @@ namespace EcommerceASP.Queries
                 var lstPost = new List<CategoryDetailManageBO>();
                 lstPost = (from t in _entities.CategoryDetails
                            join t2 in _entities.CategoryDetails
-                           on t.ParenId equals t2.Id into C
+                           on t.ParentId equals t2.Id into C
                            from tt2 in C.DefaultIfEmpty()
                            join p in _entities.PageSlugs
                            on new { t.Slug, t.IsDeleted } equals new { p.Slug, p.IsDeleted } into P
@@ -37,7 +37,7 @@ namespace EcommerceASP.Queries
                            from c in AC.DefaultIfEmpty()
                            where !t.IsDeleted
                                  && (objSearch.CategoryId == 0 || t.CategoryID == objSearch.CategoryId)
-                                 && (objSearch.ParentId == 0 || t.ParenId == objSearch.ParentId)
+                                 && (objSearch.ParentId == 0 || t.ParentId == objSearch.ParentId)
                                  && (string.IsNullOrEmpty(objSearch.Name) || t.Name.Contains(objSearch.Name))
                                  && (string.IsNullOrEmpty(objSearch.Slug) || t.Slug.Contains(objSearch.Slug))
                            select new CategoryDetailManageBO
@@ -50,15 +50,15 @@ namespace EcommerceASP.Queries
                                PageInfo = p.PageId + " - " + p.Page.Name,
                                CategoryName = t.Category.Name,
                                CategoryID = t.CategoryID,
-                               ParenId = t.ParenId,
-                               ParentName = t.ParenId == 0 ? t.Category.Name : tt2.Name,
+                               ParentId = t.ParentId,
+                               ParentName = t.ParentId == 0 ? t.Category.Name : tt2.Name,
                                IsHasBanner = t.IsHasBanner,
                                BannerImage = t.BannerImage,
                                Created_at = t.Created_at == null ? t.Updated_at : t.Created_at,
                                CreatedByName = string.IsNullOrEmpty(s.FullName) ? c.FullName : s.FullName
                            })
                            .OrderBy(m => m.CategoryID)
-                           .ThenBy(m => m.ParenId)
+                           .ThenBy(m => m.ParentId)
                            .ThenBy(m => m.Priority)
                            .ToList();
 
@@ -99,7 +99,7 @@ namespace EcommerceASP.Queries
                                    PageId = p.PageId,
                                    CategoryName = t.Category.Name,
                                    CategoryID = t.CategoryID,
-                                   ParenId = t.ParenId,
+                                   ParentId = t.ParentId,
                                    ImageOld = t.BannerImage,
                                    IsHasBanner = t.IsHasBanner,
                                    BannerImage = t.BannerImage
@@ -165,7 +165,7 @@ namespace EcommerceASP.Queries
                     return ResponseAPI.GetFailedResponse("Không tìm thấy đường dẫn. Vui lòng tạo nội dung cho đường dẫn trước!");
                 }
                 // Phần này tự động duyệt tạo mới /  bổ sung cho danh mục sản phẩm còn thiếu
-                if (objModel.ParenId == 0) // Nếu cha = 0 thì kiểm tra đã có tạo danh mục sản phẩm chưa
+                if (objModel.ParentId == 0) // Nếu cha = 0 thì kiểm tra đã có tạo danh mục sản phẩm chưa
                 {
                     var objProductCat = _entities.ProductCategorys.Where(m => m.Slug == objModel.Slug).FirstOrDefault();
                     if (objProductCat == null)
@@ -194,16 +194,16 @@ namespace EcommerceASP.Queries
                     if (pageSlug != null)
                     {
                         int count = 0;
-                        int parentTempId = objModel.ParenId;
+                        int parentTempId = objModel.ParentId;
                         for (int i = 0; i <= 20; i++)
                         {
                             count++;
                             var objCat = _entities.CategoryDetails.Where(m => m.Id == parentTempId).FirstOrDefault();
-                            parentTempId = objCat.ParenId;
+                            parentTempId = objCat.ParentId;
                             lstProductCat.Add(objCat.Slug.NonUnicode().Split(' ').Join("-").ToLower());
                             lstProductCatName.Add(objCat.Name);
                             lstProductCatPriority.Add(objCat.Priority);
-                            if (objCat.ParenId == 0)
+                            if (objCat.ParentId == 0)
                                 break;
                         }
 
@@ -245,7 +245,7 @@ namespace EcommerceASP.Queries
                                     productCategoryDetail.ProductCategoryID = productCatId;
                                     productCategoryDetail.Slug = objModel.PageId == 2 ? slugTemp : String.Empty;
                                     productCategoryDetail.Priority = priorityTemp;
-                                    productCategoryDetail.ParenId = productCatDetailId;
+                                    productCategoryDetail.ParentId = productCatDetailId;
                                     productCategoryDetail.IsDeleted = false;
                                     productCategoryDetail.Created_at = DateTime.Now;
                                     productCategoryDetail.Created_by = 1;
@@ -267,7 +267,7 @@ namespace EcommerceASP.Queries
                 objCategory.Name = objModel.Name;
                 objCategory.Slug = objModel.Slug;
                 objCategory.CategoryID = objModel.CategoryID;
-                objCategory.ParenId = objModel.ParenId;
+                objCategory.ParentId = objModel.ParentId;
                 objCategory.Priority = objModel.Priority;
                 if (productCatId != 0)
                 {
@@ -343,7 +343,7 @@ namespace EcommerceASP.Queries
                     return ResponseAPI.GetFailedResponse("Không tìm thấy đường dẫn. Vui lòng tạo nội dung cho đường dẫn trước!");
                 }
 
-                if (objModel.ParenId == 0)
+                if (objModel.ParentId == 0)
                 {
                     var objProductCat = _entities.ProductCategorys.Where(m => m.Name.Equals(objModel.Name)).FirstOrDefault();
                     if (objProductCat == null)
@@ -372,7 +372,7 @@ namespace EcommerceASP.Queries
                     if (pageSlug != null)
                     {
                         int count = 0;
-                        int parentTempId = objModel.ParenId;
+                        int parentTempId = objModel.ParentId;
 
                         // Xử lý duyệt liên tục lấy nhiều cấp cha
                         for (int i = 0; i <= 20; i++)
@@ -380,11 +380,11 @@ namespace EcommerceASP.Queries
                             count++;
                             var objCat = _entities.CategoryDetails.Where(m => m.Id == parentTempId).FirstOrDefault();
                             // Nếu ID cha khác 0 thì gán lại tìm kiếm tiếp
-                            parentTempId = objCat.ParenId;
+                            parentTempId = objCat.ParentId;
                             lstProductCatSlug.Add(objCat.Slug.NonUnicode().Split(' ').Join("-").ToLower());
                             lstProductCatName.Add(objCat.Name);
                             lstProductCatPriority.Add(objCat.Priority);
-                            if (objCat.ParenId == 0) // Id cha  = 0 => đây là cấp cao nhất của danh mục
+                            if (objCat.ParentId == 0) // Id cha  = 0 => đây là cấp cao nhất của danh mục
                                 break;
                         }
 
@@ -427,7 +427,7 @@ namespace EcommerceASP.Queries
                                     productCategoryDetail.ProductCategoryID = productCatId;
                                     productCategoryDetail.Slug = objModel.PageId == 2 ? slugTemp : String.Empty;
                                     productCategoryDetail.Priority = priorityTemp;
-                                    productCategoryDetail.ParenId = productCatDetailId;
+                                    productCategoryDetail.ParentId = productCatDetailId;
                                     productCategoryDetail.IsDeleted = false;
                                     productCategoryDetail.Created_at = DateTime.Now;
                                     productCategoryDetail.Created_by = 1;
@@ -452,7 +452,7 @@ namespace EcommerceASP.Queries
                 objCategory.Name = objModel.Name;
                 objCategory.Slug = objModel.Slug;
                 objCategory.CategoryID = objModel.CategoryID;
-                objCategory.ParenId = objModel.ParenId;
+                objCategory.ParentId = objModel.ParentId;
                 if (productCatId != 0)
                 {
                     objCategory.ProductCategoryId = productCatId;

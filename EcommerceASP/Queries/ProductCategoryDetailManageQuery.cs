@@ -22,7 +22,7 @@ namespace EcommerceASP.Queries
                 var lstView = new List<ProductCategoryDetailManageBO>();
                 lstView = (from t in _entities.ProductCategoryDetails
                            join t2 in _entities.ProductCategoryDetails
-                           on t.ParenId equals t2.Id into C
+                           on t.ParentId equals t2.Id into C
                            from tt2 in C.DefaultIfEmpty()
                            join a in _entities.Accounts
                            on t.Created_by equals a.Id into T
@@ -32,7 +32,7 @@ namespace EcommerceASP.Queries
                            from c in AC.DefaultIfEmpty()
                            where !t.IsDeleted
                                  && (objSearch.ProductCategoryID == 0 || t.ProductCategoryID == objSearch.ProductCategoryID)
-                                 && (objSearch.ParentId == 0 || t.ParenId == objSearch.ParentId)
+                                 && (objSearch.ParentId == 0 || t.ParentId == objSearch.ParentId)
                                  && (string.IsNullOrEmpty(objSearch.Name) || t.Name.Contains(objSearch.Name))
                                  && (string.IsNullOrEmpty(objSearch.Slug) || t.Slug.Contains(objSearch.Slug))
                            select new ProductCategoryDetailManageBO
@@ -41,14 +41,14 @@ namespace EcommerceASP.Queries
                                Name = t.Name,
                                Priority = t.Priority,
                                Slug = t.Slug,
-                               ParenId = t.ParenId,
+                               ParentId = t.ParentId,
                                ProductCategoryID = t.ProductCategoryID,
                                ProductCategoryInfo = t.ProductCategoryID + " - " + t.ProductCategory.Name,
-                               ParentName = t.ParenId == 0 ? t.ProductCategory.Name : tt2.Name,
+                               ParentName = t.ParentId == 0 ? t.ProductCategory.Name : tt2.Name,
                                Created_at = t.Created_at == null ? t.Updated_at : t.Created_at,
                                CreatedByName = string.IsNullOrEmpty(s.FullName) ? c.FullName : s.FullName
                            })
-                           .OrderBy(m => m.ParenId)
+                           .OrderBy(m => m.ParentId)
                            .ThenBy(m => m.Priority)
                            .ToList();
 
@@ -73,7 +73,6 @@ namespace EcommerceASP.Queries
                 var objUpdate = new ProductCategoryDetailManageBO();
                 if (Id == null)
                     return objUpdate;
-
                 objUpdate = (from t in _entities.ProductCategoryDetails
                              join p in _entities.PageSlugs
                              on new { t.Slug, t.IsDeleted } equals new { p.Slug, p.IsDeleted } into P
@@ -87,7 +86,7 @@ namespace EcommerceASP.Queries
                                  Priority = t.Priority,
                                  Slug = t.Slug,
                                  PageId = p.PageId,
-                                 ParenId = t.ParenId,
+                                 ParentId = t.ParentId,
                                  ProductCategoryID = t.ProductCategoryID
                              }).FirstOrDefault();
                 if (objUpdate != null)
@@ -152,7 +151,7 @@ namespace EcommerceASP.Queries
                 objProductCategory.Name = objModel.Name;
                 objProductCategory.Slug = objModel.Slug;
                 objProductCategory.ProductCategoryID = objModel.ProductCategoryID;
-                objProductCategory.ParenId = objModel.ParenId;
+                objProductCategory.ParentId = objModel.ParentId;
                 objProductCategory.Priority = objModel.Priority;
                 objProductCategory.Metakey = objModel.Name.NonUnicode().ToLower();
                 objProductCategory.IsDeleted = false;
@@ -210,7 +209,7 @@ namespace EcommerceASP.Queries
                 objProductCategory.Name = objModel.Name;
                 objProductCategory.Slug = objModel.Slug;
                 objProductCategory.ProductCategoryID = objProductCategory.ProductCategoryID;
-                objProductCategory.ParenId = objModel.ParenId;
+                objProductCategory.ParentId = objModel.ParentId;
                 objProductCategory.Priority = objModel.Priority;
                 objProductCategory.Metakey = objModel.Name.NonUnicode().ToLower();
                 objProductCategory.IsDeleted = false;
