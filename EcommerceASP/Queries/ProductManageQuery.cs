@@ -21,25 +21,32 @@ namespace EcommerceASP.Queries
             try
             {
                 var list = new ListViewModel();
-                var lstView = _entities.Products
-                    .Where(m => !m.IsDeleted
-                              && (objSearch.ProductCategoryId == 0 || m.ProductCategoryId == objSearch.ProductCategoryId)
-                              && (objSearch.ProductCategoryDetailId == 0 || m.ProductCategoryDetailId == objSearch.ProductCategoryDetailId))
-                    .Select(m => new ProductManageBO
-                    {
-                        Id = m.Id,
-                        Image = m.Image,
-                        Infomation = m.Infomation,
-                        Name = m.Name,
-                        Price = m.Price,
-                        Price_sale = m.Price_sale,
-                        Slug = m.Slug,
-                        SortDescription = m.SortDescription,
-                        Description = m.Description,
-                        ProductCategoryInfo = m.ProductCategoryId.ToString(),
-                        ProductCategoryDetailInfo = m.ProductCategoryDetailId.ToString()
-                    }).ToList();
-
+                var lstView = (from m in _entities.Products
+                               join p in _entities.ProductCategorys
+                               on m.ProductCategoryId equals p.Id into P
+                               from p in P.DefaultIfEmpty()
+                               join d in _entities.ProductCategoryDetails
+                               on m.ProductCategoryDetailId equals d.Id into D
+                               from d in D.DefaultIfEmpty()
+                               where !m.IsDeleted
+                               && (string.IsNullOrEmpty(objSearch.NameProduct) || m.Name.Equals(objSearch.NameProduct))
+                               && (string.IsNullOrEmpty(objSearch.Slug) || m.Slug.Equals(objSearch.Slug))
+                               && (objSearch.ProductCategoryId == 0 || m.ProductCategoryId == objSearch.ProductCategoryId)
+                               && (objSearch.ProductCategoryDetailId == 0 || m.ProductCategoryDetailId == objSearch.ProductCategoryDetailId)
+                               select new ProductManageBO
+                               {
+                                   Id = m.Id,
+                                   Image = m.Image,
+                                   Infomation = m.Infomation,
+                                   Name = m.Name,
+                                   Price = m.Price,
+                                   Price_sale = m.Price_sale,
+                                   Slug = m.Slug,
+                                   SortDescription = m.SortDescription,
+                                   Description = m.Description,
+                                   ProductCategoryInfo = m.ProductCategoryId + " - " + p.Name,
+                                   ProductCategoryDetailInfo = m.ProductCategoryDetailId + " - " + d.Name
+                               }).ToList();
                 list.Items = lstView.ToPagedList((objSearch.PageCurrent ?? 1) - 1, list.PageSize ?? 10);
                 return list;
             }
@@ -114,8 +121,17 @@ namespace EcommerceASP.Queries
             EcommerceEntities _entities = new EcommerceEntities();
             try
             {
-                var objPageSlug = _entities.PageSlugs.Where(m =>!m.IsDeleted && m.Slug.Equals(objModel.Slug)).FirstOrDefault();
-                if(objPageSlug != null)
+                if (string.IsNullOrWhiteSpace(objModel.Name))
+                {
+                    return ResponseAPI.GetFailedResponse("Vui lòng nhập tên sản phẩm");
+                }
+                if (string.IsNullOrWhiteSpace(objModel.Slug))
+                {
+                    return ResponseAPI.GetFailedResponse("Vui lòng nhập đường dẫn đến trang chi tiết sản phẩm");
+                }
+
+                var objPageSlug = _entities.PageSlugs.Where(m => !m.IsDeleted && m.Slug.Equals(objModel.Slug)).FirstOrDefault();
+                if (objPageSlug != null)
                 {
                     return ResponseAPI.GetFailedResponse("Đường dẫn đã tồn tại. Vui lòng nhập đường dẫn mới");
                 }
@@ -185,11 +201,11 @@ namespace EcommerceASP.Queries
                 {
                     return ResponseAPI.GetFailedResponse("Đường dẫn đã tồn tại. Vui lòng nhập đường dẫn mới");
                 }
-                if(objPageSlug.Any(m=> m.PageId != (int)EnumPage.ProductDetail))
+                if (objPageSlug.Any(m => m.PageId != (int)EnumPage.ProductDetail))
                 {
                     return ResponseAPI.GetFailedResponse("Đường dẫn đã tồn tại. Vui lòng nhập đường dẫn mới");
                 }
-                if(objPageSlug.Count == 0)
+                if (objPageSlug.Count == 0)
                 {
                     var newPageSlug = new PageSlug();
                     newPageSlug.PageId = (int)EnumPage.ProductDetail;
@@ -207,10 +223,10 @@ namespace EcommerceASP.Queries
                     objPageSlug[0].Updated_at = DateTime.Now;
                     objPageSlug[0].Updated_by = 1;
                 }
-                
+
 
                 var objProduct = _entities.Products.Where(m => m.Id == objModel.Id).FirstOrDefault();
-                if(objProduct == null)
+                if (objProduct == null)
                     return ResponseAPI.GetFailedResponse("Không tìm thấy sản phẩm để cập nhật");
                 objProduct.Name = objModel.Name;
                 objProduct.ProductCategoryId = objModel.ProductCategoryId;
@@ -249,7 +265,7 @@ namespace EcommerceASP.Queries
             }
             catch (DbEntityValidationException e)
             {
-                
+
                 foreach (var eve in e.EntityValidationErrors)
                 {
                     Console.WriteLine("Entity of type \"{0}\" in state \"{1}\" has the following validation errors:",
@@ -274,14 +290,14 @@ namespace EcommerceASP.Queries
             try
             {
                 var objProduct = _entities.Products.Where(m => m.Id == Id).FirstOrDefault();
-                if(objProduct == null)
+                if (objProduct == null)
                 {
                     return ResponseAPI.GetSuccessResponse("Xóa thành công", null);
                 }
-                var lstPageSlug = _entities.PageSlugs.Where(m => !m.IsDeleted 
+                var lstPageSlug = _entities.PageSlugs.Where(m => !m.IsDeleted
                                                                 && m.Slug.Equals(objProduct.Slug)
                                                                 && m.PageId == (int)EnumPage.ProductDetail).ToList();
-                foreach(var itemPageSlug in lstPageSlug)
+                foreach (var itemPageSlug in lstPageSlug)
                 {
                     itemPageSlug.IsDeleted = true;
                     itemPageSlug.Updated_at = DateTime.Now;
@@ -291,7 +307,7 @@ namespace EcommerceASP.Queries
                 objProduct.Updated_at = DateTime.Now;
                 objProduct.Updated_by = 1;
                 objProduct.IsDeleted = true;
-                
+
                 _entities.SaveChanges();
                 return ResponseAPI.GetSuccessResponse("Xóa thành công", null);
             }

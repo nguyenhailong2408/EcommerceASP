@@ -16,6 +16,8 @@ namespace EcommerceASP.ViewModel.ProductManage
     }
     public class SearchFormViewModel
     {
+        public string NameProduct { get; set; }
+        public string Slug { get; set; }
         public int ProductCategoryId { get; set; }
         public int ProductCategoryDetailId { get; set; }
         public SearchFormViewModel()
@@ -29,7 +31,7 @@ namespace EcommerceASP.ViewModel.ProductManage
     {
         public ListViewModel()
         {
-            this.PageSize = 40;
+            this.PageSize = 10;
         }
         public int? PageSize { get; set; }
         public IPagedList<ProductManageBO> Items { get; set; }

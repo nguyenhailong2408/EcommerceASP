@@ -21,71 +21,79 @@ new
 	</div>
 	<div class="col-md-12 container">
 		<div class="row form-group">
-			<label class="control-label col-md-2">Tên sản phẩm:</label>
-			<div class="col-md-10">
-				@Html.TextBoxFor(m => m.Name, new { @class = "form-control", @maxLength = "150", @style = "height:30px" })
+			<div class="col-md-6 d-flex flex-wrap">
+				<label class="control-label col-md-3 font-weight-bold">Tên sản phẩm: <span style="color:red;">(*)</span	></label>
+				<div class="col-md-9">
+					@Html.TextBoxFor(m => m.Name, new { @class = "form-control", @maxLength = "150", @style = "height:30px" })
+				</div>
 			</div>
-		</div>
-		<div class="row form-group">
-			<label class="control-label col-md-2">Đường dẫn:</label>
-			<div class="col-md-10">
-				@Html.TextBoxFor(m => m.Slug, new { @class = "form-control", @maxLength = "150", @style = "height:30px" })
-			</div>
-		</div>
-		<div class="row form-group">
-			<label class="control-label col-md-2 ">Hình</label>
-			<div class="col-md-9">
-				<div class="input-group">
-					<img id="imgShow" src="@Url.Content($"~/Content/Images/product/{Model.Image}")" alt="@Model.Image" height="50" />
+			<div class="col-md-6 d-flex flex-wrap">
+				<label class="control-label col-md-3 font-weight-bold">Đường dẫn: <span style="color:red;">(*)</span></label>
+				<div class="col-md-9">
+					@Html.TextBoxFor(m => m.Slug, new { @class = "form-control", @maxLength = "150", @style = "height:30px" })
 				</div>
 			</div>
 		</div>
 		<div class="row form-group">
-			<label class="control-label col-md-2 ">Upload Images</label>
-			<div class="col-md-9">
-				<div class="input-group">
-					@Html.TextBoxFor(m => m.Image, new { @class = "form-control", @readonly = "readonly" })
-					@Html.HiddenFor(m => m.ImageOld)
-					<label class="input-group-addon cursor" for="file-upload-image">
-						<i class="fa fa-upload"></i>
-					</label>
+			<div class="col-md-6 d-flex flex-wrap">
+				<label class="control-label col-md-3 font-weight-bold">Hình: <span style="color:red;">(*)</span></label>
+				<div class="col-md-9">
+					<div class="input-group">
+						<img id="imgShow" src="@Url.Content($"~/Content/Images/product/{Model.Image}")" alt="@Model.Image" height="50" />
+					</div>
 				</div>
-				<input type="file" id="file-upload-image" name="UploadImage" class="d-none" />
+			</div>
+			<div class="col-md-6 d-flex flex-wrap">
+				<label class="control-label col-md-3 font-weight-bold">Upload Hình: <span style="color:red;">(*)</span></label>
+				<div class="col-md-9">
+					<div class="input-group">
+						@Html.TextBoxFor(m => m.Image, new { @class = "form-control", @readonly = "readonly" })
+						@Html.HiddenFor(m => m.ImageOld)
+						<label class="input-group-addon cursor" for="file-upload-image">
+							<i class="fa fa-upload"></i>
+						</label>
+					</div>
+					<input type="file" id="file-upload-image" name="UploadImage" class="d-none" />
+				</div>
 			</div>
 		</div>
 		<div class="row form-group">
-			<label class="control-label col-md-2">Danh mục cha:</label>
-			<div class="col-md-10">
-				@Html.DropDownListFor(m => m.ProductCategoryId,
-										   EcommerceASP.Queries.CommonQuery.GetListProductCategory(Model.ProductCategoryId),
-										   "-- Chưa chọn danh mục cha --",
-										   new
-												{
-											   @class = "form-control",
-											   @maxLength = "150",
-											   @style = "height:30px",
-											   @onchange = "Common.ProductManage.OnChangeSelectProductCategory(this)"
-										   })
+			<div class="col-md-6 d-flex flex-wrap">
+				<label class="control-label col-md-3 font-weight-bold">Danh mục cha:</label>
+				<div class="col-md-9">
+					@Html.DropDownListFor(m => m.ProductCategoryId,
+											   EcommerceASP.Queries.CommonQuery.GetListProductCategory(Model.ProductCategoryId),
+											   "-- Chưa chọn danh mục cha --",
+											   new
+													{
+												   @class = "form-control",
+												   @maxLength = "150",
+												   @style = "height:30px",
+												   @onchange = "Common.ProductManage.OnChangeSelectProductCategory(this)"
+											   })
+				</div>
+			</div>
+			<div class="col-md-6 d-flex flex-wrap">
+				<label class="control-label col-md-3 font-weight-bold">Danh mục con:</label>
+				<div class="col-md-9">
+					@Html.DropDownListFor(m => m.ProductCategoryDetailId,
+											   EcommerceASP.Queries.CommonQuery.GetListProductCategoryDetail(Model.ProductCategoryId, Model.ProductCategoryDetailId),
+											   "-- Chưa chọn danh mục con --",
+											   new
+													{
+												   @class = "form-control",
+												   @maxLength = "150",
+												   @style = "height:30px",
+												   @id = "inputUpdateProductDetail"
+											   })
+				</div>
 			</div>
 		</div>
+		
+		
 		<div class="row form-group">
-			<label class="control-label col-md-2">Danh mục con:</label>
-			<div class="col-md-10">
-				@Html.DropDownListFor(m => m.ProductCategoryDetailId,
-										   EcommerceASP.Queries.CommonQuery.GetListProductCategoryDetail(Model.ProductCategoryId, Model.ProductCategoryDetailId),
-										   "-- Chưa chọn danh mục con --",
-										   new
-												{
-											   @class = "form-control",
-											   @maxLength = "150",
-											   @style = "height:30px",
-											   @id = "inputUpdateProductDetail"
-										   })
-			</div>
-		</div>
-		<div class="row form-group">
-			<label class="control-label col-md-2">Thông tin:</label>
-			<div class="col-md-10">
+			<label class="control-label col-md-1 font-weight-bold">Thông tin:</label>
+			<div class="col-md-11">
 				@Html.TextAreaFor(m => m.Infomation, new { @class = "form-control", @rows = "5" })
 				@{
 					if (controlDev)
@@ -160,8 +168,8 @@ new
 			</div>
 		</div>
 		<div class="row form-group">
-			<label class="control-label col-md-2">Mô tả:</label>
-			<div class="col-md-10">
+			<label class="control-label col-md-1 font-weight-bold">Mô tả:</label>
+			<div class="col-md-11">
 				@Html.TextAreaFor(m => m.Description, new { @class = "form-control", @rows = "5" })
 				@{
 					if (controlDev)

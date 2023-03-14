@@ -12,16 +12,28 @@
 	<div class="hidden">
 		@Html.HiddenFor(m => m.PageCurrent)
 	</div>
-	<div class="col-sm-3 d-flex align-items-center flex-wrap p-0 mb-1">
-		<label class="col-sm-3 control-label p-0">Danh mục sản phẩm:</label>
-		<div class="col-sm-9 p-0">
+	<div class="col-sm-3 d-flex align-items-center flex-wrap mb-1">
+		<label class="col-sm-5 control-label">Danh mục sản phẩm:</label>
+		<div class="col-sm-7 p-0">
 			@Html.DropDownListFor(m => m.ProductCategoryId, EcommerceASP.Queries.CommonQuery.GetListProductCategory(Model.ProductCategoryId), "==Tất cả==", new { @class = "w-100 form-control" })
 		</div>
 	</div>
-	<div class="col-sm-3 d-flex align-items-center flex-wrap p-0 mb-1">
-		<label class="col-sm-3 control-label p-0">Danh mục sản phẩm cấp 2:</label>
-		<div class="col-sm-9 p-0">
-			@Html.DropDownListFor(m => m.ProductCategoryDetailId, EcommerceASP.Queries.CommonQuery.GetListProductCategoryDetail(0,Model.ProductCategoryDetailId), "==Tất cả==", new { @class = "w-100 form-control" })
+	<div class="col-sm-3 d-flex align-items-center flex-wrap mb-1">
+		<label class="col-sm-5 control-label">Danh mục sản phẩm cấp 2:</label>
+		<div class="col-sm-7 p-0">
+			@Html.DropDownListFor(m => m.ProductCategoryDetailId, EcommerceASP.Queries.CommonQuery.GetListProductCategoryDetail(0, Model.ProductCategoryDetailId), "==Tất cả==", new { @class = "w-100 form-control" })
+		</div>
+	</div>
+	<div class="col-sm-3 d-flex align-items-center flex-wrap mb-1">
+		<label class="col-sm-4 control-label">Tên sản phẩm:</label>
+		<div class="col-sm-8 p-0">
+			@Html.TextBoxFor(m => m.NameProduct, new { @class = "w-100 form-control", @placeholder = "Tên sản phẩm" })
+		</div>
+	</div>
+	<div class="col-sm-3 d-flex align-items-center flex-wrap mb-1">
+		<label class="col-sm-4 control-label">Đường dẫn:</label>
+		<div class="col-sm-8 p-0">
+			@Html.TextBoxFor(m => m.Slug, new { @class = "w-100 form-control", @placeholder = "Đường dẫn" })
 		</div>
 	</div>
 	<div class="col-sm-12 text-right">
