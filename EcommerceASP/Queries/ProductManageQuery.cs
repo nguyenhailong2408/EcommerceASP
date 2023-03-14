@@ -129,7 +129,7 @@ namespace EcommerceASP.Queries
                 {
                     return ResponseAPI.GetFailedResponse("Vui lòng nhập đường dẫn đến trang chi tiết sản phẩm");
                 }
-
+                objModel.Slug = objModel.Slug.NonUnicode().Split(' ').Join("-").ToLower();
                 var objPageSlug = _entities.PageSlugs.Where(m => !m.IsDeleted && m.Slug.Equals(objModel.Slug)).FirstOrDefault();
                 if (objPageSlug != null)
                 {
@@ -196,6 +196,15 @@ namespace EcommerceASP.Queries
             EcommerceEntities _entities = new EcommerceEntities();
             try
             {
+                if (string.IsNullOrWhiteSpace(objModel.Name))
+                {
+                    return ResponseAPI.GetFailedResponse("Vui lòng nhập tên sản phẩm");
+                }
+                if (string.IsNullOrWhiteSpace(objModel.Slug))
+                {
+                    return ResponseAPI.GetFailedResponse("Vui lòng nhập đường dẫn đến trang chi tiết sản phẩm");
+                }
+                objModel.Slug = objModel.Slug.NonUnicode().Split(' ').Join("-").ToLower();
                 var objPageSlug = _entities.PageSlugs.Where(m => !m.IsDeleted && m.Slug.Equals(objModel.Slug)).ToList();
                 if (objPageSlug.Count > 1)
                 {
