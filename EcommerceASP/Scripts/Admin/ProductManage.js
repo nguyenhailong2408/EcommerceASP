@@ -95,7 +95,7 @@ ProductManage.prototype = {
             xhr.send((new FormData(form[0])));
         })
 
-        
+
     },
     SubmitForm: function () {
         $("#form-search-ProductManage").submit();
@@ -155,7 +155,7 @@ ProductManage.prototype = {
         //$('#modal-update').on('shown.bs.modal', function (e) {
         //    $("#modal-update").modal("hide");
         //})
-        
+
     },
     ShowDialog: function (id) {
         Common.Ajax({
@@ -166,40 +166,55 @@ ProductManage.prototype = {
             data: { id: id }
         }, function (data) {
             $("#modal-update .modal-body").html(data);
-            $("#modal-update .modal-dialog").css("max-width","80%")
+            $("#modal-update .modal-dialog").css("max-width", "80%")
             //$("#modal-update").modal("show");
 
             //set ckEditor value using jQuery
             $('#Infomation').val(CKEDITOR.instances["Infomation"].getData());
             $('#Description').val(CKEDITOR.instances["Description"].getData());
-            
+
             Common.ProductManage.RegisterEvent();
         });
     },
 
-    OnChangeSelectPage: function (e) {
-        Common.ProductManage.GetActionController($(e).val())
+    OnBlurInputSlug: function (e) {
+        Common.ProductManage.CheckExistSlug($(e).val())
             .then(function (res) {
-                $("#Action").val(res.Data.Action);
-                $("#Controller").val(res.Data.Controller);
+                if ($(e).val() == '' || !$(e).val()) {
+                    $("#text-alert").removeClass('text-success');
+                    $("#text-alert").addClass('text-danger');
+                    $("#text-alert").text(`Vui lòng nhập đường dẫn!`)
+                    return;
+                }
+
+                if (!!res[0]) {
+                    $("#text-alert").removeClass('text-success');
+                    $("#text-alert").addClass('text-danger');
+                    $("#text-alert").text(`Đường dẫn đã tồn tại ở trang: [${res[0].PageId} - ${res[0].PageName}]. Vui lòng nhập đường dẫn khác!`)
+                }
+                else {
+                    $("#text-alert").addClass('text-success');
+                    $("#text-alert").removeClass('text-danger');
+                    $("#text-alert").text(`Đường dẫn hợp lệ!`)
+                }
             });
     },
-    GetActionController: function (id) {
+
+    CheckExistSlug: function (slug) {
         return new Promise(function (resolve, reject) {
             var option = "";
-            if (!Common.Empty(id)) {
-                Common.Ajax({
-                    type: "POST",
-                    url: ProductManage.Url.GetActionController,
-                    cache: false,
-                    dataType: "json",
-                    data: { pageId: id }
-                }, function (res) {
-                    resolve(res);
-                }, true);
-            } else {
+            Common.Ajax({
+                type: "POST",
+                url: ProductManage.Url.CheckExistSlug,
+                cache: false,
+                dataType: "json",
+                data: {
+                    strSlug: slug
+                }
+            }, function (res) {
+
                 resolve(res);
-            }
+            }, true);
         });
     },
 

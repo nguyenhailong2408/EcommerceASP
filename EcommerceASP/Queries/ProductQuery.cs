@@ -53,34 +53,47 @@ namespace EcommerceASP.Queries
                 {
                    return objView = GetAllProduct(PageCurrent);
                 }
-                var objCategory = _entities.CategoryDetails.Where(m => !m.IsDeleted && m.Slug.Equals(strSlug)).FirstOrDefault();
+                var objCategory = _entities.ProductCategorys.Where(m => !m.IsDeleted && m.Slug.Equals(strSlug)).FirstOrDefault();
 
                 var lstProduct = new List<Product>();
 
-                if (objCategory?.ParentId != 0)
+                if (objCategory == null)
                 {
                     var objProductCategoryDetail = _entities.ProductCategoryDetails.Where(m => !m.IsDeleted && m.Slug.Equals(strSlug)).FirstOrDefault();
                     if(objProductCategoryDetail != null)
                     {
-                        lstProduct = _entities.Products.Where(m => !m.IsDeleted && m.ProductCategoryDetailId == objProductCategoryDetail.Id).ToList();
+                        objView.ParentSlugName = objProductCategoryDetail?.Name;
+                        objView.ParentSlug = objProductCategoryDetail?.Slug;
+                        objView.Title = objProductCategoryDetail?.Name;
+                        objView.SlugName = objProductCategoryDetail?.Name;
+                        objView.Slug = objProductCategoryDetail?.Slug;
+
+                        var lstCatDetailId = new List<int>();
+                        lstCatDetailId.Add(objProductCategoryDetail.Id);
+                        if (objProductCategoryDetail.ParentId == 0)
+                        {
+                            var lstChild = _entities.ProductCategoryDetails.Where(m => !m.IsDeleted && m.ParentId == objProductCategoryDetail.Id).ToList();
+                            if(lstChild.Count > 0)
+                            {
+                                lstCatDetailId.AddRange(lstChild.Select(m => m.Id).ToList());
+                            }
+                        }
+                        lstProduct = _entities.Products.Where(m => !m.IsDeleted && lstCatDetailId.Contains(m.ProductCategoryDetailId.Value)).OrderByDescending(m => m.Created_at).ToList();
                     }
                 }
                 else
                 {
-                    var objProductCategory = _entities.ProductCategorys.Where(m => !m.IsDeleted && m.Slug.Equals(strSlug)).FirstOrDefault();
-                    if(objProductCategory != null)
-                    {
-                        lstProduct = _entities.Products.Where(m => !m.IsDeleted && m.ProductCategoryId == objProductCategory.Id).ToList();
-                    }
+                    objView.ParentSlugName = objCategory?.Name;
+                    objView.ParentSlug = objCategory?.Slug;
+                    objView.Title = objCategory?.Name;
+                    objView.SlugName = objCategory?.Name;
+                    objView.Slug = objCategory?.Slug;
+
+                    lstProduct = _entities.Products.Where(m => !m.IsDeleted && m.ProductCategoryId == objCategory.Id).OrderByDescending(m => m.Created_at).ToList();
                 }
 
-                objView.ParentSlugName = objCategory?.Name;
-                objView.ParentSlug = objCategory?.Slug;
-                objView.Title = objCategory?.Name;
                 objView.PageCurrent = PageCurrent;
                 objView.IsChild = false;
-                objView.SlugName = objCategory?.Name;
-                objView.Slug = objCategory?.Slug;
 
                 objView.lstProduct = lstProduct.ToPagedList(PageCurrent - 1, objView.PageSize ?? 9);
                 return objView;

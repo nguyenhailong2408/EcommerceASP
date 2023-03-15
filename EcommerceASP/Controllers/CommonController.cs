@@ -46,6 +46,12 @@ namespace EcommerceASP.Controllers
             var data = CommonQuery.GetPageBySlug(strSlug);
             return Json(data, JsonRequestBehavior.AllowGet);
         }
+        public ActionResult CheckExistSlug(string strSlug)
+        {
+            strSlug = strSlug.NonUnicode().Split(' ').Join("-").ToLower();
+            var data = CommonQuery.CheckExistSlug(strSlug);
+            return Json(data, JsonRequestBehavior.AllowGet);
+        }
 
         public ActionResult UploadImageProduct(HttpPostedFileBase upload)
         {

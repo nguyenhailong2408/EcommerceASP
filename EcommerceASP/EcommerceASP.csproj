@@ -257,6 +257,7 @@
     <Compile Include="ViewModel\Category\ProductCategoryBO.cs" />
     <Compile Include="ViewModel\Category\ProductCategoryDetailBO.cs" />
     <Compile Include="ViewModel\PageSlug\PageSlugBO.cs" />
+    <Compile Include="ViewModel\PageSlug\PageSlugExistBO.cs" />
     <Compile Include="ViewModel\PostManage\PostDetailManageBO.cs" />
     <Compile Include="ViewModel\PostManage\PostManageBO.cs" />
     <Compile Include="ViewModel\ProductCategoryManage\ProductCategoryDetailManageBO.cs" />

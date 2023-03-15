@@ -21,13 +21,13 @@ new
 	</div>
 	<div class="col-md-12 container">
 		<div class="row form-group">
-			<label class="control-label col-md-12">Tiêu đề:</label>
+			<label class="control-label col-md-12 font-weight-bold">Tiêu đề: <span style="color:red;">(*)</span></label>
 			<div class="col-md-12">
 				@Html.TextBoxFor(m => m.Name, new { @class = "form-control", @maxLength = "150", @style = "height:30px" })
 			</div>
 		</div>
 		<div class="row form-group">
-			<label class="control-label col-md-12">Đường dẫn: <span style="color:red;">(*)</span></label>
+			<label class="control-label col-md-12 font-weight-bold">Đường dẫn: <span style="color:red;">(*)</span></label>
 			<div class="col-md-12">
 				@Html.TextBoxFor(m => m.Slug, new
 		   {
@@ -40,7 +40,7 @@ new
 			<span style="color:red">Lưu ý: (Bắt buộc) Đường dẫn phải đã được tạo sẵn trước đó ở các mục: (Danh mục sản phẩm, Sản phẩm, Bài viết, Chủ đề bải viết...)</span>
 		</div>
 		<div class="row form-group">
-			<label class="control-label col-md-12">Trang:</label>
+			<label class="control-label col-md-12 font-weight-bold">Trang:</label>
 			<div class="col-md-12">
 				@Html.DropDownListFor(m => m.PageId,
 										   EcommerceASP.Queries.CommonQuery.GetListPage(Model.PageId),
@@ -49,14 +49,14 @@ new
 			</div>
 		</div>
 		<div class="row form-group">
-			<label class="control-label col-md-12">Thứ tự:</label>
+			<label class="control-label col-md-12 font-weight-bold">Thứ tự:</label>
 			<div class="col-md-12">
 				@Html.TextBoxFor(m => m.Priority, new { @class = "form-control", @type = "number", @min = "0" })
 			</div>
-			<span style="color:red">Ghi chú: Thứ tự hiển thị trên menu màn hình chính từ trái qua phải, sắp xếp theo thứ tự tăng dần</span>
+			<span style="color:red">Ghi chú: Sắp xếp trên giao diện menu từ trái => phải, nhỏ => lớn</span>
 		</div>
 		<div class="row form-group">
-			<label class="control-label col-md-12">Folder Hình:</label>
+			<label class="control-label col-md-12 font-weight-bold">Folder Hình:</label>
 			<div class="col-md-12">
 				@Html.TextBoxFor(m => m.FolderImage, new { @class = "form-control", @type = "text" })
 			</div>

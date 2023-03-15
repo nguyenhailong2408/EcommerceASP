@@ -186,6 +186,34 @@ namespace EcommerceASP.Queries
             }
         }
 
+        public static List<SelectListItem> GetListProductCategoryDetailChild(int? productCatId, int? productCatDetailId)
+        {
+            EcommerceEntities _entities = new EcommerceEntities();
+            try
+            {
+                var list = (from l in _entities.ProductCategoryDetails
+                            where !l.IsDeleted 
+                                  && (productCatId == 0 || productCatId == null || l.ProductCategoryID == productCatId)
+                                  && l.ParentId !=0
+                            select new SelectListItem()
+                            {
+                                Selected = l.Id == productCatDetailId,
+                                Text = l.Id.ToString() + " - " + l.Name.ToString(),
+                                Value = l.Id.ToString(),
+                            }).ToList();
+
+                return list;
+            }
+            catch (Exception ex)
+            {
+                return new List<SelectListItem>();
+            }
+            finally
+            {
+                _entities.Dispose();
+            }
+        }
+
         public static List<SelectListItem> GetCategoryTopic(int? CatId)
         {
             EcommerceEntities _entities = new EcommerceEntities();
@@ -283,6 +311,30 @@ namespace EcommerceASP.Queries
             catch (Exception ex)
             {
                 return new List<SelectListItem>();
+            }
+            finally
+            {
+                _entities.Dispose();
+            }
+        }
+        public static List<PageSlugExistBO> CheckExistSlug(string strSlug)
+        {
+            EcommerceEntities _entities = new EcommerceEntities();
+            try
+            {
+                var list = (from l in _entities.PageSlugs
+                            where !l.IsDeleted && l.Slug.Equals(strSlug)
+                            select new PageSlugExistBO()
+                            {
+                               PageId = l.PageId,
+                               PageName = l.Page.Name
+                            }).ToList();
+
+                return list;
+            }
+            catch (Exception ex)
+            {
+                return new List<PageSlugExistBO>();
             }
             finally
             {

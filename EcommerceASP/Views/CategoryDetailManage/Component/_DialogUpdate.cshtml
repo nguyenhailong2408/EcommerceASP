@@ -19,14 +19,14 @@ new
 	</div>
 	<div class="col-md-12 container">
 		<div class="row form-group">
-			<label class="control-label col-md-2">Tiêu đề:</label>
-			<div class="col-md-10">
+			<label class="control-label col-md-3 font-weight-bold">Tiêu đề: <span style="color:red;">(*)</span></label>
+			<div class="col-md-9">
 				@Html.TextBoxFor(m => m.Name, new { @class = "form-control", @maxLength = "150", @style = "height:30px" })
 			</div>
 		</div>
 		<div class="row form-group">
-			<label class="control-label col-md-2">Đường dẫn:</label>
-			<div class="col-md-10">
+			<label class="control-label col-md-3 font-weight-bold">Đường dẫn: <span style="color:red;">(*)</span></label>
+			<div class="col-md-9">
 				@Html.TextBoxFor(m => m.Slug, new
 				   {
 					   @class = "form-control",
@@ -35,10 +35,11 @@ new
 					   @onblur = "Common.CategoryDetailManage.OnBlurInputSlug(this)"
 				   })
 			</div>
+			<span style="color:red">Lưu ý: (Bắt buộc) Đường dẫn phải đã được tạo sẵn trước đó ở các mục: (Danh mục sản phẩm, Sản phẩm, Bài viết, Chủ đề bải viết...)</span>
 		</div>
 		<div class="row form-group">
-			<label class="control-label col-md-2">Trang:</label>
-			<div class="col-md-10">
+			<label class="control-label col-md-3 font-weight-bold">Trang: <span style="color:red;">(*)</span></label>
+			<div class="col-md-9">
 				@Html.DropDownListFor(m => m.PageId,
 										   EcommerceASP.Queries.CommonQuery.GetPage(Model.PageId),
 										   "-- Chưa chọn trang --",
@@ -46,8 +47,8 @@ new
 			</div>
 		</div>
 		<div class="row form-group">
-			<label class="control-label col-md-2">Danh mục cha:</label>
-			<div class="col-md-10">
+			<label class="control-label col-md-3 font-weight-bold">Danh mục cha: <span style="color:red;">(*)</span></label>
+			<div class="col-md-9">
 				@Html.DropDownListFor(m => m.CategoryID,
 										   EcommerceASP.Queries.CommonQuery.GetCategory(Model.CategoryID),
 										   new
@@ -58,29 +59,31 @@ new
 			</div>
 		</div>
 		<div class="row form-group">
-			<label class="control-label col-md-2">Cha:</label>
-			<div class="col-md-10">
+			<label class="control-label col-md-3 font-weight-bold">Cha:</label>
+			<div class="col-md-9">
 				@Html.DropDownListFor(m => m.ParentId,
 										   EcommerceASP.Queries.CommonQuery.GetCategoryDetail(Model.CategoryID, Model.ParentId),
 										   "-- Không có cha --",
 										   new { @class = "form-control", @id = "inputCategoryDetail" })
 			</div>
+			<span style="color:red">Ghi chú: Hiện tại chỉ hỗ trợ menu 3 cấp</span>
 		</div>
 		<div class="row form-group">
-			<label class="control-label col-md-2">Thứ tự:</label>
-			<div class="col-md-10">
+			<label class="control-label col-md-3 font-weight-bold">Thứ tự: <span style="color:red;">(*)</span></label>
+			<div class="col-md-9">
 				@Html.TextBoxFor(m => m.Priority, new { @class = "form-control", @type = "number", @min = "0" })
 			</div>
+			<span style="color:red">Ghi chú: Sắp xếp trên giao diện từ trái => phải, trên => dưới, nhỏ => lớn</span>
 		</div>
 		<div class="row form-group">
-			<label class="control-label col-md-2">Hiển thị hình:</label>
-			<div class="col-md-10">
+			<label class="control-label col-md-3 font-weight-bold">Hiển thị hình:</label>
+			<div class="col-md-9">
 				@Html.CheckBoxFor(m => m.IsHasBanner)
-				<span style="color:red">Ghi chú: Hình chỉ áp dụng cho danh mục cha = 0 (Không có cha)</span>
 			</div>
+			<span style="color:red">Ghi chú: Hình chỉ áp dụng cho danh mục cha = 0 (Không có cha)</span>
 		</div>
 		<div class="row form-group">
-			<label class="control-label col-md-2 ">Hình</label>
+			<label class="control-label col-md-3 font-weight-bold">Hình</label>
 			<div class="col-md-9">
 				<div class="input-group">
 					<img id="imgShow" src="@Url.Content($"~/Content/Images/banner/{Model.BannerImage}")" alt="@Model.Name" height="50" />
@@ -88,7 +91,7 @@ new
 			</div>
 		</div>
 		<div class="row form-group">
-			<label class="control-label col-md-2 ">Upload Images</label>
+			<label class="control-label col-md-3 font-weight-bold">Upload Images</label>
 			<div class="col-md-9">
 				<div class="input-group">
 					@Html.TextBoxFor(m => m.BannerImage, new { @class = "form-control", @readonly = "readonly" })
