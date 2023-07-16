@@ -73,6 +73,7 @@ namespace EcommerceASP.Queries
                 var objUpdate = new ProductCategoryDetailManageBO();
                 if (Id == null)
                     return objUpdate;
+                
                 objUpdate = (from t in _entities.ProductCategoryDetails
                              join p in _entities.PageSlugs
                              on new { t.Slug, t.IsDeleted } equals new { p.Slug, p.IsDeleted } into P
@@ -85,7 +86,7 @@ namespace EcommerceASP.Queries
                                  Name = t.Name,
                                  Priority = t.Priority,
                                  Slug = t.Slug,
-                                 PageId = p.PageId,
+                                 PageId = p == null ? 0 : p.PageId,
                                  ParentId = t.ParentId,
                                  ProductCategoryID = t.ProductCategoryID
                              }).FirstOrDefault();
@@ -180,6 +181,10 @@ namespace EcommerceASP.Queries
                 if (string.IsNullOrEmpty(objModel.Name))
                 {
                     return ResponseAPI.GetFailedResponse("Vui lòng nhập tên danh mục!");
+                }
+                if (string.IsNullOrEmpty(objModel.Slug))
+                {
+                    return ResponseAPI.GetFailedResponse("Vui lòng nhập đường dẫn!");
                 }
                 objModel.Slug = objModel.Slug.NonUnicode().Split(' ').Join("-").ToLower();
                 objModel.SlugOld = objModel.SlugOld.NonUnicode().Split(' ').Join("-").ToLower();

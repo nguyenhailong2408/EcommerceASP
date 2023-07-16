@@ -15,7 +15,7 @@
 	<div class="col-sm-3 d-flex align-items-center flex-wrap mb-1">
 		<label class="col-sm-5 control-label">Danh mục sản phẩm:</label>
 		<div class="col-sm-7 p-0">
-			@Html.DropDownListFor(m => m.ProductCategoryId, EcommerceASP.Queries.CommonQuery.GetListProductCategory(Model.ProductCategoryId), "==Tất cả==", new { @class = "w-100 form-control" })
+			@Html.DropDownListFor(m => m.ProductCategoryId, EcommerceASP.Queries.CommonQuery.GetListProductCategory(Model.ProductCategoryId), "==Tất cả==", new { @class = "w-100 form-control", @onchange = "Common.ProductManage.OnChangeSelectSearchProductCategory(this)" })
 		</div>
 	</div>
 	<div class="col-sm-3 d-flex align-items-center flex-wrap mb-1">

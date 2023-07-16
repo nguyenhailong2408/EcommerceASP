@@ -65,10 +65,10 @@ namespace EcommerceASP
                         "~/UI/bootstrap-datepicker/css/bootstrap-datepicker3.css"));
             //TimePicker
             bundles.Add(new ScriptBundle("~/bundles/timepicker/js").Include(
-                "~/UI/timepicker/bootstrap-timepicker.min.js"));
+                "~/UI/bootstrap-timepicker/js/bootstrap-timepicker.min.js"));
             //TimePicker CSS
             bundles.Add(new StyleBundle("~/bundles/timepicker/css").Include(
-                        "~/UI/timepicker/bootstrap-timepicker.min.css"));
+                        "~/UI/bootstrap-timepicker/css/bootstrap-timepicker.min.css"));
 
             //Bootstrap CSS
             bundles.Add(new StyleBundle("~/UI/select2/css").Include(

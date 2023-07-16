@@ -421,3 +421,6 @@ li.treeview > ul.treeview-menu {
     width: auto;
     height: auto;
 }
+.control-label{
+    font-weight:bold;
+}

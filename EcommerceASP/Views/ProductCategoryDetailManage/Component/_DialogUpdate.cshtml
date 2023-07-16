@@ -22,14 +22,14 @@ new
 	</div>
 	<div class="col-md-12 container">
 		<div class="row form-group">
-			<label class="control-label col-md-2">Tên danh mục:</label>
-			<div class="col-md-10">
+			<label class="control-label col-md-3">Tên danh mục: <span style="color:red">(*)</span></label>
+			<div class="col-md-9">
 				@Html.TextBoxFor(m => m.Name, new { @class = "form-control", @maxLength = "150", @style = "height:30px" })
 			</div>
 		</div>
 		<div class="row form-group">
-			<label class="control-label col-md-2">Đường dẫn:</label>
-			<div class="col-md-10">
+			<label class="control-label col-md-3">Đường dẫn: <span style="color:red">(*)</span></label>
+			<div class="col-md-9">
 				@Html.TextBoxFor(m => m.Slug, new
 		   {
 			   @class = "form-control",
@@ -40,8 +40,8 @@ new
 			</div>
 		</div>
 		<div class="row form-group">
-			<label class="control-label col-md-2">Trang:</label>
-			<div class="col-md-10">
+			<label class="control-label col-md-3">Trang: <span style="color:red">(*)</span></label>
+			<div class="col-md-9">
 				@Html.DropDownListFor(m => m.PageId,
 										   EcommerceASP.Queries.CommonQuery.GetListPage(Model.PageId),
 										   "-- Chưa chọn trang --",
@@ -49,8 +49,8 @@ new
 			</div>
 		</div>
 		<div class="row form-group">
-			<label class="control-label col-md-2">Danh mục cha:</label>
-			<div class="col-md-10">
+			<label class="control-label col-md-3">Danh mục cha: <span style="color:red">(*)</span></label>
+			<div class="col-md-9">
 				@Html.DropDownListFor(m => m.ProductCategoryID,
 										   EcommerceASP.Queries.CommonQuery.GetListProductCategory(Model.ProductCategoryID),
 										   new
@@ -61,17 +61,18 @@ new
 			</div>
 		</div>
 		<div class="row form-group">
-			<label class="control-label col-md-2">Cha:</label>
-			<div class="col-md-10">
+			<label class="control-label col-md-3">Cha:</label>
+			<div class="col-md-9">
 				@Html.DropDownListFor(m => m.ParentId,
 										   EcommerceASP.Queries.CommonQuery.GetListProductCategoryDetail(Model.ProductCategoryID, Model.ParentId),
 										   "-- Không có cha --",
 										   new { @class = "w-100 form-control", @id = "inputProductCategoryDetail" })
 			</div>
+			<span style="color:red;">Ghi chú: Không chọn => Không có cha (Dùng để phân cấp danh mục)</span>
 		</div>
 		<div class="row form-group">
-			<label class="control-label col-md-2">Thứ tự:</label>
-			<div class="col-md-10">
+			<label class="control-label col-md-3">Thứ tự:</label>
+			<div class="col-md-9">
 				@Html.TextBoxFor(m => m.Priority, new { @class = "form-control", @type = "number", @min = "0" })
 			</div>
 		</div>

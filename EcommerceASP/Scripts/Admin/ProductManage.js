@@ -178,6 +178,7 @@ ProductManage.prototype = {
     },
 
     OnBlurInputSlug: function (e) {
+        let OldSlug = $("#SlugOld").val();
         Common.ProductManage.CheckExistSlug($(e).val())
             .then(function (res) {
                 if ($(e).val() == '' || !$(e).val()) {
@@ -186,11 +187,17 @@ ProductManage.prototype = {
                     $("#text-alert").text(`Vui lòng nhập đường dẫn!`)
                     return;
                 }
-
-                if (!!res[0]) {
-                    $("#text-alert").removeClass('text-success');
-                    $("#text-alert").addClass('text-danger');
-                    $("#text-alert").text(`Đường dẫn đã tồn tại ở trang: [${res[0].PageId} - ${res[0].PageName}]. Vui lòng nhập đường dẫn khác!`)
+                if (OldSlug != $(e).val()) {
+                    if (!!res[0]) {
+                        $("#text-alert").removeClass('text-success');
+                        $("#text-alert").addClass('text-danger');
+                        $("#text-alert").text(`Đường dẫn đã tồn tại ở trang: [${res[0].PageId} - ${res[0].PageName}]. Vui lòng nhập đường dẫn khác!`)
+                    }
+                    else {
+                        $("#text-alert").addClass('text-success');
+                        $("#text-alert").removeClass('text-danger');
+                        $("#text-alert").text(`Đường dẫn hợp lệ!`)
+                    }
                 }
                 else {
                     $("#text-alert").addClass('text-success');
@@ -217,7 +224,12 @@ ProductManage.prototype = {
             }, true);
         });
     },
-
+    OnChangeSelectSearchProductCategory: function (e) {
+        Common.ProductManage.GetProductCategoryDetail($(e).val())
+            .then(function (options) {
+                $("#ProductCategoryDetailId").html(options);
+            });
+    },
     OnChangeSelectProductCategory: function (e) {
         Common.ProductManage.GetProductCategoryDetail($(e).val())
             .then(function (options) {

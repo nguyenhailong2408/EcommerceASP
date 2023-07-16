@@ -12,16 +12,16 @@
 	<div class="hidden">
 		@Html.HiddenFor(m => m.PageCurrent)
 	</div>
-	<div class="col-sm-3 d-flex align-items-center flex-wrap p-0 mb-1">
+	<div class="col-sm-4 d-flex align-items-center flex-wrap mb-1">
 		<label class="col-sm-3 control-label p-0">Tên danh mục:</label>
-		<div class="col-sm-8 p-0">
-			@Html.TextBoxFor(m => m.Name, null, new { @class = "w-100", @placeholder = "Tên danh mục" })
+		<div class="col-sm-9 p-0">
+			@Html.TextBoxFor(m => m.Name, null, new { @class = "w-100 form-control", @placeholder = "Tên danh mục" })
 		</div>
 	</div>
-	<div class="col-sm-3 d-flex align-items-center flex-wrap p-0 mb-1">
+	<div class="col-sm-4 d-flex align-items-center flex-wrap mb-1">
 		<label class="col-sm-3 control-label p-0">Đường dẫn:</label>
-		<div class="col-sm-8 p-0">
-			@Html.TextBoxFor(m => m.Slug, null, new { @class = "w-100", @placeholder = "Đường dẫn" })
+		<div class="col-sm-9 p-0">
+			@Html.TextBoxFor(m => m.Slug, null, new { @class = "w-100 form-control", @placeholder = "Đường dẫn" })
 		</div>
 	</div>
 	<div class="col-sm-12 text-left">

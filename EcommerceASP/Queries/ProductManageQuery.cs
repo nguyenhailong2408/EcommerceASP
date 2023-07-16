@@ -80,6 +80,7 @@ namespace EcommerceASP.Queries
                         Price = m.Price,
                         Price_sale = m.Price_sale,
                         Slug = m.Slug,
+                        SlugOld = m.Slug,
                         SortDescription = m.SortDescription,
                         Description = m.Description,
                         ProductCategoryId = m.ProductCategoryId,

@@ -10,6 +10,7 @@ namespace EcommerceASP.ViewModel.ProductManage
     {
         public string ProductCategoryInfo { get; set; }
         public string ProductCategoryDetailInfo { get; set; }
+        public string SlugOld { get; set; }
         public string ImageOld { get; set; }
         public string ImageType { get; set; }
         public HttpPostedFileBase UploadImage { get; set; }
