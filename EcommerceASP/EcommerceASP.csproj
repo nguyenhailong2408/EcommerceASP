@@ -177,6 +177,12 @@
     <Compile Include="Models\ComponentItem.cs">
       <DependentUpon>Ecommerce.tt</DependentUpon>
     </Compile>
+    <Compile Include="Models\ComponentPageSlug.cs">
+      <DependentUpon>Ecommerce.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\ComponentSubDescription.cs">
+      <DependentUpon>Ecommerce.tt</DependentUpon>
+    </Compile>
     <Compile Include="Models\ComponentType.cs">
       <DependentUpon>Ecommerce.tt</DependentUpon>
     </Compile>
@@ -230,6 +236,7 @@
     <Compile Include="Queries\CategoryDetailManageQuery.cs" />
     <Compile Include="Queries\CategoryManageQuery.cs" />
     <Compile Include="Queries\CommonQuery.cs" />
+    <Compile Include="Queries\ComponentQuery.cs" />
     <Compile Include="Queries\ComponentTypeManageQuery.cs" />
     <Compile Include="Queries\ContactQuery.cs" />
     <Compile Include="Queries\HomeQuery.cs" />
@@ -250,6 +257,7 @@
     <Compile Include="ViewModel\Category\CategoryDetailBO.cs" />
     <Compile Include="ViewModel\ComponentManage\ComponentManageBO.cs" />
     <Compile Include="ViewModel\ComponentManage\ComponentTypeManageBO.cs" />
+    <Compile Include="ViewModel\ComponentPageSlug\ComponentPageSlugBO.cs" />
     <Compile Include="ViewModel\Component\BreadcrumbBO.cs" />
     <Compile Include="ViewModel\Component\ComponentBO.cs" />
     <Compile Include="ViewModel\Contact\ContactBO.cs" />
@@ -273,12 +281,15 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="Content\css\footer.css" />
+    <Content Include="Content\css\mainBee.css" />
+    <Content Include="Content\css\menu.css" />
     <Content Include="Content\css\topic.css" />
     <Content Include="Content\Images\bg_footer.png" />
     <Content Include="Content\Images\favicon.png" />
     <Content Include="Content\Images\iconfb.png" />
     <Content Include="Content\Images\iconphone.png" />
     <Content Include="Content\Images\iconzalo.png" />
+    <Content Include="Content\Images\logo-BEE.png" />
     <Content Include="Content\Images\logoThuanPhat.png" />
     <Content Include="Content\Images\pad-phone-icon.png" />
     <Content Include="Content\Images\payment.png" />
@@ -963,6 +974,58 @@
     <Content Include="Models\Ecommerce.edmx.diagram">
       <DependentUpon>Ecommerce.edmx</DependentUpon>
     </Content>
+    <Content Include="fonts\HirukoPro-Regular.otf" />
+    <Content Include="fonts\HIRUKOPRO1-BOOK.TTF" />
+    <Content Include="fonts\Montserrat-BlackItalic.ttf" />
+    <Content Include="fonts\Montserrat-Bold.ttf" />
+    <Content Include="fonts\MONTSERRAT-BOLDITALIC.TTF" />
+    <Content Include="fonts\Montserrat-Italic.ttf" />
+    <Content Include="fonts\Montserrat-Light.ttf" />
+    <Content Include="fonts\Montserrat-LightItalic.ttf" />
+    <Content Include="fonts\Montserrat-Medium.otf" />
+    <Content Include="fonts\Montserrat-Regular.ttf" />
+    <Content Include="fonts\Montserrat-SemiBold.otf" />
+    <Content Include="fonts\Nunito-Black.ttf" />
+    <Content Include="fonts\Nunito-Bold.ttf" />
+    <Content Include="fonts\Nunito-Light.ttf" />
+    <Content Include="fonts\Nunito-Medium.ttf" />
+    <Content Include="fonts\Nunito-Regular.ttf" />
+    <Content Include="fonts\Nunito-SemiBold.ttf" />
+    <Content Include="fonts\Quicksand-Bold.ttf" />
+    <Content Include="fonts\Quicksand-Light.ttf" />
+    <Content Include="fonts\Quicksand-Medium.ttf" />
+    <Content Include="fonts\Quicksand-Regular.ttf" />
+    <Content Include="fonts\Quicksand-SemiBold.ttf" />
+    <Content Include="fonts\Roboto-Black.ttf" />
+    <Content Include="fonts\Roboto-BlackItalic.ttf" />
+    <Content Include="fonts\Roboto-Bold.ttf" />
+    <Content Include="fonts\Roboto-BoldItalic.ttf" />
+    <Content Include="fonts\Roboto-Italic.ttf" />
+    <Content Include="fonts\Roboto-Light.ttf" />
+    <Content Include="fonts\Roboto-LightItalic.ttf" />
+    <Content Include="fonts\Roboto-Medium.ttf" />
+    <Content Include="fonts\Roboto-MediumItalic.ttf" />
+    <Content Include="fonts\Roboto-Regular.ttf" />
+    <Content Include="fonts\Roboto-Thin.ttf" />
+    <Content Include="fonts\Roboto-ThinItalic.ttf" />
+    <Content Include="fonts\RobotoCondensed-Bold.ttf" />
+    <Content Include="fonts\RobotoCondensed-BoldItalic.ttf" />
+    <Content Include="fonts\RobotoCondensed-Italic.ttf" />
+    <Content Include="fonts\RobotoCondensed-Light.ttf" />
+    <Content Include="fonts\RobotoCondensed-LightItalic.ttf" />
+    <Content Include="fonts\RobotoCondensed-Regular.ttf" />
+    <Content Include="fonts\Ubuntu-B.ttf" />
+    <Content Include="fonts\Ubuntu-BI.ttf" />
+    <Content Include="fonts\Ubuntu-L.ttf" />
+    <Content Include="fonts\Ubuntu-LI.ttf" />
+    <Content Include="fonts\Ubuntu-Light.ttf" />
+    <Content Include="fonts\Ubuntu-M.ttf" />
+    <Content Include="fonts\Ubuntu-MI.ttf" />
+    <Content Include="fonts\UBUNTU-R.TTF" />
+    <Content Include="fonts\Ubuntu-RI.ttf" />
+    <Content Include="fonts\BALOODA-REGULAR.TTF" />
+    <Content Include="fonts\fontawesome-webfont.woff" />
+    <Content Include="fonts\fontawesome-webfont.woff2" />
     <None Include="UI\jquery-3.4.1.intellisense.js" />
     <Content Include="UI\font-awesome\css\font-awesome.css" />
     <Content Include="UI\font-awesome\css\font-awesome.min.css" />
@@ -1062,6 +1125,19 @@
     <Content Include="Views\ComponentTypeManage\Component\_DialogUpdate.cshtml" />
     <Content Include="Views\ComponentTypeManage\Component\_ListData.cshtml" />
     <Content Include="Views\ComponentTypeManage\Component\_SearchForm.cshtml" />
+    <Content Include="Views\Shared\Components\_MenuBee.cshtml" />
+    <Content Include="Views\Shared\_LayoutBee.cshtml" />
+    <Content Include="Views\Home\BeeIndex.cshtml" />
+    <Content Include="Views\Shared\Components\BeeDecor\_MainContent.cshtml" />
+    <Content Include="Views\Shared\Components\BeeDecor\_BeeTopFooter.cshtml" />
+    <Content Include="Views\Shared\Components\BeeDecor\_BeeFooter.cshtml" />
+    <Content Include="Views\ConstructionDesign\BeeDecor\BeeIndex.cshtml" />
+    <Content Include="Views\ConstructionDesign\BeeDecor\_BeeDetail.cshtml" />
+    <Content Include="Views\Shared\Components\BeeDecor\_Top_BreadcrumbBee.cshtml" />
+    <Content Include="Views\Contact\BeeIndex.cshtml" />
+    <Content Include="Views\Topic\BeeDecor\BeeIndex.cshtml" />
+    <Content Include="Views\Components\_ComponentStyle1.cshtml" />
+    <Content Include="Views\Components\_ComponentStyle2.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

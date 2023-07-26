@@ -75,6 +75,25 @@
           <Property Name="Updated_at" Type="datetime" />
           <Property Name="Updated_by" Type="int" />
         </EntityType>
+        <EntityType Name="ComponentPageSlug">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="PageSlug" Type="varchar" MaxLength="255" Nullable="false" />
+          <Property Name="CategoryId" Type="int" />
+          <Property Name="ReferenceId" Type="int" />
+          <Property Name="Name" Type="nvarchar" MaxLength="250" />
+          <Property Name="Title" Type="nvarchar" MaxLength="500" />
+          <Property Name="ComponentTypeId" Type="int" Nullable="false" />
+          <Property Name="QuantityRecord" Type="int" />
+          <Property Name="Priority" Type="int" Nullable="false" />
+          <Property Name="IsDeleted" Type="bit" Nullable="false" />
+          <Property Name="Created_at" Type="datetime" />
+          <Property Name="Created_by" Type="int" />
+          <Property Name="Updated_at" Type="datetime" />
+          <Property Name="Updated_by" Type="int" />
+        </EntityType>
         <EntityType Name="Components">
           <Key>
             <PropertyRef Name="Id" />
@@ -94,6 +113,22 @@
           <Property Name="Updated_at" Type="datetime" />
           <Property Name="Updated_by" Type="int" />
         </EntityType>
+        <EntityType Name="ComponentSubDescription">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="ComponentId" Type="int" Nullable="false" />
+          <Property Name="SubTitle" Type="nvarchar" MaxLength="500" />
+          <Property Name="Title" Type="nvarchar" MaxLength="500" />
+          <Property Name="Image" Type="nvarchar" MaxLength="200" />
+          <Property Name="Description" Type="nvarchar(max)" />
+          <Property Name="IsDeleted" Type="bit" Nullable="false" />
+          <Property Name="Created_at" Type="datetime" />
+          <Property Name="Created_by" Type="int" />
+          <Property Name="Updated_at" Type="datetime" />
+          <Property Name="Updated_by" Type="int" />
+        </EntityType>
         <EntityType Name="ComponentTypes">
           <Key>
             <PropertyRef Name="Id" />
@@ -106,6 +141,7 @@
           <Property Name="IsSlide" Type="bit" Nullable="false" />
           <Property Name="Row" Type="int" />
           <Property Name="Collumn" Type="int" />
+          <Property Name="QuantityRecord" Type="int" />
           <Property Name="IsDeleted" Type="bit" Nullable="false" />
           <Property Name="Created_at" Type="datetime" />
           <Property Name="Created_by" Type="int" />
@@ -291,6 +327,18 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <Association Name="FK_ComponentPageSlug_ComponentTypes">
+          <End Role="ComponentTypes" Type="Self.ComponentTypes" Multiplicity="1" />
+          <End Role="ComponentPageSlug" Type="Self.ComponentPageSlug" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="ComponentTypes">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="ComponentPageSlug">
+              <PropertyRef Name="ComponentTypeId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <Association Name="FK_ComponentProducts_Components">
           <End Role="Components" Type="Self.Components" Multiplicity="0..1" />
           <End Role="ComponentItems" Type="Self.ComponentItems" Multiplicity="*" />
@@ -404,7 +452,9 @@
           <EntitySet Name="CategoryDetails" EntityType="Self.CategoryDetails" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Categorys" EntityType="Self.Categorys" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="ComponentItems" EntityType="Self.ComponentItems" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="ComponentPageSlug" EntityType="Self.ComponentPageSlug" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Components" EntityType="Self.Components" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="ComponentSubDescription" EntityType="Self.ComponentSubDescription" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="ComponentTypes" EntityType="Self.ComponentTypes" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Contact" EntityType="Self.Contact" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="PageCategory" EntityType="Self.PageCategory" Schema="dbo" store:Type="Tables" />
@@ -419,6 +469,10 @@
           <AssociationSet Name="FK_CategoryDetails_Categorys" Association="Self.FK_CategoryDetails_Categorys">
             <End Role="Categorys" EntitySet="Categorys" />
             <End Role="CategoryDetails" EntitySet="CategoryDetails" />
+          </AssociationSet>
+          <AssociationSet Name="FK_ComponentPageSlug_ComponentTypes" Association="Self.FK_ComponentPageSlug_ComponentTypes">
+            <End Role="ComponentTypes" EntitySet="ComponentTypes" />
+            <End Role="ComponentPageSlug" EntitySet="ComponentPageSlug" />
           </AssociationSet>
           <AssociationSet Name="FK_ComponentProducts_Components" Association="Self.FK_ComponentProducts_Components">
             <End Role="Components" EntitySet="Components" />
@@ -466,7 +520,9 @@
           <EntitySet Name="CategoryDetails" EntityType="EcommerceModel.CategoryDetail" />
           <EntitySet Name="Categorys" EntityType="EcommerceModel.Category" />
           <EntitySet Name="ComponentItems" EntityType="EcommerceModel.ComponentItem" />
+          <EntitySet Name="ComponentPageSlugs" EntityType="EcommerceModel.ComponentPageSlug" />
           <EntitySet Name="Components" EntityType="EcommerceModel.Component" />
+          <EntitySet Name="ComponentSubDescriptions" EntityType="EcommerceModel.ComponentSubDescription" />
           <EntitySet Name="ComponentTypes" EntityType="EcommerceModel.ComponentType" />
           <EntitySet Name="Contacts" EntityType="EcommerceModel.Contact" />
           <EntitySet Name="PageCategories" EntityType="EcommerceModel.PageCategory" />
@@ -497,6 +553,10 @@
           <AssociationSet Name="FK_ComponentProducts_Products" Association="EcommerceModel.FK_ComponentProducts_Products">
             <End Role="Product" EntitySet="Products" />
             <End Role="ComponentItem" EntitySet="ComponentItems" />
+          </AssociationSet>
+          <AssociationSet Name="FK_ComponentPageSlug_ComponentTypes" Association="EcommerceModel.FK_ComponentPageSlug_ComponentTypes">
+            <End Role="ComponentType" EntitySet="ComponentTypes" />
+            <End Role="ComponentPageSlug" EntitySet="ComponentPageSlugs" />
           </AssociationSet>
           <AssociationSet Name="FK_Components_ComponentTypes" Association="EcommerceModel.FK_Components_ComponentTypes">
             <End Role="ComponentType" EntitySet="ComponentTypes" />
@@ -595,6 +655,26 @@
           <NavigationProperty Name="Component" Relationship="EcommerceModel.FK_ComponentProducts_Components" FromRole="ComponentItem" ToRole="Component" />
           <NavigationProperty Name="Product" Relationship="EcommerceModel.FK_ComponentProducts_Products" FromRole="ComponentItem" ToRole="Product" />
         </EntityType>
+        <EntityType Name="ComponentPageSlug">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="PageSlug" Type="String" Nullable="false" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Name="CategoryId" Type="Int32" />
+          <Property Name="ReferenceId" Type="Int32" />
+          <Property Name="Name" Type="String" MaxLength="250" FixedLength="false" Unicode="true" />
+          <Property Name="Title" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
+          <Property Name="ComponentTypeId" Type="Int32" Nullable="false" />
+          <Property Name="QuantityRecord" Type="Int32" />
+          <Property Name="Priority" Type="Int32" Nullable="false" />
+          <Property Name="IsDeleted" Type="Boolean" Nullable="false" />
+          <Property Name="Created_at" Type="DateTime" Precision="3" />
+          <Property Name="Created_by" Type="Int32" />
+          <Property Name="Updated_at" Type="DateTime" Precision="3" />
+          <Property Name="Updated_by" Type="Int32" />
+          <NavigationProperty Name="ComponentType" Relationship="EcommerceModel.FK_ComponentPageSlug_ComponentTypes" FromRole="ComponentPageSlug" ToRole="ComponentType" />
+        </EntityType>
         <EntityType Name="Component">
           <Key>
             <PropertyRef Name="Id" />
@@ -616,6 +696,22 @@
           <NavigationProperty Name="ComponentItems" Relationship="EcommerceModel.FK_ComponentProducts_Components" FromRole="Component" ToRole="ComponentItem" />
           <NavigationProperty Name="ComponentType" Relationship="EcommerceModel.FK_Components_ComponentTypes" FromRole="Component" ToRole="ComponentType" />
         </EntityType>
+        <EntityType Name="ComponentSubDescription">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="ComponentId" Type="Int32" Nullable="false" />
+          <Property Name="SubTitle" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
+          <Property Name="Title" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
+          <Property Name="Image" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
+          <Property Name="Description" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="IsDeleted" Type="Boolean" Nullable="false" />
+          <Property Name="Created_at" Type="DateTime" Precision="3" />
+          <Property Name="Created_by" Type="Int32" />
+          <Property Name="Updated_at" Type="DateTime" Precision="3" />
+          <Property Name="Updated_by" Type="Int32" />
+        </EntityType>
         <EntityType Name="ComponentType">
           <Key>
             <PropertyRef Name="Id" />
@@ -628,11 +724,13 @@
           <Property Name="IsSlide" Type="Boolean" Nullable="false" />
           <Property Name="Row" Type="Int32" />
           <Property Name="Collumn" Type="Int32" />
+          <Property Name="QuantityRecord" Type="Int32" />
           <Property Name="IsDeleted" Type="Boolean" Nullable="false" />
           <Property Name="Created_at" Type="DateTime" Precision="3" />
           <Property Name="Created_by" Type="Int32" />
           <Property Name="Updated_at" Type="DateTime" Precision="3" />
           <Property Name="Updated_by" Type="Int32" />
+          <NavigationProperty Name="ComponentPageSlugs" Relationship="EcommerceModel.FK_ComponentPageSlug_ComponentTypes" FromRole="ComponentType" ToRole="ComponentPageSlug" />
           <NavigationProperty Name="Components" Relationship="EcommerceModel.FK_Components_ComponentTypes" FromRole="ComponentType" ToRole="Component" />
         </EntityType>
         <EntityType Name="Contact">
@@ -873,6 +971,18 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <Association Name="FK_ComponentPageSlug_ComponentTypes">
+          <End Type="EcommerceModel.ComponentType" Role="ComponentType" Multiplicity="1" />
+          <End Type="EcommerceModel.ComponentPageSlug" Role="ComponentPageSlug" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="ComponentType">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="ComponentPageSlug">
+              <PropertyRef Name="ComponentTypeId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <Association Name="FK_Components_ComponentTypes">
           <End Type="EcommerceModel.ComponentType" Role="ComponentType" Multiplicity="1" />
           <End Type="EcommerceModel.Component" Role="Component" Multiplicity="*" />
@@ -1013,6 +1123,26 @@
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
+          <EntitySetMapping Name="ComponentPageSlugs">
+            <EntityTypeMapping TypeName="EcommerceModel.ComponentPageSlug">
+              <MappingFragment StoreEntitySet="ComponentPageSlug">
+                <ScalarProperty Name="Updated_by" ColumnName="Updated_by" />
+                <ScalarProperty Name="Updated_at" ColumnName="Updated_at" />
+                <ScalarProperty Name="Created_by" ColumnName="Created_by" />
+                <ScalarProperty Name="Created_at" ColumnName="Created_at" />
+                <ScalarProperty Name="IsDeleted" ColumnName="IsDeleted" />
+                <ScalarProperty Name="Priority" ColumnName="Priority" />
+                <ScalarProperty Name="QuantityRecord" ColumnName="QuantityRecord" />
+                <ScalarProperty Name="ComponentTypeId" ColumnName="ComponentTypeId" />
+                <ScalarProperty Name="Title" ColumnName="Title" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="ReferenceId" ColumnName="ReferenceId" />
+                <ScalarProperty Name="CategoryId" ColumnName="CategoryId" />
+                <ScalarProperty Name="PageSlug" ColumnName="PageSlug" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
           <EntitySetMapping Name="Components">
             <EntityTypeMapping TypeName="EcommerceModel.Component">
               <MappingFragment StoreEntitySet="Components">
@@ -1033,6 +1163,23 @@
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
+          <EntitySetMapping Name="ComponentSubDescriptions">
+            <EntityTypeMapping TypeName="EcommerceModel.ComponentSubDescription">
+              <MappingFragment StoreEntitySet="ComponentSubDescription">
+                <ScalarProperty Name="Updated_by" ColumnName="Updated_by" />
+                <ScalarProperty Name="Updated_at" ColumnName="Updated_at" />
+                <ScalarProperty Name="Created_by" ColumnName="Created_by" />
+                <ScalarProperty Name="Created_at" ColumnName="Created_at" />
+                <ScalarProperty Name="IsDeleted" ColumnName="IsDeleted" />
+                <ScalarProperty Name="Description" ColumnName="Description" />
+                <ScalarProperty Name="Image" ColumnName="Image" />
+                <ScalarProperty Name="Title" ColumnName="Title" />
+                <ScalarProperty Name="SubTitle" ColumnName="SubTitle" />
+                <ScalarProperty Name="ComponentId" ColumnName="ComponentId" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
           <EntitySetMapping Name="ComponentTypes">
             <EntityTypeMapping TypeName="EcommerceModel.ComponentType">
               <MappingFragment StoreEntitySet="ComponentTypes">
@@ -1041,6 +1188,7 @@
                 <ScalarProperty Name="Created_by" ColumnName="Created_by" />
                 <ScalarProperty Name="Created_at" ColumnName="Created_at" />
                 <ScalarProperty Name="IsDeleted" ColumnName="IsDeleted" />
+                <ScalarProperty Name="QuantityRecord" ColumnName="QuantityRecord" />
                 <ScalarProperty Name="Collumn" ColumnName="Collumn" />
                 <ScalarProperty Name="Row" ColumnName="Row" />
                 <ScalarProperty Name="IsSlide" ColumnName="IsSlide" />

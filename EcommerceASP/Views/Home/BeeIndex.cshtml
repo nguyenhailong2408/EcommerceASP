@@ -1,0 +1,22 @@
+﻿@model EcommerceASP.ViewModel.HomeBO
+@{
+	Layout = "~/Views/Shared/_LayoutBee.cshtml";
+}
+
+@{
+	ViewBag.Title = "Home Page";
+}
+@section scripts{
+	<link rel="stylesheet" href="~/Content/css/banner.css">
+	<link rel="stylesheet" href="~/Content/css/topic.css">
+}
+@{
+	if (Model != null)
+	{
+		foreach (var component in Model.lstComponent)
+		{
+			Html.RenderAction("GetComponent", "Home", new { Component = component });
+		}
+	}
+}
+@{ Html.RenderPartial("Components/BeeDecor/_MainContent");}

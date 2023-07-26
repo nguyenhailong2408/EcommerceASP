@@ -1,0 +1,55 @@
+﻿@model EcommerceASP.ViewModel.Component.BreadcrumbBO
+<div class="container ">
+	<section class="bread-crumb">
+		<span class="crumb-border"></span>
+		<div class="container">
+			<div class="row">
+				<div class="col-xs-12 a-left">
+					<ul class="breadcrumb">
+						<li class="home">
+							<a href="/" title="Trang chủ">
+								<span>Trang chủ</span>
+							</a>
+							<span class="mr_lr">&nbsp;/&nbsp;</span>
+						</li>
+						@{
+							if (Model != null)
+							{
+								if (!Model.IsChild)
+								{
+									<li>
+										<strong>
+											<a href="/@Model.ParentSlug" title="@Model.ParentSlugName">
+												<span>@Model.ParentSlugName</span>
+											</a>
+										</strong>
+									</li>
+								}
+								else
+								{
+									<li>
+										<a href="/@Model.ParentSlug" title="@Model.ParentSlugName">
+											<span>@Model.ParentSlugName</span>
+										</a>
+										<span class="mr_lr">&nbsp;/&nbsp;</span>
+
+									</li>
+									<li class="home">
+										<strong>
+											<a href="/@Model.Slug" title="@Model.SlugName">
+												<span>@Model.SlugName</span>
+											</a>
+										</strong>
+									</li>
+								}
+							}
+
+
+
+						}
+					</ul>
+				</div>
+			</div>
+		</div>
+	</section>
+</div>

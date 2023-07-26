@@ -1,4 +1,5 @@
 ﻿using EcommerceASP.Constaint;
+using EcommerceASP.Libraries;
 using EcommerceASP.Models;
 using EcommerceASP.ViewModel.Base;
 using EcommerceASP.ViewModel.PostManage;
@@ -74,7 +75,8 @@ namespace EcommerceASP.Queries
                 }
                 objTopicView.ParentSlugName = objTopic?.Category.Name;
                 objTopicView.ParentSlug = objTopic?.Slug;
-
+                objTopicView.lstComponentPageSlug = _entities.ComponentPageSlugs
+                                                    .Where(x => x.PageSlug.Equals(strSlug) && !x.IsDeleted).ToList();
                 objTopicView.PageCurrent = PageCurrent;
 
                 objTopicView.lstTopicDetail = lstTopicDetail.ToPagedList(PageCurrent - 1, objTopicView.PageSize ?? 10);
@@ -185,6 +187,7 @@ namespace EcommerceASP.Queries
             EcommerceEntities _entities = new EcommerceEntities();
             try
             {
+                objModel.Slug = objModel.Slug.NonUnicode().Split(' ').Join("-").ToLower();
                 var objPageSlug = _entities.PageSlugs.Where(m => !m.IsDeleted && m.Slug.Equals(objModel.Slug)).FirstOrDefault();
                 if (objPageSlug != null)
                 {
@@ -228,6 +231,7 @@ namespace EcommerceASP.Queries
             EcommerceEntities _entities = new EcommerceEntities();
             try
             {
+                objModel.Slug = objModel.Slug.NonUnicode().Split(' ').Join("-").ToLower();
                 var objPageSlug = _entities.PageSlugs.Where(m => !m.IsDeleted && m.Slug.Equals(objModel.Slug)).ToList();
                 if (objPageSlug.Count > 1)
                 {

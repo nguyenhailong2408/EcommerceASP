@@ -120,6 +120,7 @@ namespace EcommerceASP.Queries
             EcommerceEntities _entities = new EcommerceEntities();
             try
             {
+                objModel.Slug = objModel.Slug.NonUnicode().Split(' ').Join("-").ToLower();
                 var objPageSlug = _entities.PageSlugs.Where(m => !m.IsDeleted
                                                             && m.Slug.Equals(objModel.Slug)
                                                             && (m.PageId == (int)EnumPage.TopicDetail
@@ -187,15 +188,16 @@ namespace EcommerceASP.Queries
             EcommerceEntities _entities = new EcommerceEntities();
             try
             {
+                objModel.Slug = objModel.Slug.NonUnicode().Split(' ').Join("-").ToLower();
                 var objPageSlug = _entities.PageSlugs.Where(m => !m.IsDeleted && m.Slug.Equals(objModel.Slug)).ToList();
-                if (objPageSlug.Count > 1)
-                {
-                    return ResponseAPI.GetFailedResponse("Đường dẫn đã tồn tại. Vui lòng nhập đường dẫn mới");
-                }
-                if (objPageSlug.Any(m => (m.PageId != (int)EnumPage.TopicDetail && m.PageId != (int)EnumPage.ConstructionDesignDetail)))
-                {
-                    return ResponseAPI.GetFailedResponse("Đường dẫn đã tồn tại. Vui lòng nhập đường dẫn mới");
-                }
+                //if (objPageSlug.Count > 1)
+                //{
+                //    return ResponseAPI.GetFailedResponse("Đường dẫn đã tồn tại. Vui lòng nhập đường dẫn mới");
+                //}
+                //if (objPageSlug.Any(m => (m.PageId != (int)EnumPage.TopicDetail && m.PageId != (int)EnumPage.ConstructionDesignDetail)))
+                //{
+                //    return ResponseAPI.GetFailedResponse("Đường dẫn đã tồn tại. Vui lòng nhập đường dẫn mới");
+                //}
 
                 var topicInfo = _entities.Topics.Where(m => m.Id == objModel.TopicId).FirstOrDefault();
                 if (objPageSlug.Count == 0)

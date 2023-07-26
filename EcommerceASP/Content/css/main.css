@@ -1,4 +1,118 @@
-﻿
+﻿@font-face {
+    font-family: 'Roboto';
+    src: url('../fonts/Roboto-Regular.ttf') format('truetype');
+}
+
+@font-face {
+    font-family: 'NunitoRegular';
+    src: url('../fonts/Nunito-Regular.ttf') format('truetype');
+}
+
+@font-face {
+    font-family: 'NunitoBold';
+    src: url('../fonts/Nunito-Bold.ttf') format('truetype');
+}
+
+@font-face {
+    font-family: 'NunitoBlack';
+    src: url('../fonts/Nunito-Black.ttf') format('truetype');
+}
+
+@font-face {
+    font-family: 'NunitoSemiBold';
+    src: url('../fonts/Nunito-SemiBold.ttf') format('truetype');
+}
+
+@font-face {
+    font-family: 'NunitoMedium';
+    src: url('../fonts/Nunito-Medium.ttf') format('truetype');
+}
+
+@font-face {
+    font-family: 'Montserrat';
+    src: url('../fonts/Montserrat-Regular.ttf') format('truetype');
+}
+
+@font-face {
+    font-family: 'MontserratBold';
+    src: url('../fonts/Montserrat-Bold.ttf') format('truetype');
+}
+
+@font-face {
+    font-family: 'MontserratMedium';
+    src: url('../fonts/Montserrat-Medium.otf') format('truetype');
+}
+
+@font-face {
+    font-family: 'Montserrat-Medium';
+    src: url('../fonts/Montserrat-Medium.otf') format('truetype');
+}
+
+@font-face {
+    font-family: 'MontserratLI';
+    src: url('../fonts/Montserrat-LightItalic.ttf') format('truetype');
+}
+
+@font-face {
+    font-family: 'MontserratR';
+    src: url('../fonts/Montserrat-Regular.ttf') format('truetype');
+}
+
+@font-face {
+    font-family: 'MontserratSemiBold';
+    src: url('../fonts/Montserrat-SemiBold.otf') format('truetype');
+}
+
+@font-face {
+    font-family: 'BalooDaRegular';
+    src: url('../fonts/BALOODA-REGULAR.TTF') format('truetype');
+}
+
+@font-face {
+    font-family: 'HirukoProRegular';
+    src: url('../fonts/HirukoPro-Regular.otf') format('truetype');
+}
+
+@font-face {
+    font-family: 'MONTSERRAT-BOLDITALIC';
+    src: url('../fonts/MONTSERRAT-BOLDITALIC.TTF') format('truetype');
+}
+
+@font-face {
+    font-family: 'Montserrat-Light';
+    src: url('../fonts/Montserrat-Light.ttf') format('truetype');
+}
+
+@font-face {
+    font-family: 'Montserrat-Italic';
+    src: url('../fonts/Montserrat-Italic.ttf') format('truetype');
+}
+
+@font-face {
+    font-family: 'Montserrat-BlackItalic';
+    src: url('../fonts/Montserrat-BlackItalic.ttf') format('truetype');
+}
+
+@font-face {
+    font-family: 'Quicksand-Regular';
+    src: url('../fonts/Quicksand-Regular.ttf') format('truetype');
+}
+
+@font-face {
+    font-family: 'Quicksand-Medium';
+    src: url('../fonts/Quicksand-Medium.ttf') format('truetype');
+}
+
+@font-face {
+    font-family: 'Quicksand-SemiBold';
+    src: url('../fonts/Quicksand-SemiBold.ttf') format('truetype');
+}
+
+@font-face {
+    font-family: 'Quicksand-Bold';
+    src: url('../fonts/Quicksand-Bold.ttf') format('truetype');
+}
+
 html {
     overflow-x: hidden
 }
@@ -164,6 +278,7 @@ body {
     color: #333;
     overflow: hidden;
     width: 100%;
+    font-family: 'Roboto',sans-serif;
 }
 
 header nav {
@@ -422,7 +537,7 @@ header.header .main-header {
                     border-radius: 0;
                     width: 100%;
                     padding: 0px;
-                    top: 105%;
+                    /*top: 105%;*/
                     box-shadow: rgba(0,0,0,0.12) 0px 1px 3px 0px,rgba(0,0,0,0.14) 0px 0px 1px 0px,rgba(0,0,0,0.12) 0px 2px 1px -1px
                 }
 
@@ -1439,3 +1554,25 @@ header.header .main-header .container.flex-box .header-cart .head-cart {
         color: red;
         margin-left: 5px;
     }
+/*BEEDECOR*/
+@keyframes example {
+    from {
+        transform: translateY(-10px);
+    }
+
+    to {
+        transform: translateY(0px) !important;
+    }
+}
+
+.header--fixed {
+    background-color: #fdfdfdd9;
+    position: fixed !important;
+    z-index: 9999;
+    width: 100%;
+    border-bottom: 1px solid rgba(0,0,0,0.04);
+    max-width: 100% !important;
+    /*transform: translateY(0px) !important;*/
+    animation-name: example;
+    animation-duration: 1s;
+}

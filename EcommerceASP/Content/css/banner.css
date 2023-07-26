@@ -18,6 +18,9 @@
         left: 0;
         padding: 50px 20px;
         font-weight: 500;
+        display:flex;
+        align-items:center;
+        justify-content:center;
     }
 
     .hovereffect img {
@@ -46,8 +49,8 @@
         filter: alpha(opacity=0);
         -webkit-transition: opacity 0.35s, -webkit-transform 0.35s;
         transition: opacity 0.35s, transform 0.35s;
-        -webkit-transform: translate3d(100%,0,0);
-        transform: translate3d(100%,0,0);
+        -webkit-transform: translate3d(220%,0,0);
+        transform: translate3d(220%,0,0);
     }
 
     .hovereffect:hover a, .hovereffect:hover p {

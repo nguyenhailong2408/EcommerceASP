@@ -17,6 +17,7 @@ namespace EcommerceASP.Models
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
         public ComponentType()
         {
+            this.ComponentPageSlugs = new HashSet<ComponentPageSlug>();
             this.Components = new HashSet<Component>();
         }
     
@@ -28,12 +29,15 @@ namespace EcommerceASP.Models
         public bool IsSlide { get; set; }
         public Nullable<int> Row { get; set; }
         public Nullable<int> Collumn { get; set; }
+        public Nullable<int> QuantityRecord { get; set; }
         public bool IsDeleted { get; set; }
         public Nullable<System.DateTime> Created_at { get; set; }
         public Nullable<int> Created_by { get; set; }
         public Nullable<System.DateTime> Updated_at { get; set; }
         public Nullable<int> Updated_by { get; set; }
     
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<ComponentPageSlug> ComponentPageSlugs { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Component> Components { get; set; }
     }

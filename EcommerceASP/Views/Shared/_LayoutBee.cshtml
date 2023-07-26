@@ -27,9 +27,12 @@
 	<!-- Font Awesome -->
 	<link rel="stylesheet" href="~/UI/font-awesome/css/font-awesome.min.css">
 	<link rel="stylesheet" href="~/UI/bootstrap-4.3.1/css/bootstrap.min.css">
+	<link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet" />
+	<link rel="stylesheet" href="https://cdn.linearicons.com/free/1.0.0/icon-font.min.css">
 	@RenderSection("scripts", required: false)
 	<script src="~/Scripts/Common.js"></script>
 	<link rel="stylesheet" href="~/Content/css/main.css" />
+	<link rel="stylesheet" href="~/Content/css/mainBee.css" />
 	<link rel="stylesheet" href="~/Content/css/menu.css">
 	<link rel="stylesheet" href="~/Content/css/mmenu.css">
 	<link rel="stylesheet" href="~/Content/css/responsive.css">
@@ -39,8 +42,8 @@
 </head>
 <body>
 
-	@{ Html.RenderPartial("Components/_MenuMobile");}
-	<section class="header">
+	@*@{ Html.RenderPartial("Components/_MenuMobile");}*@
+	<section id="headerBee" class="header" style="position: sticky; z-index: 9999;">
 		@{
 			//Html.RenderPartial("Components/_Menu");
 			Html.RenderAction("MenuCategory", "Home");
@@ -48,7 +51,7 @@
 		}
 	</section>
 
-	<content class="container body-content" style="display: flex; align-items: center; justify-content: center; flex-wrap: wrap; margin-top: 50px;">
+	<content class="body-content" style="margin: 0;">
 		@RenderBody()
 	</content>
 	<div class="fixed-right">
@@ -80,8 +83,8 @@
 	</div>
 	<footer>
 		@{
-			Html.RenderPartial("Components/_TopFooter");
-			Html.RenderPartial("Components/_Footer");
+			Html.RenderPartial("Components/BeeDecor/_BeeTopFooter");
+			Html.RenderPartial("Components/BeeDecor/_BeeFooter");
 		}
 	</footer>
 	<script>

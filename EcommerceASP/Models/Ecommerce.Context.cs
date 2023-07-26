@@ -29,7 +29,9 @@ namespace EcommerceASP.Models
         public virtual DbSet<CategoryDetail> CategoryDetails { get; set; }
         public virtual DbSet<Category> Categorys { get; set; }
         public virtual DbSet<ComponentItem> ComponentItems { get; set; }
+        public virtual DbSet<ComponentPageSlug> ComponentPageSlugs { get; set; }
         public virtual DbSet<Component> Components { get; set; }
+        public virtual DbSet<ComponentSubDescription> ComponentSubDescriptions { get; set; }
         public virtual DbSet<ComponentType> ComponentTypes { get; set; }
         public virtual DbSet<Contact> Contacts { get; set; }
         public virtual DbSet<PageCategory> PageCategories { get; set; }

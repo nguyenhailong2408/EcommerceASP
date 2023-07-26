@@ -12,6 +12,7 @@ namespace EcommerceASP.ViewModel.Topic
         {
             this.PageCurrent = 1;
             this.PageSize = 10;
+            this.lstComponentPageSlug = new List<Models.ComponentPageSlug>();
         }
         public string ParentSlugName { get; set; }
         public string ParentSlug { get; set; }
@@ -26,5 +27,7 @@ namespace EcommerceASP.ViewModel.Topic
 
         public int? PageCurrent { get; set; }
         public IPagedList<TopicDetailBO> lstTopicDetail { get; set; }
+        public List<Models.ComponentPageSlug> lstComponentPageSlug { get; set; }
     }
+
 }

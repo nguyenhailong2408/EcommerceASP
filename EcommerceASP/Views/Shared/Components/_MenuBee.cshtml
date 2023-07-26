@@ -1,0 +1,58 @@
+﻿@model List<EcommerceASP.ViewModel.Category.CategoryBO>
+<header>
+	<div class="container headerBee">
+		<div class="header__logo">
+			<a href="@Url.Action("Index", "Home")" class="logo-wrapper ">
+				<img style="height:100%;width:auto;" src="~/Content/Images/logo-BEE.png"
+					 alt="logo BeeDecor | Thiết Kế Thi Công Nội Thất Trọn Gói TPHCM">
+			</a>
+		</div>
+		<nav class="header__nav">
+			<ul class="nav-ul">
+				@{
+					foreach (var category in Model)
+					{
+						<li class="nav-item">
+							<a href="/@category.Slug" class="nav-item__link" title="@category.Name">
+								<span>@category.Name</span>
+								@if (category.lstCategoryDetail.Any())
+								{
+									<i class="fa fa-angle-down" aria-hidden="true"></i>
+								}
+							</a>
+							@{
+								if (category.lstCategoryDetail.Any())
+								{
+									var lstCatLv1 = category.lstCategoryDetail.Where(m => m.ParentId == 0).ToList();
+									<ul class="nav-submenu">
+										@{
+											foreach (var itemCatLv1 in lstCatLv1)
+											{
+												<a class="nav-submenu__item" href="/@itemCatLv1.Slug" title="@itemCatLv1.Name">@itemCatLv1.Name</a>
+
+											}
+										}
+									</ul>
+								}
+							}
+						</li>
+					}
+				}
+			</ul>
+		</nav>
+	</div>
+</header>
+
+<script>
+	$(document).ready(function () {
+		$(window).scroll(function () {
+			if ($(this).scrollTop() > 80) {
+				$('#headerBee').addClass('header--fixed');
+			}
+			else {
+				$('#headerBee').removeClass('header--fixed');
+			}
+
+		});
+	});
+</script>

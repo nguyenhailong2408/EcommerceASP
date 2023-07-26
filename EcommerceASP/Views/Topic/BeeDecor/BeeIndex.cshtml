@@ -1,0 +1,37 @@
+﻿@model EcommerceASP.ViewModel.Topic.TopicViewBO
+@using EcommerceASP.ViewModel.Component
+@{
+	Layout = "~/Views/Shared/_LayoutBee.cshtml";
+}
+@{
+	ViewBag.Title = "Tin tức";
+}
+@section scripts{
+	<link rel="stylesheet" href="~/Content/css/topic.css">
+}
+<section id="top-content-area" class="tca-medium tca-text-center" style="background-image: url('https://topdesign.com.vn/wp-content/uploads/2023/07/Thiet-ke-biet-thu-Le-Jardin-ParkCity-phong-cach-tan-co-dien-_-TOPDESIGN-22-jpg.webp')">
+	<div class="overlay" style="opacity: 0.3; background-color: #444444;"></div><div class="lines-overlay animated fadeInDown"></div><div class="container">
+		<div class="row">
+			<div class="col-md-12">
+				<div class="title-content text-center"> <h1 class="page-title animated fadeInDown" style="font-size: 2em;">Cập nhật giá thiết kế nội thất, ngoại thất biệt thự mới nhất 2023</h1></div>
+			</div>
+		</div>
+	</div>
+</section>
+@{
+	Html.RenderPartial(Url.Content("Components/BeeDecor/_Top_BreadcrumbBee"), new BreadcrumbBO
+	{
+		ParentSlugName = Model.ParentSlugName,
+		ParentSlug = Model.ParentSlug,
+		SlugName = Model.SlugName,
+		Slug = Model.Slug,
+		IsChild = Model.IsChild,
+		Title = Model.Title,
+		IsShowTitle = true
+	});
+}
+@{
+	Html.RenderPartial("../Topic/Component/_List_Topic", Model);
+}
+
+

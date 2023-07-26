@@ -23,6 +23,7 @@ namespace EcommerceASP.ViewModel.Component
         public ComponentViewBO()
         {
             this.lstDetailComponent = new List<ComponentDetailViewBO>();
+            this.lstComponentSubDescription = new List<ComponentSubDescriptionViewBO>();
         }
         public int Id { get; set; }
         public string Title { get; set; }
@@ -32,6 +33,7 @@ namespace EcommerceASP.ViewModel.Component
         public int Collumns { get; set; }
         public bool IsSlide { get; set; }
         public List<ComponentDetailViewBO> lstDetailComponent { get; set; }
+        public List<ComponentSubDescriptionViewBO> lstComponentSubDescription { get; set; }
     }
     public class ComponentDetailViewBO
     {
@@ -48,5 +50,13 @@ namespace EcommerceASP.ViewModel.Component
         public decimal PriceSale { get; set; }
         public DateTime? Created_at { get; set; }
         public string Created_by { get; set; }
+    }
+    public class ComponentSubDescriptionViewBO
+    {
+        public int ComponentId { get; set; }
+        public string SubTitle { get; set; }
+        public string Title { get; set; }
+        public string Image { get; set; }
+        public string Description { get; set; }
     }
 }

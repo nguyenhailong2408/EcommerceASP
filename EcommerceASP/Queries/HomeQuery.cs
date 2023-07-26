@@ -33,7 +33,7 @@ namespace EcommerceASP.Queries
                         ReferenceId = m.ReferenceId,
                         Priority = m.Priority,
                         ComponentType = m.ComponentType
-                    }).OrderBy(m=>m.Priority).ToList();
+                    }).OrderBy(m => m.Priority).ToList();
                 return objHome;
             }
             catch (Exception objEx)
@@ -105,7 +105,16 @@ namespace EcommerceASP.Queries
                     ParentSlug = objCategory?.Slug,
                     Rows = Component.ComponentType.Row ?? 1,
                     Collumns = Component.ComponentType.Collumn ?? 1,
-                    IsSlide = Component.ComponentType.IsSlide
+                    IsSlide = Component.ComponentType.IsSlide,
+                    lstComponentSubDescription = _entities.ComponentSubDescriptions.Where(x=>x.ComponentId == Component.Id)
+                                                .Select(x => new ComponentSubDescriptionViewBO
+                                                {
+                                                    ComponentId = x.ComponentId,
+                                                    SubTitle = x.SubTitle,
+                                                    Title = x.Title,
+                                                    Image = x.Image,
+                                                    Description = x.Description
+                                                }).ToList()
                 };
 
                 switch (Component.ComponentTypeId)
@@ -125,7 +134,7 @@ namespace EcommerceASP.Queries
                     default:
                         break;
                 }
-                
+
                 return objComponent;
             }
             catch (Exception objEx)
@@ -228,17 +237,17 @@ namespace EcommerceASP.Queries
             try
             {
                 var objComponent = new List<ComponentDetailViewBO>();
-                objComponent = _entities.Slides.Where(p=>!p.IsDeleted).Select(p => new ComponentDetailViewBO
-                                {
-                                    ReferenceId = p.Id,
-                                    Title = p.Name,
-                                    Name = p.Name,
-                                    Description = p.Position,
-                                    Slug = p.Slug,
-                                    ImageName = p.Image,
-                                    FolderImage = "slide",
-                                    Priority = p.Priority,
-                                })
+                objComponent = _entities.Slides.Where(p => !p.IsDeleted).Select(p => new ComponentDetailViewBO
+                {
+                    ReferenceId = p.Id,
+                    Title = p.Name,
+                    Name = p.Name,
+                    Description = p.Position,
+                    Slug = p.Slug,
+                    ImageName = p.Image,
+                    FolderImage = "slide",
+                    Priority = p.Priority,
+                })
                                 .OrderByDescending(p => p.Priority)
                                 .ToList();
 

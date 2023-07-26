@@ -71,4 +71,9 @@ namespace EcommerceASP.Constaint
         /// </summary>
         Banner = 5,
     }
+    public enum EnumDomainName
+    {
+        thuanphat,
+        beedecor
+    }
 }
