@@ -159,8 +159,11 @@
 					<li class="nav-item @(ControllerName.Equals("componenttypemanage")?"active":"")">
 						<a class="nav-link" href="@Url.Action("Index","ComponentTypeManage")"><span class="nav-icon"></span> Loại Module</a>
 					</li>
-					<li class="nav-item @(ControllerName.Equals("componentmanage")?"active":"")">
+					@*<li class="nav-item @(ControllerName.Equals("componentmanage")?"active":"")">
 						<a class="nav-link" href="@Url.Action("Index","ComponentManage")"><span class="nav-icon"></span> Module</a>
+					</li>*@
+					<li class="nav-item @(ControllerName.Equals("componentpageslug")?"active":"")">
+						<a class="nav-link" href="@Url.Action("Index","ComponentPageSlug")"><span class="nav-icon"></span> Module theo đường dẫn</a>
 					</li>
 				</ul>
 			</li>

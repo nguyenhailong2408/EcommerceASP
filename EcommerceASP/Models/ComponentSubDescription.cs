@@ -25,5 +25,6 @@ namespace EcommerceASP.Models
         public Nullable<int> Created_by { get; set; }
         public Nullable<System.DateTime> Updated_at { get; set; }
         public Nullable<int> Updated_by { get; set; }
+        public string PageSlug { get; set; }
     }
 }

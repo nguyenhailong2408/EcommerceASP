@@ -139,6 +139,8 @@
     <Compile Include="Controllers\Admin\CategoryDetailManageController.cs" />
     <Compile Include="Controllers\Admin\CategoryManageController.cs" />
     <Compile Include="Controllers\Admin\ComponentManageController.cs" />
+    <Compile Include="Controllers\Admin\ComponentPageSlugController.cs" />
+    <Compile Include="Controllers\Admin\ComponentSubDescriptionController.cs" />
     <Compile Include="Controllers\Admin\ComponentTypeManageController.cs" />
     <Compile Include="Controllers\Admin\PageSlugController.cs" />
     <Compile Include="Controllers\Admin\PostDetailManageController.cs" />
@@ -236,7 +238,9 @@
     <Compile Include="Queries\CategoryDetailManageQuery.cs" />
     <Compile Include="Queries\CategoryManageQuery.cs" />
     <Compile Include="Queries\CommonQuery.cs" />
+    <Compile Include="Queries\ComponentPageSlugQuery.cs" />
     <Compile Include="Queries\ComponentQuery.cs" />
+    <Compile Include="Queries\ComponentSubDescriptionQuery.cs" />
     <Compile Include="Queries\ComponentTypeManageQuery.cs" />
     <Compile Include="Queries\ContactQuery.cs" />
     <Compile Include="Queries\HomeQuery.cs" />
@@ -258,6 +262,7 @@
     <Compile Include="ViewModel\ComponentManage\ComponentManageBO.cs" />
     <Compile Include="ViewModel\ComponentManage\ComponentTypeManageBO.cs" />
     <Compile Include="ViewModel\ComponentPageSlug\ComponentPageSlugBO.cs" />
+    <Compile Include="ViewModel\ComponentSubDescription\ComponentSubDescriptionBO.cs" />
     <Compile Include="ViewModel\Component\BreadcrumbBO.cs" />
     <Compile Include="ViewModel\Component\ComponentBO.cs" />
     <Compile Include="ViewModel\Contact\ContactBO.cs" />
@@ -307,6 +312,8 @@
     </Content>
     <Content Include="Scripts\Admin\CategoryDetailManage.js" />
     <Content Include="Scripts\Admin\CategoryManage.js" />
+    <Content Include="Scripts\Admin\ComponentPageSlug.js" />
+    <Content Include="Scripts\Admin\ComponentSubDescription.js" />
     <Content Include="Scripts\Admin\ComponentTypeManage.js" />
     <Content Include="Scripts\Admin\PageSlug.js" />
     <Content Include="Scripts\Admin\PostDetailManage.js" />
@@ -1136,8 +1143,20 @@
     <Content Include="Views\Shared\Components\BeeDecor\_Top_BreadcrumbBee.cshtml" />
     <Content Include="Views\Contact\BeeIndex.cshtml" />
     <Content Include="Views\Topic\BeeDecor\BeeIndex.cshtml" />
-    <Content Include="Views\Components\_ComponentStyle1.cshtml" />
-    <Content Include="Views\Components\_ComponentStyle2.cshtml" />
+    <Content Include="Views\Components\_Style1_ImageLeft.cshtml" />
+    <Content Include="Views\Components\_Style2_ImageRight.cshtml" />
+    <Content Include="Views\Components\_ComponentStyle3.cshtml" />
+    <Content Include="Views\Components\_ComponentStyle4.cshtml" />
+    <Content Include="Views\ComponentPageSlug\Index.cshtml" />
+    <Content Include="Views\ComponentPageSlug\Component\_DialogUpdate.cshtml" />
+    <Content Include="Views\ComponentPageSlug\Component\_ListData.cshtml" />
+    <Content Include="Views\ComponentPageSlug\Component\_SearchForm.cshtml" />
+    <Content Include="Views\ComponentSubDescription\Index.cshtml" />
+    <Content Include="Views\ComponentSubDescription\Component\_DialogUpdate.cshtml" />
+    <Content Include="Views\ComponentSubDescription\Component\_ListData.cshtml" />
+    <Content Include="Views\ComponentSubDescription\Component\_SearchForm.cshtml" />
+    <Content Include="Views\ComponentPageSlug\Component\_ModalUpdateSubDescription.cshtml" />
+    <Content Include="Views\ComponentPageSlug\Component\_DialogUpdateSubDescription.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

@@ -20,7 +20,7 @@ namespace EcommerceASP.Controllers
         public ActionResult GetComponentPageSlug(int componentId,int componentTypeId)
         {
             var data = ComponentQuery.GetComponentSubDescription(componentId, componentTypeId);
-            string domainName = ConfigurationManager.AppSettings["DomainName"];
+            //string domainName = ConfigurationManager.AppSettings["DomainName"];
             return PartialView($"../Components/{data.HtmlTemplate}", data);
         }
     }

@@ -410,5 +410,31 @@ namespace EcommerceASP.Queries
                 _entities.Dispose();
             }
         }
+
+        public static List<SelectListItem> GetComponentType(int? componentTypeId)
+        {
+            EcommerceEntities _entities = new EcommerceEntities();
+            try
+            {
+                var list = (from l in _entities.ComponentTypes
+                            where !l.IsDeleted
+                            select new SelectListItem()
+                            {
+                                Selected = l.Id == componentTypeId,
+                                Text = l.Id.ToString() + " - " + l.Name.ToString(),
+                                Value = l.Id.ToString(),
+                            }).ToList();
+
+                return list;
+            }
+            catch (Exception ex)
+            {
+                return new List<SelectListItem>();
+            }
+            finally
+            {
+                _entities.Dispose();
+            }
+        }
     }
 }

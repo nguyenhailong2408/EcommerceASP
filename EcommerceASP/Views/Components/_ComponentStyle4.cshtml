@@ -1,0 +1,58 @@
+﻿@model EcommerceASP.ViewModel.ComponentPageSlug.ComponentTemplateViewBO
+@{
+	var subDescription = Model.lstComponentSubDescription.FirstOrDefault();
+}
+<div class="componentStyle4 col-sm-12">
+	<div class="container d-flex flex-wrap">
+		<div class="componentStyle4__content--left componentContent__image col-lg-6 col-md-6 col-sm-12">
+			<img src="https://topdesign.com.vn/wp-content/uploads/2023/05/HIGH6547_863314-jpg-682x1024.webp" alt="BEEDECOR"
+				 style="width:100%; height:auto;" />
+		</div>
+		<div class="componentStyle4__content--right componentContent__block componentContent__block--right col-lg-6 col-md-6 col-sm-12">
+			<div class="block__info">
+				<p class="block__subTitle">Về BEEDECOR</p>
+				<p class="block__content" style="text-align: justify;">BEEDECOR mang đến cho khách hàng những giá trị  về thiết kế và ý tưởng, là sản phẩm của cả một tập thể cùng những nỗ lực tuyệt vời. Khách hàng sẽ hoàn toàn hài lòng từ khi triển khai đến khi kết thúc dự án.</p>
+				<div class="block__tabs">
+					<ul class="nav nav-tabs" id="myTab" role="tablist">
+						<li class="nav-item">
+							<a class="nav-link active" id="tab-1" data-toggle="tab" href="#home" role="tab" aria-controls="home" aria-selected="true">Tầm Nhìn</a>
+						</li>
+						<li class="nav-item">
+							<a class="nav-link" id="tab-2" data-toggle="tab" href="#profile" role="tab" aria-controls="profile" aria-selected="false">Sứ Mệnh</a>
+						</li>
+						<li class="nav-item">
+							<a class="nav-link" id="tab-3" data-toggle="tab" href="#contact" role="tab" aria-controls="contact" aria-selected="false">Giá Trị</a>
+						</li>
+					</ul>
+					<div class="tab-content tabs__content" id="myTabContent">
+						<div class="tab-pane fade show active contentTab__elem" id="home" role="tabpanel" aria-labelledby="tab-1">
+							<p>Trở thành công ty nội thất hàng đầu tại Việt Nam với dịch vụ trọn gói “One Stop Shopping” từ <strong>Thiết Kế - Thi Công - Sản Xuất</strong>.</p>
+							<ul>
+								<li>Thiết kế ấn tượng- độc đáo- không trùng lặp.</li>
+								<li>Thi công nhanh chóng- sắc nét.</li>
+								<li>Sản xuất theo dây chuyền, máy móc hiện đại.</li>
+							</ul>
+						</div>
+						<div class="tab-pane fade contentTab__elem" id="profile" role="tabpanel" aria-labelledby="tab-2">
+							<p>Chúng tôi cam kết đưa đến cho khách hàng những dịch vụ tốt nhất và làm tốt hơn cả sự mong đợi của khách hàng.</p>
+							<ul>
+								<li>Cung cấp sản phẩm, dịch vụ chất lượng quốc tế với chi phí nội địa.</li>
+								<li>Giải pháp tối ưu, hiệu quả.</li>
+								<li>Chu đáo, tận tâm.</li>
+							</ul>
+						</div>
+						<div class="tab-pane fade contentTab__elem" id="contact" role="tabpanel" aria-labelledby="tab-3">
+							<p>Giá trị cốt lõi: Tín – Trí – Tốc.</p>
+							<ul>
+								<li>Chữ TÍN là vũ khí cạnh tranh, bảo vệ chữ TÍN như bảo vệ danh dự.</li>
+								<li>Sáng tạo là sức sống, là đòn bẩy phát triển, tạo ra giá trị khác biệt và bản sắc riêng.</li>
+								<li>Đề cao khát vọng tiên phong, xác định “Tốc độ, hiệu quả” làm hàng đầu.</li>
+							</ul>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>
+

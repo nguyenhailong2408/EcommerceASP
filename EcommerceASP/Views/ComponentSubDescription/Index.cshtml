@@ -1,0 +1,54 @@
+﻿@model EcommerceASP.ViewModel.ComponentSubDescription.SearchFormViewModel
+@{
+	Layout = "~/Views/Shared/_LayoutAdmin.cshtml";
+}
+@{
+	ViewBag.Title = "Quản lý Modun theo đường dẫn";
+}
+@section Scripts{
+	<script src="~/Scripts/Admin/ComponentSubDescription.js"></script>
+}
+
+<div class="box box-success">
+	<div class="box-header with-border">
+		<div class="col-sm-12 col-md-3">
+			<div class="row">
+				<h3 class="box-title">Quản lý module theo đường dẫn</h3>
+			</div>
+		</div>
+	</div><!-- /.box-header -->
+	<div class="box-body">
+		@{Html.RenderPartial("Component/_SearchForm", Model);}
+	</div><!-- /.box-body -->
+</div><!-- /.box -->
+
+<div class="row">
+	<div class="col-sm-12">
+		<div class="box box-info">
+			<div class="box-header with-border">
+				<div class="col-sm-12 col-md-6">
+					<div class="row">
+						<h3 class="box-title">Danh sách module theo đường dẫn</h3>
+					</div>
+				</div>
+			</div><!-- /.box-header -->
+			<div class="box-body" id="list-data" @*style="overflow-x: scroll;"*@>
+
+			</div><!-- /.box-body -->
+		</div><!-- /.box -->
+	</div>
+</div>
+@{
+	Html.RenderPartial("Components/_ModalUpdate");
+}
+<script>
+	$(document).ready(function () {
+		Common.ComponentSubDescription = new ComponentSubDescription();
+		Common.ComponentSubDescription.SubmitForm();
+		ComponentSubDescription.Url = {};
+		ComponentSubDescription.Url.FormUpdate = '@Url.Action("Dialog","ComponentSubDescription")';
+		ComponentSubDescription.Url.Delete = '@Url.Action("Delete", "ComponentSubDescription")';
+		ComponentSubDescription.Url.GetPageBySlug = '@Url.Action("GetPageBySlug", "Common")';
+	});
+</script>
+

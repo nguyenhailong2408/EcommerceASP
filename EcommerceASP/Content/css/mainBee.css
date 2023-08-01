@@ -573,22 +573,25 @@ a.cta-footer {
     .modifi__item:hover::before {
         color: white;
     }
+
     .modifi__item > a {
         color: #888;
     }
+
         .modifi__item > a:hover {
             color: white;
         }
-    #top-content-area {
-        background-color: rgba(0,0,0,0.6);
-        background-size: cover;
-        background-position: center center;
-        padding: 220px 0;
-        position: relative;
-        z-index: 0;
-        color: #fff;
-        background-attachment: fixed;
-    }
+
+#top-content-area {
+    background-color: rgba(0,0,0,0.6);
+    background-size: cover;
+    background-position: center center;
+    padding: 220px 0;
+    position: relative;
+    z-index: 0;
+    color: #fff;
+    background-attachment: fixed;
+}
 
     #top-content-area .lines-overlay {
         animation-delay: 0.5s;
@@ -633,6 +636,7 @@ a.cta-footer {
     background: #fefefe;
     box-shadow: 0 2px 5px 0px rgba(0,0,0,0.07);
 }
+
 .contact__icon {
     font-family: 'Linearicons-Free';
     speak: none;
@@ -646,21 +650,26 @@ a.cta-footer {
     font-size: 42px;
     margin-bottom: 20px;
 }
+
 .contact__icon--phone::before {
     content: "\e831";
 }
+
 .contact__icon--email::before {
     content: "\e818";
 }
+
 .contact__icon--home::before {
     content: "\e800";
 }
+
 .contact__content--title {
     color: #333;
     font-size: 1.0em;
     line-height: 1.2em;
     margin-bottom: 0;
 }
+
 .contact__content--text {
     font-size: 0.93em;
     line-height: 1.5em;
@@ -672,4 +681,52 @@ a.cta-footer {
     display: flex;
     flex-direction: column;
     align-items: center;
+}
+
+/*Component Style*/
+.componentStyle4 {
+    padding: 100px 0 100px 0;
+}
+
+.componentContent__block .block__info {
+    padding: 9%;
+    background: #fff;
+    box-shadow: 0 2px 15px 0px rgba(0,0,0,0.07);
+    margin-right: -120px;
+}
+
+.componentContent__block .block__subTitle {
+    display: block;
+    font-size: 0.93em;
+    letter-spacing: 1px;
+    font-weight: 400;
+    text-transform: uppercase;
+    color: rgba(0, 0, 0, 0.4);
+}
+
+    .componentContent__block .block__subTitle:before {
+        content: "";
+        display: inline-block;
+        position: relative;
+        top: -4px;
+        width: 52px;
+        height: 2px;
+        margin-right: 20px;
+        background: rgba(0, 0, 0, 0.3);
+    }
+
+.componentContent__block--left {
+    margin-top: 80px;
+    z-index: 2;
+}
+
+.componentContent__block--right {
+    margin-top: 80px;
+    margin-left: -100px;
+}
+.componentContent__image{
+    padding:0!important;
+}
+.content__image{
+    padding:0!important;
 }

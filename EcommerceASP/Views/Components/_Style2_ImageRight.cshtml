@@ -1,0 +1,25 @@
+﻿@model EcommerceASP.ViewModel.ComponentPageSlug.ComponentTemplateViewBO
+
+@{
+	var subDescription = Model.lstComponentSubDescription.FirstOrDefault();
+	if (subDescription != null)
+	{
+		<div class="d-flex flex-wrap componentCustom__1">
+			<div class="col-lg-6 col-md-6 col-sm-12 component__content--left content__text">
+				<p class="content-right__subTitle" style="text-align: center; text-transform: uppercase;">
+					<span style="color: #7d6741; font-size: 14pt;">@subDescription.SubTitle</span>
+				</p>
+				<h2 class="content-right__title" style="text-align: center;"><strong>@subDescription.Title</strong></h2>
+				<div class="dash style-dark default"></div>
+				<div class="content-right__modifi">
+					@Html.Raw(subDescription.Description)
+				</div>
+			</div>
+			<div class="col-lg-6 col-md-6 col-sm-12 component__content--right content__image">
+				<img src="@subDescription.Image" alt="Alternate Text" style="width:100%;height:auto;" />
+			</div>
+		</div>
+	}
+}
+
+

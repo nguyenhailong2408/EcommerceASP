@@ -1,0 +1,103 @@
+﻿@model EcommerceASP.ViewModel.ComponentPageSlug.ComponentPageSlugBO
+@{
+	var controlDev = false;
+}
+@using (Ajax.BeginForm("Update", "ComponentPageSlug", null, new AjaxOptions()
+{
+	HttpMethod = "POST",
+	OnBegin = "Common.ComponentPageSlug.UpdateBeforeSend",
+	OnSuccess = "Common.ComponentPageSlug.UpdateSuccess"
+},
+new
+{
+	@id = "form-update",
+	@class = "form-horizontal multiple-controls",
+	@enctype = "multipart/form-data"
+}))
+{
+	<div class="hidden">
+		@Html.HiddenFor(m => m.Id)
+		@Html.AntiForgeryToken()
+	</div>
+	<div class="col-md-12 container">
+		<div class="row form-group">
+			<label class="control-label col-md-2">Link:</label>
+			<div class="col-md-10">
+				@Html.TextBoxFor(m => m.PageSlug, new { @class = "form-control", @maxLength = "150", @style = "height:30px" })
+			</div>
+		</div>
+		<div class="row form-group">
+			<label class="control-label col-md-2">Tên:</label>
+			<div class="col-md-10">
+				@Html.TextBoxFor(m => m.Name, new { @class = "form-control", @maxLength = "150", @style = "height:30px", @readonly = "readonly" })
+			</div>
+		</div>
+		<div class="row form-group">
+			<label class="control-label col-md-2">Mô tả:</label>
+			<div class="col-md-10">
+				@Html.TextBoxFor(m => m.Title, new { @class = "form-control", @maxLength = "150", @style = "height:30px" })
+			</div>
+		</div>
+		<div class="row form-group">
+			<label class="control-label col-md-2">Loại module:</label>
+			<div class="col-md-10">
+				@Html.DropDownListFor(m => m.ComponentTypeId, EcommerceASP.Queries.CommonQuery.GetComponentType(Model.ComponentTypeId), null, new { @class = "w-100 form-control" })
+			</div>
+		</div>
+		<div class="row form-group text-left">
+			<button type="button" class="btn btn-danger btn-cons btn-sm w-auto" data-toggle="modal" data-target="#modal-update" data-backdrop="static" onclick="Common.ComponentPageSlug.ShowDialog()">
+				<i class="fa fa-plus fa-lg"></i> &nbsp; Thêm mới
+			</button>
+		</div>
+		<div class="row form-group">
+			<table class="table table-striped table-hover table-bordered table-sorter" style="margin-bottom:0;">
+				<thead>
+					<tr>
+						<th class="text-center" width="50">STT</th>
+						<th class="text-center">Mã modun</th>
+						<th class="text-center">Đường đãn</th>
+						<th class="text-center">Tiêu đề phụ</th>
+						<th class="text-center">Tiêu đề</th>
+						<th class="text-center">Hình ảnh</th>
+						<th class="text-center">#</th>
+					</tr>
+				</thead>
+				<tbody>
+					@if (Model.lstSubDesc.Count() > 0)
+					{
+						var i = 1;
+						foreach (var item in Model.lstSubDesc)
+						{
+							<tr class="cursor" data-id="@item.Id">
+								<td class="text-center">@i</td>
+								<td class="text-center">@item.Id</td>
+								<td><a href="/@item.PageSlug" target="_blank">@item.PageSlug</a></td>
+								<td>@item.SubTitle</td>
+								<td>@item.Title</td>
+								<td class="text-center">
+									<img src="@item.Image" alt="" height="50" />
+								</td>
+								<td class="text-center">
+									<i class="fa fa-edit green" 
+									   data-toggle="modal" 
+									   data-target="#modal-updateSubDescription" 
+									   data-backdrop="static" 
+									   onclick="Common.ComponentPageSlug.ShowDialogSubDescription(@Model.Id)"></i>&nbsp;
+									<i class="fa fa-trash red deleted"></i>&nbsp;
+								</td>
+
+							</tr>
+							i++;
+						}
+					}
+					else
+					{
+						<tr class="noresult">
+							<td colspan="7">Không có dữ liệu</td>
+						</tr>
+					}
+				</tbody>
+			</table>
+		</div>
+	</div>
+}

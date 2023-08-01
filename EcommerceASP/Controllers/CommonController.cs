@@ -178,5 +178,53 @@ namespace EcommerceASP.Controllers
                 error = new { message = "Lỗi upload file" }
             });
         }
+
+        public ActionResult UploadImageComponent(HttpPostedFileBase upload)
+        {
+            HttpPostedFileBase file = upload;
+            if (file != null)
+            {
+                if (file.ContentLength > 0)
+                {
+                    var fileExtension = Path.GetExtension(file.FileName);
+                    var fileName = Guid.NewGuid() + "";
+                    fileExtension = fileExtension.ToLower();
+                    string[] acceptedExtensions = new string[] { ".jpg", ".jpeg", ".png", ".gif" };
+                    if (!acceptedExtensions.Contains(fileExtension))
+                    {
+                        return Json(new { uploaded = 0, error = new { message = "Chỉ chấp nhận file với định dạng jpg, jpeg, png và gif" } });
+                    }
+                    string contentPath = Server.MapPath("~/Content/images");
+                    string directory = string.Concat(contentPath, "/component/");
+                    string path = string.Concat(directory, fileName + fileExtension);
+
+                    if (!Directory.Exists(directory))
+                        Directory.CreateDirectory(directory);
+
+                    if (System.IO.File.Exists(path))
+                    {
+                        return Json(new { uploaded = 0, error = new { message = "Tên File đã tồn tại" } });
+                    }
+                    file.SaveAs(path);
+                    return Json(new
+                    {
+                        uploaded = 1,
+                        fileName = fileName + fileExtension,
+                        url = string.Concat("/Content/images/component/", fileName + fileExtension)
+                    });
+                }
+            }
+            return Json(new
+            {
+                uploaded = 0,
+                error = new { message = "Lỗi upload file" }
+            });
+        }
+
+        public ActionResult GetComponentType(int? componentTypeId)
+        {
+            var data = CommonQuery.GetComponentType(componentTypeId);
+            return Json(data, JsonRequestBehavior.AllowGet);
+        }
     }
 }
