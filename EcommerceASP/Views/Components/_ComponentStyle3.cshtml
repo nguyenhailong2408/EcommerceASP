@@ -4,22 +4,22 @@
 	if (subDescription != null)
 	{
 		<div class="componentStyle3 col-sm-12">
-			<div class="container d-flex flex-wrap">
+            <div class="container d-flex flex-wrap">
                 <div class="componentStyle3__content--left componentContent__block componentContent__block--left col-lg-6 col-md-6 col-sm-12">
-                    <p class="content-right__subTitle" style="text-align: center; text-transform: uppercase;">
-                        <span style="color: #7d6741; font-size: 14pt;">@subDescription.SubTitle</span>
-                    </p>
-                    <h2 class="content-right__title" style="text-align: center;"><strong>@subDescription.Title</strong></h2>
-                    <div class="dash style-dark default"></div>
-                    <div class="content-right__modifi">
+                    <div class="block__info">
+                        <p class="content-right__subTitle" style="text-align: center; text-transform: uppercase;">
+                            <span style="color: #7d6741; font-size: 14pt;">@subDescription.SubTitle</span>
+                        </p>
+                        <h2 class="content-right__title" style="text-align: center; font-size: 1.9rem !important;"><strong>@subDescription.Title</strong></h2>
+                        <div class="dash style-dark default"></div>
                         @Html.Raw(subDescription.Description)
                     </div>
                 </div>
-				<div class="componentStyle3__content--right componentContent__image col-lg-6 col-md-6 col-sm-12">
-					<img src="@Url.Content($"~/Content/Images/component/{subDescription.Image}")" alt="BEEDECOR"
-						 style="width:100%; height:auto;" />
-				</div>
-			</div>
+                <div class="componentStyle3__content--right componentContent__image col-lg-6 col-md-6 col-sm-12">
+                    <img src="@Url.Content($"~/Content/Images/component/{subDescription.Image}")" alt="BEEDECOR"
+                         style="width:100%; height:auto;" />
+                </div>
+            </div>
 		</div>
 	}
 }
