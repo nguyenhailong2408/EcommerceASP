@@ -1175,6 +1175,7 @@
     <Content Include="Views\ComponentPageSlug\Component\_ModalUpdateSubDescription.cshtml" />
     <Content Include="Views\ComponentPageSlug\Component\_DialogUpdateSubDescription.cshtml" />
     <Content Include="Views\ComponentPageSlug\Component\_ListDataSubDescription.cshtml" />
+    <Content Include="Views\Components\_ComponentOnlyContent.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
