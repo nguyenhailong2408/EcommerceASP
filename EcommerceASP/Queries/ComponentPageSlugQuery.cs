@@ -210,7 +210,7 @@ namespace EcommerceASP.Queries
                 {
                     return ResponseAPI.GetFailedResponse("Không tìm thấy thông tin để cập nhật");
                 }
-                objData.PageSlug = objData.PageSlug;
+                objData.PageSlug = objModel.PageSlug;
                 objData.Name = objModel.Name;
                 objData.Title = objModel.Title;
                 objData.Priority = objModel.Priority;

@@ -59,6 +59,12 @@ new
 			</div>
 		</div>
 		<div class="row form-group">
+			<label class="control-label col-md-2">Thứ tự:</label>
+			<div class="col-md-10">
+				@Html.TextBoxFor(m => m.Priority, new { @class = "form-control", @type = "number", @min = "0" })
+			</div>
+		</div>
+		<div class="row form-group">
 			<label class="control-label col-md-2 ">Upload Images</label>
 			<div class="col-md-10">
 				<div class="input-group">
