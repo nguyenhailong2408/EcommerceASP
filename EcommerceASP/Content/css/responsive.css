@@ -448,3 +448,6 @@
     left: 0px;
     z-index: 9999
 }
+.pad_top_bot_5_percent {
+    padding: 5% 0;
+}
