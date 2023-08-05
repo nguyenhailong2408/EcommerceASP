@@ -76,7 +76,7 @@ namespace EcommerceASP.Queries
                 objTopicView.ParentSlugName = objTopic?.Category.Name;
                 objTopicView.ParentSlug = objTopic?.Slug;
                 objTopicView.lstComponentPageSlug = _entities.ComponentPageSlugs
-                                                    .Where(x => x.PageSlug.Equals(strSlug) && !x.IsDeleted).ToList();
+                                                    .Where(x => x.PageSlug.Equals(strSlug) && !x.IsDeleted).OrderBy(x=>x.Priority).ToList();
                 objTopicView.PageCurrent = PageCurrent;
 
                 objTopicView.lstTopicDetail = lstTopicDetail.ToPagedList(PageCurrent - 1, objTopicView.PageSize ?? 10);
