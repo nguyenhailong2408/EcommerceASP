@@ -1,7 +1,8 @@
 ﻿@model EcommerceASP.ViewModel.ComponentPageSlug.ComponentTemplateViewBO
-@section Scripts{
+@*@section Scripts{
 	<link rel="stylesheet" href="~/Content/css/component.css" />
-}
+}*@
+<link rel="stylesheet" href="~/Content/css/component_Project.css" />
 @{
 	var subDescription = Model.lstComponentSubDescription.FirstOrDefault();
 	if (subDescription != null)
@@ -12,10 +13,13 @@
 					<a href="@(string.IsNullOrEmpty(subDescription.ReferenceLink)?"#":subDescription.ReferenceLink)"
 					   class="project__block">
 						<div class="project__block__image position-relative">
-							<img src="@Url.Content($"~/Content/Images/component/{subDescription.Image}"))" alt="Alternate Text" />
+							<img src="@Url.Content($"~/Content/Images/component/{subDescription.Image}")" alt="Alternate Text" />
 						</div>
 						<div class="project__block__caption">
-
+							<div class="project__block__caption--content">
+								<div class="project__block__caption--category"> Văn phòng</div>
+								<div class="project__block__caption--name"> Thiết kế nội thất văn phòng công ty Nhật Bản hiện đại, sang trọng</div>
+							</div>
 						</div>
 					</a>
 				</div>

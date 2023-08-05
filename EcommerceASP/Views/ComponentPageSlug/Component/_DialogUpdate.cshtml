@@ -23,13 +23,23 @@ new
 		<div class="row form-group">
 			<label class="control-label col-md-2">Link:</label>
 			<div class="col-md-10">
-				@Html.TextBoxFor(m => m.PageSlug, new { @class = "form-control", @maxLength = "150", @style = "height:30px" })
+				@{
+					if (Model.Id == 0)
+					{
+						@Html.TextBoxFor(m => m.PageSlug, new { @class = "form-control", @maxLength = "150", @style = "height:30px" })
+					}
+					else
+					{
+						@Html.TextBoxFor(m => m.PageSlug, new { @class = "form-control", @maxLength = "150", @style = "height:30px", @readonly = "readonly" })
+					}
+				}
+
 			</div>
 		</div>
 		<div class="row form-group">
 			<label class="control-label col-md-2">Tên:</label>
 			<div class="col-md-10">
-				@Html.TextBoxFor(m => m.Name, new { @class = "form-control", @maxLength = "150", @style = "height:30px", @readonly = "readonly" })
+				@Html.TextBoxFor(m => m.Name, new { @class = "form-control", @maxLength = "150", @style = "height:30px" })
 			</div>
 		</div>
 		<div class="row form-group">
