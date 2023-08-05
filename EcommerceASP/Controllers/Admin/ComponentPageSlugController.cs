@@ -56,5 +56,11 @@ namespace EcommerceASP.Controllers.Admin
             var model = ComponentPageSlugQuery.UpdateSubDescription(objRequest);
             return Json(model, JsonRequestBehavior.AllowGet);
         }
+
+        public ActionResult DeleteSubDescription(int? id)
+        {
+            var model = ComponentPageSlugQuery.DeleteSubDescription(id);
+            return Json(model, JsonRequestBehavior.AllowGet);
+        }
     }
 }
