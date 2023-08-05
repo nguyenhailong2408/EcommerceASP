@@ -1,0 +1,29 @@
+﻿@model EcommerceASP.ViewModel.ComponentPageSlug.ComponentTemplateViewBO
+@{
+	var subDescription = Model.lstComponentSubDescription.FirstOrDefault();
+	if (subDescription != null)
+	{
+		<div class="componentStyle3 col-sm-12">
+            <div class="container d-flex flex-wrap">
+                @foreach (var item in Model.lstComponentSubDescription.Take(4))
+                {
+                    <div class="col-lg-3 col-md-3 col-sm-12 introduce1__block">
+                        <a class="block__image" href="https://topdesign.com.vn/dich-vu/">
+                            <div class="image-container" style="background-image: url('https://topdesign.com.vn/wp-content/uploads/2023/05/service-1-jpg.webp');">
+                                <div class="vertical-number-box">
+                                    <span class="vertical-number">01</span>
+                                </div>
+                                <div class="arrow-box">
+                                    <span class="icon-arrow-right"></span>
+                                </div>
+                            </div>
+                            <div class="content-box-info">
+                                <h4 class="box-heading">Thiết Kế Thi Công Nội Thất</h4>
+                            </div>
+                        </a>
+                    </div>
+                }
+            </div>
+		</div>
+	}
+}
