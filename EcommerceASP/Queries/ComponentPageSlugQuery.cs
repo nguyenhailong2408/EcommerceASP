@@ -416,7 +416,7 @@ namespace EcommerceASP.Queries
                 {
                     return ResponseAPI.GetFailedResponse("Không tìm thấy thông tin để cập nhật");
                 }
-                objData.SubTitle = objData.SubTitle;
+                objData.SubTitle = objModel.SubTitle;
                 objData.Title = objModel.Title;
                 objData.Description = objModel.Description;
                 objData.Updated_at = DateTime.Now;
