@@ -124,6 +124,8 @@
           <Property Name="Title" Type="nvarchar" MaxLength="500" />
           <Property Name="Image" Type="nvarchar" MaxLength="200" />
           <Property Name="Description" Type="nvarchar(max)" />
+          <Property Name="Priority" Type="int" />
+          <Property Name="ReferenceLink" Type="varchar" MaxLength="255" />
           <Property Name="IsDeleted" Type="bit" Nullable="false" />
           <Property Name="Created_at" Type="datetime" />
           <Property Name="Created_by" Type="int" />
@@ -703,16 +705,18 @@
           </Key>
           <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="ComponentId" Type="Int32" Nullable="false" />
+          <Property Name="PageSlug" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
           <Property Name="SubTitle" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
           <Property Name="Title" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
           <Property Name="Image" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
           <Property Name="Description" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="Priority" Type="Int32" />
+          <Property Name="ReferenceLink" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
           <Property Name="IsDeleted" Type="Boolean" Nullable="false" />
           <Property Name="Created_at" Type="DateTime" Precision="3" />
           <Property Name="Created_by" Type="Int32" />
           <Property Name="Updated_at" Type="DateTime" Precision="3" />
           <Property Name="Updated_by" Type="Int32" />
-          <Property Name="PageSlug" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
         </EntityType>
         <EntityType Name="ComponentType">
           <Key>
@@ -1168,16 +1172,18 @@
           <EntitySetMapping Name="ComponentSubDescriptions">
             <EntityTypeMapping TypeName="EcommerceModel.ComponentSubDescription">
               <MappingFragment StoreEntitySet="ComponentSubDescription">
-                <ScalarProperty Name="PageSlug" ColumnName="PageSlug" />
                 <ScalarProperty Name="Updated_by" ColumnName="Updated_by" />
                 <ScalarProperty Name="Updated_at" ColumnName="Updated_at" />
                 <ScalarProperty Name="Created_by" ColumnName="Created_by" />
                 <ScalarProperty Name="Created_at" ColumnName="Created_at" />
                 <ScalarProperty Name="IsDeleted" ColumnName="IsDeleted" />
+                <ScalarProperty Name="ReferenceLink" ColumnName="ReferenceLink" />
+                <ScalarProperty Name="Priority" ColumnName="Priority" />
                 <ScalarProperty Name="Description" ColumnName="Description" />
                 <ScalarProperty Name="Image" ColumnName="Image" />
                 <ScalarProperty Name="Title" ColumnName="Title" />
                 <ScalarProperty Name="SubTitle" ColumnName="SubTitle" />
+                <ScalarProperty Name="PageSlug" ColumnName="PageSlug" />
                 <ScalarProperty Name="ComponentId" ColumnName="ComponentId" />
                 <ScalarProperty Name="Id" ColumnName="Id" />
               </MappingFragment>

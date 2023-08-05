@@ -16,15 +16,17 @@ namespace EcommerceASP.Models
     {
         public int Id { get; set; }
         public int ComponentId { get; set; }
+        public string PageSlug { get; set; }
         public string SubTitle { get; set; }
         public string Title { get; set; }
         public string Image { get; set; }
         public string Description { get; set; }
+        public Nullable<int> Priority { get; set; }
+        public string ReferenceLink { get; set; }
         public bool IsDeleted { get; set; }
         public Nullable<System.DateTime> Created_at { get; set; }
         public Nullable<int> Created_by { get; set; }
         public Nullable<System.DateTime> Updated_at { get; set; }
         public Nullable<int> Updated_by { get; set; }
-        public string PageSlug { get; set; }
     }
 }

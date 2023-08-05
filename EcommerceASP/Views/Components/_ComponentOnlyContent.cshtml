@@ -1,0 +1,12 @@
+﻿@model EcommerceASP.ViewModel.ComponentPageSlug.ComponentTemplateViewBO
+@{
+	var subDescription = Model.lstComponentSubDescription.FirstOrDefault();
+	if (subDescription != null)
+	{
+		<div class="componentStyle3 col-sm-12">
+            <div class="container d-flex flex-wrap">
+                @Html.Raw(subDescription.Description)
+            </div>
+		</div>
+	}
+}
