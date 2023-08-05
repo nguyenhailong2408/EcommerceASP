@@ -42,7 +42,7 @@ namespace EcommerceASP.Queries
                                Collumn = t.Collumn,
                                IsSlide = t.IsSlide
                            })
-                           .OrderBy(m => m.Name)
+                           .OrderBy(m => m.Id)
                            .ToList();
 
                 objView.Items = lstComponentType.ToPagedList((objSearch.PageCurrent ?? 1) - 1, objView.PageSize ?? 10);
