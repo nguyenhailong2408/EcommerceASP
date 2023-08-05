@@ -45,6 +45,12 @@ new
 			</div>
 		</div>
 		<div class="row form-group">
+			<label class="control-label col-md-2">Thứ tự:</label>
+			<div class="col-md-10">
+				@Html.TextBoxFor(m => m.Priority, new { @class = "form-control", @type = "number", @min = "0" })
+			</div>
+		</div>
+		<div class="row form-group">
 			<div class="col-sm-12 text-right">
 				<button type="button" class="btn btn-danger btn-cons btn-sm"
 						data-toggle="modal"

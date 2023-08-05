@@ -5,24 +5,24 @@
     <!-- Diagram content (shape and connector positions) -->
     <edmx:Diagrams>
       <Diagram DiagramId="9326b2802bf442dfbe4ee14044f0c7fe" Name="Diagram1" ZoomLevel="55">
-        <EntityTypeShape EntityType="EcommerceModel.Account" Width="1.5" PointX="7.75" PointY="12.5" />
-        <EntityTypeShape EntityType="EcommerceModel.CategoryDetail" Width="1.5" PointX="3" PointY="5" />
-        <EntityTypeShape EntityType="EcommerceModel.Category" Width="1.5" PointX="0.75" PointY="7.625" />
-        <EntityTypeShape EntityType="EcommerceModel.ComponentItem" Width="1.5" PointX="13.25" PointY="8.125" />
-        <EntityTypeShape EntityType="EcommerceModel.ComponentPageSlug" Width="1.5" PointX="11" PointY="3" />
-        <EntityTypeShape EntityType="EcommerceModel.Component" Width="1.5" PointX="11" PointY="7.625" />
-        <EntityTypeShape EntityType="EcommerceModel.ComponentSubDescription" Width="1.5" PointX="13.75" PointY="12.5" />
-        <EntityTypeShape EntityType="EcommerceModel.ComponentType" Width="1.5" PointX="8.75" PointY="5.375" />
-        <EntityTypeShape EntityType="EcommerceModel.Contact" Width="1.5" PointX="13.75" PointY="16.5" />
-        <EntityTypeShape EntityType="EcommerceModel.PageCategory" Width="1.5" PointX="6" PointY="8" />
-        <EntityTypeShape EntityType="EcommerceModel.Page" Width="1.5" PointX="3.75" PointY="0.75" />
-        <EntityTypeShape EntityType="EcommerceModel.PageSlug" Width="1.5" PointX="6" PointY="4" />
-        <EntityTypeShape EntityType="EcommerceModel.ProductCategoryDetail" Width="1.5" PointX="16" PointY="2.75" />
-        <EntityTypeShape EntityType="EcommerceModel.ProductCategory" Width="1.5" PointX="13.75" PointY="3.125" />
-        <EntityTypeShape EntityType="EcommerceModel.Product" Width="1.5" PointX="11" PointY="13.125" />
-        <EntityTypeShape EntityType="EcommerceModel.Slide" Width="1.5" PointX="15.75" PointY="7.5" />
-        <EntityTypeShape EntityType="EcommerceModel.TopicDetail" Width="1.5" PointX="5.25" PointY="13.75" />
-        <EntityTypeShape EntityType="EcommerceModel.Topic" Width="1.5" PointX="3" PointY="14" />
+        <EntityTypeShape EntityType="EcommerceModel.Account" Width="1.5" PointX="10.75" PointY="12.125" />
+        <EntityTypeShape EntityType="EcommerceModel.CategoryDetail" Width="1.5" PointX="3" PointY="8.375" />
+        <EntityTypeShape EntityType="EcommerceModel.Category" Width="1.5" PointX="0.75" PointY="7.25" />
+        <EntityTypeShape EntityType="EcommerceModel.ComponentItem" Width="1.5" PointX="10.25" PointY="3.125" />
+        <EntityTypeShape EntityType="EcommerceModel.ComponentPageSlug" Width="1.5" PointX="8" PointY="7.5" />
+        <EntityTypeShape EntityType="EcommerceModel.Component" Width="1.5" PointX="8" PointY="2.625" />
+        <EntityTypeShape EntityType="EcommerceModel.ComponentSubDescription" Width="1.5" PointX="12.75" PointY="2.125" />
+        <EntityTypeShape EntityType="EcommerceModel.ComponentType" Width="1.5" PointX="5.75" PointY="5" />
+        <EntityTypeShape EntityType="EcommerceModel.Contact" Width="1.5" PointX="12.75" PointY="12.125" />
+        <EntityTypeShape EntityType="EcommerceModel.PageCategory" Width="1.5" PointX="3" PointY="4.625" />
+        <EntityTypeShape EntityType="EcommerceModel.Page" Width="1.5" PointX="0.75" PointY="2.375" />
+        <EntityTypeShape EntityType="EcommerceModel.PageSlug" Width="1.5" PointX="3" PointY="0.75" />
+        <EntityTypeShape EntityType="EcommerceModel.ProductCategoryDetail" Width="1.5" PointX="13" PointY="7.375" />
+        <EntityTypeShape EntityType="EcommerceModel.ProductCategory" Width="1.5" PointX="10.75" PointY="7.75" />
+        <EntityTypeShape EntityType="EcommerceModel.Product" Width="1.5" PointX="8" PointY="12.125" />
+        <EntityTypeShape EntityType="EcommerceModel.Slide" Width="1.5" PointX="14.75" PointY="2.125" />
+        <EntityTypeShape EntityType="EcommerceModel.TopicDetail" Width="1.5" PointX="5.25" PointY="13.375" />
+        <EntityTypeShape EntityType="EcommerceModel.Topic" Width="1.5" PointX="3" PointY="13.625" />
         <AssociationConnector Association="EcommerceModel.FK_CategoryDetails_Categorys" />
         <AssociationConnector Association="EcommerceModel.FK_PageCategory_Categorys" />
         <AssociationConnector Association="EcommerceModel.FK_Topics_Categorys" />
