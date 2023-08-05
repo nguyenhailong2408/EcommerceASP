@@ -1178,6 +1178,7 @@
     <Content Include="Views\ComponentPageSlug\Component\_ListDataSubDescription.cshtml" />
     <Content Include="Views\Components\_ComponentOnlyContent.cshtml" />
     <Content Include="Views\Components\_Component_Project.cshtml" />
+    <Content Include="Views\Components\_ComponentStyle5.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
