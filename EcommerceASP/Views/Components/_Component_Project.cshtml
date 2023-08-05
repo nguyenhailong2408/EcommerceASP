@@ -1,32 +1,33 @@
 ﻿@model EcommerceASP.ViewModel.ComponentPageSlug.ComponentTemplateViewBO
 @*@section Scripts{
-	<link rel="stylesheet" href="~/Content/css/component.css" />
-}*@
+		<link rel="stylesheet" href="~/Content/css/component.css" />
+	}*@
 <link rel="stylesheet" href="~/Content/css/component_Project.css" />
 @{
-	var subDescription = Model.lstComponentSubDescription.FirstOrDefault();
-	if (subDescription != null)
+	var lstSubDescription = Model.lstComponentSubDescription;
+	if (lstSubDescription != null && lstSubDescription.Count > 0)
 	{
 		<div class="componentProject col-sm-12">
 			<div class="container d-flex flex-wrap">
-				<div class="col-lg-4 col-md-4 col-sm-6 col-xs-12 p-0">
-					<a href="@(string.IsNullOrEmpty(subDescription.ReferenceLink)?"#":subDescription.ReferenceLink)"
-					   class="project__block">
-						<div class="project__block__image position-relative">
-							<img src="@Url.Content($"~/Content/Images/component/{subDescription.Image}")" alt="Alternate Text" />
+				@{
+					foreach (var subDescription in lstSubDescription)
+					{
+						<div class="col-lg-4 col-md-4 col-sm-6 col-xs-12 p-0">
+							<a href="@(string.IsNullOrEmpty(subDescription.ReferenceLink)?"#":subDescription.ReferenceLink)"
+							   class="project__block">
+								<div class="project__block__image position-relative">
+									<img src="@Url.Content($"~/Content/Images/component/{subDescription.Image}")" alt="Alternate Text" />
+								</div>
+								<div class="project__block__caption">
+									<div class="project__block__caption--content">
+										<div class="project__block__caption--category"> @subDescription.SubTitle</div>
+										<div class="project__block__caption--name"> @subDescription.Title</div>
+									</div>
+								</div>
+							</a>
 						</div>
-						<div class="project__block__caption">
-							<div class="project__block__caption--content">
-								<div class="project__block__caption--category"> Văn phòng</div>
-								<div class="project__block__caption--name"> Thiết kế nội thất văn phòng công ty Nhật Bản hiện đại, sang trọng</div>
-							</div>
-						</div>
-					</a>
-				</div>
-				<div class="col-lg-4 col-md-4 col-sm-6 col-xs-12 p-0"></div>
-				<div class="col-lg-4 col-md-4 col-sm-6 col-xs-12 p-0"></div>
-				<div class="col-lg-4 col-md-4 col-sm-6 col-xs-12 p-0"></div>
-				<div class="col-lg-4 col-md-4 col-sm-6 col-xs-12 p-0"></div>
+					}
+				}
 			</div>
 		</div>
 	}
