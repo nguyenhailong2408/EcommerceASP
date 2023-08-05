@@ -25,12 +25,6 @@ namespace EcommerceASP.Controllers.Admin
             var model = ComponentPageSlugQuery.GetDataUpdate(id);
             return PartialView("Component/_DialogUpdate", model);
         }
-        public ActionResult DialogSubDescription(int? id)
-        {
-            var model = ComponentPageSlugQuery.GetDataUpdateSubDescription(id);
-            return PartialView("Component/_DialogUpdateSubDescription",model);
-        }
-
         [ValidateInput(false)]
         public ActionResult Update(ComponentPageSlugBO objRequest)
         {
@@ -41,6 +35,25 @@ namespace EcommerceASP.Controllers.Admin
         public ActionResult Delete(int? id)
         {
             var model = ComponentPageSlugQuery.Delete(id);
+            return Json(model, JsonRequestBehavior.AllowGet);
+        }
+
+        public ActionResult GetDataSubDescription(int? ComponentID)
+        {
+            var model = ComponentPageSlugQuery.GetDataSubDescription(ComponentID);
+            return PartialView("Component/_ListDataSubDescription", model);
+        }
+
+        public ActionResult DialogSubDescription(int? id, int? componentId, string strPageSlug)
+        {
+            var model = ComponentPageSlugQuery.GetDataUpdateSubDescription(id,componentId,strPageSlug);
+            return PartialView("Component/_DialogUpdateSubDescription", model);
+        }
+
+        [ValidateInput(false)]
+        public ActionResult UpdateSubDescription(ComponentSubDescriptionBO objRequest)
+        {
+            var model = ComponentPageSlugQuery.UpdateSubDescription(objRequest);
             return Json(model, JsonRequestBehavior.AllowGet);
         }
     }

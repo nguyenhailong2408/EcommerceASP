@@ -1157,6 +1157,7 @@
     <Content Include="Views\ComponentSubDescription\Component\_SearchForm.cshtml" />
     <Content Include="Views\ComponentPageSlug\Component\_ModalUpdateSubDescription.cshtml" />
     <Content Include="Views\ComponentPageSlug\Component\_DialogUpdateSubDescription.cshtml" />
+    <Content Include="Views\ComponentPageSlug\Component\_ListDataSubDescription.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

@@ -56,6 +56,7 @@ namespace EcommerceASP.ViewModel.ComponentPageSlug
     }
     public class ComponentSubDescriptionBO : Models.ComponentSubDescription
     {
+        public int ComponentPageSlugID { get; set; }
         public string ImageOld { get; set; }
         public HttpPostedFileBase UploadImage { get; set; }
         public string CreatedByName { get; set; }

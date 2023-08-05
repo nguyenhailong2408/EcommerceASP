@@ -1557,7 +1557,7 @@ header.header .main-header .container.flex-box .header-cart .head-cart {
 /*BEEDECOR*/
 @keyframes example {
     from {
-        transform: translateY(-10px);
+        transform: translateY(-80px);
     }
 
     to {

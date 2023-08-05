@@ -7,7 +7,7 @@
     });
     return this.Init();
 };
-
+let ComponentID;
 ComponentPageSlug.prototype = {
     Init: function (options) {
         this.RegisterEvent();
@@ -55,11 +55,6 @@ ComponentPageSlug.prototype = {
 
         $("#btn-update").unbind("click").click(function (e) {
             Common.ComponentPageSlug.SubmitFormUpdate(e);
-        });
-
-        $("#btn-updateSubDescription").unbind("click").click(function (e) {
-            $('#Description').val(CKEDITOR.instances["Content"].getData());
-            Common.ComponentPageSlug.SubmitFormUpdateSubDescription(e);
         });
 
         $("#table-list-ComponentPageSlug > tbody > tr img").zoomify();
@@ -181,21 +176,111 @@ ComponentPageSlug.prototype = {
         });
     },
 
-    SubmitFormUpdateSubDescription: function () {
-        $("#form-updateSubDescription").submit();
+    // SUBDESCRIPTION
+    RegisterEventSubDescription: function () {
+        this.IsPaging = false;
+        var that = this;
+
+        $("#btn-updateSubDescription").unbind("click").click(function (e) {
+            $('#Description').val(CKEDITOR.instances["Description"].getData());
+            Common.ComponentPageSlug.SubmitFormUpdateSubDescription(e);
+        });
+        $("#imgShow").zoomify();
+        $("#file-upload-image").unbind("change").change(function (e) {
+            $("#Image").val(this.files[0].name);
+            this.files.item(0).type;
+            if (window.FileReader) {
+                var reader = new window.FileReader();
+                reader.onload = function (e) {
+
+                    $("#imgShow").attr('src', e.target.result);
+                };
+                reader.readAsDataURL(this.files[0]);
+            } else {
+                return;
+            }
+
+        });
+
+        var form = $("#form-updateSubDescription");
+
+        form.unbind("submit").submit(function (e) {
+            e.preventDefault();
+            e.stopImmediatePropagation();
+            var xhr = new XMLHttpRequest();
+            xhr.responseType = "json";
+            xhr.open(form[0].method, form[0].action);
+            xhr.onreadystatechange = function () {
+                if (xhr.readyState == 4 && xhr.status == 200) {
+                    Common.ComponentPageSlug.UpdateSuccessSubDescription(xhr.response);
+                }
+            };
+            Common.ComponentPageSlug.UpdateBeforeSendSubDescription();
+            xhr.send((new FormData(form[0])));
+        })
+
+
     },
 
-    ShowDialogSubDescription: function (id) {
+    GetDataSubDescription: function (id) {
+        ComponentID = id;
+        Common.Ajax({
+            type: "POST",
+            url: ComponentPageSlug.Url.GetDataSubDescription,
+            cache: false,
+            dataType: "html",
+            data: { ComponentID: id }
+        }, function (data) {
+            $("#list-dataComponentSubDescription").html(data);
+        });
+    },
+
+    ShowDialogSubDescription: function (id, componentID, pageSlug) {
         Common.Ajax({
             type: "POST",
             url: ComponentPageSlug.Url.FormUpdateSubDescription,
             cache: false,
             dataType: "html",
-            data: { id: id }
+            data: {
+                id: id,
+                componentId: componentID,
+                strPageSlug: pageSlug
+            }
         }, function (data) {
             $("#modal-updateSubDescription .modal-body").html(data);
             $("#modal-updateSubDescription .modal-dialog").css("max-width", "80%")
-            Common.ComponentPageSlug.RegisterEvent();
+            //$("#modal-updateSubDescription").modal('show')
+            Common.ComponentPageSlug.RegisterEventSubDescription();
         });
+    },
+
+    SubmitFormUpdateSubDescription: function () {
+        $("#form-updateSubDescription").submit();
+    },
+
+    UpdateSuccessSubDescription: function (res) {
+        Common.ShowLoading(false);
+        if (res.Status) {
+            Common.ComponentPageSlug.GetDataSubDescription(ComponentID);
+            Common.ComponentPageSlug.HideDialogSendSubDescription();
+            alert(res.Message);
+        }
+        else {
+            alert(res.Message);
+        }
+
+    },
+
+    UpdateBeforeSendSubDescription: function () {
+        Common.ShowLoading(true);
+
+    },
+
+    HideDialogSendSubDescription: function () {
+        target = $("#modal-updateSubDescription");
+        target.removeClass("in");
+        $(".modal-backdrop").remove();
+        target.hide();
+        //$("#modal-updateSubDescription").modal('hide')
     },
 };

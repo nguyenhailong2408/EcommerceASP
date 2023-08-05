@@ -2,11 +2,11 @@
 @{
 	var controlDev = false;
 }
-@using (Ajax.BeginForm("Update", "ComponentSubDescription", null, new AjaxOptions()
+@using (Ajax.BeginForm("UpdateSubDescription", "ComponentPageSlug", null, new AjaxOptions()
 {
 	HttpMethod = "POST",
-	OnBegin = "Common.ComponentSubDescription.UpdateBeforeSend",
-	OnSuccess = "Common.ComponentSubDescription.UpdateSuccess"
+	OnBegin = "Common.ComponentPageSlug.UpdateBeforeSendSubDescription",
+	OnSuccess = "Common.ComponentPageSlug.UpdateSuccessSubDescription"
 },
 new
 {
@@ -23,13 +23,13 @@ new
 		<div class="row form-group">
 			<label class="control-label col-md-2">Mã module:</label>
 			<div class="col-md-10">
-				@Html.TextBoxFor(m => m.ComponentId, new { @class = "form-control", @maxLength = "150", @style = "height:30px" })
+				@Html.TextBoxFor(m => m.ComponentId, new { @class = "form-control", @maxLength = "150", @style = "height:30px", @readonly = "readonly" })
 			</div>
 		</div>
 		<div class="row form-group">
 			<label class="control-label col-md-2">Đường dẫn:</label>
 			<div class="col-md-10">
-				@Html.TextBoxFor(m => m.PageSlug, new { @class = "form-control", @maxLength = "150", @style = "height:30px" })
+				@Html.TextBoxFor(m => m.PageSlug, new { @class = "form-control", @maxLength = "150", @style = "height:30px", @readonly = "readonly" })
 			</div>
 		</div>
 		<div class="row form-group">

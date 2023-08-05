@@ -1,4 +1,5 @@
-﻿using EcommerceASP.Models;
+﻿using EcommerceASP.Libraries;
+using EcommerceASP.Models;
 using EcommerceASP.ViewModel.Base;
 using EcommerceASP.ViewModel.ComponentPageSlug;
 using MvcPaging;
@@ -120,6 +121,7 @@ namespace EcommerceASP.Queries
                                ComponentTypeId = m.FirstOrDefault().ComponentTypeId,
                                lstSubDesc = m.FirstOrDefault().d == null ? new List<ComponentSubDescriptionBO>() : m.Select(z => new ComponentSubDescriptionBO
                                {
+                                   ComponentPageSlugID = m.Key.Id,
                                    Id = z.d.Id,
                                    ComponentId = z.d.ComponentId,
                                    PageSlug = z.d.PageSlug,
@@ -148,9 +150,9 @@ namespace EcommerceASP.Queries
             {
                 if (objModel.Id == 0)
                 {
-                    return CreateComponentType(objModel);
+                    return CreateComponentTypePageSlug(objModel);
                 }
-                return UpdateComponentType(objModel);
+                return UpdateComponentTypePageSlug(objModel);
             }
             catch (Exception e)
             {
@@ -158,7 +160,7 @@ namespace EcommerceASP.Queries
             }
         }
 
-        public static ResponseAPI CreateComponentType(ComponentPageSlugBO objModel)
+        public static ResponseAPI CreateComponentTypePageSlug(ComponentPageSlugBO objModel)
         {
             EcommerceEntities _entities = new EcommerceEntities();
             try
@@ -186,13 +188,13 @@ namespace EcommerceASP.Queries
             }
         }
 
-        public static ResponseAPI UpdateComponentType(ComponentPageSlugBO objModel)
+        public static ResponseAPI UpdateComponentTypePageSlug(ComponentPageSlugBO objModel)
         {
             EcommerceEntities _entities = new EcommerceEntities();
             try
             {
-                var objComponentType = _entities.ComponentTypes.Where(m => m.Id == objModel.Id).FirstOrDefault();
-                if (objComponentType == null)
+                var objData = _entities.ComponentTypes.Where(m => m.Id == objModel.Id).FirstOrDefault();
+                if (objData == null)
                 {
                     return ResponseAPI.GetFailedResponse("Không tìm thấy thông tin loại module để cập nhật");
                 }
@@ -225,14 +227,14 @@ namespace EcommerceASP.Queries
             EcommerceEntities _entities = new EcommerceEntities();
             try
             {
-                var objComponentType = _entities.ComponentTypes.Where(m => m.Id == Id).FirstOrDefault();
-                if (objComponentType == null)
+                var objData = _entities.ComponentTypes.Where(m => m.Id == Id).FirstOrDefault();
+                if (objData == null)
                 {
                     return ResponseAPI.GetFailedResponse("Không tìm thấy loại module để xóa");
                 }
-                objComponentType.Updated_at = DateTime.Now;
-                objComponentType.Updated_by = 1;
-                objComponentType.IsDeleted = true;
+                objData.Updated_at = DateTime.Now;
+                objData.Updated_by = 1;
+                objData.IsDeleted = true;
 
                 _entities.SaveChanges();
                 return ResponseAPI.GetSuccessResponse("Xóa thành công", null);
@@ -256,15 +258,53 @@ namespace EcommerceASP.Queries
                 _entities.Dispose();
             }
         }
+        #region ComponentSubDescription
+        public static List<ComponentSubDescriptionBO> GetDataSubDescription(int? Id)
+        {
+            EcommerceEntities _entities = new EcommerceEntities();
+            try
+            {
+                var objData = new List<ComponentSubDescriptionBO>();
+                if (Id == null)
+                    return objData;
 
-        public static ComponentSubDescriptionBO GetDataUpdateSubDescription(int? Id)
+                objData = _entities.ComponentSubDescriptions.Where(x => x.ComponentId == Id)
+                            .Select(x => new ComponentSubDescriptionBO
+                            {
+                                Id = x.Id,
+                                ComponentId = x.ComponentId,
+                                PageSlug = x.PageSlug,
+                                SubTitle = x.SubTitle,
+                                Title = x.Title,
+                                Image = x.Image,
+                                ImageOld = x.Image,
+                                Description = x.Description
+                            })
+                            .ToList();
+                return objData;
+            }
+            catch (Exception objEx)
+            {
+                return new List<ComponentSubDescriptionBO>();
+            }
+            finally
+            {
+                _entities.Dispose();
+            }
+        }
+
+        public static ComponentSubDescriptionBO GetDataUpdateSubDescription(int? Id, int? componentId, string strPageSlug)
         {
             EcommerceEntities _entities = new EcommerceEntities();
             try
             {
                 var objData = new ComponentSubDescriptionBO();
-                if (Id == null)
+                if (Id == null || Id == 0)
+                {
+                    objData.ComponentId = componentId.Value;
+                    objData.PageSlug = strPageSlug;
                     return objData;
+                }
 
                 objData = _entities.ComponentSubDescriptions.Where(x => x.Id == Id)
                             .Select(x => new ComponentSubDescriptionBO
@@ -289,5 +329,138 @@ namespace EcommerceASP.Queries
                 _entities.Dispose();
             }
         }
+
+        public static ResponseAPI UpdateSubDescription(ComponentSubDescriptionBO objModel)
+        {
+            try
+            {
+                if (objModel.Id == 0)
+                {
+                    return CreateComponentSubDescription(objModel);
+                }
+                return UpdateComponentSubDescription(objModel);
+            }
+            catch (Exception e)
+            {
+                return ResponseAPI.GetFailedResponse(e.Message);
+            }
+        }
+
+        public static ResponseAPI CreateComponentSubDescription(ComponentSubDescriptionBO objModel)
+        {
+            EcommerceEntities _entities = new EcommerceEntities();
+            try
+            {
+                var objData = new ComponentSubDescription();
+                objData.PageSlug = objModel.PageSlug;
+                objData.ComponentId = objModel.ComponentId;
+                objData.SubTitle = objModel.SubTitle;
+                objData.Title = objModel.Title;
+                objData.IsDeleted = false;
+                objData.Created_at = DateTime.Now;
+                objData.Created_by = 1;
+
+                if (objModel.UploadImage != null)
+                {
+                    var imgNameOld = objModel.ImageOld;
+
+                    objData.Image = objModel.UploadImage.GuidName();
+                    string pathImages = HttpContext.Current.Server.MapPath("~/Content/Images/component/");
+
+                    if (!Directory.Exists(pathImages))
+                    {
+                        Directory.CreateDirectory(pathImages);
+                    }
+
+                    if (File.Exists(pathImages + imgNameOld))
+                    {
+                        File.Delete(pathImages + imgNameOld);
+                    }
+
+                    objModel.UploadImage.SaveAs(pathImages + objData.Image);
+                }
+
+                _entities.ComponentSubDescriptions.Add(objData);
+
+                _entities.SaveChanges();
+                return ResponseAPI.GetSuccessResponse("Thành công", null);
+            }
+            catch (DbEntityValidationException e)
+            {
+                foreach (var eve in e.EntityValidationErrors)
+                {
+                    Console.WriteLine("Entity of type \"{0}\" in state \"{1}\" has the following validation errors:",
+                        eve.Entry.Entity.GetType().Name, eve.Entry.State);
+                    foreach (var ve in eve.ValidationErrors)
+                    {
+                        Console.WriteLine("- Property: \"{0}\", Error: \"{1}\"",
+                            ve.PropertyName, ve.ErrorMessage);
+                    }
+                }
+                return ResponseAPI.GetFailedResponse(e.Message);
+            }
+            finally
+            {
+                _entities.Dispose();
+            }
+        }
+
+        public static ResponseAPI UpdateComponentSubDescription(ComponentSubDescriptionBO objModel)
+        {
+            EcommerceEntities _entities = new EcommerceEntities();
+            try
+            {
+                var objData = _entities.ComponentSubDescriptions.Where(m => m.Id == objModel.Id).FirstOrDefault();
+                if (objData == null)
+                {
+                    return ResponseAPI.GetFailedResponse("Không tìm thấy thông tin để cập nhật");
+                }
+                objData.SubTitle = objData.SubTitle;
+                objData.Title = objData.Title;
+                objData.Updated_at = DateTime.Now;
+                objData.Updated_by = 1;
+
+                if (objModel.UploadImage != null)
+                {
+                    var imgNameOld = objModel.ImageOld;
+
+                    objData.Image = objModel.UploadImage.GuidName();
+                    string pathImages = HttpContext.Current.Server.MapPath("~/Content/Images/component/");
+
+                    if (!Directory.Exists(pathImages))
+                    {
+                        Directory.CreateDirectory(pathImages);
+                    }
+
+                    if (File.Exists(pathImages + imgNameOld))
+                    {
+                        File.Delete(pathImages + imgNameOld);
+                    }
+
+                    objModel.UploadImage.SaveAs(pathImages + objData.Image);
+                }
+                _entities.SaveChanges();
+                return ResponseAPI.GetSuccessResponse("Thành công", null);
+            }
+            catch (DbEntityValidationException e)
+            {
+                foreach (var eve in e.EntityValidationErrors)
+                {
+                    Console.WriteLine("Entity of type \"{0}\" in state \"{1}\" has the following validation errors:",
+                        eve.Entry.Entity.GetType().Name, eve.Entry.State);
+                    foreach (var ve in eve.ValidationErrors)
+                    {
+                        Console.WriteLine("- Property: \"{0}\", Error: \"{1}\"",
+                            ve.PropertyName, ve.ErrorMessage);
+                    }
+                }
+                return ResponseAPI.GetFailedResponse(e.Message);
+            }
+            finally
+            {
+                _entities.Dispose();
+            }
+        }
+        #endregion
     }
 }
