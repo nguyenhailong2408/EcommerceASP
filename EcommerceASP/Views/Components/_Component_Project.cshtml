@@ -1,0 +1,30 @@
+﻿@model EcommerceASP.ViewModel.ComponentPageSlug.ComponentTemplateViewBO
+@section Scripts{
+	<link rel="stylesheet" href="~/Content/css/component.css" />
+}
+@{
+	var subDescription = Model.lstComponentSubDescription.FirstOrDefault();
+	if (subDescription != null)
+	{
+		<div class="componentProject col-sm-12">
+			<div class="container d-flex flex-wrap">
+				<div class="col-lg-4 col-md-4 col-sm-6 col-xs-12 p-0">
+					<a href="@(string.IsNullOrEmpty(subDescription.ReferenceLink)?"#":subDescription.ReferenceLink)"
+					   class="project__block">
+						<div class="project__block__image position-relative">
+							<img src="@Url.Content($"~/Content/Images/component/{subDescription.Image}"))" alt="Alternate Text" />
+						</div>
+						<div class="project__block__caption">
+
+						</div>
+					</a>
+				</div>
+				<div class="col-lg-4 col-md-4 col-sm-6 col-xs-12 p-0"></div>
+				<div class="col-lg-4 col-md-4 col-sm-6 col-xs-12 p-0"></div>
+				<div class="col-lg-4 col-md-4 col-sm-6 col-xs-12 p-0"></div>
+				<div class="col-lg-4 col-md-4 col-sm-6 col-xs-12 p-0"></div>
+			</div>
+		</div>
+	}
+}
+
