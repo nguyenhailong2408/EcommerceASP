@@ -285,6 +285,7 @@
     <Compile Include="ViewModel\Topic\TopicViewBO.cs" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="Content\css\component_Project.css" />
     <Content Include="Content\css\footer.css" />
     <Content Include="Content\css\mainBee.css" />
     <Content Include="Content\css\menu.css" />
@@ -1176,6 +1177,7 @@
     <Content Include="Views\ComponentPageSlug\Component\_DialogUpdateSubDescription.cshtml" />
     <Content Include="Views\ComponentPageSlug\Component\_ListDataSubDescription.cshtml" />
     <Content Include="Views\Components\_ComponentOnlyContent.cshtml" />
+    <Content Include="Views\Components\_Component_Project.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

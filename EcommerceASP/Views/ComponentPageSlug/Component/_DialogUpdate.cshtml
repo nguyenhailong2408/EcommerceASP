@@ -50,26 +50,32 @@ new
 				@Html.TextBoxFor(m => m.Priority, new { @class = "form-control", @type = "number", @min = "0" })
 			</div>
 		</div>
-		<div class="row form-group">
-			<div class="col-sm-12 text-right">
-				<button type="button" class="btn btn-danger btn-cons btn-sm"
-						data-toggle="modal"
-						data-target="#modal-updateSubDescription"
-						data-backdrop="static"
-						onclick="Common.ComponentPageSlug.ShowDialogSubDescription(0, @Model.Id,'@Model.PageSlug')">
-					<i class="fa fa-plus fa-lg"></i> &nbsp; Thêm mới
-				</button>
-				<button type="button" class="btn btn-success btn-sm"
-						onclick="Common.ComponentPageSlug.GetDataSubDescription(@Model.Id)">
-					<i class="fa fa-refresh fa-lg"></i>
-				</button>
-			</div>
-		</div>
-		<div class="row form-group" id="list-dataComponentSubDescription">
-			@{
-				Html.RenderPartial("Component/_ListDataSubDescription", Model.lstSubDesc);
+		@{
+			if (Model.Id != 0)
+			{
+				<div class="row form-group">
+					<div class="col-sm-12 text-right">
+						<button type="button" class="btn btn-danger btn-cons btn-sm"
+								data-toggle="modal"
+								data-target="#modal-updateSubDescription"
+								data-backdrop="static"
+								onclick="Common.ComponentPageSlug.ShowDialogSubDescription(0, @Model.Id,'@Model.PageSlug')">
+							<i class="fa fa-plus fa-lg"></i> &nbsp; Thêm mới
+						</button>
+						<button type="button" class="btn btn-success btn-sm"
+								onclick="Common.ComponentPageSlug.GetDataSubDescription(@Model.Id)">
+							<i class="fa fa-refresh fa-lg"></i>
+						</button>
+					</div>
+				</div>
+				<div class="row form-group" id="list-dataComponentSubDescription">
+					@{
+						Html.RenderPartial("Component/_ListDataSubDescription", Model.lstSubDesc);
+					}
+				</div>
 			}
-		</div>
+		}
+
 	</div>
 }
 <script>

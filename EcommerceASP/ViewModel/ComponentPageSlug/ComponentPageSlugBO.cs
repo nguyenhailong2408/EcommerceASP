@@ -53,6 +53,7 @@ namespace EcommerceASP.ViewModel.ComponentPageSlug
         public string Title { get; set; }
         public string Image { get; set; }
         public string Description { get; set; }
+        public string ReferenceLink { get; set; }
     }
     public class ComponentSubDescriptionBO : Models.ComponentSubDescription
     {
