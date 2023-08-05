@@ -129,8 +129,6 @@
           <Property Name="Created_by" Type="int" />
           <Property Name="Updated_at" Type="datetime" />
           <Property Name="Updated_by" Type="int" />
-          <Property Name="Priority" Type="int" />
-          <Property Name="ReferenceLink" Type="varchar" MaxLength="255" />
         </EntityType>
         <EntityType Name="ComponentTypes">
           <Key>
@@ -715,8 +713,6 @@
           <Property Name="Created_by" Type="Int32" />
           <Property Name="Updated_at" Type="DateTime" Precision="3" />
           <Property Name="Updated_by" Type="Int32" />
-          <Property Name="Priority" Type="Int32" />
-          <Property Name="ReferenceLink" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
         </EntityType>
         <EntityType Name="ComponentType">
           <Key>
@@ -1172,8 +1168,6 @@
           <EntitySetMapping Name="ComponentSubDescriptions">
             <EntityTypeMapping TypeName="EcommerceModel.ComponentSubDescription">
               <MappingFragment StoreEntitySet="ComponentSubDescription">
-                <ScalarProperty Name="ReferenceLink" ColumnName="ReferenceLink" />
-                <ScalarProperty Name="Priority" ColumnName="Priority" />
                 <ScalarProperty Name="Updated_by" ColumnName="Updated_by" />
                 <ScalarProperty Name="Updated_at" ColumnName="Updated_at" />
                 <ScalarProperty Name="Created_by" ColumnName="Created_by" />
