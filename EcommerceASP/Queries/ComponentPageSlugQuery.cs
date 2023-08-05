@@ -247,7 +247,7 @@ namespace EcommerceASP.Queries
             EcommerceEntities _entities = new EcommerceEntities();
             try
             {
-                var objData = _entities.ComponentTypes.Where(m => m.Id == Id).FirstOrDefault();
+                var objData = _entities.ComponentPageSlugs.Where(m => m.Id == Id).FirstOrDefault();
                 if (objData == null)
                 {
                     return ResponseAPI.GetFailedResponse("Không tìm thấy loại module để xóa");
