@@ -165,8 +165,20 @@ namespace EcommerceASP.Queries
             EcommerceEntities _entities = new EcommerceEntities();
             try
             {
+                var objData = new ComponentPageSlug();
+                objData.PageSlug = objModel.PageSlug;
+                objData.Name = objModel.Name;
+                objData.Title = objModel.Title;
+                objData.ComponentTypeId = objModel.ComponentTypeId;
+                objData.QuantityRecord = objModel.QuantityRecord;
+                objData.Priority = objModel.Priority;
+                objData.IsDeleted = false;
+                objData.Created_at = DateTime.Now;
+                objData.Created_by = 1;
+
+                _entities.ComponentPageSlugs.Add(objData);
                 _entities.SaveChanges();
-                return ResponseAPI.GetSuccessResponse("Success", null);
+                return ResponseAPI.GetSuccessResponse("Thành công", null);
             }
             catch (DbEntityValidationException e)
             {
@@ -193,14 +205,22 @@ namespace EcommerceASP.Queries
             EcommerceEntities _entities = new EcommerceEntities();
             try
             {
-                var objData = _entities.ComponentTypes.Where(m => m.Id == objModel.Id).FirstOrDefault();
+                var objData = _entities.ComponentPageSlugs.Where(m => m.Id == objModel.Id).FirstOrDefault();
                 if (objData == null)
                 {
-                    return ResponseAPI.GetFailedResponse("Không tìm thấy thông tin loại module để cập nhật");
+                    return ResponseAPI.GetFailedResponse("Không tìm thấy thông tin để cập nhật");
                 }
+                objData.PageSlug = objData.PageSlug;
+                objData.Name = objModel.Name;
+                objData.Title = objModel.Title;
+                objData.Priority = objModel.Priority;
+                objData.ComponentTypeId = objModel.ComponentTypeId;
+                objData.QuantityRecord = objModel.QuantityRecord;
+                objData.Updated_at = DateTime.Now;
+                objData.Updated_by = 1;
 
                 _entities.SaveChanges();
-                return ResponseAPI.GetSuccessResponse("Success", null);
+                return ResponseAPI.GetSuccessResponse("Thành công", null);
             }
             catch (DbEntityValidationException e)
             {
@@ -357,6 +377,8 @@ namespace EcommerceASP.Queries
                 objData.SubTitle = objModel.SubTitle;
                 objData.Title = objModel.Title;
                 objData.Description = objModel.Description;
+                objData.Priority = objModel.Priority;
+                objData.ReferenceLink = objModel.ReferenceLink;
                 objData.IsDeleted = false;
                 objData.Created_at = DateTime.Now;
                 objData.Created_by = 1;
@@ -419,6 +441,8 @@ namespace EcommerceASP.Queries
                 objData.SubTitle = objModel.SubTitle;
                 objData.Title = objModel.Title;
                 objData.Description = objModel.Description;
+                objData.Priority = objModel.Priority;
+                objData.ReferenceLink = objModel.ReferenceLink;
                 objData.Updated_at = DateTime.Now;
                 objData.Updated_by = 1;
 
