@@ -39,9 +39,8 @@ ComponentPageSlug.prototype = {
                                 data: { id: tr.data("id") }
                             }, function (result) {
                                 if (result.Status) {
-                                    Common.HideAlert(function () {
-                                        Common.ComponentPageSlug.SubmitForm();
-                                    });
+                                    Common.ComponentPageSlug.SubmitForm();
+                                    Common.ComponentPageSlug.HideDialog();
                                 } else {
                                     Common.ShowAlert("Thông báo", "Xóa không thành công !");
                                 }
@@ -282,5 +281,27 @@ ComponentPageSlug.prototype = {
         $(".modal-backdrop").remove();
         target.hide();
         //$("#modal-updateSubDescription").modal('hide')
+    },
+
+    DeleteSubDescription: function (id) {
+        Common.Ajax({
+            type: "POST",
+            url: ComponentPageSlug.Url.DeleteSubDescription,
+            cache: false,
+            dataType: "json",
+            data: {
+                id: id
+            }
+        }, function (res) {
+            Common.ShowLoading(false);
+            if (res.Status) {
+                Common.ComponentPageSlug.GetDataSubDescription(ComponentID);
+                Common.ComponentPageSlug.HideDialogSendSubDescription();
+                alert(res.Message);
+            }
+            else {
+                alert(res.Message);
+            }
+        });
     },
 };
