@@ -356,6 +356,7 @@ namespace EcommerceASP.Queries
                 objData.ComponentId = objModel.ComponentId;
                 objData.SubTitle = objModel.SubTitle;
                 objData.Title = objModel.Title;
+                objData.Description = objModel.Description;
                 objData.IsDeleted = false;
                 objData.Created_at = DateTime.Now;
                 objData.Created_by = 1;
@@ -417,6 +418,7 @@ namespace EcommerceASP.Queries
                 }
                 objData.SubTitle = objData.SubTitle;
                 objData.Title = objModel.Title;
+                objData.Description = objModel.Description;
                 objData.Updated_at = DateTime.Now;
                 objData.Updated_by = 1;
 
