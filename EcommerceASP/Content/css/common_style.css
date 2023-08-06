@@ -1,0 +1,21 @@
+﻿.text__right{
+    text-align: right;
+}
+
+.text__left {
+    text-align: left;
+}
+
+.text__justify {
+    text-align: justify;
+}
+
+.pad__left__right__3__per{
+    padding: 0 3%;
+}
+.width__100__per {
+    width: 100%;
+}
+
+
+

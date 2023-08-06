@@ -1,0 +1,32 @@
+﻿@model EcommerceASP.ViewModel.ComponentPageSlug.ComponentTemplateViewBO
+
+<link rel="stylesheet" href="~/Content/css/component_three_content.css" />
+@{
+
+        var subDescription = Model.lstComponentSubDescription.Count;
+        var component = Model.lstComponentSubDescription;
+
+        if (subDescription == 3 )
+        {
+            <div class="component__three__content col-sm-12">
+                <div class="container d-flex flex-wrap">
+                    @for (int index = 0; index < 3; index++)
+                    {
+                        if (component.ElementAt(index).Title != null && component.ElementAt(index).SubTitle != null)
+                        {
+                            <div class="col-lg-4 col-md-4 col-sm-12 component_is_title">
+                                <h2 style="text-align: center;"><strong><span style="font-size: 18pt;"><span style="font-size: 24pt;">@component.ElementAt(index).Title</span> </span></strong></h2>
+                                <h2 style="text-align: center;"><span style="font-size: 16pt;"><strong>&nbsp;</strong>@component.ElementAt(index).SubTitle</span></h2>
+                            </div>
+                        }
+                        else
+                        {
+                            <div class="col-lg-4 col-md-4 col-sm-12">
+                                <p style="text-align: justify;">@Html.Raw(component.ElementAt(index).Description)</p>
+                            </div>
+                        }
+                    }
+                </div>
+            </div>
+        }
+}
