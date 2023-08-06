@@ -335,7 +335,9 @@ namespace EcommerceASP.Queries
                                 SubTitle = x.SubTitle,
                                 Title = x.Title,
                                 Image = x.Image,
-                                Description = x.Description
+                                Description = x.Description,
+                                ReferenceLink = x.ReferenceLink,
+                                Priority = x.Priority
                             })
                             .FirstOrDefault();
                 return objData;

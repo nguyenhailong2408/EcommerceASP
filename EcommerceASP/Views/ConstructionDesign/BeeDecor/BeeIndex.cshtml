@@ -13,10 +13,11 @@
 	if (topicDetail != null)
 	{
 		<section id="top-content-area" class="tca-medium tca-text-center" style="background-image: url(@Url.Content($"~/Content/Images/topic/{topicDetail.ThumbnailImage}"))">
-			<div class="overlay" style="opacity: 0.3; background-color: #444444;"></div><div class="lines-overlay animated fadeInDown"></div><div class="container">
+			<div class="overlay" style="opacity: 0.3; background-color: #444444;"></div><div class="lines-overlay animated fadeInDown"></div>
+			<div class="container" style="z-index:2">
 				<div class="row">
 					<div class="col-md-12">
-						<div class="title-content"> <h1 class="page-title animated fadeInDown" style="font-size: 3em;">Tổng hợp các mẫu thiết kế biệt thự 3 tầng đẹp, hiện đại, sang trọng 2023</h1></div>
+						<div class="title-content text-center"> <h1 class="page-title animated fadeInDown" style="font-size: 2em;">@Model.Title</h1></div>
 					</div>
 				</div>
 			</div>

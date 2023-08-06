@@ -57,8 +57,9 @@ namespace EcommerceASP.Queries
                                             Title = x.Title,
                                             Image = x.Image,
                                             Description = x.Description,
-                                            ReferenceLink = x.ReferenceLink
-                                        }).ToList();
+                                            ReferenceLink = x.ReferenceLink,
+                                            Priority = x.Priority
+                                        }).OrderBy(x=>x.Priority).ToList();
                 return objResult;
             }
             catch (Exception objEx)
