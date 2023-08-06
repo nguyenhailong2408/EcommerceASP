@@ -72,7 +72,7 @@ namespace EcommerceASP.Queries
                            .OrderBy(m => m.PageSlug)
                            .ToList();
 
-                objView.Items = lstData.ToPagedList((objSearch.PageCurrent ?? 1) - 1, objView.PageSize ?? 10);
+                objView.Items = lstData.ToPagedList((objSearch.PageCurrent ?? 1) - 1, objView.PageSize ?? 20);
                 return objView;
             }
             catch (Exception objEx)

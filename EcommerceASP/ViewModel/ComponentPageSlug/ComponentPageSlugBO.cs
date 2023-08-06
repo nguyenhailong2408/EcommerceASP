@@ -30,7 +30,7 @@ namespace EcommerceASP.ViewModel.ComponentPageSlug
     {
         public ListViewModel()
         {
-            this.PageSize = 10;
+            this.PageSize = 20;
         }
         public int? PageSize { get; set; }
         public IPagedList<ComponentPageSlugBO> Items { get; set; }
