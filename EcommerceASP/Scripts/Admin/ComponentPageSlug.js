@@ -170,7 +170,7 @@ ComponentPageSlug.prototype = {
             data: { id: id }
         }, function (data) {
             $("#modal-update .modal-body").html(data);
-            $("#modal-update .modal-dialog").css("max-width", "60%")
+            $("#modal-update .modal-dialog").css("max-width", "70%")
             Common.ComponentPageSlug.RegisterEvent();
         });
     },

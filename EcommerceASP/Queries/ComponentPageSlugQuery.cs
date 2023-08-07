@@ -66,7 +66,8 @@ namespace EcommerceASP.Queries
                                    SubTitle = z.d.SubTitle,
                                    Title = z.d.Title,
                                    Image = z.d.Image,
-                                   Description = z.d.Description
+                                   Description = z.d.Description,
+                                   Priority = z.d.Priority
                                }).ToList()
                            })
                            .OrderBy(m => m.PageSlug)
@@ -128,7 +129,8 @@ namespace EcommerceASP.Queries
                                    SubTitle = z.d.SubTitle,
                                    Title = z.d.Title,
                                    Image = z.d.Image,
-                                   Description = z.d.Description
+                                   Description = z.d.Description,
+                                   Priority=z.d.Priority
                                }).ToList()
                            })
                            .FirstOrDefault();
@@ -298,7 +300,8 @@ namespace EcommerceASP.Queries
                                 Title = x.Title,
                                 Image = x.Image,
                                 ImageOld = x.Image,
-                                Description = x.Description
+                                Description = x.Description,
+                                Priority = x.Priority
                             })
                             .ToList();
                 return objData;

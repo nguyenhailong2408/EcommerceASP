@@ -9,6 +9,7 @@
 			<th class="text-center">Tiêu đề phụ</th>
 			<th class="text-center">Tiêu đề</th>
 			<th class="text-center">Hình ảnh</th>
+			<th class="text-center">Thứ tự</th>
 			<th class="text-center" style="width:115px;">#</th>
 		</tr>
 	</thead>
@@ -27,6 +28,7 @@
 					<td class="text-center">
 						<img src="@Url.Content($"~/Content/Images/component/{item.Image}")" alt="" height="50" />
 					</td>
+					<td>@item.Priority</td>
 					<td class="text-center">
 						<button class="btn btn-sm btn-success"
 								type="button"
