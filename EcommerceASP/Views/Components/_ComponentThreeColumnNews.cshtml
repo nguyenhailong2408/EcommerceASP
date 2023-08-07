@@ -1,0 +1,34 @@
+﻿@model EcommerceASP.ViewModel.ComponentPageSlug.ComponentTemplateViewBO
+
+<link rel="stylesheet" href="~/Content/css/component_three_content.css" />
+@{
+
+        var subDescription = Model.lstComponentSubDescription.Count;
+        var component = Model.lstComponentSubDescription;
+
+        if (subDescription == 3 )
+        {
+            <div class="component__three__content col-sm-12">
+                <div class="container d-flex flex-wrap">
+                    @for (int index = 0; index < 3; index++)
+                    {
+                    <div class="col-lg-4 col-md-4 col-sm-12 introduce__block">
+                        <a class="block__image" href="@Model.lstComponentSubDescription.ElementAt(index).ReferenceLink">
+                            <div class="image-container" style="background-image: url(@Url.Content($"~/Content/Images/component/{@Model.lstComponentSubDescription.ElementAt(index).Image}")">
+                                <div class="vertical-number-box">
+                                    <span class="vertical-number">@(index + 1)</span>
+                                </div>
+                                <div class="arrow-box">
+                                    <span class="icon-arrow-right"></span>
+                                </div>
+                            </div>
+                            <div class="content-box-info">
+                                <p>@Model.lstComponentSubDescription.ElementAt(index).Title</p>
+                            </div>
+                        </a>
+                    </div>
+                    }
+                </div>
+            </div>
+        }
+}
