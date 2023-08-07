@@ -1185,6 +1185,7 @@
     <Content Include="Views\Components\_ComponentFourImage.cshtml" />
     <Content Include="Views\Components\_ComponentThreeContent.cshtml" />
     <Content Include="Views\Components\_Style1_ImageLeftContentRight.cshtml" />
+    <Content Include="Views\Components\_ComponentThreeColumnNews.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
