@@ -897,6 +897,7 @@
     <Content Include="UI\slimScroll\jquery.slimscroll.min.js" />
     <Content Include="UI\zoomify\zoomify.css" />
     <Content Include="UI\zoomify\zoomify.js" />
+    <Content Include="Views\Components\_ComponentThreeColumnNews.cshtml" />
     <Content Include="Views\Shared\Components\_Banner_Option_1.cshtml" />
     <Content Include="Views\Shared\Components\_Footer.cshtml" />
     <Content Include="Views\Shared\Components\_Menu.cshtml" />
