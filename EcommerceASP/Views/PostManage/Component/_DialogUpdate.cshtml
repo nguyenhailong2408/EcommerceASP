@@ -27,6 +27,12 @@ new
 			</div>
 		</div>
 		<div class="row form-group">
+			<label class="control-label col-md-2">Tiêu đề phụ:</label>
+			<div class="col-md-10">
+				@Html.TextBoxFor(m => m.SubTitle, new { @class = "form-control", @maxLength = "150", @style = "height:30px" })
+			</div>
+		</div>
+		<div class="row form-group">
 			<label class="control-label col-md-2">Đường dẫn:</label>
 			<div class="col-md-10">
 				@Html.TextBoxFor(m => m.Slug, new { @class = "form-control", @maxLength = "150", @style = "height:30px" })
@@ -39,6 +45,27 @@ new
 										   EcommerceASP.Queries.CommonQuery.GetCategoryTopic(Model.CategoryId),
 										   "-- Chưa chọn loại bài viết --",
 										   new { @class = "form-control" })
+			</div>
+		</div>
+		<div class="row form-group">
+			<label class="control-label col-md-2 ">Hình</label>
+			<div class="col-md-9">
+				<div class="input-group">
+					<img id="imgShow" src="@Url.Content($"~/Content/Images/topic/{Model.ThumbnailImage}")" alt="@Model.Title" height="50" />
+				</div>
+			</div>
+		</div>
+		<div class="row form-group">
+			<label class="control-label col-md-2 ">Upload Images</label>
+			<div class="col-md-9">
+				<div class="input-group">
+					@Html.TextBoxFor(m => m.ThumbnailImage, new { @class = "form-control" })
+					@Html.HiddenFor(m => m.ImageOld)
+					<label class="input-group-addon cursor" for="file-upload-image">
+						<i class="fa fa-upload"></i>
+					</label>
+				</div>
+				<input type="file" id="file-upload-image" name="UploadImage" class="d-none" />
 			</div>
 		</div>
 		<div class="row form-group">

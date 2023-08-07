@@ -1,0 +1,10 @@
+﻿.component__three__content {
+    padding: 5% 0;
+}
+
+.component_is_title {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}

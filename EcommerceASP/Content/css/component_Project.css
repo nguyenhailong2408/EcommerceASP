@@ -11,7 +11,23 @@
     -moz-transition: all 0.2s;
     transition: all 0.2s;
 }
+@media (max-width: 480px) {
+    .project__block__caption {
+        opacity: 1;
+    }
+}
 
+@media screen and (max-width: 840px) {
+    .project__block__caption {
+        opacity: 1;
+    }
+}
+
+@media screen and (max-width: 480px) {
+    .project__block__caption {
+        opacity: 1;
+    }
+}
 .project__block:hover .project__block__caption {
     opacity: 1;
 }
@@ -98,4 +114,14 @@
 
 .project__block:hover .project__block__image::after {
     opacity: 0;
+}
+.project__image {
+    width: 100%;
+    position: relative;
+    height: 100%;
+    position: relative;
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    min-height: 350px;
 }

@@ -20,6 +20,8 @@ namespace EcommerceASP.ViewModel.Topic
         public string Slug { get; set; }
         public string Content { get; set; }
         public string Title { get; set; }
+        public string SubTitle { get; set; }
+        public string ThumbnailImage { get; set; }
         public int PageId { get; set; }
         public bool IsChild { get; set; }
         public int? ParentId { get; set; }

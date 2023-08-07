@@ -8,6 +8,8 @@ namespace EcommerceASP.ViewModel.PostManage
 {
     public class PostManageBO: EcommerceASP.Models.Topic
     {
+        public string ImageOld { get; set; }
+        public HttpPostedFileBase UploadImage { get; set; }
         public string CreatedByName { get; set; }
         public string CategoryInfo { get; set; }
     }

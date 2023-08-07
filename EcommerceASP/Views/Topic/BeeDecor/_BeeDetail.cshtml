@@ -5,7 +5,7 @@
 }
 
 @{
-	ViewBag.Title = "Thiết kế thi công";
+	ViewBag.Title = Model.Title;
 
 }
 @{
@@ -37,9 +37,8 @@
 		</section>
 	}
 }
-
 @{
-	Html.RenderPartial(Url.Content("Components/BeeDecor/_Top_BreadcrumbBee"), new BreadcrumbBO
+	Html.RenderPartial(Url.Content("Components/_Top_Breadcrumb"), new BreadcrumbBO
 	{
 		ParentSlugName = Model.ParentSlugName,
 		ParentSlug = Model.ParentSlug,
@@ -50,17 +49,9 @@
 		IsShowTitle = true
 	});
 }
-@{
-	if (Model != null)
-	{
-		foreach (var component in Model.lstComponentPageSlug)
-		{
-			Html.RenderAction("GetComponentPageSlug", "ConstructionDesign", new { componentId = component.Id, componentTypeId = component.ComponentTypeId });
-		}
-	}
-}
-@*<div class="container">
-		@Html.Raw(Model.Content)
-	</div>*@
+
+<div class="container">
+	@Html.Raw(Model.Content)
+</div>
 
 

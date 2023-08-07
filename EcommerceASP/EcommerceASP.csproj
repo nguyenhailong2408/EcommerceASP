@@ -285,6 +285,8 @@
     <Compile Include="ViewModel\Topic\TopicViewBO.cs" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="Content\css\common_style.css" />
+    <Content Include="Content\css\component_three_content.css" />
     <Content Include="Content\css\component_Project.css" />
     <Content Include="Content\css\footer.css" />
     <Content Include="Content\css\component_four_image.css" />
@@ -1181,7 +1183,10 @@
     <Content Include="Views\Components\_Component_Project.cshtml" />
     <Content Include="Views\Components\_ComponentStyle5.cshtml" />
     <Content Include="Views\Components\_ComponentFourImage.cshtml" />
+    <Content Include="Views\Components\_ComponentThreeContent.cshtml" />
+    <Content Include="Views\Components\_Style1_ImageLeftContentRight.cshtml" />
     <Content Include="Views\Topic\Component\_List_TopicBee.cshtml" />
+    <Content Include="Views\Topic\BeeDecor\_BeeDetail.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

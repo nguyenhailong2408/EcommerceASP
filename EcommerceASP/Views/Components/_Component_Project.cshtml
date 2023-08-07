@@ -7,8 +7,8 @@
 	var lstSubDescription = Model.lstComponentSubDescription;
 	if (lstSubDescription != null && lstSubDescription.Count > 0)
 	{
-		<div class="componentProject col-sm-12">
-			<div class="container d-flex flex-wrap">
+		<div class="componentProject">
+			<div class="d-flex flex-wrap">
 				@{
 					foreach (var subDescription in lstSubDescription)
 					{
@@ -16,7 +16,9 @@
 							<a href="@(string.IsNullOrEmpty(subDescription.ReferenceLink)?"#":subDescription.ReferenceLink)"
 							   class="project__block">
 								<div class="project__block__image position-relative">
-									<img src="@Url.Content($"~/Content/Images/component/{subDescription.Image}")" alt="Alternate Text" />
+									@*<img src="@Url.Content($"~/Content/Images/component/{subDescription.Image}")" alt="Alternate Text" />*@
+									<div class="project__image" style="background-image: url('@Url.Content($"~/Content/Images/component/{subDescription.Image}")');">
+									</div>
 								</div>
 								<div class="project__block__caption">
 									<div class="project__block__caption--content">

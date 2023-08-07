@@ -309,7 +309,9 @@
           <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="CategoryId" Type="int" />
           <Property Name="Title" Type="nvarchar" MaxLength="250" />
+          <Property Name="SubTitle" Type="nvarchar" MaxLength="250" />
           <Property Name="Slug" Type="nvarchar" MaxLength="500" />
+          <Property Name="ThumbnailImage" Type="nvarchar" MaxLength="250" />
           <Property Name="Content" Type="nvarchar(max)" />
           <Property Name="Priority" Type="int" Nullable="false" />
           <Property Name="IsDeleted" Type="bit" Nullable="false" />
@@ -916,6 +918,8 @@
           <Property Name="Updated_by" Type="Int32" />
           <NavigationProperty Name="Category" Relationship="EcommerceModel.FK_Topics_Categorys" FromRole="Topic" ToRole="Category" />
           <NavigationProperty Name="TopicDetails" Relationship="EcommerceModel.FK_TopicDetails_Topics" FromRole="Topic" ToRole="TopicDetail" />
+          <Property Name="SubTitle" Type="String" MaxLength="250" FixedLength="false" Unicode="true" />
+          <Property Name="ThumbnailImage" Type="String" MaxLength="250" FixedLength="false" Unicode="true" />
         </EntityType>
         <Association Name="FK_CategoryDetails_Categorys">
           <End Type="EcommerceModel.Category" Role="Category" Multiplicity="1" />
@@ -1372,6 +1376,8 @@
           <EntitySetMapping Name="Topics">
             <EntityTypeMapping TypeName="EcommerceModel.Topic">
               <MappingFragment StoreEntitySet="Topics">
+                <ScalarProperty Name="ThumbnailImage" ColumnName="ThumbnailImage" />
+                <ScalarProperty Name="SubTitle" ColumnName="SubTitle" />
                 <ScalarProperty Name="Updated_by" ColumnName="Updated_by" />
                 <ScalarProperty Name="Updated_at" ColumnName="Updated_at" />
                 <ScalarProperty Name="Created_by" ColumnName="Created_by" />

@@ -8,7 +8,9 @@ using MvcPaging;
 using System;
 using System.Collections.Generic;
 using System.Data.Entity.Validation;
+using System.IO;
 using System.Linq;
+using System.Web;
 
 namespace EcommerceASP.Queries
 {
@@ -28,6 +30,8 @@ namespace EcommerceASP.Queries
                 if (objTopic != null)
                 {
                     objTopicView.Title = objTopic?.Title;
+                    objTopicView.SubTitle = objTopic?.SubTitle;
+                    objTopicView.ThumbnailImage = objTopic?.ThumbnailImage;
                     objTopicView.IsChild = false;
                     objTopicView.Content = objTopic?.Content;
                     lstTopicDetail = objTopic.TopicDetails
@@ -149,6 +153,8 @@ namespace EcommerceASP.Queries
                         CategoryId = t.CategoryId,
                         CategoryInfo = t.CategoryId + " - " + t.Category.Name,
                         Title = t.Title,
+                        SubTitle = t.SubTitle,
+                        ThumbnailImage = t.ThumbnailImage,
                         Content = t.Content,
                         Priority = t.Priority,
                         Slug = t.Slug,
@@ -205,12 +211,33 @@ namespace EcommerceASP.Queries
                 var objPost = new Topic();
                 objPost.CategoryId = objModel.CategoryId;
                 objPost.Title = objModel.Title;
+                objPost.SubTitle = objModel.SubTitle;
                 objPost.Slug = objModel.Slug;
                 objPost.Content = objModel.Content;
                 objPost.Priority = objModel.Priority;
                 objPost.IsDeleted = false;
                 objPost.Created_at = DateTime.Now;
                 objPost.Created_by = 1;
+
+                if (objModel.UploadImage != null)
+                {
+                    var imgNameOld = objModel.ImageOld;
+
+                    objPost.ThumbnailImage = objModel.UploadImage.GuidName();
+                    string pathImages = HttpContext.Current.Server.MapPath("~/Content/Images/topic/");
+
+                    if (!Directory.Exists(pathImages))
+                    {
+                        Directory.CreateDirectory(pathImages);
+                    }
+
+                    if (File.Exists(pathImages + imgNameOld))
+                    {
+                        File.Delete(pathImages + imgNameOld);
+                    }
+
+                    objModel.UploadImage.SaveAs(pathImages + objPost.ThumbnailImage);
+                }
 
                 _entities.Topics.Add(objPost);
                 _entities.SaveChanges();
@@ -266,6 +293,7 @@ namespace EcommerceASP.Queries
 
                 objTopic.CategoryId = objModel.CategoryId;
                 objTopic.Title = objModel.Title;
+                objTopic.SubTitle = objModel.SubTitle;
                 objTopic.Slug = objModel.Slug;
                 objTopic.Content = objModel.Content;
                 objTopic.Priority = objModel.Priority;
@@ -273,8 +301,28 @@ namespace EcommerceASP.Queries
                 objTopic.Updated_at = DateTime.Now;
                 objTopic.Updated_by = 1;
 
+                if (objModel.UploadImage != null)
+                {
+                    var imgNameOld = objModel.ImageOld;
+
+                    objTopic.ThumbnailImage = objModel.UploadImage.GuidName();
+                    string pathImages = HttpContext.Current.Server.MapPath("~/Content/Images/topic/");
+
+                    if (!Directory.Exists(pathImages))
+                    {
+                        Directory.CreateDirectory(pathImages);
+                    }
+
+                    if (File.Exists(pathImages + imgNameOld))
+                    {
+                        File.Delete(pathImages + imgNameOld);
+                    }
+
+                    objModel.UploadImage.SaveAs(pathImages + objTopic.ThumbnailImage);
+                }
+
                 _entities.SaveChanges();
-                return ResponseAPI.GetSuccessResponse("Success", null);
+                return ResponseAPI.GetSuccessResponse("Thành công", null);
             }
             catch (DbEntityValidationException e)
             {

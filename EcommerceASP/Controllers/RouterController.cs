@@ -73,7 +73,11 @@ namespace EcommerceASP.Controllers
                         case 10:
                             var data10 = TopicQuery.GetTopic(strSlug, page);
                             data10.PageId = router.PageId;
-                            return View("../Topic/_Detail", data10);
+                            if (domainName.Equals(EnumDomainName.thuanphat.ToString()))
+                            {
+                                return View("../Topic/_Detail", data10);
+                            }
+                            return View("../Topic/BeeDecor/_BeeDetail", data10);
                         case 13:
                             var data13 = ContactQuery.GetContact(strSlug);
                             data13.PageId = router.PageId;

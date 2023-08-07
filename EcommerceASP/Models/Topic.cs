@@ -31,6 +31,8 @@ namespace EcommerceASP.Models
         public Nullable<int> Created_by { get; set; }
         public Nullable<System.DateTime> Updated_at { get; set; }
         public Nullable<int> Updated_by { get; set; }
+        public string SubTitle { get; set; }
+        public string ThumbnailImage { get; set; }
     
         public virtual Category Category { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]

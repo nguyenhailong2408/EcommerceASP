@@ -57,7 +57,43 @@ PostManage.prototype = {
             $('#Content').val(CKEDITOR.instances["Content"].getData());
             Common.PostManage.SubmitFormUpdate(e);
         });
+
+        $("#imgShow").zoomify();
+
+        $("#file-upload-image").unbind("change").change(function (e) {
+            $("#ThumbnailImage").val(this.files[0].name);
+            this.files.item(0).type;
+            if (window.FileReader) {
+                var reader = new window.FileReader();
+                reader.onload = function (e) {
+
+                    $("#imgShow").attr('src', e.target.result);
+                };
+                reader.readAsDataURL(this.files[0]);
+            } else {
+                return;
+            }
+
+        });
+
+        var form = $("#form-update");
+
+        form.unbind("submit").submit(function (e) {
+            e.preventDefault();
+            e.stopImmediatePropagation();
+            var xhr = new XMLHttpRequest();
+            xhr.responseType = "json";
+            xhr.open(form[0].method, form[0].action);
+            xhr.onreadystatechange = function () {
+                if (xhr.readyState == 4 && xhr.status == 200) {
+                    Common.PostManage.UpdateSuccess(xhr.response);
+                }
+            };
+            Common.PostManage.UpdateBeforeSend();
+            xhr.send((new FormData(form[0])));
+        })
     },
+
     SubmitForm: function () {
         $("#form-search-PostManage").submit();
     },
