@@ -24,7 +24,6 @@ namespace EcommerceASP.Queries
                 //var objRouter = new PageSlug();
                 //objRouter = _entities.PageSlugs.Where(m => !m.IsDeleted && m.Slug.Equals(strSlug)).FirstOrDefault();
                 var objTopic = _entities.Topics.Where(m => !m.IsDeleted && m.Slug.Equals(strSlug)).FirstOrDefault();
-
                 var objTopicView = new TopicViewBO();
                 var lstTopicDetail = new List<TopicDetailBO>();
                 if (objTopic != null)
@@ -34,7 +33,37 @@ namespace EcommerceASP.Queries
                     objTopicView.ThumbnailImage = objTopic?.ThumbnailImage;
                     objTopicView.IsChild = false;
                     objTopicView.Content = objTopic?.Content;
-                    lstTopicDetail = objTopic.TopicDetails
+
+                    if (strSlug.Equals("tin-tuc"))
+                    {
+                        var lstCatTopics = _entities.Topics.Where(x => x.CategoryId == (int)EnumPage.Topic);
+                        lstTopicDetail = lstCatTopics.SelectMany(x => x.TopicDetails.Where(z => !z.IsDeleted)
+                                                        .Select(z => new TopicDetailBO
+                                                        {
+                                                            Id = z.Id,
+                                                            Name = z.Name,
+                                                            Title = z.Title,
+                                                            Content = z.Content,
+                                                            ThumbnailImage = z.ThumbnailImage,
+                                                            Slug = z.Slug,
+                                                            Description = z.Description,
+                                                            Priority = z.Priority,
+                                                            Created_at = z.Updated_at == null ? z.Created_at
+                                                                        : z.Updated_at == null ? DateTime.Now : z.Updated_at
+                                                        })).OrderByDescending(h => h.Created_at).ToList();
+                    }
+                    else
+                    {
+                        var lstCatTopicIds = _entities.Topics.Where(x => x.CategoryId == (int)EnumPage.Topic).Select(x=>x.Id).ToList();
+                        if(lstCatTopicIds.Any(x=>x == objTopic.Id))
+                        {
+                            objTopicView.ParentSlug = "tin-tuc";
+                        }
+                        objTopicView.IsChild = true;
+                        objTopicView.SlugName = objTopic?.Title;
+                        objTopicView.Slug = objTopic?.Slug;
+
+                        lstTopicDetail = objTopic.TopicDetails
                                     .Where(m => !m.IsDeleted)
                                     .Select(m => new TopicDetailBO
                                     {
@@ -46,8 +75,11 @@ namespace EcommerceASP.Queries
                                         Slug = m.Slug,
                                         Description = m.Description,
                                         Priority = m.Priority,
-                                        Created_at = m.Updated_at == null ? m.Created_at : m.Updated_at == null ? DateTime.Now: m.Updated_at
+                                        Created_at = m.Updated_at == null ? m.Created_at : m.Updated_at == null ? DateTime.Now : m.Updated_at
                                     }).OrderByDescending(m => m.Created_at).ToList();
+                    }
+                    objTopicView.ParentSlugName = objTopic?.Category.Name;
+                    
                 }
                 else
                 {
@@ -76,14 +108,19 @@ namespace EcommerceASP.Queries
                                             Created_at = m.Updated_at == null ? m.Created_at : m.Updated_at == null ? DateTime.Now : m.Updated_at
                                         }).OrderByDescending(m => m.Created_at).ToList();
                     }
+                    objTopicView.ParentSlugName = objTopic?.Category.Name;
+                    objTopicView.ParentSlug = objTopic?.Slug;
                 }
-                objTopicView.ParentSlugName = objTopic?.Category.Name;
-                objTopicView.ParentSlug = objTopic?.Slug;
+               
+                //if (!lstCatTopicIds.Contains(objTopic.Id))
+                //{
+                //    objTopicView.ParentSlug = "tin-tuc";
+                //}
                 objTopicView.lstComponentPageSlug = _entities.ComponentPageSlugs
-                                                    .Where(x => x.PageSlug.Equals(strSlug) && !x.IsDeleted).OrderBy(x=>x.Priority).ToList();
+                                                    .Where(x => x.PageSlug.Equals(strSlug) && !x.IsDeleted).OrderBy(x => x.Priority).ToList();
                 objTopicView.PageCurrent = PageCurrent;
 
-                objTopicView.lstTopicDetail = lstTopicDetail.ToPagedList(PageCurrent - 1, objTopicView.PageSize ?? 10);
+                objTopicView.lstTopicDetail = lstTopicDetail.ToPagedList(PageCurrent - 1, objTopicView.PageSize ?? 9);
                 return objTopicView;
             }
             catch (Exception objEx)

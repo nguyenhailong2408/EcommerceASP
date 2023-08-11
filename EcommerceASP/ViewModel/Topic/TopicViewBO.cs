@@ -11,7 +11,7 @@ namespace EcommerceASP.ViewModel.Topic
         public TopicViewBO()
         {
             this.PageCurrent = 1;
-            this.PageSize = 10;
+            this.PageSize = 9;
             this.lstComponentPageSlug = new List<Models.ComponentPageSlug>();
         }
         public string ParentSlugName { get; set; }
