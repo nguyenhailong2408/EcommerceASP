@@ -46,7 +46,7 @@ namespace EcommerceASP.Queries
                                         Slug = m.Slug,
                                         Description = m.Description,
                                         Priority = m.Priority,
-                                        Created_at = m.Created_at
+                                        Created_at = m.Updated_at == null ? m.Created_at : m.Updated_at == null ? DateTime.Now: m.Updated_at
                                     }).OrderByDescending(m => m.Created_at).ToList();
                 }
                 else
@@ -73,7 +73,7 @@ namespace EcommerceASP.Queries
                                             Slug = m.Slug,
                                             Description = m.Description,
                                             Priority = m.Priority,
-                                            Created_at = m.Created_at
+                                            Created_at = m.Updated_at == null ? m.Created_at : m.Updated_at == null ? DateTime.Now : m.Updated_at
                                         }).OrderByDescending(m => m.Created_at).ToList();
                     }
                 }
@@ -243,7 +243,7 @@ namespace EcommerceASP.Queries
 
                 _entities.Topics.Add(objPost);
                 _entities.SaveChanges();
-                return ResponseAPI.GetSuccessResponse("Success", null);
+                return ResponseAPI.GetSuccessResponse("Thành công", null);
             }
             catch (Exception objEx)
             {

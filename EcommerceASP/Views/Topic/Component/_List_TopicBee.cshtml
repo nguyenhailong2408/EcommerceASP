@@ -9,14 +9,20 @@
 				@{
 					foreach (var item in Model.lstTopicDetail)
 					{
-						<div class="col-lg-3 col-md-3 col-sm-6 col-xs-6 col-6 news-item">
+						<div class="col-lg-4 col-md-4 col-sm-6 col-xs-12 col-12 news-item">
 							<div class="news-item__block item-block">
-								<div class="item-block__img-thumb">
-									<a href="/@item.Slug"><img src="~/Content/Images/topic/@item.ThumbnailImage" alt="@item.Title" /></a>
-								</div>
-								<div class="item-block__topic-info">
-									<a href="/@item.Slug"><span class="topic-info__title">@item.Title</span></a>
-									<span class="topic-info__desc">@Html.Raw(item.Description)</span>
+								<a href="/@item.Slug" class="item-block__img-thumb" style="background-image:url(@Url.Content($"~/Content/Images/topic/{item.ThumbnailImage}"))">
+								</a>
+								<div class="item-block__info">
+									<div class="news-item__time">
+										@item.Created_at
+									</div>
+									<div class="divider-light"></div>
+									<div class="item-block__topic-info">
+										<a href="/@item.Slug"><span class="topic-info__title">@item.Title</span></a>
+										<div class="divider-light"></div>
+										<span class="topic-info__desc">@Html.Raw(item.Description)</span>
+									</div>
 								</div>
 							</div>
 						</div>
