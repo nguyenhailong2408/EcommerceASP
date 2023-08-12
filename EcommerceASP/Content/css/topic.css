@@ -303,6 +303,7 @@ span.topic-info__title {
 .news-item__time {
     width: 100%;
     text-align: left;
+    font-style:italic;
 }
 
 .item-block__info {

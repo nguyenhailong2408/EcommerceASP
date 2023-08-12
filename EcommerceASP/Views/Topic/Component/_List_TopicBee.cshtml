@@ -1,6 +1,6 @@
-﻿@using EcommerceASP.Libraries.MvcPaging
-@model EcommerceASP.ViewModel.Topic.TopicViewBO
-
+﻿@model EcommerceASP.ViewModel.Topic.TopicViewBO
+@using EcommerceASP.Libraries.MvcPaging
+@using EcommerceASP.Libraries;
 @{
 	if (Model != null)
 	{
@@ -15,7 +15,7 @@
 								</a>
 								<div class="item-block__info">
 									<div class="news-item__time">
-										@item.Created_at
+										@item.Created_at.ConvertDateTimeToStrVietNamese()
 									</div>
 									<div class="divider-light"></div>
 									<div class="item-block__topic-info">

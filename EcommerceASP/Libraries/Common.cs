@@ -61,5 +61,30 @@ namespace EcommerceASP.Libraries
                 return string.Join(separator, listObject.Select(s => s.Trim()));
             }
         }
+
+        public static string ConvertDateTimeToStrVietNamese(this DateTime? dateTime)
+        {
+            Dictionary<int, string> dicMonths = new Dictionary<int, string>();
+            dicMonths.Add(0, "Không tìm thấy");
+            dicMonths.Add(1, "Tháng một");
+            dicMonths.Add(2, "Tháng hai");
+            dicMonths.Add(3, "Tháng ba");
+            dicMonths.Add(4, "Tháng bốn");
+            dicMonths.Add(5, "Tháng năm");
+            dicMonths.Add(6, "Tháng sáu");
+            dicMonths.Add(7, "Tháng bảy");
+            dicMonths.Add(8, "Tháng tám");
+            dicMonths.Add(9, "Tháng chín");
+            dicMonths.Add(10, "Tháng mười");
+            dicMonths.Add(11, "Tháng mười một");
+            dicMonths.Add(12, "Tháng mười hai");
+            if (dateTime == null)
+                dateTime = DateTime.Now;
+            var day = dateTime?.Day;
+            var month = dateTime == null ? 0: dateTime?.Month;
+            var year = dateTime?.Year;
+
+            return day + " " + dicMonths[month.Value] + ", " + year;
+        }
     }
 }

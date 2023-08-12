@@ -36,6 +36,7 @@ namespace EcommerceASP.Queries
 
                     if (strSlug.Equals("tin-tuc"))
                     {
+                        objTopicView.ParentSlug = objTopic?.Slug;
                         var lstCatTopics = _entities.Topics.Where(x => x.CategoryId == (int)EnumPage.Topic);
                         lstTopicDetail = lstCatTopics.SelectMany(x => x.TopicDetails.Where(z => !z.IsDeleted)
                                                         .Select(z => new TopicDetailBO
