@@ -89,6 +89,7 @@ a.nav-item__link {
     display: flex;
     align-items: center;
     gap: 5px;
+    color: #333;
 }
 
 .nav-submenu__item {
@@ -96,6 +97,7 @@ a.nav-item__link {
     padding: 5px 30px 5px 20px;
     cursor: pointer;
     position: relative;
+    color: #333;
 }
 
     .nav-submenu__item::before {
