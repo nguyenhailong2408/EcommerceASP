@@ -1,0 +1,66 @@
+﻿@model EcommerceASP.ViewModel.Topic.TopicViewBO
+@using EcommerceASP.ViewModel.Component
+@{
+    Layout = "~/Views/Shared/_LayoutBee.cshtml";
+}
+
+@{
+    ViewBag.Title = "Thiết kế thi công";
+
+}
+@{
+    var topicDetail = Model.lstTopicDetail.Where(x => x.Slug == Model.Slug).FirstOrDefault();
+    if (topicDetail != null)
+    {
+        <section id="top-content-area" class="tca-medium tca-text-center" style="background-image: url(@Url.Content($"~/Content/Images/topic/{topicDetail.ThumbnailImage}"))">
+            <div class="overlay" style="opacity: 0.3; background-color: #444444;"></div><div class="lines-overlay animated fadeInDown"></div>
+            <div class="container" style="z-index:2">
+                <div class="row">
+                    <div class="col-md-12">
+                        <div class="title-content text-center"> <h1 class="page-title animated fadeInDown" style="font-size: 2em;">@Model.Title.ToUpper()</h1></div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    }
+    else
+    {
+        <section id="top-content-area" class="tca-medium tca-text-center" style="background-image: url(@Url.Content($"~/Content/Images/topic/{Model.ThumbnailImage}"))">
+            <div class="overlay" style="opacity: 0.3; background-color: #444444;"></div><div class="lines-overlay animated fadeInDown"></div>
+            <div class="container" style="z-index:2">
+                <div class="row">
+                    <div class="col-md-12">
+                        <div class="title-content text-center"> <h1 class="page-title animated fadeInDown" style="font-size: 2em;">@Model.Title.ToUpper()</h1></div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    }
+}
+
+@{
+    Html.RenderPartial(Url.Content("Components/BeeDecor/_Top_BreadcrumbBee"), new BreadcrumbBO
+    {
+        ParentSlugName = Model.ParentSlugName,
+        ParentSlug = Model.ParentSlug,
+        SlugName = Model.SlugName,
+        Slug = Model.Slug,
+        IsChild = Model.IsChild,
+        Title = Model.Title,
+        IsShowTitle = true
+    });
+}
+@{
+    if (Model != null)
+    {
+        foreach (var component in Model.lstComponentPageSlug)
+        {
+            Html.RenderAction("GetComponentPageSlug", "PageComponent", new { componentId = component.Id, componentTypeId = component.ComponentTypeId });
+        }
+    }
+}
+@*<div class="container">
+        @Html.Raw(Model.Content)
+    </div>*@
+
+

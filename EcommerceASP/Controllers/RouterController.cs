@@ -87,9 +87,9 @@ namespace EcommerceASP.Controllers
                             }
                             return View("../Contact/BeeIndex", data13);
                         case 22:
-                            var data22 = TopicQuery.GetTopic(strSlug, page);
+                            var data22 = TopicQuery.GetComponent(strSlug, page);
                             data22.PageId = router.PageId;
-                            return View("../ConstructionTopicDesign/Index", data22);
+                            return View("../PageComponent/Index", data22);
                         default:
                             return RedirectToAction("Index", "Home");
                     }

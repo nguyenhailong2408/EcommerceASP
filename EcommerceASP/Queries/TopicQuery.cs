@@ -440,5 +440,57 @@ namespace EcommerceASP.Queries
         }
 
         #endregion TopicManage
+
+        public static TopicViewBO GetComponent(string strSlug, int PageCurrent)
+        {
+            EcommerceEntities _entities = new EcommerceEntities();
+            try
+            {
+                var objTopicView = new TopicViewBO();
+                var lstTopicDetail = new List<TopicDetailBO>();
+                var objTopicDetail = _entities.TopicDetails.Where(m => !m.IsDeleted && m.Slug.Equals(strSlug)).FirstOrDefault();
+                if (objTopicDetail != null)
+                {
+                    objTopicView.Title = objTopicDetail?.Title;
+                    objTopicView.IsChild = true;
+                    objTopicView.Content = objTopicDetail?.Content;
+                    objTopicView.SlugName = objTopicDetail?.Title;
+                    objTopicView.Slug = objTopicDetail?.Slug;
+
+                    lstTopicDetail = objTopicDetail?.Topic.TopicDetails
+                                    .Where(m => !m.IsDeleted && m.Slug.Equals(strSlug))
+                                    .Select(m => new TopicDetailBO
+                                    {
+                                        Id = m.Id,
+                                        Name = m.Name,
+                                        Title = m.Title,
+                                        Content = m.Content,
+                                        ThumbnailImage = m.ThumbnailImage,
+                                        Slug = m.Slug,
+                                        Description = m.Description,
+                                        Priority = m.Priority,
+                                        Created_at = m.Updated_at == null ? m.Created_at : m.Updated_at == null ? DateTime.Now : m.Updated_at
+                                    }).OrderByDescending(m => m.Created_at).ToList();
+                }
+                objTopicView.ParentSlugName = objTopicDetail?.Topic.Category.Name;
+                objTopicView.ParentSlug = objTopicDetail?.Topic.Slug;
+
+                objTopicView.lstComponentPageSlug = _entities.ComponentPageSlugs
+                                                    .Where(x => x.PageSlug.Equals(strSlug) && !x.IsDeleted).OrderBy(x => x.Priority).ToList();
+                objTopicView.PageCurrent = PageCurrent;
+
+                objTopicView.lstTopicDetail = lstTopicDetail.ToPagedList(PageCurrent - 1, objTopicView.PageSize ?? 9);
+                return objTopicView;
+            }
+            catch (Exception objEx)
+            {
+                return new TopicViewBO();
+            }
+            finally
+            {
+                _entities.Dispose();
+            }
+        }
+
     }
 }
