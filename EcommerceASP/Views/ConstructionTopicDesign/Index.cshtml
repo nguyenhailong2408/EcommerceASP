@@ -1,0 +1,28 @@
+﻿@model EcommerceASP.ViewModel.Topic.TopicViewBO
+@using EcommerceASP.ViewModel.Component
+@{
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+@{
+    ViewBag.Title = Model.Title;
+
+}
+
+@{
+    Html.RenderPartial(Url.Content("Components/_Top_Breadcrumb"), new BreadcrumbBO
+    {
+        ParentSlugName = Model.ParentSlugName,
+        ParentSlug = Model.ParentSlug,
+        SlugName = Model.SlugName,
+        Slug = Model.Slug,
+        IsChild = Model.IsChild,
+        Title = Model.Title,
+        IsShowTitle = true
+    });
+}
+
+<div class="container">
+    @Html.Raw(Model.Content)
+</div>
+
