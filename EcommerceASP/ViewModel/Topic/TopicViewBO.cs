@@ -29,7 +29,7 @@ namespace EcommerceASP.ViewModel.Topic
 
         public int? PageCurrent { get; set; }
         public IPagedList<TopicDetailBO> lstTopicDetail { get; set; }
-        public List<Models.ComponentPageSlug> lstComponentPageSlug { get; set; }
+        public List<Models.ComponentPageSlug> lstComponentPageSlug { get; set; } 
     }
 
 }

@@ -3,29 +3,27 @@
 <link rel="stylesheet" href="~/Content/css/component_four_image.css" />
 @{
     var subDescription = Model.lstComponentSubDescription.Count;
-    if (subDescription >= 4 )
-    {
-        <div class="component__fourImage col-sm-12 pad_top_bot_5_percent">
-            <div class="container d-flex flex-wrap">
-                @for (int index = 0; index < 4; index++)
-                {
-                    <div class="col-lg-3 col-md-3 col-sm-12 introduce__block">
-                        <a class="block__image" href="@Model.lstComponentSubDescription.ElementAt(index).ReferenceLink">
-                            <div class="image-container" style="background-image: url(@Url.Content($"~/Content/Images/component/{@Model.lstComponentSubDescription.ElementAt(index).Image}")">
-                                <div class="vertical-number-box">
-                                    <span class="vertical-number">@(index + 1)</span>
-                                </div>
-                                <div class="arrow-box">
-                                    <span class="icon-arrow-right"></span>
-                                </div>
+
+    <div class="component__fourImage col-sm-12 pad_top_bot_5_percent">
+        <div class="container d-flex flex-wrap">
+            @for (int index = 0; index < subDescription; index++)
+            {
+                <div class="col-lg-3 col-md-3 col-sm-12 introduce__block">
+                    <a class="block__image" href="@Model.lstComponentSubDescription.ElementAt(index).ReferenceLink">
+                        <div class="image-container" style="background-image: url(@Url.Content($"~/Content/Images/component/{@Model.lstComponentSubDescription.ElementAt(index).Image}")">
+                            <div class="vertical-number-box">
+                                <span class="vertical-number">@(index + 1)</span>
                             </div>
-                            <div class="content-box-info">
-                                <h4 class="box-heading">@Model.lstComponentSubDescription.ElementAt(index).Title</h4>
+                            <div class="arrow-box">
+                                <span class="icon-arrow-right"></span>
                             </div>
-                        </a>
-                    </div>
-                }
-            </div>
+                        </div>
+                        <div class="content-box-info">
+                            <h4 class="box-heading">@Model.lstComponentSubDescription.ElementAt(index).Title</h4>
+                        </div>
+                    </a>
+                </div>
+            }
         </div>
-    }
+    </div>
 }
