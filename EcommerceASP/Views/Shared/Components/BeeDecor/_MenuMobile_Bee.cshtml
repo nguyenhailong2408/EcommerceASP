@@ -1,0 +1,272 @@
+﻿@model List<EcommerceASP.ViewModel.Category.CategoryBO>
+<style>
+	nav {
+		background-color: unset;
+		/* height: 65px; */
+	}
+	.nav_mobile_link {
+		font-weight: 500;
+		color: #303030;
+		padding: 5px 0;
+	}
+	.nav_mobile_link--only {
+		font-weight: bold;
+		padding: 0!important;
+	}
+	#menuToggle {
+		display: flex;
+		flex-direction: column;
+		position: relative;
+		left: 25px;
+		z-index: 1;
+		-webkit-user-select: none;
+		user-select: none;
+	}
+
+		#menuToggle input {
+			position: absolute;
+			cursor: pointer;
+			opacity: 0;
+			z-index: 2;
+		}
+
+		#menuToggle span {
+			display: flex;
+			width: 29px;
+			height: 2px;
+			margin-bottom: 5px;
+			position: relative;
+			background: #000000;
+			border-radius: 3px;
+			z-index: 1;
+			transform-origin: 5px 0px;
+			transition: transform 0.5s cubic-bezier(0.77,0.2,0.05,1.0), background 0.5s cubic-bezier(0.77,0.2,0.05,1.0), opacity 0.55s ease;
+		}
+
+			#menuToggle span:first-child {
+				transform-origin: 0% 0%;
+			}
+
+			#menuToggle span:nth-last-child(2) {
+				transform-origin: 0% 100%;
+			}
+
+		#menuToggle input:checked ~ span {
+			opacity: 1;
+			transform: rotate(45deg) translate(-3px, -1px);
+			background: #36383F;
+		}
+
+			#menuToggle input:checked ~ span:nth-last-child(3) {
+				opacity: 0;
+				transform: rotate(0deg) scale(0.2, 0.2);
+			}
+
+			#menuToggle input:checked ~ span:nth-last-child(2) {
+				transform: rotate(-45deg) translate(0, -1px);
+			}
+
+	#menu {
+		position: absolute;
+		top: 0;
+		left: 0;
+		width: 100vw;
+		height: 100vh;
+		box-shadow: 0 0 10px #85888C;
+		margin: -25px 0px 0 -25px;
+		padding: 50px 50px 50px 60px;
+		/* padding-top: 125px; */
+		background-color: #F5F6FA;
+		-webkit-font-smoothing: antialiased;
+		transform-origin: 0% 0%;
+		transform: translate(-100%, 0);
+		transition: transform 0.5s cubic-bezier(0.77,0.2,0.05,1.0);
+	}
+
+		#menu li {
+			padding: 10px 0 0 0;
+			transition-delay: 0.5s;
+		}
+
+	#menuToggle input:checked ~ ul {
+		transform: none;
+	}
+
+	.header__logo--mobile {
+		height: 80%;
+		position: absolute;
+		width: 100%;
+		text-align: center;
+	}
+
+	.dropdown:not(:checked) + label .uil {
+		font-size: 24px;
+		margin-left: 10px;
+		transition: transform 200ms linear;
+	}
+
+	.dropdown:checked + label .uil {
+		transform: rotate(180deg);
+		font-size: 24px;
+		margin-left: 10px;
+		transition: transform 200ms linear;
+	}
+
+	.dropdown-sub:checked + label,
+	.dropdown-sub:not(:checked) + label {
+		position: relative;
+		transition: all 200ms linear;
+		border-radius: 2px;
+		padding-right: 15px;
+		text-align: left;
+		text-decoration: none;
+		display: -ms-flexbox;
+		display: flex;
+		align-items: center;
+		/* justify-content: space-between; */
+		-ms-flex-pack: distribute;
+		cursor: pointer;
+		font-weight: bold;
+	}
+
+		.dropdown-sub:checked + label .uil,
+		.dropdown-sub:not(:checked) + label .uil {
+			font-size: 22px;
+		}
+
+		.dropdown-sub:not(:checked) + label .uil {
+			transition: transform 200ms linear;
+		}
+
+		.dropdown-sub:checked + label .uil {
+			transform: rotate(135deg);
+			transition: transform 200ms linear;
+		}
+
+		.dropdown-sub:checked + label:hover,
+		.dropdown-sub:not(:checked) + label:hover {
+			/*color: #102770;*/
+			/*background-color: #ffeba7;*/
+		}
+
+	.dark-light:checked ~ .sec-center .section-dropdown .for-dropdown-sub {
+		/*color: #102770;*/
+	}
+
+		.dark-light:checked ~ .sec-center .section-dropdown .for-dropdown-sub:hover {
+			/*color: #ffeba7;*/
+			/*background-color: #102770;*/
+		}
+
+	.section-dropdown-sub {
+		position: relative;
+		display: flex;
+		flex-direction: column;
+		width: 100%;
+		pointer-events: none;
+		opacity: 0;
+		max-height: 0;
+		padding-left: 10px;
+		padding-right: 3px;
+		overflow: hidden;
+		transition: all 200ms linear;
+	}
+
+	.dropdown-sub:checked ~ .section-dropdown-sub {
+		pointer-events: auto;
+		opacity: 1;
+		max-height: 999px;
+	}
+
+	.section-dropdown-sub a {
+		/*font-size: 14px;*/
+	}
+
+		.section-dropdown-sub a .uil {
+			/*font-size: 20px;*/
+		}
+</style>
+<header class="hidden-md hidden-lg hidden-xl" style="position: relative; display: flex; align-items: center; height: 65px;">
+	<nav role="navigation" style="width:100%;">
+		<div id="menuToggle">
+			<input type="checkbox" />
+			<span></span>
+			<span></span>
+			<span></span>
+			<ul id="menu">
+				<li><a class="nav_mobile_link nav_mobile_link--only" href="/" title="beedecor">Trang chủ</a></li>
+				@{
+					var idx = 0;
+					foreach (var category in Model)
+					{
+						if (category.lstCategoryDetail.Any())
+						{
+							<li>
+								<input class="dropdown-sub" type="checkbox" id="dropdown-sub-@idx" name="dropdown-sub-@idx" />
+								<label class="for-dropdown-sub mb-0" for="dropdown-sub-@idx">
+									@category.Name
+									<div class="uil">
+										<i class="bi bi-plus"></i>
+									</div>
+								</label>
+								@{
+									var lstCatLv1 = category.lstCategoryDetail.Where(m => m.ParentId == 0).ToList();
+									<div class="section-dropdown-sub">
+										@{
+											foreach (var itemCatLv1 in lstCatLv1)
+											{
+												<a class="nav_mobile_link" href="/@itemCatLv1.Slug" title="@itemCatLv1.Name">@itemCatLv1.Name</a>
+											}
+										}
+									</div>
+								}
+							</li>
+						}
+						else
+						{
+							<li><a class="nav_mobile_link nav_mobile_link--only" href="/@category.Slug" title="@category.Name">@category.Name</a></li>
+						}
+						idx++;
+					}
+				}
+
+				@*<li>
+			<input class="dropdown-sub" type="checkbox" id="dropdown-sub" name="dropdown-sub" />
+			<label class="for-dropdown-sub mb-0" for="dropdown-sub">
+				Dropdown Sub
+				<div class="uil">
+					<i class="bi bi-plus"></i>
+				</div>
+			</label>
+			<div class="section-dropdown-sub">
+				<a href="#">Dropdown Link</a>
+				<a href="#">Dropdown Link</a>
+			</div>
+		</li>
+		<li><a href="#">Home</a></li>
+		<li><a href="#">About</a></li>
+		<li><a href="#">Info</a></li>
+		<li><a href="#">Contact</a></li>*@
+			</ul>
+		</div>
+	</nav>
+	<div class="header__logo--mobile">
+		<a href="@Url.Action("Index", "Home")" class="logo-wrapper ">
+			<img style="height:100%;width:auto;" src="~/Content/Images/logo-BEE.png"
+				 alt="logo BeeDecor | Thiết Kế Thi Công Nội Thất Trọn Gói TPHCM">
+		</a>
+	</div>
+</header>
+<script>
+	$(document).ready(function () {
+		$(window).scroll(function () {
+			if ($(this).scrollTop() > 80) {
+				$('#headerBee').addClass('header--fixed');
+			}
+			else {
+				$('#headerBee').removeClass('header--fixed');
+			}
+
+		});
+	});
+</script>

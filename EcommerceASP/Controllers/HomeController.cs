@@ -35,6 +35,17 @@ namespace EcommerceASP.Controllers
             return PartialView("Components/_MenuBee", data);
         }
 
+        public ActionResult MenuMobileCategory()
+        {
+            string domainName = ConfigurationManager.AppSettings["DomainName"];
+            var data = HomeQuery.GetCategory();
+            if (domainName.Equals(EnumDomainName.thuanphat.ToString()))
+            {
+                return PartialView("Components/_MenuMobile", data);
+            }
+            return PartialView("Components/BeeDecor/_MenuMobile_Bee", data);
+        }
+
         public ActionResult GetComponent(ComponentBO Component)
         {
             var data = HomeQuery.GetDataComponent(Component);

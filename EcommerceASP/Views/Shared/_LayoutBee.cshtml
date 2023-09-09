@@ -29,12 +29,13 @@
 	<link rel="stylesheet" href="~/UI/bootstrap-4.3.1/css/bootstrap.min.css">
 	<link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet" />
 	<link rel="stylesheet" href="https://cdn.linearicons.com/free/1.0.0/icon-font.min.css">
+	<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css">
 	@RenderSection("scripts", required: false)
 	<script src="~/Scripts/Common.js"></script>
 	<link rel="stylesheet" href="~/Content/css/main.css" />
 	<link rel="stylesheet" href="~/Content/css/mainBee.css" />
 	<link rel="stylesheet" href="~/Content/css/menu.css">
-	<link rel="stylesheet" href="~/Content/css/mmenu.css">
+	@*<link rel="stylesheet" href="~/Content/css/mmenu.css">*@
 	<link rel="stylesheet" href="~/Content/css/responsive.css">
 	<link rel="stylesheet" href="~/Content/css/footer.css" />
 
@@ -42,8 +43,9 @@
 </head>
 <body>
 
-	@*@{ Html.RenderPartial("Components/_MenuMobile");}*@
+
 	<section id="headerBee" class="header" style="position: sticky; z-index: 9999;">
+		@{Html.RenderAction("MenuMobileCategory", "Home"); }
 		@{
 			//Html.RenderPartial("Components/_Menu");
 			Html.RenderAction("MenuCategory", "Home");

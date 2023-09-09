@@ -14,6 +14,10 @@ namespace EcommerceASP.Queries
             EcommerceEntities _entities = new EcommerceEntities();
             try
             {
+                if (strSlug.Equals("gioi-thieu"))
+                {
+                    strSlug = "ve-chung-toi";
+                }
                 var objRouter = new PageSlugBO();
                 objRouter = _entities.PageSlugs.Where(m => !m.IsDeleted && m.Slug.Equals(strSlug))
                     .Select(m=> new PageSlugBO

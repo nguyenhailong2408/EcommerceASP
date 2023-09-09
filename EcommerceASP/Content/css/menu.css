@@ -24,7 +24,7 @@
 
         .header__nav .nav-ul .nav-item {
             font-size: 1.2vw;
-            padding: 20px 0 20px 2em;
+            padding: 20px 0 20px 1.1vw;
             transition: all 0.4s;
             white-space: nowrap;
             position: relative;
@@ -61,9 +61,9 @@
             }
 
             .header__nav .nav-ul .nav-item:hover::before {
-                width: calc(100% - 2em);
+                width: calc(100% - 1.1vw);
                 opacity: 1;
-                left: 2em;
+                left: 1.1vw;
                 right: 0;
             }
 

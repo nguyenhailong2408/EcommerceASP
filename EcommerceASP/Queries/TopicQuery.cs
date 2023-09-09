@@ -23,6 +23,10 @@ namespace EcommerceASP.Queries
             {
                 //var objRouter = new PageSlug();
                 //objRouter = _entities.PageSlugs.Where(m => !m.IsDeleted && m.Slug.Equals(strSlug)).FirstOrDefault();
+                if (strSlug.Equals("gioi-thieu"))
+                {
+                    strSlug = "ve-chung-toi";
+                }
                 var objTopic = _entities.Topics.Where(m => !m.IsDeleted && m.Slug.Equals(strSlug)).FirstOrDefault();
                 var objTopicView = new TopicViewBO();
                 var lstTopicDetail = new List<TopicDetailBO>();

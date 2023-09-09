@@ -1191,6 +1191,7 @@
     <Content Include="Views\Topic\BeeDecor\_BeeDetail.cshtml" />
     <Content Include="Views\PageComponent\Index.cshtml" />
     <Content Include="Views\Components\_ComponentTwoContent.cshtml" />
+    <Content Include="Views\Shared\Components\BeeDecor\_MenuMobile_Bee.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
