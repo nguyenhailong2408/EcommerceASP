@@ -70,14 +70,24 @@ namespace EcommerceASP
             bundles.Add(new StyleBundle("~/bundles/timepicker/css").Include(
                         "~/UI/bootstrap-timepicker/css/bootstrap-timepicker.min.css"));
 
-            //Bootstrap CSS
+            //select2 CSS
             bundles.Add(new StyleBundle("~/UI/select2/css").Include(
                "~/UI/selected/select2.css"));
 
-            //Bootstrap JS
+            //select2 JS
             bundles.Add(new ScriptBundle("~/UI/select2/js").Include(
                 "~/UI/selected/select2.full.js"
                 ));
+
+            //fancybox_fancybox JS
+            bundles.Add(new ScriptBundle("~/UI/fancybox_fancybox/js").Include(
+                "~/UI/fancybox_fancybox/fancybox_fancybox.js"
+                ));
+
+            //fancybox_fancybox CSS
+            bundles.Add(new StyleBundle("~/UI/fancybox_fancybox/css").Include(
+               "~/UI/fancybox_fancybox/fancybox_fancybox.css"
+               ));
         }
     }
 }

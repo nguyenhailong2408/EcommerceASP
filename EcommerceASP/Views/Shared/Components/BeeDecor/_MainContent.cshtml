@@ -1,5 +1,6 @@
-﻿
+﻿@model EcommerceASP.ViewModel.HomeBO
 <script src="~/Scripts/Contact/Contact.js"></script>
+<link rel="stylesheet" href="~/Content/css/Project.css" />
 
 <div class="container introduce1 col-sm-12">
 	<div class="introduce1__boxTitle col-sm-12">
@@ -7,13 +8,13 @@
 		<span class="boxTitle__text">DỊCH VỤ CỦA CHÚNG TÔI</span>
 	</div>
 	<div class="introduce1__content col-sm-12">
-		<div class="col-lg-3 col-md-3 col-sm-12 introduce1__block">
+		<div class="col-lg-3 col-md-3 col-sm-12 introduce1__block drop-up">
 			<h2 class="block__title">Dịch vụ của <span style="color: #7d6741;">BEEDECOR</span></h2>
 			<div class="block__content" style=" text-align: justify;">
 				<p>BEEDECOR cung cấp dịch vụ trọn gói từ: Thiết kế nội thất – Thi công nội thất. Với mong muốn trở thành một công ty hàng đầu về nội thất ở trong nước và quốc tế, chúng tôi cam kết luôn mang đến cho Quý khách những sản phẩm thiết kế đẹp, độc đáo, sáng tạo, cũng như dịch vụ thi công chất lượng cao, giá cả hợp lý, vượt sự kỳ vọng của Chủ đầu tư. Đó cũng chính là lý do vì sao mỗi khách hàng khi tìm đến BEEDECOR  này thì đều cảm nhận được sự tinh tế, sang trọng, khác biệt và sự hài lòng</p>
 			</div>
 		</div>
-		<div class="col-lg-3 col-md-3 col-sm-12 introduce1__block">
+		<div class="col-lg-3 col-md-3 col-sm-12 introduce1__block drop-up">
 			<a class="block__image" href="/thi-cong-noi-that">
 				<div class="image-container" style="background-image: url('https://topdesign.com.vn/wp-content/uploads/2023/05/service-1-jpg.webp');">
 					<div class="vertical-number-box">
@@ -28,7 +29,7 @@
 				</div>
 			</a>
 		</div>
-		<div class="col-lg-3 col-md-3 col-sm-12 introduce1__block">
+		<div class="col-lg-3 col-md-3 col-sm-12 introduce1__block drop-up">
 			<a class="block__image" href="/thiet-ke-kien-truc">
 				<div class="image-container" style="background-image: url('https://topdesign.com.vn/wp-content/uploads/2023/05/service-item-3a-jpg.webp');">
 					<div class="vertical-number-box">
@@ -43,7 +44,7 @@
 				</div>
 			</a>
 		</div>
-		<div class="col-lg-3 col-md-3 col-sm-12 introduce1__block">
+		<div class="col-lg-3 col-md-3 col-sm-12 introduce1__block drop-up">
 			<a class="block__image" href="/thi-cong-xay-dung">
 				<div class="image-container" style="background-image: url('https://topdesign.com.vn/wp-content/uploads/2023/05/service-item-2-jpg.webp');">
 					<div class="vertical-number-box">
@@ -60,9 +61,10 @@
 		</div>
 	</div>
 </div>
+
 <div class="introduce2 col-sm-12">
 	<div class="container" style="display: flex; flex-wrap: wrap;">
-		<div class="col-lg-6 col-md-6 col-sm-12">
+		<div class="col-lg-6 col-md-6 col-sm-12 reveal fade-left">
 			<div>
 				<h1>
 					<span style="color: #f5f5f5; font-size: 18pt;"><strong>Công ty thiết kế nội thất và thi công nội thất cao cấp BEEDECOR</strong></span>
@@ -70,7 +72,7 @@
 			</div>
 			<span class="subtitle">Unique perspective</span>
 		</div>
-		<div class="col-lg-6 col-md-6 col-sm-12">
+		<div class="col-lg-6 col-md-6 col-sm-12 reveal fade-right">
 			<div class="textwidget">
 				<p>“Với thị trường cạnh tranh như bây giờ, cố gắng “hòa nhập” là một THẤT BẠI. Cũng một thế giới bận rộn như vậy, không trở nên KHÁC BIỆT, thì đồng nghĩa với VÔ HÌNH.”</p>
 				<p style="color: rgba(255, 255, 255, 0.5);">– SETH GODIN – </p>
@@ -78,13 +80,52 @@
 		</div>
 	</div>
 </div>
+
+<div class="introduce__project col-sm-12 reveal fade-bottom" style="margin-top:25px;">
+	<div class="container introduce1__boxTitle col-sm-12">
+		<div class="boxTitle__line"></div>
+		<span class="boxTitle__text">DỰ ÁN</span>
+	</div>
+	<h2 class="block__title container" style="margin-bottom:10px;">DỰ ÁN CỦA <span style="color: #7d6741;">BEEDECOR</span></h2>
+	@{
+		if (Model.lstTopicDetail != null)
+		{
+			<div class="componentProject drop-up">
+				<div class="d-flex flex-wrap">
+					@{
+						foreach (var item in Model.lstTopicDetail)
+						{
+							<div class="project__item col-lg-4 col-md-4 col-sm-6 col-xs-12 drop-up">
+								<a href="@(string.IsNullOrEmpty(item.Slug)?"#":item.Slug)"
+								   class="project__block">
+									<div class="project__block__image position-relative">
+										@*<img src="@Url.Content($"~/Content/Images/component/{subDescription.Image}")" alt="Alternate Text" />*@
+										<div class="project__image" style="background-image: url('@Url.Content($"~/Content/Images/topic/{item.ThumbnailImage}")');">
+										</div>
+									</div>
+									<div class="project__block__caption">
+										<div class="project__block__caption--content">
+											<div class="project__block__caption--category"> @*@item.SubTitle*@</div>
+											<div class="project__block__caption--name"><span>KHÁCH HÀNG:</span> @item.Title</div>
+										</div>
+									</div>
+								</a>
+							</div>
+						}
+					}
+				</div>
+			</div>
+		}
+	}
+</div>
+
 <div class="introduce3 col-sm-12">
 	<div class="container row">
-		<div class="introduce3__content--left col-lg-6 col-md-6 col-sm-12">
-			<img src="https://topdesign.com.vn/wp-content/uploads/2023/05/HIGH6547_863314-jpg-682x1024.webp" alt="BEEDECOR"
+		<div class="introduce3__content--left col-lg-6 col-md-6 col-sm-12 reveal fade-left">
+			<img src="https://smartspace.com.vn/vnt_upload/about/06_2021/0W8A4732_copy.jpg" alt="BEEDECOR"
 				 style="width:100%; height:auto;" />
 		</div>
-		<div class="introduce3__content--right col-lg-6 col-md-6 col-sm-12">
+		<div class="introduce3__content--right col-lg-6 col-md-6 col-sm-12 reveal fade-bottom">
 			<div class="block__info">
 				<p class="block__subTitle">Về BEEDECOR</p>
 				<p class="block__content" style="text-align: justify;">BEEDECOR mang đến cho khách hàng những giá trị  về thiết kế và ý tưởng, là sản phẩm của cả một tập thể cùng những nỗ lực tuyệt vời. Khách hàng sẽ hoàn toàn hài lòng từ khi triển khai đến khi kết thúc dự án.</p>
@@ -131,11 +172,12 @@
 		</div>
 	</div>
 </div>
+
 <div class="introduce4 col-sm-12">
 	<div class="container row introduce4__content">
-		<span class="col-sm-12 text-center introduce4__title--top">DEEDECOR làm việc như thế nào?</span>
+		<span class="col-sm-12 text-center introduce4__title--top reveal fade-bottom">BEEDECOR làm việc như thế nào?</span>
 		<div class="col-sm-12">
-			<h2 class="introduce4__title--center" style="text-align: center;">
+			<h2 class="introduce4__title--center reveal fade-bottom" style="text-align: center;">
 				<strong>
 					Quy trình
 					<span style="color: #7d6741;">F.A.S.T </span>
@@ -144,28 +186,28 @@
 			</h2>
 		</div>
 		<div class="col-sm-12" style="display:flex;flex-wrap:wrap; margin-top: 60px !important;">
-			<div class="col-lg-3 col-md-3 col-sm-6 col-xs-12" style="margin-bottom:40px;">
+			<div class="col-lg-3 col-md-3 col-sm-6 col-xs-12 reveal fade-bottom" style="margin-bottom:40px;">
 				<div class="number-box-home">
 					<div class="number-box-number">F</div>
 					<span class="number-box-home__title">F - Function: Công năng tối ưu</span>
 					<p>Công năng là sự phân chia, sắp xếp và bố trí không gian các phòng ( phòng khách, ngủ, vệ tinh, bếp …), cửa đi, cửa sổ và giao thông trong căn hộ, ngôi nhà một cách hợp lý nhất.</p>
 				</div>
 			</div>
-			<div class="col-lg-3 col-md-3 col-sm-6 col-xs-12" style="margin-bottom:40px;">
+			<div class="col-lg-3 col-md-3 col-sm-6 col-xs-12 reveal fade-bottom" style="margin-bottom:40px;">
 				<div class="number-box-home">
 					<div class="number-box-number">A</div>
 					<span class="number-box-home__title">A - Aesthetic: Đẹp, thẩm mỹ cao</span>
 					<p>Thẩm mỹ là cái đẹp. Bao hàm hai cực: sự phóng khoáng và sự tinh tế. Phương Tây thường tìm tới cái đẹp trong sự phóng khoáng, hùng vĩ, còn phương Đông - trong sự tinh tế, tỉ mỉ.</p>
 				</div>
 			</div>
-			<div class="col-lg-3 col-md-3 col-sm-6 col-xs-12" style="margin-bottom:40px;">
+			<div class="col-lg-3 col-md-3 col-sm-6 col-xs-12 reveal fade-bottom" style="margin-bottom:40px;">
 				<div class="number-box-home">
 					<div class="number-box-number">S</div>
 					<span class="number-box-home__title">S - Superior : Chất lượng cao</span>
 					<p>Để đạt được chất lượng cao về công năng, thẩm mỹ đòi hỏi người thiết kế phải nghiên cứu sâu, hiểu được khách hàng. Thiết kế đồng bộ với ý đồ, thói quen sử dụng, cá tính.... của CĐT.</p>
 				</div>
 			</div>
-			<div class="col-lg-3 col-md-3 col-sm-6 col-xs-12" style="margin-bottom:40px;">
+			<div class="col-lg-3 col-md-3 col-sm-6 col-xs-12 reveal fade-bottom" style="margin-bottom:40px;">
 				<div class="number-box-home">
 					<div class="number-box-number">T</div>
 					<span class="number-box-home__title">T - Timing: Nhanh chóng, đúng hẹn</span>
@@ -175,10 +217,11 @@
 		</div>
 	</div>
 </div>
+
 <div class="introduce5 col-sm-12">
 	<div class="container row introduce5__content">
 		<div class="col-lg-6 col-md-6 col-sm-0"></div>
-		<div class="col-lg-6 col-md-6 col-sm-12 col-xs-12 col-12 row">
+		<div class="col-lg-6 col-md-6 col-sm-12 col-xs-12 col-12 reveal fade-right">
 			@using (Ajax.BeginForm("Update", "Contact", null, new AjaxOptions()
 			{
 				HttpMethod = "POST",
@@ -242,6 +285,6 @@
     $(document).ready(function () {
         Common.Contact = new Contact();
         Contact.Url = {};
-        Contact.Url.SendMessage = '@Url.Action("SendMessage", "Contact")';
+		Contact.Url.SendMessage = '@Url.Action("SendMessage", "Contact")';
     });
 </script>

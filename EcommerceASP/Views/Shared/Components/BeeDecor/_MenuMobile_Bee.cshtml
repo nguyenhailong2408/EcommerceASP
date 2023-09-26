@@ -4,15 +4,19 @@
 		background-color: unset;
 		/* height: 65px; */
 	}
+
 	.nav_mobile_link {
 		font-weight: 500;
-		color: #303030;
+		color: #ffffff;
 		padding: 5px 0;
 	}
+
 	.nav_mobile_link--only {
-		font-weight: bold;
-		padding: 0!important;
+		/* font-weight: bold; */
+		padding: 0 !important;
+		color: #fffafa;
 	}
+
 	#menuToggle {
 		display: flex;
 		flex-direction: column;
@@ -68,24 +72,27 @@
 
 	#menu {
 		position: absolute;
-		top: 0;
+		top: 68px;
 		left: 0;
 		width: 100vw;
 		height: 100vh;
-		box-shadow: 0 0 10px #85888C;
+		/* box-shadow: 0 0 10px #85888C; */
 		margin: -25px 0px 0 -25px;
 		padding: 50px 50px 50px 60px;
 		/* padding-top: 125px; */
-		background-color: #F5F6FA;
+		background-color: #333333ed;
 		-webkit-font-smoothing: antialiased;
 		transform-origin: 0% 0%;
 		transform: translate(-100%, 0);
 		transition: transform 0.5s cubic-bezier(0.77,0.2,0.05,1.0);
+		overflow-y: scroll;
 	}
 
 		#menu li {
 			padding: 10px 0 0 0;
 			transition-delay: 0.5s;
+			color: #ffffff;
+			font-size: 20px;
 		}
 
 	#menuToggle input:checked ~ ul {
@@ -126,7 +133,7 @@
 		/* justify-content: space-between; */
 		-ms-flex-pack: distribute;
 		cursor: pointer;
-		font-weight: bold;
+		/* font-weight: bold; */
 	}
 
 		.dropdown-sub:checked + label .uil,
@@ -146,7 +153,7 @@
 		.dropdown-sub:checked + label:hover,
 		.dropdown-sub:not(:checked) + label:hover {
 			/*color: #102770;*/
-			/*background-color: #ffeba7;*/
+			/* background-color: #ffeba7; */
 		}
 
 	.dark-light:checked ~ .sec-center .section-dropdown .for-dropdown-sub {
@@ -166,7 +173,7 @@
 		pointer-events: none;
 		opacity: 0;
 		max-height: 0;
-		padding-left: 10px;
+		padding-left: 30px;
 		padding-right: 3px;
 		overflow: hidden;
 		transition: all 200ms linear;
@@ -179,7 +186,7 @@
 	}
 
 	.section-dropdown-sub a {
-		/*font-size: 14px;*/
+		font-size: 18px;
 	}
 
 		.section-dropdown-sub a .uil {
@@ -231,22 +238,22 @@
 				}
 
 				@*<li>
-			<input class="dropdown-sub" type="checkbox" id="dropdown-sub" name="dropdown-sub" />
-			<label class="for-dropdown-sub mb-0" for="dropdown-sub">
-				Dropdown Sub
-				<div class="uil">
-					<i class="bi bi-plus"></i>
-				</div>
-			</label>
-			<div class="section-dropdown-sub">
-				<a href="#">Dropdown Link</a>
-				<a href="#">Dropdown Link</a>
-			</div>
-		</li>
-		<li><a href="#">Home</a></li>
-		<li><a href="#">About</a></li>
-		<li><a href="#">Info</a></li>
-		<li><a href="#">Contact</a></li>*@
+						<input class="dropdown-sub" type="checkbox" id="dropdown-sub" name="dropdown-sub" />
+						<label class="for-dropdown-sub mb-0" for="dropdown-sub">
+							Dropdown Sub
+							<div class="uil">
+								<i class="bi bi-plus"></i>
+							</div>
+						</label>
+						<div class="section-dropdown-sub">
+							<a href="#">Dropdown Link</a>
+							<a href="#">Dropdown Link</a>
+						</div>
+					</li>
+					<li><a href="#">Home</a></li>
+					<li><a href="#">About</a></li>
+					<li><a href="#">Info</a></li>
+					<li><a href="#">Contact</a></li>*@
 			</ul>
 		</div>
 	</nav>

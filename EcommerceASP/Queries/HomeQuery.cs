@@ -34,6 +34,23 @@ namespace EcommerceASP.Queries
                         Priority = m.Priority,
                         ComponentType = m.ComponentType
                     }).OrderBy(m => m.Priority).ToList();
+
+                var objTopic = _entities.Topics.Where(m => !m.IsDeleted && m.Slug.Equals("du-an")).FirstOrDefault();
+                objHome.lstTopicDetail = objTopic.TopicDetails
+                                    .Where(m => !m.IsDeleted)
+                                    .Select(m => new TopicDetailBO
+                                    {
+                                        Id = m.Id,
+                                        Name = m.Name,
+                                        Title = m.Title,
+                                        Content = m.Content,
+                                        ThumbnailImage = m.ThumbnailImage,
+                                        Slug = m.Slug,
+                                        Description = m.Description,
+                                        Priority = m.Priority,
+                                        Created_at = m.Updated_at == null ? m.Created_at : m.Updated_at == null ? DateTime.Now : m.Updated_at
+                                    }).OrderByDescending(m => m.Created_at).ToList();
+
                 return objHome;
             }
             catch (Exception objEx)

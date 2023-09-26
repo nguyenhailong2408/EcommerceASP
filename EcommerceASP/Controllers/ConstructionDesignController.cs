@@ -17,7 +17,7 @@ namespace EcommerceASP.Controllers
             return View();
         }
 
-        public ActionResult GetComponentPageSlug(int componentId,int componentTypeId)
+        public ActionResult GetComponentPageSlug(int componentId,int componentTypeId, bool isFristComponent)
         {
             var data = ComponentQuery.GetComponentSubDescription(componentId, componentTypeId);
             //string domainName = ConfigurationManager.AppSettings["DomainName"];

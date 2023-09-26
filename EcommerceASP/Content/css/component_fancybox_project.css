@@ -1,0 +1,95 @@
+﻿#myCarousel .f-carousel__slide {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.componentFancy__block {
+    height: 850px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.componentFancy__block--image {
+    width: auto;
+    height: auto;
+    max-width: 100%;
+    max-height: 100%
+}
+button.f-button.is-next {
+    background-color: #75717145
+}
+button.f-button.is-prev {
+    background-color: #75717145
+}
+
+button.f-button.is-next svg {
+    color: black;
+}
+button.f-button.is-prev svg {
+    color: black;
+}
+.f-carousel__thumbs {
+    --f-thumb-width: 275px;
+    --f-thumb-height: 180px;
+}
+.f-carousel__thumbs.is-classic {
+    --f-thumb-gap: 110px!important;
+}
+@media screen and (max-width: 840px) {
+    .componentFancy__block {
+        height: 650px
+    }
+    .f-carousel__thumbs {
+        --f-thumb-width: 200px;
+        --f-thumb-height: 105px;
+    }
+
+        .f-carousel__thumbs.is-classic {
+            --f-thumb-gap: 80px !important;
+        }
+}
+
+@media (max-width: 768px) {
+    .componentFancy__block {
+        height: 500px
+    }
+    .f-carousel__thumbs {
+        --f-thumb-width: 150px;
+        --f-thumb-height: 100px;
+    }
+
+        .f-carousel__thumbs.is-classic {
+            --f-thumb-gap: 50px !important;
+        }
+}
+
+@media (max-width: 580px) {
+    .componentFancy__block {
+        height: 410px
+    }
+    .f-carousel__thumbs {
+        --f-thumb-width: 150px;
+        --f-thumb-height: 100px;
+    }
+
+        .f-carousel__thumbs.is-classic {
+            --f-thumb-gap: 30px !important;
+        }
+}
+
+
+@media (max-width: 480px) {
+    .componentFancy__block {
+        height: 315px
+    }
+    .f-carousel__thumbs {
+        --f-thumb-width: 150px;
+        --f-thumb-height: 100px;
+    }
+
+        .f-carousel__thumbs.is-classic {
+            --f-thumb-gap: 30px !important;
+        }
+}

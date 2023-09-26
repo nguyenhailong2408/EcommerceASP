@@ -290,7 +290,7 @@ namespace EcommerceASP.Queries
                 if (Id == null)
                     return objData;
 
-                objData = _entities.ComponentSubDescriptions.Where(x => x.ComponentId == Id)
+                objData = _entities.ComponentSubDescriptions.Where(x => x.ComponentId == Id && !x.IsDeleted)
                             .Select(x => new ComponentSubDescriptionBO
                             {
                                 Id = x.Id,
@@ -329,7 +329,7 @@ namespace EcommerceASP.Queries
                     return objData;
                 }
 
-                objData = _entities.ComponentSubDescriptions.Where(x => x.Id == Id)
+                objData = _entities.ComponentSubDescriptions.Where(x => x.Id == Id && !x.IsDeleted)
                             .Select(x => new ComponentSubDescriptionBO
                             {
                                 Id = x.Id,

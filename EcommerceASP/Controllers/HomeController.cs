@@ -15,6 +15,7 @@ namespace EcommerceASP.Controllers
     {
         public ActionResult Index()
         {
+            
             var data = HomeQuery.GetComponent();
             string domainName = ConfigurationManager.AppSettings["DomainName"];
             if (domainName.Equals(EnumDomainName.thuanphat.ToString()))

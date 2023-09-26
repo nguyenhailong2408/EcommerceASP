@@ -10,11 +10,11 @@
 	<link rel="stylesheet" href="~/Content/css/topic.css">
 }
 <section id="top-content-area" class="tca-medium tca-text-center" style="background-image: url(@Url.Content($"~/Content/Images/topic/{Model.ThumbnailImage}"))">
-	<div class="overlay" style="opacity: 0.3; background-color: #444444;"></div><div class="lines-overlay animated fadeInDown"></div>
+	<div class="overlay" style="opacity: 0.3; background-color: #444444;"></div><div class="lines-overlay drop-in"></div>
 	<div class="container" style="z-index:2">
 		<div class="row">
 			<div class="col-md-12">
-				<div class="title-content text-center"> <h1 class="page-title animated fadeInDown" style="font-size: 2em;">@Model.Title.ToUpper()</h1></div>
+				<div class="title-content text-center"> <h1 class="page-title drop-in" style="font-size: 2em;">@Model.Title.ToUpper()</h1></div>
 			</div>
 		</div>
 	</div>

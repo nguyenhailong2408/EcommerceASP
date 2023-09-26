@@ -11,23 +11,7 @@
     -moz-transition: all 0.2s;
     transition: all 0.2s;
 }
-@media (max-width: 480px) {
-    .project__block__caption {
-        opacity: 1;
-    }
-}
 
-@media screen and (max-width: 840px) {
-    .project__block__caption {
-        opacity: 1;
-    }
-}
-
-@media screen and (max-width: 480px) {
-    .project__block__caption {
-        opacity: 1;
-    }
-}
 .project__block:hover .project__block__caption {
     opacity: 1;
 }
@@ -65,6 +49,7 @@
     margin-bottom: 10px;
     letter-spacing: 0px;
 }
+
 .project__block {
     position: relative;
     overflow: hidden;
@@ -73,8 +58,9 @@
     background: #222;
     border: 0 !important;
 }
+
 .project__block__image {
-    height: 310px;
+    height: 400px;
     object-fit: cover;
     transition: 0.5s;
     width: 100%;
@@ -104,17 +90,20 @@
         font-weight: 200;
         opacity: 0;
     }
+
 .project__block:hover .project__block__image {
     opacity: 0.4;
     transform: scale(1.05);
 }
-.project__block:hover .project__block__image::before {
-    opacity: 0;
-}
 
-.project__block:hover .project__block__image::after {
-    opacity: 0;
-}
+    .project__block:hover .project__block__image::before {
+        opacity: 0;
+    }
+
+    .project__block:hover .project__block__image::after {
+        opacity: 0;
+    }
+
 .project__image {
     width: 100%;
     position: relative;
@@ -124,4 +113,50 @@
     background-position: center;
     background-repeat: no-repeat;
     min-height: 350px;
+}
+
+/*CCS MOBILE*/
+@media screen and (max-width: 840px) {
+    .project__block__caption {
+        opacity: 1;
+    }
+    .project__block__image {
+        height: 380px;
+    }
+}
+
+@media (max-width: 768px) {
+    .project__block__caption {
+        opacity: 1;
+    }
+    .project__block__image {
+        height: 380px;
+    }
+}
+
+@media (max-width: 580px) {
+    .project__block__caption {
+        opacity: 1;
+    }
+    .project__block__image {
+        height: 290px;
+    }
+}
+
+@media screen and (max-width: 480px) {
+    .project__block__caption {
+        opacity: 1;
+    }
+    .project__block__image {
+        height: 290px;
+    }
+}
+
+@media (max-width: 480px) {
+    .project__block__caption {
+        opacity: 1;
+    }
+    .project__block__image {
+        height: 290px;
+    }
 }

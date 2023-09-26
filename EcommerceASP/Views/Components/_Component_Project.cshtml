@@ -7,12 +7,12 @@
 	var lstSubDescription = Model.lstComponentSubDescription;
 	if (lstSubDescription != null && lstSubDescription.Count > 0)
 	{
-		<div class="componentProject">
+		<div class="componentProject drop-up">
 			<div class="d-flex flex-wrap">
 				@{
 					foreach (var subDescription in lstSubDescription)
 					{
-						<div class="col-lg-4 col-md-4 col-sm-6 col-xs-12 p-0">
+						<div class="col-lg-4 col-md-4 col-sm-6 col-xs-12 p-0 drop-up">
 							<a href="@(string.IsNullOrEmpty(subDescription.ReferenceLink)?"#":subDescription.ReferenceLink)"
 							   class="project__block">
 								<div class="project__block__image position-relative">
@@ -23,7 +23,7 @@
 								<div class="project__block__caption">
 									<div class="project__block__caption--content">
 										<div class="project__block__caption--category"> @subDescription.SubTitle</div>
-										<div class="project__block__caption--name"> @subDescription.Title</div>
+										<div class="project__block__caption--name"><span>KHÁCH HÀNG:</span> @subDescription.Title</div>
 									</div>
 								</div>
 							</a>

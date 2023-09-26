@@ -4,11 +4,11 @@
 @{
     var subDescription = Model.lstComponentSubDescription.Count;
 
-    <div class="component__fourImage col-sm-12 pad_top_bot_5_percent">
+    <div class="component__fourImage col-sm-12 pad_top_bot_5_percent reveal fade-bottom">
         <div class="container d-flex flex-wrap">
             @for (int index = 0; index < subDescription; index++)
             {
-                <div class="col-lg-3 col-md-3 col-sm-12 introduce__block">
+                <div class="col-lg-3 col-md-3 col-sm-12 introduce__block reveal fade-bottom">
                     <a class="block__image" href="@Model.lstComponentSubDescription.ElementAt(index).ReferenceLink">
                         <div class="image-container" style="background-image: url(@Url.Content($"~/Content/Images/component/{@Model.lstComponentSubDescription.ElementAt(index).Image}")">
                             <div class="vertical-number-box">

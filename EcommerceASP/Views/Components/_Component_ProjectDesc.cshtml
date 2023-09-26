@@ -1,0 +1,21 @@
+﻿@model EcommerceASP.ViewModel.ComponentPageSlug.ComponentTemplateViewBO
+
+<link rel="stylesheet" href="~/Content/css/component_ProjectDesc.css" />
+@{
+	var subDescription = Model.lstComponentSubDescription.FirstOrDefault();
+	if (subDescription != null)
+	{
+		<div class="container">
+			<div class="box__customerName">
+				<h1>KHÁCH HÀNG: @subDescription.Title</h1>
+			</div>
+			<div class="box__ProjectDesc">
+				<span class="box__ProjectDesc--title col-lg-2 col-md-2 col-xm-12 col-xs-12 p-0">CHI TIẾT:</span>
+				<div class="box__ProjectDesc--content col-lg-10 col-md-10 col-xm-12 col-xs-12">
+					@Html.Raw(subDescription.Description)
+				</div>
+			</div>
+		</div>
+	}
+}
+

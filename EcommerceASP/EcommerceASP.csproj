@@ -156,6 +156,7 @@
     <Compile Include="Controllers\Admin\PostManageController.cs" />
     <Compile Include="Controllers\ProductController.cs" />
     <Compile Include="Controllers\ProductDetailController.cs" />
+    <Compile Include="Controllers\ProjectController.cs" />
     <Compile Include="Controllers\RouterController.cs" />
     <Compile Include="Controllers\Admin\SlideManageController.cs" />
     <Compile Include="Controllers\TopicController.cs" />
@@ -287,12 +288,15 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="Content\css\common_style.css" />
+    <Content Include="Content\css\component_fancybox_project.css" />
+    <Content Include="Content\css\component_ProjectDesc.css" />
     <Content Include="Content\css\component_three_content.css" />
     <Content Include="Content\css\component_Project.css" />
     <Content Include="Content\css\footer.css" />
     <Content Include="Content\css\component_four_image.css" />
     <Content Include="Content\css\mainBee.css" />
     <Content Include="Content\css\menu.css" />
+    <Content Include="Content\css\Project.css" />
     <Content Include="Content\css\topic.css" />
     <Content Include="Content\Images\bg_footer.png" />
     <Content Include="Content\Images\component\062d5570-e88a-4aac-bdb9-aa9331532f7e.jpg" />
@@ -892,6 +896,14 @@
     <Content Include="UI\ckeditor\Themes\skins\moono-lisa\images\spinner.gif" />
     <Content Include="UI\ckeditor\Themes\styles.js" />
     <Content Include="UI\ckeditor\Themes\vendor\promise.js" />
+    <Content Include="UI\fancybox_fancybox\fancybox_carousel.css" />
+    <Content Include="UI\fancybox_fancybox\fancybox_carousel.js" />
+    <Content Include="UI\fancybox_fancybox\fancybox_carousel_autoplay.css" />
+    <Content Include="UI\fancybox_fancybox\fancybox_carousel_autoplay.js" />
+    <Content Include="UI\fancybox_fancybox\fancybox_carousel_thumbs.css" />
+    <Content Include="UI\fancybox_fancybox\fancybox_carousel_thumbs.js" />
+    <Content Include="UI\fancybox_fancybox\fancybox_fancybox.css" />
+    <Content Include="UI\fancybox_fancybox\fancybox_fancybox.js" />
     <Content Include="UI\selected\select2.css" />
     <Content Include="UI\selected\select2.full.js" />
     <Content Include="UI\slimScroll\jquery.slimscroll.js" />
@@ -1192,6 +1204,10 @@
     <Content Include="Views\PageComponent\Index.cshtml" />
     <Content Include="Views\Components\_ComponentTwoContent.cshtml" />
     <Content Include="Views\Shared\Components\BeeDecor\_MenuMobile_Bee.cshtml" />
+    <Content Include="Views\Components\_Component_Fancybox.cshtml" />
+    <Content Include="Views\Project\Index.cshtml" />
+    <Content Include="Views\Project\Component\_ListProject.cshtml" />
+    <Content Include="Views\Components\_Component_ProjectDesc.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

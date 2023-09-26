@@ -1,0 +1,64 @@
+﻿.box__customerName h1 {
+    font-size: 35px;
+    font-weight: bold;
+}
+
+.box__ProjectDesc--title {
+    font-size: 20px;
+    font-weight: bold;
+    color: #f5911d;
+}
+
+.box__ProjectDesc {
+    display: flex;
+    flex-wrap: wrap;
+}
+
+.box__ProjectDesc--content table tbody tr td {
+    white-space: unset !important;
+}
+/*CCS MOBILE*/
+@media screen and (max-width: 840px) {
+    .box__customerName h1 {
+        font-size:25px;
+    }
+    .box__ProjectDesc--title {
+        font-size: 18px;
+    }
+}
+
+@media (max-width: 768px) {
+    .box__customerName h1 {
+        font-size: 25px;
+    }
+    .box__ProjectDesc--title {
+        font-size: 18px;
+    }
+}
+
+@media (max-width: 580px) {
+    .box__customerName h1 {
+        font-size: 25px;
+    }
+    .box__ProjectDesc--title {
+        font-size: 16px;
+    }
+}
+
+@media screen and (max-width: 480px) {
+    .box__customerName h1 {
+        font-size: 25px;
+    }
+    .box__ProjectDesc--title {
+        font-size: 16px;
+    }
+}
+
+@media (max-width: 480px) {
+    .box__customerName h1 {
+        font-size: 25px;
+    }
+    .box__ProjectDesc--title {
+        font-size: 16px;
+    }
+}

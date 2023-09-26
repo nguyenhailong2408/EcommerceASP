@@ -1,0 +1,59 @@
+﻿@model EcommerceASP.ViewModel.ComponentPageSlug.ComponentTemplateViewBO
+<link rel="stylesheet" href="~/Content/css/component_fancybox_project.css" />
+@{
+	var lstSubDescription = Model.lstComponentSubDescription;
+	if (lstSubDescription != null && lstSubDescription.Count > 0)
+	{
+		<div class="col-sm-12 p-0">
+			<div class="f-carousel" id="myCarousel">
+				@{
+					foreach (var subDescription in lstSubDescription)
+					{
+						<div class="f-carousel__slide"
+							 data-thumb-src="@Url.Content($"~/Content/Images/component/{subDescription.Image}")"
+							 data-src="@Url.Content($"~/Content/Images/component/{subDescription.Image}")"
+							 data-fancybox="gallery">
+							<div class="componentFancy__block col-lg-8 col-md-8 col-xs-12 col-sm-12 p-0" data-lazy-src="@Url.Content($"~/Content/Images/component/{subDescription.Image}")"
+								 style="background-image: url('@Url.Content($"~/Content/Images/component/{subDescription.Image}")');background-size:cover;background-position:center center;">
+							</div>
+							@*<div class="componentFancy__block col-lg-10 col-md-10 col-xs-12 col-sm-12 p-0">
+								<img class="componentFancy__block--image" data-lazy-src="@Url.Content($"~/Content/Images/component/{subDescription.Image}")" />
+							</div>*@
+						</div>
+					}
+				}
+			</div>
+		</div>
+	}
+}
+
+
+<script>
+	$(document).ready(function () {
+		const container = document.getElementById("myCarousel");
+		const options = {
+			Dots: false,
+			Thumbs: {
+				type: "classic",
+			},
+			//Autoplay: {
+			//	timeout: 3000,
+			//	showProgress: false
+			//},
+		};
+
+		new Carousel(container, options, { Thumbs/*, Autoplay*/ });
+		Fancybox.bind('[data-fancybox="gallery"]', {
+			Thumbs: {
+				type: "classic"
+			},
+			compact: false,
+			contentClick: "iterateZoom",
+			Images: {
+				Panzoom: {
+					maxScale: 2,
+				},
+			},
+		});
+	});
+</script>

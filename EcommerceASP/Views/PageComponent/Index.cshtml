@@ -13,11 +13,11 @@
     if (topicDetail != null)
     {
         <section id="top-content-area" class="tca-medium tca-text-center" style="background-image: url(@Url.Content($"~/Content/Images/topic/{topicDetail.ThumbnailImage}"))">
-            <div class="overlay" style="opacity: 0.3; background-color: #444444;"></div><div class="lines-overlay animated fadeInDown"></div>
+            <div class="overlay" style="opacity: 0.3; background-color: #444444;"></div><div class="lines-overlay drop-in"></div>
             <div class="container" style="z-index:2">
                 <div class="row">
                     <div class="col-md-12">
-                        <div class="title-content text-center"> <h1 class="page-title animated fadeInDown" style="font-size: 2em;">@Model.Title.ToUpper()</h1></div>
+                        <div class="title-content text-center"> <h1 class="page-title drop-in" style="font-size: 2em;">@Model.Title.ToUpper()</h1></div>
                     </div>
                 </div>
             </div>
@@ -26,11 +26,11 @@
     else
     {
         <section id="top-content-area" class="tca-medium tca-text-center" style="background-image: url(@Url.Content($"~/Content/Images/topic/{Model.ThumbnailImage}"))">
-            <div class="overlay" style="opacity: 0.3; background-color: #444444;"></div><div class="lines-overlay animated fadeInDown"></div>
+            <div class="overlay" style="opacity: 0.3; background-color: #444444;"></div><div class="lines-overlay drop-in"></div>
             <div class="container" style="z-index:2">
                 <div class="row">
                     <div class="col-md-12">
-                        <div class="title-content text-center"> <h1 class="page-title animated fadeInDown" style="font-size: 2em;">@Model.Title.ToUpper()</h1></div>
+                        <div class="title-content text-center"> <h1 class="page-title drop-in" style="font-size: 2em;">@Model.Title.ToUpper()</h1></div>
                     </div>
                 </div>
             </div>
@@ -53,9 +53,11 @@
 @{
     if (Model != null)
     {
+        var idx = 0;
         foreach (var component in Model.lstComponentPageSlug)
         {
-            Html.RenderAction("GetComponentPageSlug", "PageComponent", new { componentId = component.Id, componentTypeId = component.ComponentTypeId });
+            Html.RenderAction("GetComponentPageSlug", "PageComponent", new { componentId = component.Id, componentTypeId = component.ComponentTypeId, isFristComponent = idx == 0 });
+            idx++;
         }
     }
 }

@@ -1,0 +1,72 @@
+﻿@model EcommerceASP.ViewModel.Topic.TopicViewBO
+@using EcommerceASP.ViewModel.Component
+@{
+	Layout = "~/Views/Shared/_LayoutBee.cshtml";
+}
+@{
+	ViewBag.Title = "Dự án";
+}
+@section scripts{
+	@*<link rel="stylesheet" href="~/Content/css/topic.css">*@
+	<link rel="stylesheet" href="~/Content/css/Project.css" />
+}
+<section id="top-content-area" class="tca-medium tca-text-center" style="background-image: url(@Url.Content($"~/Content/Images/topic/{Model.ThumbnailImage}"))">
+	<div class="overlay" style="opacity: 0.3; background-color: #444444;"></div><div class="lines-overlay drop-in"></div>
+	<div class="container" style="z-index:2">
+		<div class="row">
+			<div class="col-md-12">
+				<div class="title-content text-center"> <h1 class="page-title drop-in" style="font-size: 2em;">@Model.Title.ToUpper()</h1></div>
+			</div>
+		</div>
+	</div>
+</section>
+<div class="container ">
+	<section class="bread-crumb">
+		<span class="crumb-border"></span>
+		<div class="container">
+			<div class="row">
+				<div class="col-xs-12 a-left">
+					<ul class="breadcrumb">
+						<li class="home">
+							<a href="/" title="Trang chủ">
+								<span>Trang chủ</span>
+							</a>
+							<span class="mr_lr">&nbsp;/&nbsp;</span>
+						</li>
+						<li>
+							<strong>
+								<a href="/du-an" title="du-an">
+									<span>Dự án</span>
+								</a>
+							</strong>
+						</li>
+					</ul>
+				</div>
+			</div>
+		</div>
+	</section>
+</div>
+@*@{
+	Html.RenderPartial(Url.Content("Components/BeeDecor/_Top_BreadcrumbBee"), new BreadcrumbBO
+	{
+		ParentSlugName = Model.ParentSlugName,
+		ParentSlug = Model.ParentSlug,
+		SlugName = Model.SlugName,
+		Slug = Model.Slug,
+		IsChild = Model.IsChild,
+		Title = Model.Title,
+		IsShowTitle = true
+	});
+}*@
+<div class="container">
+	<div class="block__titleProject col-sm-12">
+		<h1>VĂN PHÒNG</h1>
+		<b>Những dự án đã thi công</b>
+	</div>
+</div>
+@{
+	Html.RenderPartial("../Project/Component/_ListProject", Model);
+}
+
+
+
