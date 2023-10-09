@@ -42,6 +42,11 @@ namespace EcommerceASP.Constaint
         /// Chi tiết tin tức
         /// </summary>
         TopicDetail = 10,
+
+        /// <summary>
+        /// Chi tiết dự án
+        /// </summary>
+        ProjectDetail = 25,
     }
 
     public enum EnumComponentType

@@ -1,4 +1,4 @@
-﻿@model EcommerceASP.ViewModel.Topic.TopicViewBO
+﻿@model EcommerceASP.ViewModel.Project.ProjectViewBO
 @using EcommerceASP.Libraries.MvcPaging
 @using EcommerceASP.Libraries;
 @{
@@ -7,20 +7,20 @@
 		<div class="componentProject drop-up">
 			<div class="d-flex flex-wrap">
 				@{
-					foreach (var item in Model.lstTopicDetail)
+					foreach (var item in Model.lstProject)
 					{
 						<div class="project__item col-lg-4 col-md-4 col-sm-6 col-xs-12 drop-up">
 							<a href="@(string.IsNullOrEmpty(item.Slug)?"#":item.Slug)"
 							   class="project__block">
 								<div class="project__block__image position-relative">
 									@*<img src="@Url.Content($"~/Content/Images/component/{subDescription.Image}")" alt="Alternate Text" />*@
-									<div class="project__image" style="background-image: url('@Url.Content($"~/Content/Images/topic/{item.ThumbnailImage}")');">
+									<div class="project__image" style="background-image: url('@Url.Content($"~/Content/Images/project/{item.ThumbnailImage}")');">
 									</div>
 								</div>
 								<div class="project__block__caption">
 									<div class="project__block__caption--content">
 										<div class="project__block__caption--category"> @*@item.SubTitle*@</div>
-										<div class="project__block__caption--name"><span>KHÁCH HÀNG:</span> @item.Title</div>
+										<div class="project__block__caption--name"><span>KHÁCH HÀNG:</span> @item.Customer</div>
 									</div>
 								</div>
 							</a>
@@ -32,14 +32,14 @@
 		<div class="col-md-12" style="display:flex;justify-content:center;margin-bottom:20px;">
 			<div class="row">
 				<div class="paging-top clearfix">
-					@if (Model?.lstTopicDetail != null && Model.lstTopicDetail.Count() > 0)
+					@if (Model?.lstProject != null && Model.lstProject.Count() > 0)
 					{
 						@Html.Raw(Ajax.Pager(
 						new Options
 						{
-							PageSize = Model.lstTopicDetail.PageSize,
-							TotalItemCount = Model.lstTopicDetail.TotalItemCount,
-							CurrentPage = Model.lstTopicDetail.PageNumber,
+							PageSize = Model.lstProject.PageSize,
+							TotalItemCount = Model.lstProject.TotalItemCount,
+							CurrentPage = Model.lstProject.PageNumber,
 							IsShowControls = true,
 							IsShowFirstLast = true,
 							IsShowPrevNext = true,

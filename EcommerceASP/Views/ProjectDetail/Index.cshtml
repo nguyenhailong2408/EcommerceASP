@@ -1,0 +1,175 @@
+﻿@model EcommerceASP.ViewModel.Project.ProjectBO
+@using EcommerceASP.ViewModel.Component
+@{
+	Layout = "~/Views/Shared/_LayoutBee.cshtml";
+}
+@{
+	ViewBag.Title = Model.Title;
+}
+@section scripts{
+	<link rel="stylesheet" href="~/Content/css/projectDetail.css">
+	<link rel="stylesheet" href="~/Content/css/component_Project.css" />
+	<link rel="stylesheet" href="~/Content/css/component_fancybox_project.css" />
+	<link rel="stylesheet" href="~/Content/css/component_ProjectDesc.css" />
+}
+<style>
+	.txt__ProjectDesc {
+		padding-bottom: 10px;
+		margin-bottom: 10px;
+	}
+</style>
+<section id="top-content-area" class="tca-medium tca-text-center" style="background-image: url(@Url.Content($"~/Content/Images/project/{Model.ThumbnailImage}"))">
+	<div class="overlay" style="opacity: 0.3; background-color: #444444;"></div><div class="lines-overlay drop-in"></div>
+	<div class="container" style="z-index:2">
+		<div class="row">
+			<div class="col-md-12">
+				<div class="title-content text-center"> <h1 class="page-title drop-in" style="font-size: 2em;">@Model.Title.ToUpper()</h1></div>
+			</div>
+		</div>
+	</div>
+</section>
+@{
+	Html.RenderPartial(Url.Content("Components/BeeDecor/_Top_BreadcrumbBee"), new BreadcrumbBO
+	{
+		ParentSlugName = Model.ParentSlugName,
+		ParentSlug = Model.ParentSlug,
+		SlugName = Model.SlugName,
+		Slug = Model.Slug,
+		IsChild = Model.IsChild,
+		Title = Model.Title,
+		IsShowTitle = true
+	});
+}
+
+@{
+	var lstProjectImages = Model.lstProjectImages;
+	if (lstProjectImages != null && lstProjectImages.Count > 0)
+	{
+		<div class="col-sm-12 p-0">
+			<div class="f-carousel" id="myCarousel">
+				@{
+					foreach (var itemImage in lstProjectImages)
+					{
+						<div class="f-carousel__slide"
+							 data-thumb-src="@Url.Content($"~/Content/Images/project/{itemImage.ThumbnailImage}")"
+							 data-src="@Url.Content($"~/Content/Images/project/{itemImage.ThumbnailImage}")"
+							 data-fancybox="gallery">
+							<div class="componentFancy__block col-lg-8 col-md-8 col-xs-12 col-sm-12 p-0" data-lazy-src="@Url.Content($"~/Content/Images/project/{itemImage.ThumbnailImage}")"
+								 style="background-image: url('@Url.Content($"~/Content/Images/project/{itemImage.ThumbnailImage}")');background-size:cover;background-position:center center;">
+							</div>
+							@*<div class="componentFancy__block col-lg-10 col-md-10 col-xs-12 col-sm-12 p-0">
+									<img class="componentFancy__block--image" data-lazy-src="@Url.Content($"~/Content/Images/project/{subDescription.Image}")" />
+								</div>*@
+						</div>
+					}
+				}
+			</div>
+		</div>
+	}
+}
+
+@{
+	if (Model != null)
+	{
+		<div class="container">
+			<div class="box__customerName" style="margin:15px 0;">
+				<h1>KHÁCH HÀNG: @Model.Customer</h1>
+			</div>
+			<div class="box__ProjectDesc">
+				<span class="box__ProjectDesc--title col-lg-2 col-md-2 col-xm-12 col-xs-12 p-0">CHI TIẾT:</span>
+				<div class="box__ProjectDesc--content col-lg-10 col-md-10 col-xm-12 col-xs-12">
+					<div class="col-xl-8 col-md-6 col-lg-6 col-sm-12 col-xs-12 p-0">
+						<table>
+							<tr>
+								<td><span class="txt__ProjectDesc text-nowrap font-weight-bold">KHÁCH HÀNG:</span></td>
+								<td><span class="txt__ProjectDesc">@Model.Customer</span></td>
+							</tr>
+							<tr>
+								<td><span class="txt__ProjectDesc text-nowrap font-weight-bold"">DIỆN TÍCH:</span></td>
+								<td><span class="txt__ProjectDesc">@Model.Size m2</span></td>
+							</tr>
+							<tr>
+								<td><span class="txt__ProjectDesc text-nowrap font-weight-bold"">THỜI GIAN:</span></td>
+								<td><span class="txt__ProjectDesc">@Model.TimeProject</span></td>
+							</tr>
+							<tr>
+								<td><span class="txt__ProjectDesc text-nowrap font-weight-bold"">ĐỊA ĐIỂM:</span></td>
+								<td><span class="txt__ProjectDesc">@Model.Address</span></td>
+							</tr>
+							<tr>
+								<td><span class="txt__ProjectDesc text-nowrap font-weight-bold"">CÔNG VIỆC:</span></td>
+								<td><span class="txt__ProjectDesc">@Model.JobDescription</span></td>
+							</tr>
+						</table>
+					</div>
+				</div>
+			</div>
+		</div>
+	}
+}
+
+<div class="container" style="margin-bottom: 20px;">
+	<span class="box__ProjectDesc--title col-lg-2 col-md-2 col-xm-12 col-xs-12 p-0 mb-2">DỰ ÁN LIÊN QUAN:</span>
+</div>
+@{
+	var lstProjectRelated = Model.lstProjectRelated;
+	if (lstProjectRelated != null && lstProjectRelated.Count > 0)
+	{
+		<div class="componentProject drop-up">
+			<div class="d-flex flex-wrap">
+				@{
+					foreach (var itemProjectRelated in lstProjectRelated)
+					{
+						<div class="col-lg-4 col-md-4 col-sm-6 col-xs-12 p-0 drop-up">
+							<a href="@(string.IsNullOrEmpty(itemProjectRelated.Slug)?"#":itemProjectRelated.Slug)"
+							   class="project__block">
+								<div class="project__block__image position-relative">
+									@*<img src="@Url.Content($"~/Content/Images/component/{subDescription.Image}")" alt="Alternate Text" />*@
+									<div class="project__image" style="background-image: url('@Url.Content($"~/Content/Images/project/{itemProjectRelated.ThumbnailImage}")');">
+									</div>
+								</div>
+								<div class="project__block__caption">
+									<div class="project__block__caption--content">
+										<div class="project__block__caption--category"> @itemProjectRelated.Title</div>
+										<div class="project__block__caption--name"><span>KHÁCH HÀNG:</span> @itemProjectRelated.Customer</div>
+									</div>
+								</div>
+							</a>
+						</div>
+					}
+				}
+			</div>
+		</div>
+	}
+}
+
+<script>
+	$(document).ready(function () {
+		const container = document.getElementById("myCarousel");
+		const options = {
+			Dots: false,
+			Thumbs: {
+				type: "classic",
+			},
+			Autoplay: {
+				timeout: 3000,
+				showProgress: false
+			},
+		};
+
+		new Carousel(container, options, { Thumbs, Autoplay });
+		Fancybox.bind('[data-fancybox="gallery"]', {
+			Thumbs: {
+				type: "classic"
+			},
+			compact: false,
+			contentClick: "iterateZoom",
+			Images: {
+				Panzoom: {
+					maxScale: 2,
+				},
+			},
+		});
+	});
+</script>
+

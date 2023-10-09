@@ -1,0 +1,109 @@
+﻿@model EcommerceASP.ViewModel.ProjectManage.ListViewModel
+@using EcommerceASP.Libraries.MvcPaging
+<style>
+	.line-camp-3 {
+		overflow: hidden;
+		text-overflow: ellipsis;
+		display: -webkit-box;
+		-webkit-line-clamp: 3;
+		-webkit-box-orient: vertical;
+	}
+</style>
+<table class="table table-striped table-hover table-bordered table-sorter" style="margin-bottom:0;" id="table-list-ProjectManage">
+	<thead>
+		<tr>
+			<th class="text-center" width="50">STT</th>
+			<th class="text-center">Tên dự án</th>
+			<th class="text-center">Đường dẫn</th>
+			<th class="text-center">Khách hàng</th>
+			<th class="text-center">Diện tích</th>
+			<th class="text-center">Địa chỉ</th>
+			<th class="text-center">Hình mô tả</th>
+			<th class="text-center">Mô tả công việc</th>
+			<th class="text-center">Nội dung</th>
+			<th class="text-center">Thứ tự</th>
+			<th class="text-center">Ngày tạo</th>
+			<th class="text-center">Người tạo</th>
+			<th class="text-center">#</th>
+		</tr>
+	</thead>
+	<tbody>
+		@if (Model.Items != null && Model.Items.Count() > 0)
+		{
+			var i = 1;
+			foreach (var item in Model.Items)
+			{
+				<tr class="cursor" data-id="@item.Id">
+					<td class="text-center">@i</td>
+					<td>@item.Title</td>
+					<td class="text-center"><a href="/@item.Slug" target="_blank">@item.Slug</a></td>
+					<td>@item.Customer</td>
+					<td>@item.Size</td>
+					<td>@item.Address</td>
+					<td class="text-center">
+						<img src="@Url.Content($"~/Content/Images/project/{item.ThumbnailImage}")" alt="@item.Title" height="50" />
+					</td>
+					<td>@item.JobDescription</td>
+					<td class="text-center">
+						@{
+							if (item.Content != null)
+							{
+								<button type="button" class="btn btn-dark" data-toggle="modal" data-target="#modal-update" data-backdrop="static" onclick="Common.ProjectManage.ShowDialog(@item.Id)">
+									Ấn để xem nội dung
+								</button>
+							}
+						}
+					</td>
+					<td class="text-center">
+						@item.Priority
+					</td>
+					<td class="text-center">@item.Created_at</td>
+
+					<td class="text-center">@item.CreatedByName</td>
+					<td class="text-center" style="white-space: nowrap; vertical-align: middle;">
+						<button class="btn btn-sm btn-success"
+								type="button"
+								data-toggle="modal"
+								data-target="#modal-update"
+								data-backdrop="static">
+							<i class="fa fa-edit"></i> Sửa
+						</button>
+						<button class="btn btn-sm btn-danger" type="button">
+							<i class="fa fa-trash deleted"></i> Xóa
+						</button>
+					</td>
+
+				</tr>
+				i++;
+			}
+		}
+		else
+		{
+			<tr class="noresult">
+				<td colspan="13">Không có dữ liệu</td>
+			</tr>
+		}
+	</tbody>
+</table>
+<div class="col-md-12 mt-2">
+	<div class="row">
+		<div class="paging-top clearfix">
+			@if (Model.Items != null && Model.Items.Count() > 0)
+			{
+				@Html.Raw(Ajax.Pager(
+				new Options
+				{
+					PageSize = Model.Items.PageSize,
+					TotalItemCount = Model.Items.TotalItemCount,
+					CurrentPage = Model.Items.PageNumber,
+					IsShowControls = true,
+					IsShowFirstLast = true,
+					LimitPage = 7,
+					Link = "javascript:void(0);",
+					OnClick = "Common.ProjectManage.Paging({0})"
+				}, null, null));
+			}
+		</div>
+	</div>
+</div>
+

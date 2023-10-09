@@ -13,7 +13,7 @@
     .block__titleProject b {
         width: 100%;
         font-size: 17px !important;
-        font-weight: bold;
+        font-weight: 500;
     }
 
 .project__item {

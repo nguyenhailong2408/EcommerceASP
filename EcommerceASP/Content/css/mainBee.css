@@ -775,6 +775,7 @@ a.cta-footer {
     .introduce1 {
         padding: 50px 0 50px 0 !important;
     }
+
     .introduce3 {
         padding: 50px 0 50px 0 !important;
     }
@@ -786,8 +787,9 @@ a.cta-footer {
     #top-content-area {
         padding: 150px 0;
     }
-    .componentFancy__block{
-        height:650px
+
+    .componentFancy__block {
+        height: 650px
     }
 }
 
@@ -795,9 +797,11 @@ a.cta-footer {
     .introduce1 {
         padding: 50px 0 50px 0 !important;
     }
+
     .introduce3 {
         padding: 50px 0 50px 0 !important;
     }
+
     .splide__list__item {
         height: 400px;
     }
@@ -820,6 +824,7 @@ a.cta-footer {
         box-shadow: 0 2px 15px 0px rgba(0,0,0,0.07);
         margin-right: 0;
     }
+
     .componentFancy__block {
         height: 500px
     }
@@ -829,9 +834,11 @@ a.cta-footer {
     .introduce1 {
         padding: 25px 0 25px 0 !important;
     }
+
     .introduce3 {
         padding: 20px 0 20px 0 !important;
     }
+
     .splide__list__item {
         height: 300px;
     }
@@ -839,8 +846,9 @@ a.cta-footer {
     #top-content-area {
         padding: 100px 0;
     }
+
     .componentFancy__block {
-        height: 500px
+        height: 260px;
     }
 }
 
@@ -849,9 +857,11 @@ a.cta-footer {
     .introduce1 {
         padding: 25px 0 25px 0 !important;
     }
+
     .introduce3 {
         padding: 20px 0 20px 0 !important;
     }
+
     .splide__list__item {
         height: 300px;
     }
@@ -859,8 +869,9 @@ a.cta-footer {
     #top-content-area {
         padding: 100px 0;
     }
+
     .componentFancy__block {
-        height: 500px
+        height: 250px;
     }
 }
 
@@ -871,9 +882,11 @@ a.cta-footer {
 .drop-in-2 {
     animation: drop-in 1200ms ease 500ms backwards;
 }
+
 .drop-up {
     animation: drop-up 1s ease 200ms backwards;
 }
+
 @keyframes drop-in {
     from {
         opacity: 0;
@@ -885,6 +898,7 @@ a.cta-footer {
         transform: translate(0px);
     }
 }
+
 @keyframes drop-up {
     from {
         opacity: 0;

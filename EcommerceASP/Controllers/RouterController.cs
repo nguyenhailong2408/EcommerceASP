@@ -91,9 +91,13 @@ namespace EcommerceASP.Controllers
                             data22.PageId = router.PageId;
                             return View("../PageComponent/Index", data22);
                         case 23:
-                            var data23 = TopicQuery.GetTopic(strSlug, page);
+                            var data23 = ProjectQuery.GetListProjects(page);
                             data23.PageId = router.PageId;
                             return View("../Project/Index", data23);
+                        case 25:
+                            var data25 = ProjectQuery.GetProjectDetail(strSlug);
+                            data25.PageId = router.PageId;
+                            return View("../ProjectDetail/Index", data25);
                         default:
                             return RedirectToAction("Index", "Home");
                     }

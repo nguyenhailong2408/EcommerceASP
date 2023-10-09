@@ -23,7 +23,9 @@ namespace EcommerceASP.Models
         public int Id { get; set; }
         public Nullable<int> CategoryId { get; set; }
         public string Title { get; set; }
+        public string SubTitle { get; set; }
         public string Slug { get; set; }
+        public string ThumbnailImage { get; set; }
         public string Content { get; set; }
         public int Priority { get; set; }
         public bool IsDeleted { get; set; }
@@ -31,8 +33,6 @@ namespace EcommerceASP.Models
         public Nullable<int> Created_by { get; set; }
         public Nullable<System.DateTime> Updated_at { get; set; }
         public Nullable<int> Updated_by { get; set; }
-        public string SubTitle { get; set; }
-        public string ThumbnailImage { get; set; }
     
         public virtual Category Category { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]

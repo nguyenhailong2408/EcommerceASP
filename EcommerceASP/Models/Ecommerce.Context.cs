@@ -40,6 +40,9 @@ namespace EcommerceASP.Models
         public virtual DbSet<ProductCategoryDetail> ProductCategoryDetails { get; set; }
         public virtual DbSet<ProductCategory> ProductCategorys { get; set; }
         public virtual DbSet<Product> Products { get; set; }
+        public virtual DbSet<Project> Projects { get; set; }
+        public virtual DbSet<ProjectCategory> ProjectCategories { get; set; }
+        public virtual DbSet<ProjectImage> ProjectImages { get; set; }
         public virtual DbSet<Slide> Slides { get; set; }
         public virtual DbSet<TopicDetail> TopicDetails { get; set; }
         public virtual DbSet<Topic> Topics { get; set; }

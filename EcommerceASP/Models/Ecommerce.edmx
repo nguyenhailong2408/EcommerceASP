@@ -267,6 +267,57 @@
           <Property Name="Size" Type="nvarchar" MaxLength="250" />
           <Property Name="Fabric" Type="nvarchar" MaxLength="250" />
         </EntityType>
+        <EntityType Name="Project">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="ProjectCategoryId" Type="int" />
+          <Property Name="Title" Type="nvarchar" MaxLength="250" />
+          <Property Name="SubTitle" Type="nvarchar" MaxLength="250" />
+          <Property Name="Customer" Type="nvarchar" MaxLength="250" />
+          <Property Name="Size" Type="int" Nullable="false" />
+          <Property Name="TimeProject" Type="datetime" />
+          <Property Name="JobDescription" Type="nvarchar" MaxLength="250" />
+          <Property Name="Slug" Type="nvarchar" MaxLength="500" Nullable="false" />
+          <Property Name="ThumbnailImage" Type="nvarchar" MaxLength="250" />
+          <Property Name="Content" Type="nvarchar(max)" />
+          <Property Name="Priority" Type="int" Nullable="false" />
+          <Property Name="IsDeleted" Type="bit" Nullable="false" />
+          <Property Name="Created_at" Type="datetime" />
+          <Property Name="Created_by" Type="int" />
+          <Property Name="Updated_at" Type="datetime" />
+          <Property Name="Updated_by" Type="int" />
+          <Property Name="Address" Type="nvarchar" MaxLength="250" />
+        </EntityType>
+        <EntityType Name="ProjectCategory">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Title" Type="nvarchar" MaxLength="250" />
+          <Property Name="Slug" Type="nvarchar" MaxLength="500" />
+          <Property Name="Priority" Type="int" Nullable="false" />
+          <Property Name="IsDeleted" Type="bit" Nullable="false" />
+          <Property Name="Created_at" Type="datetime" />
+          <Property Name="Created_by" Type="int" />
+          <Property Name="Updated_at" Type="datetime" />
+          <Property Name="Updated_by" Type="int" />
+        </EntityType>
+        <EntityType Name="ProjectImage">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="ProjectId" Type="int" />
+          <Property Name="ThumbnailImage" Type="nvarchar" MaxLength="250" />
+          <Property Name="Priority" Type="int" Nullable="false" />
+          <Property Name="IsDeleted" Type="bit" Nullable="false" />
+          <Property Name="Created_at" Type="datetime" />
+          <Property Name="Created_by" Type="int" />
+          <Property Name="Updated_at" Type="datetime" />
+          <Property Name="Updated_by" Type="int" />
+        </EntityType>
         <EntityType Name="Slides">
           <Key>
             <PropertyRef Name="Id" />
@@ -428,6 +479,30 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <Association Name="FK_Project_ProjectCategory">
+          <End Role="ProjectCategory" Type="Self.ProjectCategory" Multiplicity="0..1" />
+          <End Role="Project" Type="Self.Project" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="ProjectCategory">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Project">
+              <PropertyRef Name="ProjectCategoryId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_ProjectImage_Project">
+          <End Role="Project" Type="Self.Project" Multiplicity="0..1" />
+          <End Role="ProjectImage" Type="Self.ProjectImage" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Project">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="ProjectImage">
+              <PropertyRef Name="ProjectId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <Association Name="FK_TopicDetails_Topics">
           <End Role="Topics" Type="Self.Topics" Multiplicity="0..1" />
           <End Role="TopicDetails" Type="Self.TopicDetails" Multiplicity="*" />
@@ -468,6 +543,9 @@
           <EntitySet Name="ProductCategoryDetails" EntityType="Self.ProductCategoryDetails" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="ProductCategorys" EntityType="Self.ProductCategorys" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Products" EntityType="Self.Products" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Project" EntityType="Self.Project" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="ProjectCategory" EntityType="Self.ProjectCategory" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="ProjectImage" EntityType="Self.ProjectImage" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Slides" EntityType="Self.Slides" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="TopicDetails" EntityType="Self.TopicDetails" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Topics" EntityType="Self.Topics" Schema="dbo" store:Type="Tables" />
@@ -507,6 +585,14 @@
             <End Role="ProductCategorys" EntitySet="ProductCategorys" />
             <End Role="ProductCategoryDetails" EntitySet="ProductCategoryDetails" />
           </AssociationSet>
+          <AssociationSet Name="FK_Project_ProjectCategory" Association="Self.FK_Project_ProjectCategory">
+            <End Role="ProjectCategory" EntitySet="ProjectCategory" />
+            <End Role="Project" EntitySet="Project" />
+          </AssociationSet>
+          <AssociationSet Name="FK_ProjectImage_Project" Association="Self.FK_ProjectImage_Project">
+            <End Role="Project" EntitySet="Project" />
+            <End Role="ProjectImage" EntitySet="ProjectImage" />
+          </AssociationSet>
           <AssociationSet Name="FK_TopicDetails_Topics" Association="Self.FK_TopicDetails_Topics">
             <End Role="Topics" EntitySet="Topics" />
             <End Role="TopicDetails" EntitySet="TopicDetails" />
@@ -536,6 +622,9 @@
           <EntitySet Name="ProductCategoryDetails" EntityType="EcommerceModel.ProductCategoryDetail" />
           <EntitySet Name="ProductCategorys" EntityType="EcommerceModel.ProductCategory" />
           <EntitySet Name="Products" EntityType="EcommerceModel.Product" />
+          <EntitySet Name="Projects" EntityType="EcommerceModel.Project" />
+          <EntitySet Name="ProjectCategories" EntityType="EcommerceModel.ProjectCategory" />
+          <EntitySet Name="ProjectImages" EntityType="EcommerceModel.ProjectImage" />
           <EntitySet Name="Slides" EntityType="EcommerceModel.Slide" />
           <EntitySet Name="TopicDetails" EntityType="EcommerceModel.TopicDetail" />
           <EntitySet Name="Topics" EntityType="EcommerceModel.Topic" />
@@ -578,6 +667,14 @@
           <AssociationSet Name="FK_ProductCategoryDetails_ProductCategorys" Association="EcommerceModel.FK_ProductCategoryDetails_ProductCategorys">
             <End Role="ProductCategory" EntitySet="ProductCategorys" />
             <End Role="ProductCategoryDetail" EntitySet="ProductCategoryDetails" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Project_ProjectCategory" Association="EcommerceModel.FK_Project_ProjectCategory">
+            <End Role="ProjectCategory" EntitySet="ProjectCategories" />
+            <End Role="Project" EntitySet="Projects" />
+          </AssociationSet>
+          <AssociationSet Name="FK_ProjectImage_Project" Association="EcommerceModel.FK_ProjectImage_Project">
+            <End Role="Project" EntitySet="Projects" />
+            <End Role="ProjectImage" EntitySet="ProjectImages" />
           </AssociationSet>
           <AssociationSet Name="FK_TopicDetails_Topics" Association="EcommerceModel.FK_TopicDetails_Topics">
             <End Role="Topic" EntitySet="Topics" />
@@ -865,6 +962,61 @@
           <Property Name="Fabric" Type="String" MaxLength="250" FixedLength="false" Unicode="true" />
           <NavigationProperty Name="ComponentItems" Relationship="EcommerceModel.FK_ComponentProducts_Products" FromRole="Product" ToRole="ComponentItem" />
         </EntityType>
+        <EntityType Name="Project">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="ProjectCategoryId" Type="Int32" />
+          <Property Name="Title" Type="String" MaxLength="250" FixedLength="false" Unicode="true" />
+          <Property Name="SubTitle" Type="String" MaxLength="250" FixedLength="false" Unicode="true" />
+          <Property Name="Customer" Type="String" MaxLength="250" FixedLength="false" Unicode="true" />
+          <Property Name="Size" Type="Int32" Nullable="false" />
+          <Property Name="TimeProject" Type="DateTime" Precision="3" />
+          <Property Name="JobDescription" Type="String" MaxLength="250" FixedLength="false" Unicode="true" />
+          <Property Name="Slug" Type="String" Nullable="false" MaxLength="500" FixedLength="false" Unicode="true" />
+          <Property Name="ThumbnailImage" Type="String" MaxLength="250" FixedLength="false" Unicode="true" />
+          <Property Name="Content" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="Priority" Type="Int32" Nullable="false" />
+          <Property Name="IsDeleted" Type="Boolean" Nullable="false" />
+          <Property Name="Created_at" Type="DateTime" Precision="3" />
+          <Property Name="Created_by" Type="Int32" />
+          <Property Name="Updated_at" Type="DateTime" Precision="3" />
+          <Property Name="Updated_by" Type="Int32" />
+          <Property Name="Address" Type="String" MaxLength="250" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="ProjectCategory" Relationship="EcommerceModel.FK_Project_ProjectCategory" FromRole="Project" ToRole="ProjectCategory" />
+          <NavigationProperty Name="ProjectImages" Relationship="EcommerceModel.FK_ProjectImage_Project" FromRole="Project" ToRole="ProjectImage" />
+        </EntityType>
+        <EntityType Name="ProjectCategory">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Title" Type="String" MaxLength="250" FixedLength="false" Unicode="true" />
+          <Property Name="Slug" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
+          <Property Name="Priority" Type="Int32" Nullable="false" />
+          <Property Name="IsDeleted" Type="Boolean" Nullable="false" />
+          <Property Name="Created_at" Type="DateTime" Precision="3" />
+          <Property Name="Created_by" Type="Int32" />
+          <Property Name="Updated_at" Type="DateTime" Precision="3" />
+          <Property Name="Updated_by" Type="Int32" />
+          <NavigationProperty Name="Projects" Relationship="EcommerceModel.FK_Project_ProjectCategory" FromRole="ProjectCategory" ToRole="Project" />
+        </EntityType>
+        <EntityType Name="ProjectImage">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="ProjectId" Type="Int32" />
+          <Property Name="ThumbnailImage" Type="String" MaxLength="250" FixedLength="false" Unicode="true" />
+          <Property Name="Priority" Type="Int32" Nullable="false" />
+          <Property Name="IsDeleted" Type="Boolean" Nullable="false" />
+          <Property Name="Created_at" Type="DateTime" Precision="3" />
+          <Property Name="Created_by" Type="Int32" />
+          <Property Name="Updated_at" Type="DateTime" Precision="3" />
+          <Property Name="Updated_by" Type="Int32" />
+          <NavigationProperty Name="Project" Relationship="EcommerceModel.FK_ProjectImage_Project" FromRole="ProjectImage" ToRole="Project" />
+        </EntityType>
         <EntityType Name="Slide">
           <Key>
             <PropertyRef Name="Id" />
@@ -908,7 +1060,9 @@
           <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="CategoryId" Type="Int32" />
           <Property Name="Title" Type="String" MaxLength="250" FixedLength="false" Unicode="true" />
+          <Property Name="SubTitle" Type="String" MaxLength="250" FixedLength="false" Unicode="true" />
           <Property Name="Slug" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
+          <Property Name="ThumbnailImage" Type="String" MaxLength="250" FixedLength="false" Unicode="true" />
           <Property Name="Content" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
           <Property Name="Priority" Type="Int32" Nullable="false" />
           <Property Name="IsDeleted" Type="Boolean" Nullable="false" />
@@ -918,8 +1072,6 @@
           <Property Name="Updated_by" Type="Int32" />
           <NavigationProperty Name="Category" Relationship="EcommerceModel.FK_Topics_Categorys" FromRole="Topic" ToRole="Category" />
           <NavigationProperty Name="TopicDetails" Relationship="EcommerceModel.FK_TopicDetails_Topics" FromRole="Topic" ToRole="TopicDetail" />
-          <Property Name="SubTitle" Type="String" MaxLength="250" FixedLength="false" Unicode="true" />
-          <Property Name="ThumbnailImage" Type="String" MaxLength="250" FixedLength="false" Unicode="true" />
         </EntityType>
         <Association Name="FK_CategoryDetails_Categorys">
           <End Type="EcommerceModel.Category" Role="Category" Multiplicity="1" />
@@ -1038,6 +1190,30 @@
             </Principal>
             <Dependent Role="ProductCategoryDetail">
               <PropertyRef Name="ProductCategoryID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Project_ProjectCategory">
+          <End Type="EcommerceModel.ProjectCategory" Role="ProjectCategory" Multiplicity="0..1" />
+          <End Type="EcommerceModel.Project" Role="Project" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="ProjectCategory">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Project">
+              <PropertyRef Name="ProjectCategoryId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_ProjectImage_Project">
+          <End Type="EcommerceModel.Project" Role="Project" Multiplicity="0..1" />
+          <End Type="EcommerceModel.ProjectImage" Role="ProjectImage" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Project">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="ProjectImage">
+              <PropertyRef Name="ProjectId" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -1336,6 +1512,60 @@
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
+          <EntitySetMapping Name="Projects">
+            <EntityTypeMapping TypeName="EcommerceModel.Project">
+              <MappingFragment StoreEntitySet="Project">
+                <ScalarProperty Name="Address" ColumnName="Address" />
+                <ScalarProperty Name="Updated_by" ColumnName="Updated_by" />
+                <ScalarProperty Name="Updated_at" ColumnName="Updated_at" />
+                <ScalarProperty Name="Created_by" ColumnName="Created_by" />
+                <ScalarProperty Name="Created_at" ColumnName="Created_at" />
+                <ScalarProperty Name="IsDeleted" ColumnName="IsDeleted" />
+                <ScalarProperty Name="Priority" ColumnName="Priority" />
+                <ScalarProperty Name="Content" ColumnName="Content" />
+                <ScalarProperty Name="ThumbnailImage" ColumnName="ThumbnailImage" />
+                <ScalarProperty Name="Slug" ColumnName="Slug" />
+                <ScalarProperty Name="JobDescription" ColumnName="JobDescription" />
+                <ScalarProperty Name="TimeProject" ColumnName="TimeProject" />
+                <ScalarProperty Name="Size" ColumnName="Size" />
+                <ScalarProperty Name="Customer" ColumnName="Customer" />
+                <ScalarProperty Name="SubTitle" ColumnName="SubTitle" />
+                <ScalarProperty Name="Title" ColumnName="Title" />
+                <ScalarProperty Name="ProjectCategoryId" ColumnName="ProjectCategoryId" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="ProjectCategories">
+            <EntityTypeMapping TypeName="EcommerceModel.ProjectCategory">
+              <MappingFragment StoreEntitySet="ProjectCategory">
+                <ScalarProperty Name="Updated_by" ColumnName="Updated_by" />
+                <ScalarProperty Name="Updated_at" ColumnName="Updated_at" />
+                <ScalarProperty Name="Created_by" ColumnName="Created_by" />
+                <ScalarProperty Name="Created_at" ColumnName="Created_at" />
+                <ScalarProperty Name="IsDeleted" ColumnName="IsDeleted" />
+                <ScalarProperty Name="Priority" ColumnName="Priority" />
+                <ScalarProperty Name="Slug" ColumnName="Slug" />
+                <ScalarProperty Name="Title" ColumnName="Title" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="ProjectImages">
+            <EntityTypeMapping TypeName="EcommerceModel.ProjectImage">
+              <MappingFragment StoreEntitySet="ProjectImage">
+                <ScalarProperty Name="Updated_by" ColumnName="Updated_by" />
+                <ScalarProperty Name="Updated_at" ColumnName="Updated_at" />
+                <ScalarProperty Name="Created_by" ColumnName="Created_by" />
+                <ScalarProperty Name="Created_at" ColumnName="Created_at" />
+                <ScalarProperty Name="IsDeleted" ColumnName="IsDeleted" />
+                <ScalarProperty Name="Priority" ColumnName="Priority" />
+                <ScalarProperty Name="ThumbnailImage" ColumnName="ThumbnailImage" />
+                <ScalarProperty Name="ProjectId" ColumnName="ProjectId" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
           <EntitySetMapping Name="Slides">
             <EntityTypeMapping TypeName="EcommerceModel.Slide">
               <MappingFragment StoreEntitySet="Slides">
@@ -1376,8 +1606,6 @@
           <EntitySetMapping Name="Topics">
             <EntityTypeMapping TypeName="EcommerceModel.Topic">
               <MappingFragment StoreEntitySet="Topics">
-                <ScalarProperty Name="ThumbnailImage" ColumnName="ThumbnailImage" />
-                <ScalarProperty Name="SubTitle" ColumnName="SubTitle" />
                 <ScalarProperty Name="Updated_by" ColumnName="Updated_by" />
                 <ScalarProperty Name="Updated_at" ColumnName="Updated_at" />
                 <ScalarProperty Name="Created_by" ColumnName="Created_by" />
@@ -1385,7 +1613,9 @@
                 <ScalarProperty Name="IsDeleted" ColumnName="IsDeleted" />
                 <ScalarProperty Name="Priority" ColumnName="Priority" />
                 <ScalarProperty Name="Content" ColumnName="Content" />
+                <ScalarProperty Name="ThumbnailImage" ColumnName="ThumbnailImage" />
                 <ScalarProperty Name="Slug" ColumnName="Slug" />
+                <ScalarProperty Name="SubTitle" ColumnName="SubTitle" />
                 <ScalarProperty Name="Title" ColumnName="Title" />
                 <ScalarProperty Name="CategoryId" ColumnName="CategoryId" />
                 <ScalarProperty Name="Id" ColumnName="Id" />

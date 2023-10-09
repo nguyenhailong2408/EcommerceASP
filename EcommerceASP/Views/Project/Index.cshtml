@@ -1,4 +1,4 @@
-﻿@model EcommerceASP.ViewModel.Topic.TopicViewBO
+﻿@model EcommerceASP.ViewModel.Project.ProjectViewBO
 @using EcommerceASP.ViewModel.Component
 @{
 	Layout = "~/Views/Shared/_LayoutBee.cshtml";
@@ -20,7 +20,7 @@
 		</div>
 	</div>
 </section>
-<div class="container ">
+@*<div class="container ">
 	<section class="bread-crumb">
 		<span class="crumb-border"></span>
 		<div class="container">
@@ -45,8 +45,8 @@
 			</div>
 		</div>
 	</section>
-</div>
-@*@{
+</div>*@
+@{
 	Html.RenderPartial(Url.Content("Components/BeeDecor/_Top_BreadcrumbBee"), new BreadcrumbBO
 	{
 		ParentSlugName = Model.ParentSlugName,
@@ -57,7 +57,7 @@
 		Title = Model.Title,
 		IsShowTitle = true
 	});
-}*@
+}
 <div class="container">
 	<div class="block__titleProject col-sm-12">
 		<h1>VĂN PHÒNG</h1>

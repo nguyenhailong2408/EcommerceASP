@@ -36,20 +36,17 @@ namespace EcommerceASP.Queries
                     }).OrderBy(m => m.Priority).ToList();
 
                 var objTopic = _entities.Topics.Where(m => !m.IsDeleted && m.Slug.Equals("du-an")).FirstOrDefault();
-                objHome.lstTopicDetail = objTopic.TopicDetails
-                                    .Where(m => !m.IsDeleted)
-                                    .Select(m => new TopicDetailBO
-                                    {
-                                        Id = m.Id,
-                                        Name = m.Name,
-                                        Title = m.Title,
-                                        Content = m.Content,
-                                        ThumbnailImage = m.ThumbnailImage,
-                                        Slug = m.Slug,
-                                        Description = m.Description,
-                                        Priority = m.Priority,
-                                        Created_at = m.Updated_at == null ? m.Created_at : m.Updated_at == null ? DateTime.Now : m.Updated_at
-                                    }).OrderByDescending(m => m.Created_at).ToList();
+                objHome.lstProject = _entities.Projects.Where(x => !x.IsDeleted)
+                                              .Select(x => new ViewModel.Project.ProjectBO
+                                              {
+                                                  Customer = x.Customer,
+                                                  Title = x.Title,
+                                                  Priority = x.Priority,
+                                                  ThumbnailImage = x.ThumbnailImage,
+                                                  Slug = x.Slug,
+                                                  Address = x.Address,
+                                                  TimeProject = x.TimeProject
+                                              }).OrderBy(x => x.Priority).Take(9).ToList();
 
                 return objHome;
             }
@@ -123,7 +120,7 @@ namespace EcommerceASP.Queries
                     Rows = Component.ComponentType.Row ?? 1,
                     Collumns = Component.ComponentType.Collumn ?? 1,
                     IsSlide = Component.ComponentType.IsSlide,
-                    lstComponentSubDescription = _entities.ComponentSubDescriptions.Where(x=>x.ComponentId == Component.Id)
+                    lstComponentSubDescription = _entities.ComponentSubDescriptions.Where(x => x.ComponentId == Component.Id)
                                                 .Select(x => new ComponentSubDescriptionViewBO
                                                 {
                                                     ComponentId = x.ComponentId,

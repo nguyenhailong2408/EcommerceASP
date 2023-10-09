@@ -16,12 +16,17 @@
 
 .box__ProjectDesc--content table tbody tr td {
     white-space: unset !important;
+    text-align: left;
+    border: unset;
+    border-bottom: dashed 1px #acacac;
+    vertical-align: baseline;
 }
 /*CCS MOBILE*/
 @media screen and (max-width: 840px) {
     .box__customerName h1 {
-        font-size:25px;
+        font-size: 25px;
     }
+
     .box__ProjectDesc--title {
         font-size: 18px;
     }
@@ -31,6 +36,7 @@
     .box__customerName h1 {
         font-size: 25px;
     }
+
     .box__ProjectDesc--title {
         font-size: 18px;
     }
@@ -40,6 +46,7 @@
     .box__customerName h1 {
         font-size: 25px;
     }
+
     .box__ProjectDesc--title {
         font-size: 16px;
     }
@@ -49,6 +56,7 @@
     .box__customerName h1 {
         font-size: 25px;
     }
+
     .box__ProjectDesc--title {
         font-size: 16px;
     }
@@ -58,6 +66,7 @@
     .box__customerName h1 {
         font-size: 25px;
     }
+
     .box__ProjectDesc--title {
         font-size: 16px;
     }

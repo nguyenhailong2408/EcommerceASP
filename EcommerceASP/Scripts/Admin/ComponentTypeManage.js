@@ -10,6 +10,7 @@
 
 ComponentTypeManage.prototype = {
     Init: function (options) {
+        this.PageCurrent = 1;
         this.RegisterEvent();
     },
     RegisterEvent: function () {
@@ -95,12 +96,14 @@ ComponentTypeManage.prototype = {
 
     },
     SubmitForm: function () {
+        Common.ComponentTypeManage.SetPage(Common.ComponentTypeManage.PageCurrent);
         $("#form-search-ComponentTypeManage").submit();
     },
     SetPage: function (page) {
         $("#form-search-ComponentTypeManage").find("input[name='PageCurrent']").val(page);
     },
     Paging: function (page) {
+        Common.ComponentTypeManage.PageCurrent = page;
         Common.ComponentTypeManage.SetPage(page);
         Common.ComponentTypeManage.IsPaging = true;
         Common.ComponentTypeManage.SubmitForm();
@@ -143,15 +146,12 @@ ComponentTypeManage.prototype = {
         $("#form-update").submit();
     },
     HideDialog: function () {
-        target = $("#modal-update");
-        target.removeClass("in");
-        $(".modal-backdrop").remove();
-        target.hide();
-        //$(window).scrollTop(0);
-        location.reload();
-        //$('#modal-update').on('shown.bs.modal', function (e) {
-        //    $("#modal-update").modal("hide");
-        //})
+        //target = $("#modal-update");
+        //target.removeClass("in");
+        //$(".modal-backdrop").remove();
+        //target.hide()
+
+        $("#modal-update").modal("hide");
 
     },
     ShowDialog: function (id) {

@@ -160,12 +160,19 @@
 						<a class="nav-link" href="@Url.Action("Index","ComponentTypeManage")"><span class="nav-icon"></span> Loại Module</a>
 					</li>
 					@*<li class="nav-item @(ControllerName.Equals("componentmanage")?"active":"")">
-						<a class="nav-link" href="@Url.Action("Index","ComponentManage")"><span class="nav-icon"></span> Module</a>
-					</li>*@
+					<a class="nav-link" href="@Url.Action("Index","ComponentManage")"><span class="nav-icon"></span> Module</a>
+				</li>*@
 					<li class="nav-item @(ControllerName.Equals("componentpageslug")?"active":"")">
 						<a class="nav-link" href="@Url.Action("Index","ComponentPageSlug")"><span class="nav-icon"></span> Module theo đường dẫn</a>
 					</li>
 				</ul>
+			</li>
+			<li class="nav-item @(ControllerName.Equals("projectmanage")?"active":"")">
+				<a class="nav-link" href="@Url.Action("Index","ProjectManage")">
+					<svg class="nav-icon">
+						<use xlink:href="~/UI/admin/vendors/coreui/icons/svg/free.svg#cil-star"></use>
+					</svg> Dự án
+				</a>
 			</li>
 		</ul>
 		<button class="sidebar-toggler" type="button" data-coreui-toggle="unfoldable"></button>
@@ -179,9 +186,10 @@
 					</svg>
 				</button>
 				<ul class="header-nav d-none d-md-flex">
-					<li class="nav-item"><a class="nav-link" href="@Url.Action("Index","CategoryManage")">Danh mục Menu</a></li>
+					@*<li class="nav-item"><a class="nav-link" href="@Url.Action("Index","CategoryManage")">Danh mục Menu</a></li>
 					<li class="nav-item"><a class="nav-link" href="@Url.Action("Index","ProductCategoryManage")">Danh mục sản phẩm</a></li>
-					<li class="nav-item"><a class="nav-link" href="@Url.Action("Index","ProductManage")">Sản phẩm</a></li>
+					<li class="nav-item"><a class="nav-link" href="@Url.Action("Index","ProductManage")">Sản phẩm</a></li>*@
+					<li class="nav-item"><a class="nav-link" href="@Url.Action("Index","ProjectManage")">Dự án</a></li>
 					<li class="nav-item"><a class="nav-link" href="@Url.Action("Index","PostManage")">Bài viết</a></li>
 					<li class="nav-item"><a class="nav-link" href="@Url.Action("Index","SlideManage")">Slide</a></li>
 				</ul>
